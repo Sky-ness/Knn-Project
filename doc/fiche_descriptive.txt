@@ -20,15 +20,25 @@ A) L'utilisateur clique sur modifier à l'etape 4
 B) Le système renvoie à l'etape 2 et affiche le formulaire avec les infos affichées avant
 Fiche descriptive 2
 
-Système : 
-Cas Utilisation : 
-Acteur principal : 
+Système : Classification
+Cas Utilisation : Afficher en nuage de point
+Acteur principal : Utilisateur
 Acteur secondaire : 
-Préconditions : 
-Garanti en cas de succès : 
+Préconditions : Avoir une base de données
+Garanti en cas de succès : Affiche un nuage de point
 Garanti minimale : 
 Scenario principal :
+1) L'utilisateur sélectionne la fonction "Affichage en nuage de point"
+2) Le système affiche un formulaire contenant 2 attributs sous forme de sélecteur
+3) L'utilisateur saisie et valide
+4) Le système fait un recapitulatif
+5) L'utilisateur valide
+6) Le système affiche l'affichage
+
 Scenario alternatif : 
+A) L'utilisateur clique sur modifier à l'etape 4
+B) Le système renvoie à l'etape 2 et affiche le formulaire avec les infos affichées avant
+
 
 Fiche descriptive 3
 
