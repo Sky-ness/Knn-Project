@@ -1,0 +1,54 @@
+Fiche descriptive 1
+
+Système : 
+Cas Utilisation : 
+Acteur principal : 
+Acteur secondaire : 
+Préconditions : 
+Garanti en cas de succès : 
+Garanti minimale : 
+Scenario principal :
+Scenario alternatif : 
+
+Fiche descriptive 2
+
+Système : 
+Cas Utilisation : 
+Acteur principal : 
+Acteur secondaire : 
+Préconditions : 
+Garanti en cas de succès : 
+Garanti minimale : 
+Scenario principal :
+Scenario alternatif : 
+
+Fiche descriptive 3
+
+Système : 
+Cas Utilisation : 
+Acteur principal : 
+Acteur secondaire : 
+Préconditions : 
+Garanti en cas de succès : 
+Garanti minimale : 
+Scenario principal :
+Scenario alternatif : 
+
+Fiche descriptive 4
+Système : 
+Cas Utilisation : 
+Acteur principal : 
+Acteur secondaire : 
+Préconditions : 
+Garanti en cas de succès : 
+Garanti minimale : 
+Scenario principal :
+Scenario alternatif : 
+
+
+
+
+
+
+
+
