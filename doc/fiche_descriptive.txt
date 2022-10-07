@@ -56,19 +56,17 @@ Scenario principal :
 4) Le systyème affiche le résultat des test.
 
 
-
 Fiche descriptive 4
-Système : 
-Cas Utilisation : 
-Acteur principal : 
+Système : Classification
+Cas Utilisation : Affichage des données d'un point
+Acteur principal : Utilisateur
 Acteur secondaire : 
-Préconditions : 
-Garanti en cas de succès : 
+Préconditions : Avoir afficher un nuage de point
+Garanti en cas de succès : Affiche un popup
 Garanti minimale : 
 Scenario principal :
-Scenario alternatif : 
-
-
+1) L'utilisateur clic sur un point afin de declencher la fonction " affichage des données "
+2) Le systyème affiche une popup avec les données du point
 
 
 
