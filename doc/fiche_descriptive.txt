@@ -20,6 +20,8 @@ A) L'utilisateur clique sur modifier à l'etape 4
 B) Le système renvoie à l'etape 2 et affiche le formulaire avec les infos affichées avant
 Fiche descriptive 2
 
+Fiche descriptive 2
+
 Système : Classification
 Cas Utilisation : Afficher en nuage de point
 Acteur principal : Utilisateur
@@ -57,6 +59,7 @@ Scenario principal :
 
 
 Fiche descriptive 4
+
 Système : Classification
 Cas Utilisation : Affichage des données d'un point
 Acteur principal : Utilisateur
@@ -68,7 +71,21 @@ Scenario principal :
 1) L'utilisateur clic sur un point afin de declencher la fonction " affichage des données "
 2) Le systyème affiche une popup avec les données du point
 
+Fiche descriptive 5
 
+Système : Classification
+Cas Utilisation : Charger les données
+Acteur principal : Utilisateur
+Acteur secondaire : 
+Garanti en cas de succès : chargement des données
+Scenario principal :
+1)L'utilisateur sélection la fonction "importer un fichier".
+2)Le système ouvre un navigateur de fichier.
+3)L'utilisateur choisit un fichier et valide.
+4)Le système vérifie la validité du fichier et charge les données.
+Scenario alternatif :
+1)Le format du fichier n'est pas valide
+2)retour a l'étape 2
 
 
 
