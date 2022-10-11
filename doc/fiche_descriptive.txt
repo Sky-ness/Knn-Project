@@ -87,7 +87,13 @@ Scenario alternatif :
 1)Le format du fichier n'est pas valide
 2)retour a l'étape 2
 
-
-
+A changer : 
+GRAMMAIRE 
+Créer un nouveau point, point etc --> Ajouter une donnée
+Nuage de point --> Visualiser les données
+Avoir une base de données --> Avoir charger les données
+test de Robustesse --> ???
+D'autre Scenario alternatif pour Fiche descriptive 5 et ajouter le k
+Le système vérifie la validité du fichier a changer ( Verifie les colonnes dans le ficher)
 
 
