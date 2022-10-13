@@ -1,75 +1,76 @@
 Fiche descriptive 1
 
 Système : Classification
-Cas Utilisation : Créer un nouveau point
+Cas Utilisation : Ajouter une donnée
 Acteur principal : Utilisateur 
 Acteur secondaire : 
 Préconditions : 
-Garanti en cas de succès : Le nouveau point est enregistré
+Garanti en cas de succès : La nouvelle donnée est enregistré
 Garanti minimale : 
 Scenario principal :
-1) L'utilisateur sélectionne la fonction "Ajouter un point"
-2) Le système affiche un formulaire contenant les données 
+1) L'utilisateur sélectionne la fonction "Ajouter une donnée"
+2) Le système affiche un formulaire contenant les noms des colonnes et des champs à completer 
 3) L'utilisateur saisit les infos et valide
 4) Le système affiche un récapitulatif
 5) L'utilisateur valide
-6) Le système enregistre le point.
+6) Le système enregistre la donnée.
 
 Scenario alternatif : 
 A) L'utilisateur clique sur modifier à l'etape 4
 B) Le système renvoie à l'etape 2 et affiche le formulaire avec les infos affichées avant
-Fiche descriptive 2
+
 
 Fiche descriptive 2
 
 Système : Classification
-Cas Utilisation : Afficher en nuage de point
+Cas Utilisation : Visualiser les données
 Acteur principal : Utilisateur
 Acteur secondaire : 
-Préconditions : Avoir une base de données
-Garanti en cas de succès : Affiche un nuage de point
+Préconditions : Avoir chargé des données
+Garanti en cas de succès : Visualisation des données
 Garanti minimale : 
 Scenario principal :
-1) L'utilisateur sélectionne la fonction "Affichage en nuage de point"
-2) Le système affiche un formulaire contenant 2 attributs sous forme de sélecteur
-3) L'utilisateur saisie et valide
-4) Le système fait un recapitulatif
-5) L'utilisateur valide
-6) Le système affiche l'affichage
+1) L'utilisateur sélectionne la fonction "Visualiser les données"
+2) Le système ouvre un selecteur de méthode d'affichage des données.
+3) L'utilisateur choisit une methode et valide.
+4) Le système affiche un formulaire contenant 2 attributs sous forme de sélecteur
+5) L'utilisateur saisie et valide
+6) Le système fait un recapitulatif
+7) L'utilisateur valide
+8) Le système affiche l'affichage
 
 Scenario alternatif : 
-A) L'utilisateur clique sur modifier à l'etape 4
-B) Le système renvoie à l'etape 2 et affiche le formulaire avec les infos affichées avant
-
+A) L'utilisateur clique sur modifier à l'etape 6
+B) Le système renvoie à l'etape 4 et affiche le formulaire avec les infos affichées avant
 
 Fiche descriptive 3
 
 Système : Classification
-Cas Utilisation : Afficher l'indice de robustesse
+Cas Utilisation : Affichage de l'indice de robustesse
 Acteur principal : Utilisateur
 Acteur secondaire : 
 Préconditions : Avoir chargé des données
 Garanti en cas de succès : Affiche l"indice de robustesse
 Garanti minimale : 
 Scenario principal : 
-1) L'utilisateur selectionne la fonction "Robustesse du modèle"
+1) L'utilisateur selectionne la fonction "Affichage de l'indice de robustesse"
 2) Le système affiche un selecteur contenant les méthodes d'évaluation
-3) L'utilisateur choisis une méthode d'évaluation
-4) Le systyème affiche le résultat.
+3) L'utilisateur choisit une méthode d'évaluation
+4) Le système affiche le résultat.
 
 
 Fiche descriptive 4
 
 Système : Classification
-Cas Utilisation : Affichage des données d'un point
+Cas Utilisation : Affichage des informations d'une donnée
 Acteur principal : Utilisateur
 Acteur secondaire : 
-Préconditions : Avoir afficher un nuage de point
-Garanti en cas de succès : Affiche un popup
+Préconditions : Avoir visualiser les données
+Garanti en cas de succès : Affiche une popup
 Garanti minimale : 
 Scenario principal :
-1) L'utilisateur clic sur un point afin de declencher la fonction " affichage des données "
-2) Le systyème affiche une popup avec les données du point
+1) L'utilisateur clic sur une donnée afin de declencher la fonction "Affichage des informations d'une donnée"
+2) Le système affiche une popup avec les informations du donnée
 
 Fiche descriptive 5
 
@@ -77,35 +78,41 @@ Système : Classification
 Cas Utilisation : Charger les données
 Acteur principal : Utilisateur
 Acteur secondaire : 
-Garanti en cas de succès : chargement des données
+Garanti en cas de succès : Chargement des données
 Scenario principal :
-1)L'utilisateur sélection la fonction "importer un fichier".
-2)Le système ouvre un navigateur de fichier.
-3)L'utilisateur choisit un fichier et valide.
-4)Le système vérifie la validité du fichier et charge les données.
+1) L'utilisateur sélection la fonction "Charger les données".
+2) Le système verifie que des données n'ont pas été chargé puis ouvre un navigateur de fichier.
+3) L'utilisateur choisit un fichier et valide.
+4) Le système vérifie que le fichier contient des colonnes,qu'il n'a pas d'erreur puis charge les données.
+
 Scenario alternatif :
-1)Le format du fichier n'est pas valide
-2)retour a l'étape 2
+A1) Le système à trouvé des données chargés à l'etape 2, demande à l'utilisateur s'il veut effacer les données actuelle.
+A2) L'utilisateur confirme l'effacement
+A3) Renvoie à l'étape 3)
+
+B1) Le système à trouvé des erreurs dans le ficher à l'etape 4
+B2) Renvoie à l'etape 3)
+
 
 Fiche descriptive 6
-A changer : 
-GRAMMAIRE 
-Créer un nouveau point, point etc --> Ajouter une donnée
-Nuage de point --> Visualiser les données
-Avoir une base de données --> Avoir charger les données
-test de Robustesse --> ???
-D'autre Scenario alternatif pour Fiche descriptive 5 et ajouter le k
-Le système vérifie la validité du fichier a changer ( Verifie les colonnes dans le ficher)
 
 Système : Classification
-Cas Utilisation : classifier les données
+Cas Utilisation : Classifier les données
 Acteur principal : Utilisateur
 Acteur secondaire : 
 Préconditions : avoir une base de données
 Garanti en cas de succès : Classification des données
 Scenario principal :
-1)L'utilisateur selectionne la fonction "Classification"
-2)Le système ouvre un selecteur de méthode de Classification.
-3)L'utilisateur choisit une methode et valide.
-4)Le système classifie les données.
+1) L'utilisateur selectionne la fonction "Classifier les données"
+2) Le système ouvre un selecteur de méthode de classification.
+3) L'utilisateur choisit une methode et valide.
+4) Le système demande un nombre de voisin
+5) L'utilisateur saisie le nombre de voisin et valide.
+6) Le système affiche un recapitulatif
+7) L'utilisateur valide
+8) Le système classifie les données.
+
+Scenario alternatif :
+A) L'utilisateur clique sur modifier à l'etape 6
+B) Le système renvoie à l'etape 2
 
