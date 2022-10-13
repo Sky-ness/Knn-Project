@@ -45,17 +45,17 @@ B) Le système renvoie à l'etape 2 et affiche le formulaire avec les infos affi
 Fiche descriptive 3
 
 Système : Classification
-Cas Utilisation : Afficher les tests de robustesse
+Cas Utilisation : Afficher l'indice de robustesse
 Acteur principal : Utilisateur
 Acteur secondaire : 
-Préconditions : Avoir une base de données
-Garanti en cas de succès : Affiche le résultat des tests de robustesse
+Préconditions : Avoir chargé des données
+Garanti en cas de succès : Affiche l"indice de robustesse
 Garanti minimale : 
 Scenario principal : 
 1) L'utilisateur selectionne la fonction "Robustesse du modèle"
 2) Le système affiche un selecteur contenant les méthodes d'évaluation
 3) L'utilisateur choisis une méthode d'évaluation
-4) Le systyème affiche le résultat des test.
+4) Le systyème affiche le résultat.
 
 
 Fiche descriptive 4
