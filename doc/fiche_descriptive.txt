@@ -87,6 +87,7 @@ Scenario alternatif :
 1)Le format du fichier n'est pas valide
 2)retour a l'étape 2
 
+Fiche descriptive 6
 A changer : 
 GRAMMAIRE 
 Créer un nouveau point, point etc --> Ajouter une donnée
@@ -96,4 +97,15 @@ test de Robustesse --> ???
 D'autre Scenario alternatif pour Fiche descriptive 5 et ajouter le k
 Le système vérifie la validité du fichier a changer ( Verifie les colonnes dans le ficher)
 
+Système : Classification
+Cas Utilisation : classifier les données
+Acteur principal : Utilisateur
+Acteur secondaire : 
+Préconditions : avoir une base de données
+Garanti en cas de succès : Classification des données
+Scenario principal :
+1)L'utilisateur selectionne la fonction "Classification"
+2)Le système ouvre un selecteur de méthode de Classification.
+3)L'utilisateur choisit une methode et valide.
+4)Le système classifie les données.
 
