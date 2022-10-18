@@ -28,8 +28,10 @@ public class TestChargementDonneesUtil {
         assertTrue(p.isSouscription());
     }
     
+    @Test
     public void testNormalisation() {
     	assertEquals(0, ChargementDonneesUtil.normaliser_0_1(5, 5, 25));
+    	assertEquals(1, ChargementDonneesUtil.normaliser_0_1(25, 5, 25));
     	assertEquals(0.25, ChargementDonneesUtil.normaliser_0_1(10, 5, 25));
     }
 }

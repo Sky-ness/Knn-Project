@@ -20,7 +20,7 @@ public class ChargementDonneesUtil {
     }
     
     public static double normaliser_0_1 (double valeur, double min, double max) {
-    	return valeur==min ? 0 : max/valeur;
+    	return (valeur-min)/(max-min);
     }
     
     public static List<Personne> personnesNormalisees (List<FormatDonneeBrut> donnees) {
@@ -32,7 +32,9 @@ public class ChargementDonneesUtil {
 			else if( max < fdb.getScore())
 				max = fdb.getScore();
 		}
+    	System.out.println(max + " " + min);
     	for (FormatDonneeBrut fdb : donnees) {
+    		System.out.println(normaliser_0_1(fdb.getScore(), min, max));
 			res.add(new Personne(fdb.getNom() + " " + fdb.getPrenom(),
 					fdb.getDateNaissance(),
 					fdb.getGenre(),
