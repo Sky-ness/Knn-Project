@@ -13,7 +13,7 @@ public class MethodeKnn {
 	static double captureRate;
 	static double xpGrowth;
 	static double speed;
-	static double truc;
+	static double normalisation;
 	
 	public MethodeKnn(String path) {
 		try {
@@ -39,28 +39,33 @@ public class MethodeKnn {
 			captureRate = captureRateMax - captureRateMin;
 			xpGrowth = xpGrowthMax - xpGrowthMin;
 			speed = speedMax - speedMin;
-			truc = baseEggSteps + captureRate + xpGrowth + speed;
+			normalisation = baseEggSteps + captureRate + xpGrowth + speed;
 		} catch (Exception e) { System.out.println(e.getMessage()); }
 	}
+	
 	
 	public List<Pokemon> getKNN(int k, Pokemon p, double dist) {
 		List<Pokemon> res = new ArrayList<>();
 		Distance d = new DistanceEuclidienne();
 		for (Pokemon pl : datas) {
-			if(Double.compare(d.distance(pl, p)/truc, dist) <= 0) {
+			// divise par normalisation pour normaliser entre 0 et 1
+			if(Double.compare(d.distance(pl, p)/normalisation, dist) <= 0) {
 				res.add(pl);
 			}
 		}
 		if(res.size() < k)
 			return getKNN(k,p,++dist);
-		res.sort((p1,p2) -> Double.compare(d.distance(p1,p2), d.distance(p2, p1)));
+		// tri du plus proche au plus loin
+		res.sort((p1,p2) -> Double.compare(d.distance(p1,p), d.distance(p2, p)));
 		return res.subList(0, k);
 	}
 	
+	// verifie si il y a une majorité de Légendaire dans la liste Knn
 	public boolean maybeLegendary(Pokemon p, int k, double dist) {
-		List<Pokemon> truc = getKNN(k,p,dist);
+		// Récupération de la liste de Knn
+		List<Pokemon> nn = getKNN(k,p,dist);
 		int nbL = 0;
-		for (Pokemon pokemon : truc) {
+		for (Pokemon pokemon : nn) {
 			if(pokemon.getLegendary())
 				nbL++;
 		}

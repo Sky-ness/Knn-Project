@@ -44,11 +44,10 @@ public class Pokemon {
                 .withType(Pokemon.class)
                 .build().parse();
 		MethodeKnn mknn = new MethodeKnn("");
+		// Récupère les 5 pokemon à une distance arbitraire de 0.002 du 1er pokemon du csv
 		List<Pokemon> p = mknn.getKNN(5, poke.get(0), 0.002);
-		System.out.println(p.size());
-		for (Pokemon pokemon : p) {
-			//System.out.println(pokemon);
-		}
+		System.out.println(mknn.maybeLegendary(poke.get(480), 10, 0.002));
+		System.out.println(poke.get(480));
 	}
 
 	// Getters
