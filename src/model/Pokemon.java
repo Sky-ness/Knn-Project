@@ -6,7 +6,7 @@ import pokemon.Type;
 import util.IColumn;
 import util.IPoint;
 
-public class Pokemon implements IPoint{
+public class Pokemon extends Point{
 	
 	@CsvBindByName(column = "name")
 	String name;

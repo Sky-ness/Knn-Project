@@ -6,7 +6,7 @@ import java.util.List;
 import util.IDataset;
 import util.IPoint;
 
-public class DataSet implements IDataset {
+public abstract class DataSet implements IDataset {
 	private String title;
 	private List<IPoint> lines;
 	
