@@ -6,7 +6,7 @@ import util.IColumn;
 import util.IPoint;
 import util.Sexe;
 
-public class Titanic implements IPoint{
+public class Titanic {
 	@CsvBindByName(column = "PassengerId")
 	private int passengerId;
 	@CsvBindByName(column = "Survived")
@@ -32,14 +32,5 @@ public class Titanic implements IPoint{
 	@CsvBindByName(column = "Embarked")
 	private char embarked;
 	
-	@Override
-	public Object getValue(IColumn col) {
-		return null;
-	}
-	@Override
-	public double getNormalizedValue(IColumn xcol) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }

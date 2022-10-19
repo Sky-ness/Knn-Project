@@ -6,7 +6,7 @@ import util.IColumn;
 import util.IPoint;
 import util.IrisVariety;
 
-public class Iris implements IPoint {
+public class Iris {
 	@CsvBindByName(column = "sepai_length")
 	private double sepaiLength;
 	@CsvBindByName(column = "sepai_width")
@@ -18,14 +18,4 @@ public class Iris implements IPoint {
 	@CsvBindByName(column = "variety")
 	private IrisVariety variety;
 	
-	@Override
-	public Object getValue(IColumn col) {
-		return null;
-	}
-
-	@Override
-	public double getNormalizedValue(IColumn xcol) {
-		return xcol.getNormalizedValue(this);
-	}
-
 }
