@@ -5,7 +5,7 @@ Cas Utilisation : Ajouter une donnée
 Acteur principal : Utilisateur 
 Acteur secondaire : 
 Préconditions : 
-Garanti en cas de succès : La nouvelle donnée est enregistré
+Garanti en cas de succès : La nouvelle donnée est enregistrée
 Garanti minimale : 
 Scenario principal :
 1) L'utilisateur sélectionne la fonction "Ajouter une donnée"
@@ -17,7 +17,7 @@ Scenario principal :
 
 Scenario alternatif : 
 A) L'utilisateur clique sur modifier à l'etape 4
-B) Le système renvoie à l'etape 2 et affiche le formulaire avec les infos affichées avant
+B) Le système renvoie à l'étape 2 et affiche le formulaire avec les infos affichées avant
 
 
 Fiche descriptive 2
@@ -26,7 +26,7 @@ Système : Classification
 Cas Utilisation : Visualiser les données
 Acteur principal : Utilisateur
 Acteur secondaire : 
-Préconditions : Avoir chargé des données
+Préconditions : Avoir charger des données
 Garanti en cas de succès : Visualisation des données
 Garanti minimale : 
 Scenario principal :
