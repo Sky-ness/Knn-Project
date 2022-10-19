@@ -17,8 +17,7 @@ public abstract class DataSet implements IDataset {
 
 	@Override
 	public Iterator<IPoint> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return lines.iterator();
 	}
 
 	@Override
