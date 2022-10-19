@@ -6,7 +6,7 @@ import util.IColumn;
 import util.IPoint;
 import util.Sexe;
 
-public class Titanic {
+public class Titanic extends Point {
 	@CsvBindByName(column = "PassengerId")
 	private int passengerId;
 	@CsvBindByName(column = "Survived")

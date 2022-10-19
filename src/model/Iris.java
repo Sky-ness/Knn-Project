@@ -2,11 +2,9 @@ package model;
 
 import com.opencsv.bean.CsvBindByName;
 
-import util.IColumn;
-import util.IPoint;
 import util.IrisVariety;
 
-public class Iris {
+public class Iris extends Point {
 	@CsvBindByName(column = "sepai_length")
 	private double sepaiLength;
 	@CsvBindByName(column = "sepai_width")
