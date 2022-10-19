@@ -1,17 +1,12 @@
 package model;
 
-import java.util.Iterator;
-import java.util.List;
-
 import com.opencsv.bean.CsvBindByName;
 
 import pokemon.Type;
 import util.IColumn;
-import util.IDataset;
 import util.IPoint;
 
 public class Pokemon implements IPoint{
-	final String title = "Pokemon";
 	
 	@CsvBindByName(column = "name")
 	String name;
