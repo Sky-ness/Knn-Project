@@ -1,8 +1,9 @@
-package model;
+package model.categories;
 
 import com.opencsv.bean.CsvBindByName;
 
-import pokemon.Type;
+import model.abstracts.Point;
+import model.enums.PokemonType;
 import util.IColumn;
 import util.IPoint;
 
@@ -27,9 +28,9 @@ public class Pokemon extends Point{
 	@CsvBindByName(column = "sp_defense")
 	int spDefense;
 	@CsvBindByName(column = "type1")
-	Type type1;
+	PokemonType type1;
 	@CsvBindByName(column = "type2")
-	Type type2;
+	PokemonType type2;
 	@CsvBindByName(column = "speed")
 	double speed;
 	@CsvBindByName(column = "is_legendary")
@@ -46,8 +47,8 @@ public class Pokemon extends Point{
 	public int getHp() {return hp;}
 	public int getSpAttack() {return spAttack;}
 	public int getSpDefense() {return spDefense;}
-	public Type getType1() {return type1;}
-	public Type getType2() {return type2;}
+	public PokemonType getType1() {return type1;}
+	public PokemonType getType2() {return type2;}
 	public double getSpeed() {return speed;}
 	public boolean getLegendary() {return legendary;}
 

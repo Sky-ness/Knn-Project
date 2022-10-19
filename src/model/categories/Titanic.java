@@ -1,10 +1,11 @@
-package model;
+package model.categories;
 
 import com.opencsv.bean.CsvBindByName;
 
+import model.abstracts.Point;
+import model.enums.Sexe;
 import util.IColumn;
 import util.IPoint;
-import util.Sexe;
 
 public class Titanic extends Point {
 	@CsvBindByName(column = "PassengerId")

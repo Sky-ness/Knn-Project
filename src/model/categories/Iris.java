@@ -1,8 +1,9 @@
-package model;
+package model.categories;
 
 import com.opencsv.bean.CsvBindByName;
 
-import util.IrisVariety;
+import model.abstracts.Point;
+import model.enums.IrisVariety;
 
 public class Iris extends Point {
 	@CsvBindByName(column = "sepai_length")

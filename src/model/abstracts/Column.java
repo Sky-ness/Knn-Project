@@ -1,4 +1,4 @@
-package model;
+package model.abstracts;
 
 import util.IColumn;
 import util.IDataset;

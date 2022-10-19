@@ -9,6 +9,8 @@ import java.util.List;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvToBeanBuilder;
 
+import model.enums.PokemonType;
+
 public class Pokemon {
 	@CsvBindByName(column = "name")
 	String name;
@@ -29,9 +31,9 @@ public class Pokemon {
 	@CsvBindByName(column = "sp_defense")
 	int spDefense;
 	@CsvBindByName(column = "type1")
-	Type type1;
+	PokemonType type1;
 	@CsvBindByName(column = "type2")
-	Type type2;
+	PokemonType type2;
 	@CsvBindByName(column = "speed")
 	double speed;
 	@CsvBindByName(column = "is_legendary")
@@ -60,8 +62,8 @@ public class Pokemon {
 	public int getHp() {return hp;}
 	public int getSpAttack() {return spAttack;}
 	public int getSpDefense() {return spDefense;}
-	public Type getType1() {return type1;}
-	public Type getType2() {return type2;}
+	public PokemonType getType1() {return type1;}
+	public PokemonType getType2() {return type2;}
 	public double getSpeed() {return speed;}
 	public boolean getLegendary() {return legendary;}
 
