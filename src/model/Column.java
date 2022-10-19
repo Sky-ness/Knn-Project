@@ -6,41 +6,47 @@ import util.IPoint;
 import util.IValueNormalizer;
 
 public abstract class Column implements IColumn{
+	
+	private IValueNormalizer ivn;
+	private String name;
+	private IDataset dataset;
+	private boolean normalizable;
+
+	public Column(IValueNormalizer ivn, String name, IDataset dataset, boolean normalizable) {
+		this.ivn = ivn;
+		this.name = name;
+		this.dataset = dataset;
+		this.normalizable = normalizable;
+	}
 
 	@Override
 	public void setNormalizer(IValueNormalizer valueNormalizer) {
-		// TODO Auto-generated method stub
-		
+		ivn = valueNormalizer;
 	}
 
 	@Override
 	public double getNormalizedValue(IPoint point) {
-		// TODO Auto-generated method stub
-		return 0;
+		return ivn.normalize(point);
 	}
 
 	@Override
 	public Object getDenormalizedValue(double value) {
-		// TODO Auto-generated method stub
-		return null;
+		return ivn.denormalize(value);
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 	@Override
 	public IDataset getDataset() {
-		// TODO Auto-generated method stub
-		return null;
+		return dataset;
 	}
 
 	@Override
 	public boolean isNormalizable() {
-		// TODO Auto-generated method stub
-		return false;
+		return normalizable;
 	}
 
 }
