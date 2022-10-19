@@ -18,4 +18,25 @@ public class Iris {
 	@CsvBindByName(column = "variety")
 	private IrisVariety variety;
 	
+	public double getSepaiLength() {
+		return sepaiLength;
+	}
+	public double getSepaiWidth() {
+		return sepaiWidth;
+	}
+	public double getPetalLength() {
+		return petalLength;
+	}
+	public double getPetalWidth() {
+		return petalWidth;
+	}
+	public IrisVariety getVariety() {
+		return variety;
+	}
+	@Override
+	public String toString() {
+		return "Iris [sepaiLength=" + sepaiLength + ", sepaiWidth=" + sepaiWidth + ", petalLength=" + petalLength
+				+ ", petalWidth=" + petalWidth + ", variety=" + variety + "]";
+	}
+	
 }
