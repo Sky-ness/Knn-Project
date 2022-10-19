@@ -4,6 +4,7 @@ import com.opencsv.bean.CsvBindByName;
 
 import util.IColumn;
 import util.IPoint;
+import util.Sexe;
 
 public class Titanic implements IPoint{
 	@CsvBindByName(column = "PassengerId")
