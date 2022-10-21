@@ -13,7 +13,6 @@ import csvReader.ChargementDonneesUtil;
 import csvReader.FormatDonneeBrut;
 import csvReader.Genre;
 import main.Personne;
-import model.Titanic;
 
 public class TestChargementDonneesUtil {
     @Test
@@ -29,8 +28,7 @@ public class TestChargementDonneesUtil {
     }
     @Test
     public void testChargerTitanic() throws IOException {
-        List<Titanic> l = ChargementDonneesUtil.charger("data/titanic.csv");
-        Titanic t = new Titanic(l.get(0));
+        List<FormatDonneeBrut> l = ChargementDonneesUtil.charger("data/titanic.csv");
     }
     @Test
     public void testChargerPokemon() throws IOException {
