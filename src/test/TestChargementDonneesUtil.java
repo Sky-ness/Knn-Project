@@ -13,12 +13,12 @@ import csvReader.ChargementDonneesUtil;
 import csvReader.FormatDonneeBrut;
 import csvReader.Genre;
 import main.Personne;
+import model.Titanic;
 
 public class TestChargementDonneesUtil {
     @Test
-    public void testCharger () throws IOException {
+    public void testChargerPersonne() throws IOException {
         List<FormatDonneeBrut> l = ChargementDonneesUtil.charger("data/personnes.csv");
-        assertTrue(l.get(0).toString().contentEquals("Chevallier,Vincent,1978-05-18,HOMME,1.76,79,OUI"));
         Personne p = new Personne(l.get(0));
         assertEquals("Chevallier Vincent", p.getPrenomNom());
         assertEquals(LocalDate.of(1978, 05, 18), p.getDateNaissance());
@@ -27,6 +27,25 @@ public class TestChargementDonneesUtil {
         assertEquals(79, p.getScoreNormalise());
         assertTrue(p.isSouscription());
     }
+    @Test
+    public void testChargerTitanic() throws IOException {
+        List<Titanic> l = ChargementDonneesUtil.charger("data/titanic.csv");
+        Titanic t = new Titanic(l.get(0));
+    }
+    @Test
+    public void testChargerPokemon() throws IOException {
+        List<FormatDonneeBrut> l = ChargementDonneesUtil.charger("data/pokemon_train.csv");
+    }
+    @Test
+    public void testChargerIris() throws IOException {
+        List<FormatDonneeBrut> l = ChargementDonneesUtil.charger("data/iris.csv");
+    }
+    
+    
+    
+    
+    
+    
     
     @Test
     public void testNormalisation() {
