@@ -4,8 +4,10 @@ import com.opencsv.bean.CsvBindByName;
 
 import model.abstracts.Point;
 import model.enums.IrisVariety;
+import util.IColumn;
+import util.IPoint;
 
-public class Iris extends Point {
+public class Iris  {
 	@CsvBindByName(column = "sepai_length")
 	private double sepaiLength;
 	@CsvBindByName(column = "sepai_width")
@@ -36,6 +38,16 @@ public class Iris extends Point {
 	public String toString() {
 		return "Iris [sepaiLength=" + sepaiLength + ", sepaiWidth=" + sepaiWidth + ", petalLength=" + petalLength
 				+ ", petalWidth=" + petalWidth + ", variety=" + variety + "]";
+	}
+	@Override
+	public Object getValue(IColumn col) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public double getNormalizedValue(IColumn xcol) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }
