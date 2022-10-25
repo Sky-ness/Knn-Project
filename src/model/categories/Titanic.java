@@ -2,12 +2,11 @@ package model.categories;
 
 import com.opencsv.bean.CsvBindByName;
 
-import model.abstracts.Point;
 import model.enums.Sexe;
 import util.IColumn;
 import util.IPoint;
 
-public class Titanic extends Point {
+public class Titanic implements IPoint {
 	@CsvBindByName(column = "PassengerId")
 	private int passengerId;
 	@CsvBindByName(column = "Survived")
@@ -67,6 +66,16 @@ public class Titanic extends Point {
 	}
 	public char getEmbarked() {
 		return embarked;
+	}
+	@Override
+	public Object getValue(IColumn col) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public double getNormalizedValue(IColumn xcol) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

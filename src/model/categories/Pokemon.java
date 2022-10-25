@@ -2,12 +2,11 @@ package model.categories;
 
 import com.opencsv.bean.CsvBindByName;
 
-import model.abstracts.Point;
 import model.enums.PokemonType;
 import util.IColumn;
 import util.IPoint;
 
-public class Pokemon extends Point{
+public class Pokemon implements IPoint{
 	
 	@CsvBindByName(column = "name")
 	String name;
