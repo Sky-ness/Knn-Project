@@ -10,8 +10,11 @@ public interface IPoint {
 * Note, on aurait pu utiliser une interface generique (parametree avec
 * un type), mais cela complique significativement d'autres parties
 * du code.
+ * @throws Exception 
+ * @throws SecurityException 
+
 */
-public Object getValue(IColumn col);
+public Object getValue(IColumn col) throws Exception;
 /**
 * Retourne la valeur de ce point normalisee pour la colonne en parametre.
 *
