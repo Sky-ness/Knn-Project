@@ -1,10 +1,9 @@
-package model.categories;
+package model;
 
 import com.opencsv.bean.CsvBindByName;
 
-import model.enums.Sexe;
-import util.IColumn;
-import util.IPoint;
+import utils.IColumn;
+import utils.IPoint;
 
 public class Titanic implements IPoint {
 	@CsvBindByName(column = "PassengerId")

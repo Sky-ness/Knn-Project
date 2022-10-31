@@ -1,4 +1,4 @@
-package util;
+package utils;
 
 /**
 * Decrit une categorie. Toute categorie peut etre vue comme un Dataset, elle a

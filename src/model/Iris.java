@@ -1,10 +1,9 @@
-package model.categories;
+package model;
 
 import com.opencsv.bean.CsvBindByName;
 
-import model.enums.IrisVariety;
-import util.IColumn;
-import util.IPoint;
+import utils.IColumn;
+import utils.IPoint;
 
 public class Iris implements IPoint {
 	@CsvBindByName(column = "sepai_length")

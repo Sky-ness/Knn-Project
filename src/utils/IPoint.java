@@ -1,4 +1,4 @@
-package util;
+package utils;
 
 /**
 * Decrit un Point (ou donnee, ou ligne) dans un DataSet.

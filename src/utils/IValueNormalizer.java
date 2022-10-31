@@ -1,4 +1,4 @@
-package util;
+package utils;
 
 /**
 * Decrit un <i>Normaliseur</i>, c'est a dire un objet qui peut transformer

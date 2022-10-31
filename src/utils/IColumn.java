@@ -1,4 +1,4 @@
-package util;
+package utils;
 
 /**
 * Decrit une <i>colonne</i> d'un DataSet.

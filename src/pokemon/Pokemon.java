@@ -9,7 +9,7 @@ import java.util.List;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvToBeanBuilder;
 
-import model.enums.PokemonType;
+import model.PokemonType;
 
 public class Pokemon {
 	@CsvBindByName(column = "name")
