@@ -3,44 +3,49 @@ package model;
 import java.util.Iterator;
 import java.util.List;
 
+import utils.IColumn;
 import utils.IDataset;
 import utils.IPoint;
 
 public class DataSet implements IDataset{
-
+	protected String title;
+	protected List<IPoint> listePoints;
+	protected List<IColumn> listeColumns; 
+	public DataSet(String title, List<IPoint> listePoints) {
+	this.title=title;
+	this.listePoints=listePoints;
+	}
+	
 	@Override
 	public Iterator<IPoint> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return listePoints.iterator();
 	}
 
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
-		return null;
+		return title;
 	}
 
 	@Override
 	public int getNbLines() {
-		// TODO Auto-generated method stub
-		return 0;
+		return listePoints.size();
 	}
 
 	@Override
 	public void setLines(List<IPoint> lines) {
-		// TODO Auto-generated method stub
+		listePoints=lines;
 		
 	}
 
 	@Override
 	public void addLine(IPoint element) {
-		// TODO Auto-generated method stub
+		listePoints.add(element);
 		
 	}
 
 	@Override
 	public void addAllLine(List<IPoint> element) {
-		// TODO Auto-generated method stub
+		listePoints.addAll(element);
 		
 	}
 
