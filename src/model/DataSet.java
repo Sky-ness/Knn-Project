@@ -11,11 +11,12 @@ public class DataSet implements IDataset{
 	protected String title;
 	protected List<IPoint> listePoints;
 	protected List<IColumn> listeColumns; 
+
 	public DataSet(String title, List<IPoint> listePoints) {
-	this.title=title;
-	this.listePoints=listePoints;
+		this.title=title;
+		this.listePoints=listePoints;
 	}
-	
+
 	@Override
 	public Iterator<IPoint> iterator() {
 		return listePoints.iterator();
@@ -34,19 +35,19 @@ public class DataSet implements IDataset{
 	@Override
 	public void setLines(List<IPoint> lines) {
 		listePoints=lines;
-		
+
 	}
 
 	@Override
 	public void addLine(IPoint element) {
 		listePoints.add(element);
-		
+
 	}
 
 	@Override
 	public void addAllLine(List<IPoint> element) {
 		listePoints.addAll(element);
-		
+
 	}
 
 }

@@ -6,6 +6,7 @@ import utils.IColumn;
 import utils.IPoint;
 
 public class Iris implements IPoint {
+	
 	@CsvBindByName(column = "sepai_length")
 	private double sepaiLength;
 	@CsvBindByName(column = "sepai_width")
