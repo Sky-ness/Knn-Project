@@ -1,5 +1,6 @@
 package test;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -12,7 +13,8 @@ import org.junit.jupiter.api.Test;
 import csvReader.ChargementDonneesUtil;
 import csvReader.FormatDonneeBrut;
 import csvReader.Genre;
-import main.Personne;
+import csvReader.Personne;
+
 
 public class TestChargementDonneesUtil {
     @Test

@@ -8,8 +8,6 @@ import java.util.List;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 
-import main.Personne;
-
 public class ChargementDonneesUtil {
 
     public static List<FormatDonneeBrut> charger(String fileName) throws IOException {

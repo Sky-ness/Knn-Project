@@ -1,9 +1,6 @@
-package main;
+package csvReader;
 
 import java.time.LocalDate;
-
-import csvReader.FormatDonneeBrut;
-import csvReader.Genre;
 
 public class Personne {
 	private String prenomNom; // le prénom et le nom séparés par un espace
