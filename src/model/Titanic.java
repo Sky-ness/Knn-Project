@@ -30,59 +30,56 @@ public class Titanic implements IPoint {
 	private String cabin;
 	@CsvBindByName(column = "Embarked")
 	private char embarked;
-	public int getPassengerId() {
-		return passengerId;
-	}
-	public int getSurvived() {
-		return survived;
-	}
-	public int getPclass() {
-		return Pclass;
-	}
-	public String getName() {
-		return name;
-	}
-	public Sexe getSex() {
-		return sex;
-	}
-	public double getAge() {
-		return age;
-	}
-	public int getSibSp() {
-		return sibSp;
-	}
-	public int getParch() {
-		return parch;
-	}
-	public String getTicket() {
-		return ticket;
-	}
-	public double getFare() {
-		return fare;
-	}
-	public String getCabin() {
-		return cabin;
-	}
-	public char getEmbarked() {
-		return embarked;
-	}
+
+	public int getPassengerId() {return passengerId;}
+	public int getSurvived() {return survived;}
+	public int getPclass() {return Pclass;}
+	public String getName() {return name;}
+	public Sexe getSex() {return sex;}
+	public int getAge() {return age;}
+	public int getSibSp() {return sibSp;}
+	public int getParch() {return parch;}
+	public String getTicket() {return ticket;}
+	public double getFare() {return fare;}
+	public String getCabin() {return cabin;}
+	public char getEmbarked() {return embarked;}
 	@Override
 	public Object getValue(IColumn col) {
-		// TODO Auto-generated method stub
-		return null;
+		switch(col.getName()) {
+		case "passengerId":
+			return passengerId;
+		case "survived":
+			return survived;
+		case "Pclass":
+			return Pclass;
+		case "name":
+			return name;
+		case "sex":
+			return sex;
+		case "age":
+			return age;
+		case "sibSp":
+			return sibSp;
+		case "parch":
+			return parch;
+		case "ticket":
+			return ticket;
+		case "fare":
+			return fare;
+		case "cabin":
+			return cabin;
+		case "embarked":
+			return embarked;
+		default:
+			return null;
+		}
 	}
 	@Override
 	public double getNormalizedValue(IColumn xcol) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	@Override
-	public String toString() {
-		return "Titanic [passengerId=" + passengerId + ", survived=" + survived + ", Pclass=" + Pclass + ", name="
-				+ name + ", sex=" + sex + ", age=" + age + ", sibSp=" + sibSp + ", parch=" + parch + ", ticket="
-				+ ticket + ", fare=" + fare + ", cabin=" + cabin + ", embarked=" + embarked + "]";
-	}
-	
-	
+
+
 
 }

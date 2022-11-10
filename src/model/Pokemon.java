@@ -6,7 +6,7 @@ import utils.IColumn;
 import utils.IPoint;
 
 public class Pokemon implements IPoint{
-	
+
 	@CsvBindByName(column = "name")
 	String name;
 	@CsvBindByName(column = "attack")
@@ -33,7 +33,7 @@ public class Pokemon implements IPoint{
 	double speed;
 	@CsvBindByName(column = "is_legendary")
 	boolean legendary;
-	
+
 
 	// Getters
 	public String getName() {return name;}
@@ -60,8 +60,36 @@ public class Pokemon implements IPoint{
 	}
 	@Override
 	public Object getValue(IColumn col) {
-		// TODO Auto-generated method stub
-		return null;
+		switch(col.getName()) {
+		case "name":
+			return name;
+		case "attack":
+			return attack;
+		case "baseEggSteps":
+			return baseEggSteps;
+		case "petalWidth":
+			return captureRate;
+		case "defense":
+			return defense;
+		case "xpGrowth":
+			return xpGrowth;
+		case "hp":
+			return hp;
+		case "spAttack":
+			return spAttack;
+		case "spDefense":
+			return spDefense;
+		case "type1":
+			return type1;
+		case "type2":
+			return type2;
+		case "speed":
+			return speed;
+		case "legendary":
+			return legendary;
+		default:
+			return null;
+		}
 	}
 	@Override
 	public double getNormalizedValue(IColumn xcol) {
