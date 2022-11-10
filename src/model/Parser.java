@@ -19,6 +19,7 @@ import utils.IPoint;
 public class Parser implements IMVCModel{
 	protected List<IPoint> lines;
 	protected String title;
+	protected DataSet datas;
 	
 	public static DataSet readFile(String link,Class cl) throws IllegalStateException, IOException {
 		List<IPoint> list = new ArrayList<IPoint>();
@@ -72,12 +73,24 @@ public class Parser implements IMVCModel{
 
 	@Override
 	public void loadFromFile(String datafile) {
-		// TODO Auto-generated method stub
-		
 		// if les colonnes load = ceux de pokémon ---> Load le reste avec pokemon.class
 		// if les colonnes load = ceux de iris ---> Load le reste avec iris.class
 		// if les colonnes load = ceux de titanic ---> Load le reste avec titanic.class
-		
+		String lowercase = datafile.toLowerCase();
+		try {
+			if(lowercase.contains("pokemon")) { 
+				datas = readFile(datafile, Pokemon.class);
+			} else if(lowercase.contains("titanic")) { 
+				datas = readFile(datafile, Titanic.class);
+			} else if(lowercase.contains("iris")) { 
+				datas = readFile(datafile, Iris.class);
+			}
+			
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -88,38 +101,32 @@ public class Parser implements IMVCModel{
 
 	@Override
 	public IColumn defaultXCol() {
-		// TODO Auto-generated method stub
-		return null;
+		return datas.listeColumns.get(0);
 	}
 
 	@Override
 	public IColumn defaultYCol() {
-		// TODO Auto-generated method stub
-		return null;
+		return datas.listeColumns.get(0);
 	}
 
 	@Override
 	public void addCategory(ICategory classe) {
-		// TODO Auto-generated method stub
-		
+		// TODO
 	}
 
 	@Override
 	public Collection<ICategory> allCategories() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int nbColumns() {
-		// TODO Auto-generated method stub
-		return 0;
+		return datas.listeColumns.size();
 	}
 
 	@Override
 	public List<IColumn> getNormalizableColumns() {
-		// TODO Auto-generated method stub
-		return null;
+		return datas.getNormalizableColumns();
 	}
 	
 	public static void main(String[] args) throws IllegalStateException, IOException {

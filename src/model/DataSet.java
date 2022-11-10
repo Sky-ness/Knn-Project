@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -61,7 +62,14 @@ public class DataSet implements IDataset{
 		sb.append("ListeColumns=" + listeColumns);
 		return sb.toString();
 	}
-	
-	
+
+	public List<IColumn> getNormalizableColumns() {
+		List<IColumn> res = new ArrayList<>();
+		for (IColumn iColumn : res) {
+			if(iColumn.isNormalizable())
+				res.add(iColumn)
+		}
+		return res;
+	}
 
 }
