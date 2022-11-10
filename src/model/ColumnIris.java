@@ -15,7 +15,7 @@ public class ColumnIris implements IColumn{
 
 	@Override
 	public double getNormalizedValue(IPoint point) {
-		// TODO Auto-generated method stub
+	
 		return 0;
 	}
 
