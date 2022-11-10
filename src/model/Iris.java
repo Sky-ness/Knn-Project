@@ -6,23 +6,23 @@ import utils.IColumn;
 import utils.IPoint;
 
 public class Iris implements IPoint {
-	
-	@CsvBindByName(column = "sepal.length")
-	private double sepaiLength;
-	@CsvBindByName(column = "sepal.width")
-	private double sepaiWidth;
-	@CsvBindByName(column = "petal.length")
+
+	@CsvBindByName(column = "sepal_length")
+	private double sepalLength;
+	@CsvBindByName(column = "sepal_width")
+	private double sepalWidth;
+	@CsvBindByName(column = "petal_length")
 	private double petalLength;
 	@CsvBindByName(column = "petal.width")
 	private double petalWidth;
 	@CsvBindByName(column = "variety")
 	private IrisVariety variety;
-	
-	public double getSepaiLength() {
-		return sepaiLength;
+
+	public double getSepalLength() {
+		return sepalLength;
 	}
-	public double getSepaiWidth() {
-		return sepaiWidth;
+	public double getSepalWidth() {
+		return sepalWidth;
 	}
 	public double getPetalLength() {
 		return petalLength;
@@ -35,18 +35,32 @@ public class Iris implements IPoint {
 	}
 	@Override
 	public String toString() {
-		return "Iris [sepaiLength=" + sepaiLength + ", sepaiWidth=" + sepaiWidth + ", petalLength=" + petalLength
+		return "Iris [sepalLength=" + sepalLength + ", sepaiWidth=" + sepalWidth + ", petalLength=" + petalLength
 				+ ", petalWidth=" + petalWidth + ", variety=" + variety + "]";
 	}
 	@Override
 	public Object getValue(IColumn col) {
-		// TODO Auto-generated method stub
-		return null;
+		switch(col.getName()) {
+		case "sepalLength":
+			return sepalLength;
+		case "sepalWidth":
+			return sepalWidth;
+		case "petalLength":
+			return petalLength;
+		case "petalWidth":
+			return petalWidth;
+		case "variety":
+			return variety;
+		default:
+			return null;
+		}
 	}
 	@Override
 	public double getNormalizedValue(IColumn xcol) {
-		// TODO Auto-generated method stub
-		return 0;
+		if(xcol.isNormalizable()) {
+			return xcol.getNormalizedValue(this);
+		}
+		return 0.0;
 	}
-	
+
 }
