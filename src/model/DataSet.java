@@ -67,7 +67,7 @@ public class DataSet implements IDataset{
 		List<IColumn> res = new ArrayList<>();
 		for (IColumn iColumn : res) {
 			if(iColumn.isNormalizable())
-				res.add(iColumn)
+				res.add(iColumn);
 		}
 		return res;
 	}
