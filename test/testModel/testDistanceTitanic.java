@@ -9,7 +9,11 @@ public class testDistanceTitanic {
 
 	}
 	@Test
-	public void DistanceTitanic() {
+	public void DistanceEuclidienneTitanic() {
+	
+	}
+	@Test
+	public void DistanceManhattanTitanic() {
 		
 	}
 }

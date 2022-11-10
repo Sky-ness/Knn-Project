@@ -9,7 +9,11 @@ public class testDistanceIris {
 
 	}
 	@Test
-	public void DistanceIris() {
+	public void DistanceEuclidienneIris() {
+	
+	}
+	@Test
+	public void DistanceManhattanIris() {
 		
 	}
 }

@@ -5,44 +5,42 @@ import utils.IDataset;
 import utils.IPoint;
 import utils.IValueNormalizer;
 
-public class Column implements IColumn {
-	protected String name;
-	protected IValueNormalizer valueNormalizer;
-
-	public Column(String name, IValueNormalizer valueNormalizer) {
-		super();
-		this.name = name;
-		this.valueNormalizer = valueNormalizer;
-	}
+public class ColumnTitanic implements IColumn{
 
 	@Override
 	public void setNormalizer(IValueNormalizer valueNormalizer) {
-		this.valueNormalizer = valueNormalizer;
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public double getNormalizedValue(IPoint point) {
-		return this.valueNormalizer.normalize(point);
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
 	public Object getDenormalizedValue(double value) {
-		return this.valueNormalizer.denormalize(value);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public String getName() {
-		return this.name;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public IDataset getDataset() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean isNormalizable() {
-		return (this.valueNormalizer.equals(null));
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
