@@ -1,4 +1,4 @@
-package test;
+package testPersonne;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

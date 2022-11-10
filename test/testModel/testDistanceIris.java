@@ -1,8 +1,8 @@
-package test;
+package testModel;
 
 import org.junit.jupiter.api.Test;
 
-public class test {
+public class testDistanceIris {
 	@Test
 	public void main() {
 
