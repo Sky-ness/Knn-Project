@@ -17,7 +17,7 @@ public class Titanic implements IPoint {
 	@CsvBindByName(column = "Sex")
 	private Sexe sex;
 	@CsvBindByName(column = "Age")
-	private int age;
+	private double age;
 	@CsvBindByName(column = "SibSp")
 	private int sibSp;
 	@CsvBindByName(column = "Parch")
@@ -45,7 +45,7 @@ public class Titanic implements IPoint {
 	public Sexe getSex() {
 		return sex;
 	}
-	public int getAge() {
+	public double getAge() {
 		return age;
 	}
 	public int getSibSp() {
@@ -75,6 +75,12 @@ public class Titanic implements IPoint {
 	public double getNormalizedValue(IColumn xcol) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	@Override
+	public String toString() {
+		return "Titanic [passengerId=" + passengerId + ", survived=" + survived + ", Pclass=" + Pclass + ", name="
+				+ name + ", sex=" + sex + ", age=" + age + ", sibSp=" + sibSp + ", parch=" + parch + ", ticket="
+				+ ticket + ", fare=" + fare + ", cabin=" + cabin + ", embarked=" + embarked + "]";
 	}
 	
 	

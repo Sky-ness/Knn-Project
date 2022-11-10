@@ -8,18 +8,17 @@ import utils.Classifieur;
 import utils.IDistance;
 import utils.IPoint;
 
-public class Knn implements Classifieur{
+public class Knn extends Classifieur{
 	
 	List<IPoint> test;
 
 	@Override
-	public List<IPoint> neighbor(int k, IPoint point, IDistance distance) {
-		List<IPoint> listPoint = new ArrayList<>();
-		test.sort((p1,p2) -> Double.compare(distance.distanceManhattan(p1,point), distance.distanceManhattan(p2, point)));
+	public List<IPoint> neighbor(int k, IPoint point, IDistance distance,List<IPoint> list) {
+		test.sort((i1,i2) -> Double.compare(distance.distanceManhattan(i1,point), distance.distanceManhattan(i2, point)));
 		for(int i = 0; i < k; i++) {
-			listPoint.add(test.get(i));
+			list.add(test.get(i));
 		}
-		return listPoint;
+		return list;
 	}
 
 }

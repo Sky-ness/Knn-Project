@@ -6,7 +6,6 @@ import utils.IPoint;
 public class DistanceIris implements IDistance{
 
 
-
 	@Override
 	public double distanceEuclidienne(IPoint i1, IPoint i2) {
 		((Iris) i1).getSepaiLength();

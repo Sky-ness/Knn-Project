@@ -2,9 +2,13 @@ package utils;
 
 import java.util.List;
 
-public interface Classifieur {
+import model.Parser;
+
+public abstract class Classifieur {
 	
-	public List<IPoint> neighbor(int k,IPoint point, IDistance distance);
+	protected Parser parser;
+	
+	public abstract List<IPoint> neighbor(int k,IPoint point, IDistance distance, List<IPoint> list);
 	
 	
 		

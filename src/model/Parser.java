@@ -1,17 +1,35 @@
 package model;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import com.opencsv.bean.CsvToBeanBuilder;
+
 import utils.ICategory;
 import utils.IColumn;
+import utils.IDataset;
 import utils.IMVCModel;
 import utils.IPoint;
 
 public class Parser implements IMVCModel{
 	protected List<IPoint> lines;
 	protected String title;
+	
+	public static DataSet readFile(String link,Class cl) throws IllegalStateException, IOException {
+		List<IPoint> list = new ArrayList<IPoint>();
+		list = new CsvToBeanBuilder<IPoint>(Files.newBufferedReader(Paths.get(link)))
+				.withSeparator(',')
+				.withType(cl)
+				.build().parse();
+		return new DataSet("test",list);
+			
+		
+	}
 	
 	public Parser(String title, List<IPoint> listePoints){
 		this.title=title;
@@ -103,5 +121,9 @@ public class Parser implements IMVCModel{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	public static void main(String[] args) throws IllegalStateException, IOException {
+		DataSet test = Parser.readFile("data/iris.csv", Iris.class);
+		System.out.println(test.toString());
+	}
 }

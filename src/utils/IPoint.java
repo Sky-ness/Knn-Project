@@ -22,4 +22,6 @@ public Object getValue(IColumn col) throws Exception;
 * Si la colonne n'est pas normalisable, le comportement n'est pas defini.
 */
 public double getNormalizedValue(IColumn xcol);
+
+
 }

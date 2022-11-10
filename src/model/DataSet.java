@@ -8,6 +8,7 @@ import utils.IDataset;
 import utils.IPoint;
 
 public class DataSet implements IDataset{
+	
 	protected String title;
 	protected List<IPoint> listePoints;
 	protected List<IColumn> listeColumns; 
@@ -49,5 +50,18 @@ public class DataSet implements IDataset{
 		listePoints.addAll(element);
 
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("");
+		sb.append("DataSet [title=" + title);
+		for(IPoint ipoint : listePoints) {
+			sb.append(ipoint + "\n");
+		}
+		sb.append("ListeColumns=" + listeColumns);
+		return sb.toString();
+	}
+	
+	
 
 }

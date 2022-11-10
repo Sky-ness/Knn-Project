@@ -7,13 +7,13 @@ import utils.IPoint;
 
 public class Iris implements IPoint {
 	
-	@CsvBindByName(column = "sepai_length")
+	@CsvBindByName(column = "sepal.length")
 	private double sepaiLength;
-	@CsvBindByName(column = "sepai_width")
+	@CsvBindByName(column = "sepal.width")
 	private double sepaiWidth;
-	@CsvBindByName(column = "petal_length")
+	@CsvBindByName(column = "petal.length")
 	private double petalLength;
-	@CsvBindByName(column = "petal_width")
+	@CsvBindByName(column = "petal.width")
 	private double petalWidth;
 	@CsvBindByName(column = "variety")
 	private IrisVariety variety;
