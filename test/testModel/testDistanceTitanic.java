@@ -1,10 +1,15 @@
 package testModel;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class testDistanceTitanic {
-	@Test
-	public void main() {
+	@BeforeEach
+	public void init() {
 
+	}
+	@Test
+	public void DistanceTitanic() {
+		
 	}
 }
