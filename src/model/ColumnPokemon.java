@@ -9,7 +9,7 @@ public class ColumnPokemon implements IColumn{
 
 	@Override
 	public void setNormalizer(IValueNormalizer valueNormalizer) {
-		// TODO Auto-generated method stub
+//		valueNormalizer.normalize()
 		
 	}
 

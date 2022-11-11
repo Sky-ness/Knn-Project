@@ -76,8 +76,7 @@ public class Titanic implements IPoint {
 	}
 	@Override
 	public double getNormalizedValue(IColumn xcol) {
-		// TODO Auto-generated method stub
-		return 0;
+		return xcol.getNormalizedValue(this);
 	}
 
 
