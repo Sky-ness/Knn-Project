@@ -2,7 +2,7 @@ package utils;
 
 /**
 * Decrit un <i>Normaliseur</i>, c'est a dire un objet qui peut transformer
-* une valeur d'une colone en une valeur entre 0 et 1.
+* une valeur d'une colonne en une valeur entre 0 et 1.
 *
 * Chaque <i>normaliseur</i> est classe qui implemente l'interface
 * <i>IValueNormalizer</i>.

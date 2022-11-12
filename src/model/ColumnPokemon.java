@@ -7,17 +7,24 @@ import utils.IValueNormalizer;
 
 public class ColumnPokemon extends AbstractColumn{
 
-	private String name;
+	protected String name;
+	protected DataSet dataset;
+	protected IValueNormalizer normaliseur;
+
+	public ColumnPokemon(String name, DataSet dataset, IValueNormalizer normaliseur) {
+		super();
+		this.name = name;
+		this.dataset = dataset;
+		this.normaliseur = normaliseur;
+	}
 
 	@Override
 	public void setNormalizer(IValueNormalizer valueNormalizer) {
-		// TODO Auto-generated method stub
-		
+		this.valueNormalizer = valueNormalizer;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return this.name;
 	}
 

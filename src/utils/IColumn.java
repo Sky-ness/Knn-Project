@@ -11,6 +11,7 @@ package utils;
 * etre utilisees comme axe dans le nuage de points.
 */
 public interface IColumn {
+
 /**
 * stocke le <i>normaliseur</i> en parametre dans la colonne.
 */

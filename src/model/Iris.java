@@ -9,11 +9,11 @@ import utils.IPoint;
 
 public class Iris implements IPoint {
 
-	@CsvBindByName(column = "sepal_length")
+	@CsvBindByName(column = "sepal.length")
 	private double sepalLength;
-	@CsvBindByName(column = "sepal_width")
+	@CsvBindByName(column = "sepal.width")
 	private double sepalWidth;
-	@CsvBindByName(column = "petal_length")
+	@CsvBindByName(column = "petal.length")
 	private double petalLength;
 	@CsvBindByName(column = "petal.width")
 	private double petalWidth;
