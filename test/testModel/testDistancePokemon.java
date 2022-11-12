@@ -45,7 +45,7 @@ public class testDistancePokemon {
 		
 		
 		List<IPoint> pTrieSansColumnNorm = new ArrayList<IPoint>();
-		pTrieSansColumnNorm = neighborSansNorm(k,pokemon.get(12),pokemon);
+		pTrieSansColumnNorm = neighborSansNorm(k,pokemon.get(12),pokemon,true);
 		
 		
 		for(int i =0;i<k;i++) {
@@ -57,16 +57,37 @@ public class testDistancePokemon {
 
 	@Test
 	public void TestDistanceEuclidiennePokemon() {
-
+		int k = 3;
+		List<IPoint> pTrieAvecColumnNorm = new ArrayList<IPoint>();
+		List<IColumn> listeColumn = new ArrayList<IColumn>();
+		// Faudra ajouter les bonnes colonnes
+		// Ici ça sera speed,baseEGg,Exp,CaptureRate
+		listeColumn.add(new ColumnPokemon());
+		pTrieAvecColumnNorm = knn.neighbor(k,pokemon.get(12) ,new Distance(),pokemon,listeColumn);
+		
+		
+		
+		List<IPoint> pTrieSansColumnNorm = new ArrayList<IPoint>();
+		pTrieSansColumnNorm = neighborSansNorm(k,pokemon.get(12),pokemon,false);
+		
+		
+		for(int i =0;i<k;i++) {
+			assertEquals(pTrieSansColumnNorm.get(i), pTrieAvecColumnNorm.get(i));
+		}
 		
 	}
 	
 	
 	
-	public List<IPoint> neighborSansNorm(int k, IPoint point,List<IPoint> list) {
+	public List<IPoint> neighborSansNorm(int k, IPoint point,List<IPoint> list,boolean manhattan) {
 	List<IPoint> test= new ArrayList<IPoint>();
 	
-	list.sort((i1,i2) -> Double.compare(DistanceManhattanPokemon(point,i1),DistanceManhattanPokemon(point,i2)));
+	if(manhattan) {
+		list.sort((i1,i2) -> Double.compare(DistanceManhattanPokemon(point,i1),DistanceManhattanPokemon(point,i2)));
+	} else {
+		list.sort((i1,i2) -> Double.compare(DistanceEuclidiennePokemon(point,i1),DistanceEuclidiennePokemon(point,i2)));
+	}
+
 	for(int i = 0; i < k; i++) {
 		test.add(list.get(i));
 	}
@@ -82,7 +103,12 @@ public class testDistancePokemon {
 		return speed+baseEgg+exp+capture;
 	}
 	
-	public void DistanceEuclidiennePokemon() {
+	public double DistanceEuclidiennePokemon(IPoint i1, IPoint i2) {
+        double distB = Math.pow(Math.abs(((Pokemon)i1).getBaseEggSteps() - ((Pokemon)i2).getBaseEggSteps() + 0.0), 2);
+        double distE = Math.pow(Math.abs(((Pokemon)i1).getXpGrowth() - ((Pokemon)i2).getXpGrowth() + 0.0), 2);
+        double distS = Math.pow(Math.abs(((Pokemon)i1).getSpeed() - ((Pokemon)i2).getSpeed() + 0.0), 2);
+        double distC = Math.pow(Math.abs(((Pokemon)i1).getCaptureRate() - ((Pokemon)i2).getCaptureRate() + 0.0), 2);
+        return Math.sqrt(distB + distE + distC + distS);
 	}
 	
 }
