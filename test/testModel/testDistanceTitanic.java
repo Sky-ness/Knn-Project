@@ -48,7 +48,7 @@ public class testDistanceTitanic {
 		tTrieAvecColumnNorm = knn.neighbor(k, titanic.get(7),new Distance(), titanic, listeColumn);
 		
 		List<IPoint> tTrieSansColumnNorm = new ArrayList<IPoint>();
-		tTrieSansColumnNorm = neighborSansNorm(k, titanic.get(7), titanic);
+		tTrieSansColumnNorm = neighborSansNorm(k, titanic.get(7), titanic,true);
 		
 		for(int i =0;i<k;i++) {
 			assertEquals(tTrieSansColumnNorm.get(i), tTrieAvecColumnNorm.get(i));
@@ -58,14 +58,32 @@ public class testDistanceTitanic {
 	}
 	@Test
 	public void TestDistanceManhattanTitanic() {
-
+		int k = 3;
+		List<IPoint> tTrieAvecColumnNorm = new ArrayList<IPoint>();
+		List<IColumn> listeColumn = new ArrayList<IColumn>();
+		// Faudra ajouter les bonnes colonnes
+		// Ici ça sera 
+		listeColumn.add(new ColumnTitanic());
+		
+		tTrieAvecColumnNorm = knn.neighbor(k, titanic.get(7),new Distance(), titanic, listeColumn);
+		
+		List<IPoint> tTrieSansColumnNorm = new ArrayList<IPoint>();
+		tTrieSansColumnNorm = neighborSansNorm(k, titanic.get(7), titanic,false);
+		
+		for(int i =0;i<k;i++) {
+			assertEquals(tTrieSansColumnNorm.get(i), tTrieAvecColumnNorm.get(i));
+		}
 	}
 
 
-	public List<IPoint> neighborSansNorm(int k, IPoint point,List<IPoint> list) {
+	public List<IPoint> neighborSansNorm(int k, IPoint point,List<IPoint> list,boolean manhattan) {
 		List<IPoint> test= new ArrayList<IPoint>();
-
-		list.sort((i1,i2) -> Double.compare(DistanceManhattanTitanic(point,i1),DistanceManhattanTitanic(point,i2)));
+		if(manhattan) {
+			list.sort((i1,i2) -> Double.compare(DistanceManhattanTitanic(point,i1),DistanceManhattanTitanic(point,i2)));
+		} else {
+			list.sort((i1,i2) -> Double.compare(DistanceEuclidienneTitanic(point,i1),DistanceEuclidienneTitanic(point,i2)));
+		}
+		
 		for(int i = 0; i < k; i++) {
 			test.add(list.get(i));
 		}
@@ -75,14 +93,19 @@ public class testDistanceTitanic {
 	public double DistanceManhattanTitanic(IPoint i1, IPoint i2) {
 		
 		 int survived=Math.abs(((Titanic)i1).getSurvived() - ((Titanic)i2).getSurvived());
-		 int Pclass=Math.abs(((Titanic)i1).getSurvived() - ((Titanic)i2).getSurvived());
+		 int Pclass=Math.abs(((Titanic)i1).getPclass() - ((Titanic)i2).getPclass());
 		 double age=Math.abs(((Titanic)i1).getAge() - ((Titanic)i2).getAge()+0.0);
 		 double fare=Math.abs(((Titanic)i1).getFare() - ((Titanic)i2).getFare()+0.0);
 
 		return survived+Pclass+age+fare;
 	}
 
-	public void DistanceEuclidienneTitanic() {
+	public double DistanceEuclidienneTitanic(IPoint i1, IPoint i2) {
+		double distS = Math.pow(Math.abs(((Titanic)i1).getSurvived() - ((Titanic)i2).getSurvived() + 0.0), 2);
+		double distP = Math.pow(Math.abs(((Titanic)i1).getPclass()- ((Titanic)i2).getPclass() + 0.0), 2);
+		double distA = Math.pow(Math.abs(((Titanic)i1).getAge() - ((Titanic)i2).getAge()+ 0.0), 2);
+		double distF = Math.pow(Math.abs(((Titanic)i1).getFare() - ((Titanic)i2).getFare() + 0.0), 2);
+		return Math.sqrt(distS + distP + distA + distF);
 	}
 }
 
