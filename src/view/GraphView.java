@@ -2,8 +2,8 @@ package view;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -16,10 +16,11 @@ public class GraphView extends Stage{
 			VBox fxml = initFxml();
 			Scene scene = initScene(fxml);
 			stage.setScene(scene);
-			stage.show();
+			
 		} catch (IOException e) {
-			System.out.println("File not found");
+			System.err.println("Erreur au chargement: " +e.getMessage());
 		}
+		stage.show();
 	}
 	public Stage initStage() {
 		Stage stage = new Stage();
@@ -32,9 +33,9 @@ public class GraphView extends Stage{
 	}
 	public VBox initFxml()throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-        String fxmlDocPath = "classification.fxml";
+        String fxmlDocPath = "fxmlModel/classification.fxml";
         FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
-		VBox vbox = (VBox) loader.load(fxmlStream);
+        VBox vbox = (VBox) loader.load(fxmlStream);
 		return vbox;
 	}
 

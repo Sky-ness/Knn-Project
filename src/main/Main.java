@@ -16,10 +16,10 @@ public class Main extends Application{
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage stage) throws Exception {
 		List<IPoint> iris = null;
 		List<IColumn> colonnes = null;
-		DataSet ds = new DataSet("Iris",iris); 
+		DataSet ds = new DataSet("Iris",iris);
 		new GraphView(/*ds*/);
 	}
 }
