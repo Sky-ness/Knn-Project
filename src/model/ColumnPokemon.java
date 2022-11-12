@@ -5,30 +5,20 @@ import utils.IDataset;
 import utils.IPoint;
 import utils.IValueNormalizer;
 
-public class ColumnPokemon implements IColumn{
+public class ColumnPokemon extends AbstractColumn{
+
+	private String name;
 
 	@Override
 	public void setNormalizer(IValueNormalizer valueNormalizer) {
-//		valueNormalizer.normalize()
+		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public double getNormalizedValue(IPoint point) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Object getDenormalizedValue(double value) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.name;
 	}
 
 	@Override
@@ -42,5 +32,6 @@ public class ColumnPokemon implements IColumn{
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 
 }
