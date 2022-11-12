@@ -64,6 +64,7 @@ public class testDistanceTitanic {
 		// Faudra ajouter les bonnes colonnes
 		// Ici ça sera 
 		listeColumn.add(new ColumnTitanic());
+		 
 		
 		tTrieAvecColumnNorm = knn.neighbor(k, titanic.get(7),new Distance(), titanic, listeColumn);
 		
