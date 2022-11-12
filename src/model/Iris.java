@@ -1,5 +1,7 @@
 package model;
 
+import java.lang.reflect.Field;
+
 import com.opencsv.bean.CsvBindByName;
 
 import utils.IColumn;
@@ -39,7 +41,15 @@ public class Iris implements IPoint {
 				+ ", petalWidth=" + petalWidth + ", variety=" + variety + "]";
 	}
 	@Override
-	public Object getValue(IColumn col) {
+	public Object getValue(IColumn col) throws IllegalArgumentException, IllegalAccessException {
+		Field[] fs = this.getClass().getFields();
+		for(Field f : fs) {
+			if(f.getName().equals(col.getName())){
+				return f.get(this);
+			}
+		}
+		return null;
+		/*
 		switch(col.getName()) {
 		case "sepalLength":
 			return sepalLength;
@@ -54,13 +64,11 @@ public class Iris implements IPoint {
 		default:
 			return null;
 		}
+		*/
 	}
 	@Override
 	public double getNormalizedValue(IColumn xcol) {
-		if(xcol.isNormalizable()) {
-			return xcol.getNormalizedValue(this);
-		}
-		return 0.0;
+		return xcol.getNormalizedValue(this);
 	}
 
 }

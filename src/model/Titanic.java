@@ -1,5 +1,7 @@
 package model;
 
+import java.lang.reflect.Field;
+
 import com.opencsv.bean.CsvBindByName;
 
 import utils.IColumn;
@@ -44,7 +46,16 @@ public class Titanic implements IPoint {
 	public String getCabin() {return cabin;}
 	public char getEmbarked() {return embarked;}
 	@Override
-	public Object getValue(IColumn col) {
+	public Object getValue(IColumn col) throws IllegalArgumentException, IllegalAccessException {
+		Field[] fs = this.getClass().getFields();
+		for(Field f : fs) {
+			if(f.getName().equals(col.getName())){
+				return f.get(this);
+			}
+		}
+		return null;
+		
+		/*
 		switch(col.getName()) {
 		case "passengerId":
 			return passengerId;
@@ -73,6 +84,7 @@ public class Titanic implements IPoint {
 		default:
 			return null;
 		}
+		*/
 	}
 	@Override
 	public double getNormalizedValue(IColumn xcol) {

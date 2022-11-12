@@ -19,7 +19,7 @@ public class Main extends Application{
 	public void start(Stage stage) throws Exception {
 		List<IPoint> iris = null;
 		List<IColumn> colonnes = null;
-		DataSet ds = new DataSet("Iris",iris);
-		new GraphView(/*ds*/);
+		DataSet ds = new DataSet("Iris",iris,colonnes);
+		new GraphView(ds);
 	}
 }

@@ -21,13 +21,21 @@ public class Parser implements IMVCModel{
 	protected String title;
 	protected DataSet datas;
 	
+
+	@SuppressWarnings("unchecked")
 	public static DataSet readFile(String link,Class cl) throws IllegalStateException, IOException {
-		List<IPoint> list = new ArrayList<IPoint>();
-		list = new CsvToBeanBuilder<IPoint>(Files.newBufferedReader(Paths.get(link)))
+		List<IPoint> points = new ArrayList<IPoint>();
+		points = new CsvToBeanBuilder<IPoint>(Files.newBufferedReader(Paths.get(link)))
 				.withSeparator(',')
 				.withType(cl)
 				.build().parse();
-		return new DataSet("test",list);
+		List<IColumn> columns = new ArrayList<IColumn>();
+		columns = null; //TODO
+		/*
+		 * quand on lis le fichier on doit prendre la première ligne et construire des colonnes avec si j'ai bien compris
+		 * puisque pour construire un DataSet on doit avoir la liste des colonnes 
+		 */
+		return new DataSet("test",points,columns);
 			
 		
 	}

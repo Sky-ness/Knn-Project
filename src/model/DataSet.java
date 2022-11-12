@@ -14,9 +14,10 @@ public class DataSet implements IDataset{
 	protected List<IPoint> listePoints;
 	protected List<IColumn> listeColumns; 
 
-	public DataSet(String title, List<IPoint> listePoints) {
+	public DataSet(String title, List<IPoint> listePoints,List<IColumn> listeColumns) {
 		this.title=title;
 		this.listePoints=listePoints;
+		this.listeColumns=listeColumns;
 	}
 
 	@Override

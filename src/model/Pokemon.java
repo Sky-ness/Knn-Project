@@ -1,5 +1,7 @@
 package model;
 
+import java.lang.reflect.Field;
+
 import com.opencsv.bean.CsvBindByName;
 
 import utils.IColumn;
@@ -59,8 +61,16 @@ public class Pokemon implements IPoint{
 				+ ", legendary=" + legendary + "]";
 	}
 	@Override
-	public Object getValue(IColumn col) {
-		switch(col.getName()) {
+	public Object getValue(IColumn col) throws IllegalArgumentException, IllegalAccessException {
+		Field[] fs = this.getClass().getFields();
+		for(Field f : fs) {
+			if(f.getName().equals(col.getName())){
+				return f.get(this);
+			}
+		}
+		return null;
+		
+		/*switch(col.getName()) {
 		case "name":
 			return name;
 		case "attack":
@@ -89,12 +99,11 @@ public class Pokemon implements IPoint{
 			return legendary;
 		default:
 			return null;
-		}
+		}*/
 	}
 	@Override
 	public double getNormalizedValue(IColumn xcol) {
-		// TODO Auto-generated method stub
-		return 0;
+		return xcol.getNormalizedValue(this);
 	}
 
 
