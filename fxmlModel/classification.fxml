@@ -48,7 +48,7 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
+    <MenuBar fx:id="menu" VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
@@ -87,7 +87,7 @@
         </Menu>
       </menus>
     </MenuBar>
-      <BorderPane id="borderpane" prefHeight="200.0" prefWidth="200.0">
+      <BorderPane id="borderpane" prefHeight="396.0" prefWidth="640.0">
          <top>
         <Label alignment="CENTER" style="&#10;" text="Classification des données" textAlignment="CENTER" textFill="#ea7d7d" wrapText="false" BorderPane.alignment="CENTER">
           <font>
@@ -106,7 +106,7 @@
             </BubbleChart>
          </center>
          <bottom>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="640.0" BorderPane.alignment="CENTER">
                <children>
                   <ComboBox id="abscisse" prefWidth="150.0" />
                   <Button id="classifier" mnemonicParsing="false" text="Classifier" />
@@ -115,7 +115,7 @@
             </HBox>
          </bottom>
          <left>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+            <VBox prefHeight="280.0" prefWidth="81.0" BorderPane.alignment="CENTER" />
          </left>
       </BorderPane>
   </children>
