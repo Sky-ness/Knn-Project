@@ -1,6 +1,6 @@
 # **SAÉ3.02**
 
-## Autheur
+## Auteur
 - Raymond Khampan
 - Simon Bocquet
 - Antonin Duvauchel
