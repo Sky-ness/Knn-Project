@@ -22,22 +22,22 @@ import utils.IPoint;
 
 public class testDistancePokemon {
 	List<IPoint> pokemon;
+	Knn knn;
 	@BeforeEach
 	public void init() throws IllegalStateException, IOException {
 		pokemon = new CsvToBeanBuilder<IPoint>(Files.newBufferedReader(Paths.get("data/pokemon_train.csv")))
                 .withSeparator(',')
                 .withType(Pokemon.class)
                 .build().parse();
-		
+		knn = new Knn();
 	}
 	
 	@Test
 	public void TestDistanceManhattanPokemon() {
-		Knn knn = new Knn();
 		int k = 3;
 		List<IPoint> pTrieAvecColumnNorm = new ArrayList<IPoint>();
 		List<IColumn> listeColumn = new ArrayList<IColumn>();
-		// Faudra ajouter les bons colonnes
+		// Faudra ajouter les bonnes colonnes
 		// Ici ça sera speed,baseEGg,Exp,CaptureRate
 		listeColumn.add(new ColumnPokemon());
 		pTrieAvecColumnNorm = knn.neighbor(k,pokemon.get(12) ,new Distance(),pokemon,listeColumn);
@@ -49,16 +49,17 @@ public class testDistancePokemon {
 		
 		
 		for(int i =0;i<k;i++) {
-			assertEquals(pTrieSansColumnNorm.get(i), null);
+			assertEquals(pTrieSansColumnNorm.get(i), pTrieAvecColumnNorm.get(i));
 		}
 		
 	}
 	
 
-	
-	public void DistanceEuclidiennePokemon() {
+	@Test
+	public void TestDistanceEuclidiennePokemon() {
+
+		
 	}
-	
 	
 	
 	
@@ -79,6 +80,9 @@ public class testDistancePokemon {
 		double capture=Math.abs(((Pokemon)i1).getCaptureRate() - ((Pokemon)i2).getCaptureRate() +0.0) ;
 		
 		return speed+baseEgg+exp+capture;
-		
 	}
+	
+	public void DistanceEuclidiennePokemon() {
+	}
+	
 }
