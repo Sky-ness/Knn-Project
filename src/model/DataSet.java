@@ -64,6 +64,14 @@ public class DataSet implements IDataset{
 		return sb.toString();
 	}
 
+	public List<Object> valueByColumn(IColumn col) throws Exception{
+		List<Object> list = new ArrayList<Object>();
+		for(IPoint point : listePoints) {
+			list.add(point.getValue(col));
+		}
+		return list;
+	}
+	
 	public List<IColumn> getNormalizableColumns() {
 		List<IColumn> res = new ArrayList<>();
 		for (IColumn iColumn : res) {

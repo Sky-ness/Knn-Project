@@ -30,8 +30,7 @@ public class ColumnPokemon extends AbstractColumn{
 
 	@Override
 	public IDataset getDataset() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.getDataset();
 	}
 
 	@Override
