@@ -64,10 +64,10 @@ public class DataSet implements IDataset{
 		return sb.toString();
 	}
 
-	public List<Object> valueByColumn(IColumn col) throws Exception{
+	public List<Object> valueByColumn(Column column) throws Exception{
 		List<Object> list = new ArrayList<Object>();
 		for(IPoint point : listePoints) {
-			list.add(point.getValue(col));
+			list.add(point.getValue(column));
 		}
 		return list;
 	}

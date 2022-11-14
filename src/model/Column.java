@@ -4,13 +4,13 @@ import utils.IDataset;
 import utils.IPoint;
 import utils.IValueNormalizer;
 
-public abstract class AbstractColumn {
+public class Column {
 
 	protected static IValueNormalizer valueNormalizer;
 	protected String name;
-	protected IDataset dataset;
+	protected DataSet dataset;
 	
-	public AbstractColumn(String name, IDataset dataset) {
+	public Column(String name, DataSet dataset) {
 		this.name = name;
 		this.dataset = dataset;
 	}
@@ -29,7 +29,7 @@ public abstract class AbstractColumn {
 	/*
 	 * le dataSet je sais pas ce qu'il fout la
 	 */
-	public IDataset getDataset() {
+	public DataSet getDataset() {
 		return dataset;
 	}
 	

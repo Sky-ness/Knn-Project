@@ -1,5 +1,7 @@
 package utils;
 
+import model.Column;
+
 /**
 * Decrit un Point (ou donnee, ou ligne) dans un DataSet.
 */
@@ -14,14 +16,14 @@ public interface IPoint {
  * @throws SecurityException 
 
 */
-public Object getValue(IColumn col) throws Exception;
+public Object getValue(Column column) throws Exception;
 /**
 * Retourne la valeur de ce point normalisee pour la colonne en parametre.
 *
 * La normalisation se fait avec le <i>normaliseur</i> de la colonne.
 * Si la colonne n'est pas normalisable, le comportement n'est pas defini.
 */
-public double getNormalizedValue(IColumn xcol);
+public double getNormalizedValue(Column xcol);
 
 
 }
