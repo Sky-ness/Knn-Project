@@ -20,6 +20,16 @@ public class DataSet implements IDataset{
 		this.listeColumns=listeColumns;
 	}
 
+	public List<Column> listColumn(){
+		List<Column> list = new ArrayList<Column>();
+		IPoint point = listePoints.get(0);
+		Field[] fs = point.getClass().getFields();
+		for(Field field : fs) {
+			System.out.println();
+			list.add(new Column(field.getName(),this));
+		}
+		return list;
+	}
 	@Override
 	public Iterator<IPoint> iterator() {
 		return listePoints.iterator();
