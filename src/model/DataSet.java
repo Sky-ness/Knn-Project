@@ -1,5 +1,6 @@
 package model;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -12,14 +13,23 @@ public class DataSet implements IDataset{
 	
 	protected String title;
 	protected List<IPoint> listePoints;
-	protected List<IColumn> listeColumns; 
+	protected List<Column> listeColumns; 
 
-	public DataSet(String title, List<IPoint> listePoints,List<IColumn> listeColumns) {
+	public DataSet(String title, List<IPoint> listePoints) {
 		this.title=title;
 		this.listePoints=listePoints;
-		this.listeColumns=listeColumns;
+		this.listColumn();
 	}
 
+	public List<Column> listColumn(){
+		List<Column> list = new ArrayList<Column>();
+		IPoint point = listePoints.get(0);
+		Field[] fs = point.getClass().getFields();
+		for(Field field : fs) {
+			list.add(new Column(field.getName(),this));
+		}
+		return list;
+	}
 	@Override
 	public Iterator<IPoint> iterator() {
 		return listePoints.iterator();
@@ -64,10 +74,10 @@ public class DataSet implements IDataset{
 		return sb.toString();
 	}
 
-	public List<Object> valueByColumn(IColumn col) throws Exception{
+	public List<Object> valueByColumn(Column column) throws Exception{
 		List<Object> list = new ArrayList<Object>();
 		for(IPoint point : listePoints) {
-			list.add(point.getValue(col));
+			list.add(point.getValue(column));
 		}
 		return list;
 	}

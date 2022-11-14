@@ -29,13 +29,11 @@ public class Parser implements IMVCModel{
 				.withSeparator(',')
 				.withType(cl)
 				.build().parse();
-		List<IColumn> columns = new ArrayList<IColumn>();
-		columns = null; //TODO
 		/*
 		 * quand on lis le fichier on doit prendre la première ligne et construire des colonnes avec si j'ai bien compris
 		 * puisque pour construire un DataSet on doit avoir la liste des colonnes 
 		 */
-		return new DataSet("test",points,columns);
+		return new DataSet("test",points);
 			
 		
 	}
@@ -108,12 +106,12 @@ public class Parser implements IMVCModel{
 	}
 
 	@Override
-	public IColumn defaultXCol() {
+	public Column defaultXCol() {
 		return datas.listeColumns.get(0);
 	}
 
 	@Override
-	public IColumn defaultYCol() {
+	public Column defaultYCol() {
 		return datas.listeColumns.get(0);
 	}
 
@@ -138,7 +136,8 @@ public class Parser implements IMVCModel{
 	}
 	
 	public static void main(String[] args) throws IllegalStateException, IOException {
-		DataSet test = Parser.readFile("data/iris.csv", Iris.class);
+		DataSet test = Parser.readFile("data/pokemon_train.csv", Pokemon.class);
+		
 		System.out.println(test.toString());
 	}
 }

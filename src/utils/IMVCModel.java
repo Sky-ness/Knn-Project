@@ -3,6 +3,8 @@ package utils;
 import java.util.Collection;
 import java.util.List;
 
+import model.Column;
+
 /**
 * Decrit un modele de donnee dans le MVC.
 *
@@ -28,12 +30,12 @@ public void loadFromString(String data);
 * Retourne la colonne a utiliser par defaut pour l'axe des X lors de
 * l'affichage du nuage de points.
 */
-public IColumn defaultXCol();
+public Column defaultXCol();
 /**
 * Retourne la colonne a utiliser par defaut pour l'axe des Y lors de
 * l'affichage du nuage de points.
 */
-public IColumn defaultYCol();
+public Column defaultYCol();
 /**
 * Ajoute une Categorie (ou classe) de donnees au model.
 */
