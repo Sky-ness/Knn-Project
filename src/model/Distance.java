@@ -2,8 +2,6 @@ package model;
 
 import java.util.List;
 
-import utils.IColumn;
-import utils.IDistance;
 import utils.IPoint;
 
 public class Distance{
