@@ -6,12 +6,11 @@ import utils.IColumn;
 import utils.IDistance;
 import utils.IPoint;
 
-public class Distance implements IDistance{
+public class Distance{
 
-	@Override
-	public double distanceEuclidienne(IPoint i1, IPoint i2,List<IColumn> c1) {
+	public double distanceEuclidienne(IPoint i1, IPoint i2,List<Column> c1) {
 		double res = 0.0;
-		for(IColumn icol:c1) {
+		for(Column icol:c1) {
 			res += 	Math.sqrt(Math.pow(Math.abs(i1.getNormalizedValue(icol) - i2.getNormalizedValue(icol)+ 0.0), 2));
 
 		}
@@ -20,10 +19,9 @@ public class Distance implements IDistance{
 		return res;
 	}
 
-	@Override
-	public double distanceManhattan(IPoint i1, IPoint i2,List<IColumn> c1) {
+	public double distanceManhattan(IPoint i1, IPoint i2,List<Column> c1) {
 		double res = 0.0;
-		for(IColumn icol:c1) {
+		for(Column icol:c1) {
 			res += Math.abs(i1.getNormalizedValue(icol) - i2.getNormalizedValue(icol));
 		}
 

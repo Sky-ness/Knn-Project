@@ -23,7 +23,7 @@ public Object getValue(Column column) throws Exception;
 * La normalisation se fait avec le <i>normaliseur</i> de la colonne.
 * Si la colonne n'est pas normalisable, le comportement n'est pas defini.
 */
-public double getNormalizedValue(Column xcol);
+public double getNormalizedValue(Column icol);
 
 
 }
