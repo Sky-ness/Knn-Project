@@ -3,18 +3,48 @@ package view;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.chart.BubbleChart;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.DataSet;
 
 public class GraphView extends Stage{
+    @FXML
+    private Button Clear;
+
+    @FXML
+    private ComboBox<?> absCol;
+
+    @FXML
+    private ComboBox<?> ordCol;
+
+    @FXML
+    private Button ajoutPoint;
+
+    @FXML
+    private BubbleChart<?, ?> chart;
+
+    @FXML
+    private Button classifier;
+
+    @FXML
+    private MenuBar menu;
+
+
 	public GraphView(DataSet ds){
 		Stage stage = initStage();
 		try {
 			VBox fxml = initFxml();
 			Scene scene = initScene(fxml);
+
+//				absCol.getItems().addAll(ds.getListeColumns())
+			
 			stage.setScene(scene);
 			
 		} catch (IOException e) {

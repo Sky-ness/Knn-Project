@@ -80,5 +80,9 @@ public class DataSet implements IDataset{
 		}
 		return res;
 	}
+	public List<IColumn> getListeColumns() {
+		return listeColumns;
+	}
+
 
 }

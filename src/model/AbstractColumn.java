@@ -14,21 +14,15 @@ public abstract class AbstractColumn {
 		this.name = name;
 		this.dataset = dataset;
 	}
-	/*
-	 * abstract car chaque colonne a un normalizer different
-	 */
+
 	public void setNormalizer(IValueNormalizer valueNormalizer) {
 		this.valueNormalizer = valueNormalizer;
 	}
-	/*
-	 * abstract car chaque colonne a un nom  
-	 */
+
 	public String getName() {
 		return name;
 	}
-	/*
-	 * le dataSet je sais pas ce qu'il fout la
-	 */
+
 	public IDataset getDataset() {
 		return dataset;
 	}
