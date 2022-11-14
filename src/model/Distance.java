@@ -12,29 +12,24 @@ public class Distance implements IDistance{
 	public double distanceEuclidienne(IPoint i1, IPoint i2,List<IColumn> c1) {
 		double res = 0.0;
 		for(IColumn icol:c1) {
-			res += Math.abs(i1.getNormalizedValue(icol) - i2.getNormalizedValue(icol));
-		}
+			res += 	Math.sqrt(Math.pow(Math.abs(i1.getNormalizedValue(icol) - i2.getNormalizedValue(icol)+ 0.0), 2));
 
+		}
+		
+		
 		return res;
 	}
 
 	@Override
 	public double distanceManhattan(IPoint i1, IPoint i2,List<IColumn> c1) {
-		
-		return 0;
-	}
+		double res = 0.0;
+		for(IColumn icol:c1) {
+			res += Math.abs(i1.getNormalizedValue(icol) - i2.getNormalizedValue(icol));
+		}
 
-//	@Override
-//	public double distanceEuclidienne(IPoint i1, IPoint i2, IColumn c1, IColumn c2) {
-//		return Math.sqrt(Math.pow(i1.getNormalizedValue(c1) - i2.getNormalizedValue(c1), 2))
-//				+ Math.sqrt(Math.pow(i1.getNormalizedValue(c2) - i2.getNormalizedValue(c2), 2));
-//	}
-//
-//	@Override
-//	public double distanceManhattan(IPoint i1, IPoint i2, IColumn c1, IColumn c2) {
-//		return i1.getNormalizedValue(c1) - i2.getNormalizedValue(c1) 
-//				+ i1.getNormalizedValue(c2) - i2.getNormalizedValue(c2);
-//	}
+		return res;
+	}
+	
 
 
 }
