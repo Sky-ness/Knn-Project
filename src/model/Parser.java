@@ -137,7 +137,7 @@ public class Parser implements IMVCModel{
 	
 	public static void main(String[] args) throws IllegalStateException, IOException {
 		DataSet test = Parser.readFile("data/pokemon_train.csv", Pokemon.class);
-		
-		System.out.println(test.toString());
+		System.out.println(test.listeColumns);
+		//System.out.println(test.toString());
 	}
 }

@@ -26,6 +26,7 @@ public class DataSet implements IDataset{
 		IPoint point = listePoints.get(0);
 		Field[] fs = point.getClass().getFields();
 		for(Field field : fs) {
+			System.out.println();
 			list.add(new Column(field.getName(),this));
 		}
 		return list;
