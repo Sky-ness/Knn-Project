@@ -31,13 +31,13 @@ public abstract class AbstractColumn {
 		return valueNormalizer!=null;
 	}
 	
-	public double getNormalizedValue(IPoint point) throws Exception {
+	public double getNormalizedValue(IPoint point) {
 		if(isNormalizable())
 			return valueNormalizer.normalize(point);
 		return -1.0;
 	}
 
-	public Object getDenormalizedValue(double value) throws Exception {
+	public Object getDenormalizedValue(double value) {
 		if(isNormalizable())
 			return valueNormalizer.denormalize(value);
 		return -1.0;
