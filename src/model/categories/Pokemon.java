@@ -1,14 +1,14 @@
-package model;
-
-import java.lang.reflect.Field;
+package model.categories;
 
 import com.opencsv.bean.CsvBindByName;
 
-import utils.IColumn;
-import utils.IPoint;
+import model.abstracts.Point;
+import model.enums.PokemonType;
+import util.IColumn;
+import util.IPoint;
 
-public class Pokemon implements IPoint{
-
+public class Pokemon extends Point{
+	
 	@CsvBindByName(column = "name")
 	String name;
 	@CsvBindByName(column = "attack")
@@ -35,7 +35,7 @@ public class Pokemon implements IPoint{
 	double speed;
 	@CsvBindByName(column = "is_legendary")
 	boolean legendary;
-
+	
 
 	// Getters
 	public String getName() {return name;}
@@ -61,49 +61,14 @@ public class Pokemon implements IPoint{
 				+ ", legendary=" + legendary + "]";
 	}
 	@Override
-	public Object getValue(Column col) throws IllegalArgumentException, IllegalAccessException {
-		Field[] fs = this.getClass().getFields();
-		for(Field f : fs) {
-			if(f.getName().equals(col.getName())){
-				return f.get(this);
-			}
-		}
+	public Object getValue(IColumn col) {
+		// TODO Auto-generated method stub
 		return null;
-
-		/*switch(col.getName()) {
-		case "name":
-			return name;
-		case "attack":
-			return attack;
-		case "baseEggSteps":
-			return baseEggSteps;
-		case "petalWidth":
-			return captureRate;
-		case "defense":
-			return defense;
-		case "xpGrowth":
-			return xpGrowth;
-		case "hp":
-			return hp;
-		case "spAttack":
-			return spAttack;
-		case "spDefense":
-			return spDefense;
-		case "type1":
-			return type1;
-		case "type2":
-			return type2;
-		case "speed":
-			return speed;
-		case "legendary":
-			return legendary;
-		default:
-			return null;
-		}*/
 	}
 	@Override
-	public double getNormalizedValue(Column xcol) throws Exception {
-		return xcol.getNormalizedValue(this);
+	public double getNormalizedValue(IColumn xcol) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

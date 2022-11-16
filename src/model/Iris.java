@@ -40,8 +40,9 @@ public class Iris implements IPoint {
 		return "Iris [sepalLength=" + sepalLength + ", sepaiWidth=" + sepalWidth + ", petalLength=" + petalLength
 				+ ", petalWidth=" + petalWidth + ", variety=" + variety + "]";
 	}
+	
 	@Override
-	public Object getValue(IColumn col) throws IllegalArgumentException, IllegalAccessException {
+	public Object getValue(Column col) throws IllegalArgumentException, IllegalAccessException{
 		Field[] fs = this.getClass().getFields();
 		for(Field f : fs) {
 			if(f.getName().equals(col.getName())){
@@ -67,7 +68,7 @@ public class Iris implements IPoint {
 		*/
 	}
 	@Override
-	public double getNormalizedValue(IColumn xcol) {
+	public double getNormalizedValue(Column xcol) throws Exception {
 		return xcol.getNormalizedValue(this);
 	}
 

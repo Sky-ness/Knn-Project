@@ -1,14 +1,17 @@
-package model;
+package pokemon;
 
-import java.lang.reflect.Field;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Comparator;
+import java.util.List;
 
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvToBeanBuilder;
 
-import utils.IColumn;
-import utils.IPoint;
+import model.enums.PokemonType;
 
-public class Pokemon implements IPoint{
-
+public class Pokemon {
 	@CsvBindByName(column = "name")
 	String name;
 	@CsvBindByName(column = "attack")
@@ -35,7 +38,19 @@ public class Pokemon implements IPoint{
 	double speed;
 	@CsvBindByName(column = "is_legendary")
 	boolean legendary;
-
+	
+	
+	public static void main(String[] args) throws IllegalStateException, IOException {
+		List<Pokemon> poke = new CsvToBeanBuilder<Pokemon>(Files.newBufferedReader(Paths.get("data/pokemon_train.csv")))
+                .withSeparator(',')
+                .withType(Pokemon.class)
+                .build().parse();
+		MethodeKnn mknn = new MethodeKnn("");
+		// Récupère les 5 pokemon à une distance arbitraire de 0.002 du 1er pokemon du csv
+		List<Pokemon> p = mknn.getKNN(5, poke.get(0), 0.002);
+		System.out.println(mknn.maybeLegendary(poke.get(480), 10, 0.002));
+		System.out.println(poke.get(480));
+	}
 
 	// Getters
 	public String getName() {return name;}
@@ -60,52 +75,5 @@ public class Pokemon implements IPoint{
 				+ ", spDefense=" + spDefense + ", type1=" + type1 + ", type2=" + type2 + ", speed=" + speed
 				+ ", legendary=" + legendary + "]";
 	}
-	@Override
-	public Object getValue(Column col) throws IllegalArgumentException, IllegalAccessException {
-		Field[] fs = this.getClass().getFields();
-		for(Field f : fs) {
-			if(f.getName().equals(col.getName())){
-				return f.get(this);
-			}
-		}
-		return null;
-
-		/*switch(col.getName()) {
-		case "name":
-			return name;
-		case "attack":
-			return attack;
-		case "baseEggSteps":
-			return baseEggSteps;
-		case "petalWidth":
-			return captureRate;
-		case "defense":
-			return defense;
-		case "xpGrowth":
-			return xpGrowth;
-		case "hp":
-			return hp;
-		case "spAttack":
-			return spAttack;
-		case "spDefense":
-			return spDefense;
-		case "type1":
-			return type1;
-		case "type2":
-			return type2;
-		case "speed":
-			return speed;
-		case "legendary":
-			return legendary;
-		default:
-			return null;
-		}*/
-	}
-	@Override
-	public double getNormalizedValue(Column xcol) throws Exception {
-		return xcol.getNormalizedValue(this);
-	}
-
-
 
 }
