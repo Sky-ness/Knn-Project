@@ -61,7 +61,7 @@ public class Pokemon implements IPoint{
 				+ ", legendary=" + legendary + "]";
 	}
 	@Override
-	public Object getValue(Column col) throws IllegalArgumentException, IllegalAccessException {
+	public Object getValue(IColumn col) throws IllegalArgumentException, IllegalAccessException {
 		Field[] fs = this.getClass().getFields();
 		for(Field f : fs) {
 			if(f.getName().equals(col.getName())){
@@ -69,7 +69,7 @@ public class Pokemon implements IPoint{
 			}
 		}
 		return null;
-
+		
 		/*switch(col.getName()) {
 		case "name":
 			return name;
@@ -102,7 +102,7 @@ public class Pokemon implements IPoint{
 		}*/
 	}
 	@Override
-	public double getNormalizedValue(Column xcol) throws Exception {
+	public double getNormalizedValue(IColumn xcol) {
 		return xcol.getNormalizedValue(this);
 	}
 
