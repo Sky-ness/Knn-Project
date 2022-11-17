@@ -8,6 +8,10 @@ public class Number_Normalizer implements IValueNormalizer{
 
 	protected Column column;
 	
+	public Number_Normalizer(Column column) {
+		this.column=column;
+	}
+	
 	public double amplitude() {
 		List<Object> list = column.getDataset().valueByColumn(column);
 		double max = (double)list.get(0); double min = (double)list.get(0);
