@@ -1,5 +1,6 @@
 package model;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -89,6 +90,10 @@ public class DataSet implements IDataset{
 				res.add(iColumn);
 		}
 		return res;
+	}
+
+	public Object getListeColumns() {
+		return this.listeColumns;
 	}
 
 }

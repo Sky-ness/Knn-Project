@@ -32,8 +32,9 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.chart.BubbleChart?>
+<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -96,28 +97,18 @@
           </font>
         </Label>
          </top>
-         <center>
-            <BubbleChart id="chart" minHeight="-Infinity" minWidth="-Infinity" prefHeight="283.0" prefWidth="466.0" BorderPane.alignment="CENTER">
-              <xAxis>
-                <NumberAxis id="chart" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </BubbleChart>
-         </center>
          <bottom>
             <HBox alignment="CENTER" prefHeight="68.0" prefWidth="640.0" BorderPane.alignment="CENTER">
                <children>
                   <Pane prefHeight="68.0" prefWidth="281.0">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="21.0" mnemonicParsing="false" text="Clear" />
+                        <Button fx:id="Clear" alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="21.0" mnemonicParsing="false" text="Clear" />
                         <Button fx:id="ajoutPoint" alignment="CENTER" contentDisplay="CENTER" layoutX="116.0" layoutY="21.0" mnemonicParsing="false" text="ajouter un point" />
                      </children>
                   </Pane>
-                  <ComboBox id="abscisse" prefWidth="150.0" />
-                  <Button id="classifier" mnemonicParsing="false" text="Classifier" />
-                  <ComboBox id="ordonnee" prefWidth="150.0" />
+                  <ComboBox id="abscisse" fx:id="absCol" prefWidth="150.0" />
+                  <Button id="classifier" fx:id="classifier" mnemonicParsing="false" text="Classifier" />
+                  <ComboBox id="ordonnee" fx:id="ordCol" prefWidth="150.0" />
                </children>
             </HBox>
          </bottom>
@@ -136,6 +127,16 @@
                </children>
             </VBox>
          </right>
+         <center>
+            <ScatterChart BorderPane.alignment="CENTER">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </ScatterChart>
+         </center>
       </BorderPane>
   </children>
 </VBox>
