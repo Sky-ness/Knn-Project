@@ -12,7 +12,7 @@ public class Column {
 	public Column(String name, DataSet dataset) {
 		this.name = name;
 		this.dataset = dataset;
-		this.valueNormalizer = new 
+		this.valueNormalizer = new Number_Normalizer(this);
 	}
 	/*
 	 * abstract car chaque colonne a un normalizer different

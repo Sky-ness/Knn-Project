@@ -12,7 +12,7 @@ public class Pokemon_Type_Normalizer implements IValueNormalizer{
 	public double normalize(Object value) {
 		if(PokemonType.class.equals(value.getClass())) {
 			PokemonType pt = (PokemonType) value;
-			return pt.ordinal()/NB_TYPES;
+			return (double)pt.ordinal()/NB_TYPES;
 		}
 			
 		return -1;
@@ -25,4 +25,5 @@ public class Pokemon_Type_Normalizer implements IValueNormalizer{
 		PokemonType.BUG.ordinal();
 		return PokemonType.values()[(int) (value * NB_TYPES)];
 	}
+
 }
