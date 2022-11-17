@@ -128,8 +128,4 @@ public class Parser implements IMVCModel{
 		return datas.getNormalizableColumns();
 	}
 	
-	public static void main(String[] args) throws IllegalStateException, IOException {
-		DataSet test = Parser.readFile("data/pokemon_train.csv", Pokemon.class);
-		System.out.println(test.listeColumns);
-	}
 }
