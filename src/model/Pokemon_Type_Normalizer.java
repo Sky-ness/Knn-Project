@@ -7,6 +7,7 @@ public class Pokemon_Type_Normalizer implements IValueNormalizer{
 	// nombre de types-1
 	private static final int NB_TYPES = 18;
 	
+
 	@Override
 	public double normalize(Object value) {
 		if(PokemonType.class.equals(value.getClass())) {
@@ -24,5 +25,4 @@ public class Pokemon_Type_Normalizer implements IValueNormalizer{
 		PokemonType.BUG.ordinal();
 		return PokemonType.values()[(int) (value * NB_TYPES)];
 	}
-
 }
