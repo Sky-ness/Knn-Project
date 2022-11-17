@@ -15,7 +15,9 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		DataSet ds = Parser.readFile("data/iris.csv", Iris.class);
+		Parser p = new Parser();
+		p.loadFromFile("data/iris.csv");
+		DataSet ds = p.getDatas();
 		new GraphView(ds);
 	}
 }
