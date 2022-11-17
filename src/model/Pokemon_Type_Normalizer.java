@@ -4,31 +4,25 @@ import utils.IValueNormalizer;
 
 public class Pokemon_Type_Normalizer implements IValueNormalizer{
 	
+	// nombre de types-1
+	private static final int NB_TYPES = 18;
 	
 
 	@Override
 	public double normalize(Object value) {
-		PokemonType[] PkType = PokemonType.values();
-		int i = 0;
-		for(PokemonType type : PkType){
-			if(value.equals(type)) {
-				return (double)i/(PkType.length-1);
-			}
-			i++;
+		if(PokemonType.class.equals(value.getClass())) {
+			PokemonType pt = (PokemonType) value;
+			return pt.ordinal()/NB_TYPES;
 		}
-		return 0;
+			
+		return -1;
 	}
 
 	@Override
 	public Object denormalize(double value) {
-		PokemonType[] PkType = PokemonType.values();
-		return PkType[(int) (value*(PkType.length-1))];
-	}
-	
-	public static void main(String[] args) {
-		Pokemon_Type_Normalizer pk = new Pokemon_Type_Normalizer();
-		System.out.println(pk.normalize(PokemonType.GHOST));
-		System.out.println(pk.normalize(PokemonType.DARK));
-		System.out.println(pk.denormalize(0));
+		if(value < 0 || value > 1)
+			return null;
+		PokemonType.BUG.ordinal();
+		return PokemonType.values()[(int) (value * NB_TYPES)];
 	}
 }
