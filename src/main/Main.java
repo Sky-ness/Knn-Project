@@ -1,12 +1,10 @@
 package main;
 
-import java.util.List;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.DataSet;
-import utils.IColumn;
-import utils.IPoint;
+import model.Iris;
+import model.Parser;
 import view.GraphView;
 
 public class Main extends Application{
@@ -17,9 +15,7 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		List<IPoint> iris = null;
-		List<IColumn> colonnes = null;
-		DataSet ds = new DataSet("Iris",iris,colonnes);
+		DataSet ds = Parser.readFile("data/iris.csv", Iris.class);
 		new GraphView(ds);
 	}
 }

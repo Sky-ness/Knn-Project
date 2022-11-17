@@ -3,35 +3,28 @@ package testModel;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.opencsv.bean.CsvToBeanBuilder;
-
-import model.ColumnIris;
+import model.DataSet;
 import model.Distance;
 import model.Iris;
 import model.Knn;
-import model.Pokemon;
-import utils.IColumn;
+import model.Parser;
 import utils.IPoint;
 
 public class testDistanceIris {
+	DataSet ds;
 	List<IPoint> iris;
 	Knn knn;
 	@BeforeEach
 
 	public void init() throws IllegalStateException, IOException {
-		iris= new CsvToBeanBuilder<IPoint>(Files.newBufferedReader(Paths.get("data/iris.csv")))
-				.withSeparator(',')
-				.withType(Iris.class)
-				.build().parse();
-		knn = new Knn();
+		ds = Parser.readFile("data/iris.csv", Iris.class);
+		knn= new Knn();
 	}
 
 
@@ -39,15 +32,12 @@ public class testDistanceIris {
 	public void TestDistanceEuclidienneIris() {
 		int k = 3;
 		List<IPoint> iTrieAvecColumnNorm = new ArrayList<IPoint>();
-		List<IColumn> listeColumn = new ArrayList<IColumn>();
-		// Faudra ajouter les bonnes colonnes
-		// Ici ça sera sepal with length et petal with length
-		listeColumn.add(new ColumnIris());
+//		List<Column> listeColumn = ds.getListeColumns();
 
-		iTrieAvecColumnNorm = knn.neighbor(k, iris.get(7),new Distance(),iris, listeColumn);
+		iTrieAvecColumnNorm = knn.neighbor(k, ds.getListePoints().get(7),new Distance(),ds.getListePoints(),ds.getListeColumns());
 
 		List<IPoint> iTrieSansColumnNorm = new ArrayList<IPoint>();
-		iTrieSansColumnNorm = neighborSansNorm(k, iris.get(7), iris,true);
+		iTrieSansColumnNorm = neighborSansNorm(k, ds.getListePoints().get(7), ds.getListePoints(),true);
 
 		for(int i =0;i<k;i++) {
 			assertEquals(iTrieSansColumnNorm.get(i), iTrieAvecColumnNorm.get(i));
@@ -59,15 +49,12 @@ public class testDistanceIris {
 	public void TestDistanceManhattanIris() {
 		int k = 3;
 		List<IPoint> iTrieAvecColumnNorm = new ArrayList<IPoint>();
-		List<IColumn> listeColumn = new ArrayList<IColumn>();
-		// Faudra ajouter les bonnes colonnes
-		// Ici ça sera sepal with length et petal with length
-		listeColumn.add(new ColumnIris());
+//		List<Column> listeColumn = ds.getListeColumns();
 
-		iTrieAvecColumnNorm = knn.neighbor(k, iris.get(7),new Distance(),iris, listeColumn);
+		iTrieAvecColumnNorm = knn.neighbor(k, ds.getListePoints().get(7),new Distance(),ds.getListePoints(),ds.getListeColumns());
 
 		List<IPoint> iTrieSansColumnNorm = new ArrayList<IPoint>();
-		iTrieSansColumnNorm = neighborSansNorm(k, iris.get(7), iris,false);
+		iTrieSansColumnNorm = neighborSansNorm(k, ds.getListePoints().get(7), ds.getListePoints(),false);
 
 		for(int i =0;i<k;i++) {
 			assertEquals(iTrieSansColumnNorm.get(i), iTrieAvecColumnNorm.get(i));

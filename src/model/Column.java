@@ -1,6 +1,5 @@
 package model;
 
-import utils.IDataset;
 import utils.IPoint;
 import utils.IValueNormalizer;
 
@@ -18,7 +17,7 @@ public class Column {
 	 * abstract car chaque colonne a un normalizer different
 	 */
 	public void setNormalizer(IValueNormalizer valueNormalizer) {
-		this.valueNormalizer = valueNormalizer;
+		Column.valueNormalizer = valueNormalizer;
 	}
 	/*
 	 * abstract car chaque colonne a un nom  
@@ -37,13 +36,13 @@ public class Column {
 		return valueNormalizer!=null;
 	}
 	
-	public double getNormalizedValue(IPoint point) throws Exception {
+	public double getNormalizedValue(IPoint point){
 		if(isNormalizable())
 			return valueNormalizer.normalize(point);
 		return -1.0;
 	}
 
-	public Object getDenormalizedValue(double value) throws Exception {
+	public Object getDenormalizedValue(double value){
 		if(isNormalizable())
 			return valueNormalizer.denormalize(value);
 		return -1.0;

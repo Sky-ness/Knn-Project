@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 
 import com.opencsv.bean.CsvBindByName;
 
-import utils.IColumn;
 import utils.IPoint;
 
 public class Iris implements IPoint {
@@ -41,34 +40,21 @@ public class Iris implements IPoint {
 				+ ", petalWidth=" + petalWidth + ", variety=" + variety + "]";
 	}
 	@Override
-	public Object getValue(IColumn col) throws IllegalArgumentException, IllegalAccessException {
+	public Object getValue(Column col){
 		Field[] fs = this.getClass().getFields();
 		for(Field f : fs) {
 			if(f.getName().equals(col.getName())){
-				return f.get(this);
+				try {
+					return f.get(this);
+				} catch (IllegalArgumentException | IllegalAccessException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return null;
-		/*
-		switch(col.getName()) {
-		case "sepalLength":
-			return sepalLength;
-		case "sepalWidth":
-			return sepalWidth;
-		case "petalLength":
-			return petalLength;
-		case "petalWidth":
-			return petalWidth;
-		case "variety":
-			return variety;
-		default:
-			return null;
-		}
-		*/
 	}
 	@Override
-	public double getNormalizedValue(IColumn xcol) {
+	public double getNormalizedValue(Column xcol){
 		return xcol.getNormalizedValue(this);
 	}
-
 }

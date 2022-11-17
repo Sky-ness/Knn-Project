@@ -2,14 +2,13 @@ package model;
 
 import java.util.List;
 
-import utils.IColumn;
 import utils.IValueNormalizer;
 
 public class Number_Normalizer implements IValueNormalizer{
 
 	protected Column column;
 	
-	public double amplitude() throws Exception {
+	public double amplitude() {
 		List<Object> list = column.getDataset().valueByColumn(column);
 		double max = (double)list.get(0); double min = (double)list.get(0);
 		for(Object obj : list) {
@@ -24,12 +23,12 @@ public class Number_Normalizer implements IValueNormalizer{
 	}
 	
 	@Override
-	public double normalize(Object value) throws Exception {
+	public double normalize(Object value) {
 		return (double)value/this.amplitude();
 	}
 
 	@Override
-	public Object denormalize(double value) throws Exception {
+	public Object denormalize(double value) {
 		return value * this.amplitude();
 	}
 

@@ -41,12 +41,6 @@ public class TestChargementDonneesUtil {
         List<FormatDonneeBrut> l = ChargementDonneesUtil.charger("data/iris.csv");
     }
     
-    
-    
-    
-    
-    
-    
     @Test
     public void testNormalisation() {
     	assertEquals(0, ChargementDonneesUtil.normaliser_0_1(5, 5, 25));

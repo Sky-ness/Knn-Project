@@ -12,7 +12,6 @@ import com.opencsv.bean.CsvToBeanBuilder;
 
 import utils.ICategory;
 import utils.IColumn;
-import utils.IDataset;
 import utils.IMVCModel;
 import utils.IPoint;
 
@@ -23,19 +22,16 @@ public class Parser implements IMVCModel{
 	
 
 	@SuppressWarnings("unchecked")
-	public static DataSet readFile(String link,Class cl) throws IllegalStateException, IOException {
+	public static DataSet readFile(String link,@SuppressWarnings("rawtypes") Class cl) throws IllegalStateException, IOException {
 		List<IPoint> points = new ArrayList<IPoint>();
 		points = new CsvToBeanBuilder<IPoint>(Files.newBufferedReader(Paths.get(link)))
 				.withSeparator(',')
 				.withType(cl)
 				.build().parse();
 		/*
-		 * quand on lis le fichier on doit prendre la première ligne et construire des colonnes avec si j'ai bien compris
-		 * puisque pour construire un DataSet on doit avoir la liste des colonnes 
+		 * remplacer le "test" par le nom du fichier dans le lien
 		 */
 		return new DataSet("test",points);
-			
-		
 	}
 	
 	public Parser(String title, List<IPoint> listePoints){
@@ -79,9 +75,6 @@ public class Parser implements IMVCModel{
 
 	@Override
 	public void loadFromFile(String datafile) {
-		// if les colonnes load = ceux de pokémon ---> Load le reste avec pokemon.class
-		// if les colonnes load = ceux de iris ---> Load le reste avec iris.class
-		// if les colonnes load = ceux de titanic ---> Load le reste avec titanic.class
 		String lowercase = datafile.toLowerCase();
 		try {
 			if(lowercase.contains("pokemon")) { 
@@ -138,6 +131,5 @@ public class Parser implements IMVCModel{
 	public static void main(String[] args) throws IllegalStateException, IOException {
 		DataSet test = Parser.readFile("data/pokemon_train.csv", Pokemon.class);
 		System.out.println(test.listeColumns);
-		//System.out.println(test.toString());
 	}
 }

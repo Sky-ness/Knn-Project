@@ -3,46 +3,37 @@ package testModel;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.opencsv.bean.CsvToBeanBuilder;
-
-import model.ColumnPokemon;
+import model.Column;
+import model.DataSet;
 import model.Distance;
 import model.Knn;
+import model.Parser;
 import model.Pokemon;
-import utils.IColumn;
 import utils.IPoint;
 
 public class testDistancePokemon {
+	DataSet ds;
 	List<IPoint> pokemon;
 	Knn knn;
 	@BeforeEach
 	public void init() throws IllegalStateException, IOException {
-		pokemon = new CsvToBeanBuilder<IPoint>(Files.newBufferedReader(Paths.get("data/pokemon_train.csv")))
-                .withSeparator(',')
-                .withType(Pokemon.class)
-                .build().parse();
-		knn = new Knn();
+		ds = Parser.readFile("data/pokemon_train.csv", Pokemon.class);
+		knn= new Knn();
 	}
 	
 	@Test
 	public void TestDistanceManhattanPokemon() {
 		int k = 3;
 		List<IPoint> pTrieAvecColumnNorm = new ArrayList<IPoint>();
-		List<IColumn> listeColumn = new ArrayList<IColumn>();
-		// Faudra ajouter les bonnes colonnes
-		// Ici ça sera speed,baseEGg,Exp,CaptureRate
-		listeColumn.add(new ColumnPokemon());
+		List<Column> listeColumn = ds.getListeColumns();
+
 		pTrieAvecColumnNorm = knn.neighbor(k,pokemon.get(12) ,new Distance(),pokemon,listeColumn);
-		
-		
 		
 		List<IPoint> pTrieSansColumnNorm = new ArrayList<IPoint>();
 		pTrieSansColumnNorm = neighborSansNorm(k,pokemon.get(12),pokemon,true);
@@ -59,10 +50,8 @@ public class testDistancePokemon {
 	public void TestDistanceEuclidiennePokemon() {
 		int k = 3;
 		List<IPoint> pTrieAvecColumnNorm = new ArrayList<IPoint>();
-		List<IColumn> listeColumn = new ArrayList<IColumn>();
-		// Faudra ajouter les bonnes colonnes
-		// Ici ça sera speed,baseEGg,Exp,CaptureRate
-		listeColumn.add(new ColumnPokemon());
+		List<Column> listeColumn = ds.getListeColumns();
+
 		pTrieAvecColumnNorm = knn.neighbor(k,pokemon.get(12) ,new Distance(),pokemon,listeColumn);
 		
 		

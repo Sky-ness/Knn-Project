@@ -13,12 +13,12 @@ public class DataSet implements IDataset{
 	
 	protected String title;
 	protected List<IPoint> listePoints;
-	protected List<IColumn> listeColumns; 
+	protected List<Column> listeColumns; 
 
-	public DataSet(String title, List<IPoint> listePoints,List<IColumn> listeColumns) {
+	public DataSet(String title, List<IPoint> listePoints) {
 		this.title=title;
 		this.listePoints=listePoints;
-		this.listeColumns=listeColumns;
+		this.listeColumns=listColumn();
 	}
 
 	public List<Column> listColumn(){
@@ -75,7 +75,7 @@ public class DataSet implements IDataset{
 		return sb.toString();
 	}
 
-	public List<Object> valueByColumn(IColumn col) throws Exception{
+	public List<Object> valueByColumn(Column col) {
 		List<Object> list = new ArrayList<Object>();
 		for(IPoint point : listePoints) {
 			list.add(point.getValue(col));
@@ -92,8 +92,10 @@ public class DataSet implements IDataset{
 		return res;
 	}
 
-	public Object getListeColumns() {
-		return this.listeColumns;
+	public List<Column> getListeColumns() {
+		return listeColumns;
 	}
-
+	public List<IPoint> getListePoints() {
+		return listePoints;
+	}
 }
