@@ -3,6 +3,7 @@ package view;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,10 +13,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.Column;
 import model.DataSet;
-import utils.IPoint;
 
 public class GraphView extends Stage{
+    @FXML
+    private ScatterChart<Double,Double> chart;
+    
 	@FXML
 	private Button Clear;
 
@@ -29,37 +33,43 @@ public class GraphView extends Stage{
 	private Button ajoutPoint;
 
 	@FXML
-	private ScatterChart<IPoint, IPoint> chart;
-
-	@FXML
 	private Button classifier;
 
 	@FXML
 	private MenuBar menu;
 
-
+	public DataSet ds2;
+	
 	public GraphView(DataSet ds){
+		ds2=ds;
+		
 		Stage stage = initStage();
 		try {
 			VBox fxml = initFxml();
 			Scene scene = initScene(fxml);
+			
+			// ajout des colonnes dans la comboBox
+			
 //			for(Column c: ds.getListeColumns())
-//				absCol.getItems().addAll(c.getName());
+//				absCol.getItems().add(c.getName());
 //			for(Column c: ds.getListeColumns())
-//				ordCol.getItems().addAll(c.getName());
-
+//				ordCol.getItems().add(c.getName());
+			
+//			Column ordSelect = ordSelect(null);
+//			Column absSelect = absSelect(null);
+			
+			// ajout des points dans le graphique
+			
+//			XYChart.Series series1 = new XYChart.Series();
+//			
+//			for(IPoint i : ds.getListePoints()) {
+//				series1.getData().add(new XYChart.Data<Double, Double>(absSelect.getNormalizedValue(i),ordSelect.getNormalizedValue(i)));
+//			}
 			stage.setScene(scene);
 
 		} catch (IOException e) {
 			System.err.println("Erreur au chargement: " +e.getMessage());
 		}
-		/*
-		 * ajout des colonnes dans la comboBox
-		 */
-
-		/*
-		 * ajout des points dans le graphique
-		 */
 
 		/*
 		 * bouton classifier pour refresh 
@@ -72,7 +82,6 @@ public class GraphView extends Stage{
 		/*
 		 * mettre les colonnes sur la gauche du graphique avec des canvas de différentes couleur 
 		 */
-
 		stage.show();
 	}
 	public Stage initStage() {
@@ -91,5 +100,27 @@ public class GraphView extends Stage{
 		VBox vbox = (VBox) loader.load(fxmlStream);
 		return vbox;
 	}
+    @FXML
+    Column absSelect(ActionEvent event) {
+    	return searchColumnbyName(event.getTarget().toString());
+    }
+
+    @FXML
+    void classifier(ActionEvent event) {
+
+    }
+
+    @FXML
+    Column ordSelect(ActionEvent event) {
+    	return searchColumnbyName(event.getTarget().toString());
+    }
+    Column searchColumnbyName(String name){
+		for(Column c : ds2.getListeColumns())
+			if(name.equals(c.getName())) 
+				return c;
+    	return null;
+    	
+    }
+
 
 }

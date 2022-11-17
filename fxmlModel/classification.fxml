@@ -32,7 +32,6 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.ScatterChart?>
 <?import javafx.scene.control.Button?>
@@ -54,32 +53,11 @@
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
+            <MenuItem mnemonicParsing="false" text="Open Csv file" />
+            <MenuItem mnemonicParsing="false" text="Load Iris" />
+                  <MenuItem mnemonicParsing="false" text="Load Pokemon" />
+                  <MenuItem mnemonicParsing="false" text="Load Titanic" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
@@ -100,15 +78,15 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="68.0" prefWidth="640.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane prefHeight="68.0" prefWidth="281.0">
+                  <Pane prefHeight="68.0" prefWidth="266.0">
                      <children>
                         <Button fx:id="Clear" alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="21.0" mnemonicParsing="false" text="Clear" />
                         <Button fx:id="ajoutPoint" alignment="CENTER" contentDisplay="CENTER" layoutX="116.0" layoutY="21.0" mnemonicParsing="false" text="ajouter un point" />
                      </children>
                   </Pane>
-                  <ComboBox id="abscisse" fx:id="absCol" prefWidth="150.0" />
-                  <Button id="classifier" fx:id="classifier" mnemonicParsing="false" text="Classifier" />
-                  <ComboBox id="ordonnee" fx:id="ordCol" prefWidth="150.0" />
+                  <ComboBox id="abscisse" fx:id="absCol" onAction="#absSelect" prefHeight="26.0" prefWidth="162.0" promptText="selectionner abscisse" />
+                  <Button id="classifier" fx:id="classifier" mnemonicParsing="false" onAction="#classifier" prefHeight="26.0" prefWidth="74.0" text="Classifier" />
+                  <ComboBox id="ordonnee" fx:id="ordCol" onAction="#ordSelect" prefHeight="26.0" prefWidth="164.0" promptText="Selectionner ordonne" />
                </children>
             </HBox>
          </bottom>
@@ -128,12 +106,12 @@
             </VBox>
          </right>
          <center>
-            <ScatterChart BorderPane.alignment="CENTER">
+            <ScatterChart id="chart" fx:id="chart" BorderPane.alignment="CENTER">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <NumberAxis side="BOTTOM" upperBound="0.9" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis side="LEFT" upperBound="0.9" />
               </yAxis>
             </ScatterChart>
          </center>
