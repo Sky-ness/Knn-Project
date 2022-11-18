@@ -29,7 +29,6 @@ public class DataSet implements IDataset{
 		for(Field field : fs) {
 			column = new Column(field.getName(),this);
 			type = field.getType().getName();
-			System.out.println(type);
 			if(type.equals("double") || type.equals("int")) {
 				column.setNormalizer(new Number_Normalizer(column));
 			}

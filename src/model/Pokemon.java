@@ -61,7 +61,7 @@ public class Pokemon implements IPoint{
 	}
 	@Override
 	public Object getValue(Column col){
-		Field[] fs = this.getClass().getFields();
+		Field[] fs = this.getClass().getDeclaredFields();
 		for(Field f : fs) {
 			if(f.getName().equals(col.getName())){
 				try {

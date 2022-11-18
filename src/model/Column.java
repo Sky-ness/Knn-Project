@@ -1,5 +1,8 @@
 package model;
 
+import java.lang.reflect.Field;
+import java.text.Normalizer;
+
 import utils.IPoint;
 import utils.IValueNormalizer;
 
@@ -45,9 +48,21 @@ public class Column {
 	}
 	
 	public double getNormalizedValue(IPoint point){
-		if(isNormalizable())
-			return valueNormalizer.normalize(point);
-		return -1.0;
+		if(!isNormalizable()) {
+			return -1.0;
+		}
+		double result = 0.0;
+		for(Field field : point.getClass().getDeclaredFields()) {
+			if(field.getName().equals(this.name)) {
+				try {
+					result = valueNormalizer.normalize(field.get(point));
+				} catch (IllegalArgumentException | IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
 	}
 
 	public Object getDenormalizedValue(double value){

@@ -3,7 +3,7 @@ package model;
 import java.lang.reflect.Field;
 
 public class Test {
-	private String terivatstString = "paker";
+	private String testString = "paker";
 	private int testInt = 22;
 	
 	public Object searchAttributes(String name) throws IllegalArgumentException, IllegalAccessException {
