@@ -23,7 +23,8 @@ public class testDistanceIris {
 	
 	@BeforeEach
 	public void init() throws IllegalStateException, IOException {
-		ds = Parser.readFile("data/iris.csv", Iris.class);
+		Parser parser = new Parser();
+		ds = parser.readFile("data/iris.csv", Iris.class);
 		distance = new Distance();
 	}
 	

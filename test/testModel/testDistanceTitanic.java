@@ -23,7 +23,8 @@ public class testDistanceTitanic {
 	
 	@BeforeEach
 	public void init() throws IllegalStateException, IOException {
-		ds = Parser.readFile("data/titanic.csv", Titanic.class);
+		Parser parser = new Parser();
+		ds = parser.readFile("data/titanic.csv", Titanic.class);
 		distance = new Distance();
 	}
 	

@@ -18,7 +18,8 @@ public class testDistancePokemon {
 	
 	@BeforeEach
 	public void init() throws IllegalStateException, IOException {
-		ds = Parser.readFile("data/pokemon_train.csv", Pokemon.class);
+		Parser parser = new Parser();
+		ds = parser.readFile("data/pokemon_train.csv", Pokemon.class);
 		distance = new Distance();
 	}
 	

@@ -46,7 +46,7 @@ public class GraphView extends Stage{
 
 	public GraphView(DataSet ds){
 		ds2=ds;
-		Parser p = new Parser("Parser");
+		Parser p = new Parser();
 		Stage stage = initStage();
 		try {
 			VBox fxml = initFxml();

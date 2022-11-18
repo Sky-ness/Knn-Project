@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import chifoumi.Boolean_Normalizer;
-import chifoumi.Column;
-import chifoumi.Number_Normalizer;
-import chifoumi.Pokemon_Type_Normalizer;
 import utils.IColumn;
 import utils.IDataset;
 import utils.IPoint;
