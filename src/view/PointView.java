@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import model.Column;
 import model.DataSet;
 import model.Parser;
+import model.Pokemon;
 import utils.IPoint;
 
 public class PointView extends AbstractView{
@@ -23,16 +24,17 @@ public class PointView extends AbstractView{
 		
 		Stage stage = initStage();
 		VBox vb = new VBox(); 
-		TableView<IPoint> table = new TableView<IPoint>();
-		List<TableColumn<IPoint,Object>> listColumn = new ArrayList<>();
+		TableView<Pokemon> table = new TableView<Pokemon>();
+		List<TableColumn<Pokemon,Integer>> listColumn = new ArrayList<>();
 		for(Column c: datas.getListeColumns()) {
 			TableColumn column = new TableColumn(c.getName());
 			column.setMinWidth(100);
-			column.setCellValueFactory(new PropertyValueFactory<IPoint, Object>(c.getName()));
+			column.setCellValueFactory(new PropertyValueFactory<Pokemon, Integer>(c.getName()));
 			listColumn.add(column);
 		}
 
 		table.getColumns().addAll(listColumn);
+		vb.getChildren().add(table);
 		Scene scene = initScene(vb);
 		stage.setScene(scene);
 		stage.show();

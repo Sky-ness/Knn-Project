@@ -86,12 +86,12 @@ public class Parser implements IMVCModel{
 
 	@Override
 	public Column defaultXCol() {
-		return datas.listeColumns.get(0);
+		return datas.listeColumns.get(1);
 	}
 
 	@Override
 	public Column defaultYCol() {
-		return datas.listeColumns.get(0);
+		return datas.listeColumns.get(2);
 	}
 
 	@Override

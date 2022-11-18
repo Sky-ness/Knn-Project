@@ -39,7 +39,6 @@ public class Pokemon implements IPoint{
 		
 	}
 	
-	
 	public Pokemon(String name, int attack, int baseEggSteps, double captureRate, int defense, int xpGrowth, int hp,
 			int spAttack, int spDefense, PokemonType type1, PokemonType type2, double speed, boolean legendary) {
 		super();

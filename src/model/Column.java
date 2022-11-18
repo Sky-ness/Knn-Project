@@ -15,6 +15,7 @@ public class Column {
 	public Column(String name, DataSet dataset) {
 		this.name = name;
 		this.dataset = dataset;
+		this.valueNormalizer = null;
 	}
 	/*
 	 * abstract car chaque colonne a un normalizer different

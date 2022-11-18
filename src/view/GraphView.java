@@ -74,45 +74,36 @@ public class GraphView extends AbstractView{
 			Column ordSelected=p.defaultYCol();
 			// ajout des colonnes dans la comboBox
 
-			//absCol.setValue(absSelected.getName());
+			absCol.setValue(absSelected.getName());
 			for(Column c: datas.getListeColumns())
 				absCol.getItems().add(c.getName());
 			
-			//ordCol.setValue(ordSelected.getName());
+			ordCol.setValue(ordSelected.getName());
 			for(Column c: datas.getListeColumns())
 				ordCol.getItems().add(c.getName());
 
+			classMethod.setValue("Randomizer");
 			classMethod.getItems().add("Randomizer");
 			classMethod.getItems().add("Knn");
-			
-			
-			absCol.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-				@Override
-				public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-					
-				}
-			});
-			ordCol.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-				@Override
-				public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-					
-				}
-			});
 			
 			// ajout des points dans le graphique
 
 			XYChart.Series series1 = new XYChart.Series();
-			series1.setName("test");
+			series1.setName("Pokemon");
 			for(IPoint i : datas.getListePoints()) {
 				series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
 			}
 			
-			// évenement 
+			// evenement 
 			
 			irisLoadButton.setOnAction(e-> new Parser());
 			pokemonLoadButton.setOnAction(e-> new Parser());
 			titanicLoadButton.setOnAction(e-> new Parser());
 			
+			classifier.setOnAction(e-> {
+//				absSelected=searchColumnbyName(absCol.getValue());
+//				ordSelected=searchColumnbyName(absCol.getValue());
+			});
 			classifier.setOnAction(e-> chart.getData().addAll(series1));
 			clear.setOnAction(e-> chart.getData().removeAll(series1));
 			addPoint.setOnAction(e-> new AddPointView(p));

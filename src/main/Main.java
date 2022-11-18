@@ -17,7 +17,7 @@ public class Main extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		Parser p = new Parser();
-		p.loadFromFile("data/iris.csv");
+		p.loadFromFile("data/pokemon_train.csv");
 		new GraphView(p);
 	}
 }
