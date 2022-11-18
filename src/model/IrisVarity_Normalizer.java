@@ -2,7 +2,7 @@ package model;
 
 import utils.IValueNormalizer;
 
-public class Iris_Normalizer implements IValueNormalizer{
+public class IrisVarity_Normalizer implements IValueNormalizer{
 
 	private static final int NB_TYPES = 2;
 
