@@ -3,8 +3,6 @@ package view;
 import java.io.File;
 import java.io.IOException;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.chart.ScatterChart;
@@ -28,23 +26,23 @@ public class GraphView extends AbstractView{
 	@FXML
 	private Button clear;
 
-    @FXML
-    private Button viewPoint;
+	@FXML
+	private Button viewPoint;
 
 	@FXML
 	private Button addPoint;
 
 	@FXML
 	private Button classifier;
-	
-    @FXML
-    private MenuItem titanicLoadButton;
 
-    @FXML
-    private MenuItem pokemonLoadButton;
-    
-    @FXML
-    private MenuItem irisLoadButton;
+	@FXML
+	private MenuItem titanicLoadButton;
+
+	@FXML
+	private MenuItem pokemonLoadButton;
+
+	@FXML
+	private MenuItem irisLoadButton;
 
 	@FXML
 	private ComboBox<String> absCol;
@@ -52,84 +50,106 @@ public class GraphView extends AbstractView{
 	@FXML
 	private ComboBox<String> ordCol;
 
-    @FXML
-    private ComboBox<String> classMethod;
+	@FXML
+	private ComboBox<String> classMethod;
 
-    @FXML
-    private MenuItem explorateur;
+	@FXML
+	private MenuItem explorateur;
 
+	@FXML
+	private Label robustesse;
 
-    @FXML
-    private Label robustesse;
+	private DataSet datas;
 
-	public DataSet datas;
+	private final String pathPokemon="data/pokemon_train.csv";
+	private final String pathIris="data/iris.csv";
+	private final String pathTitanic="data/titanic.csv";
 
-	public GraphView(Parser p){
-		datas=p.getDatas();
+	public GraphView(){
+
 		Stage stage = initStage();
 		try {
 			VBox fxml = initFxml();
-			Scene scene = initScene(fxml);
-			Column absSelected=p.defaultXCol();
-			Column ordSelected=p.defaultYCol();
-			// ajout des colonnes dans la comboBox
+			Scene scene = initScene(fxml);			
+			Parser p = new Parser();
+			start(p,pathPokemon);
 
-			absCol.setValue(absSelected.getName());
-			for(Column c: datas.getListeColumns())
-				absCol.getItems().add(c.getName());
-			
-			ordCol.setValue(ordSelected.getName());
-			for(Column c: datas.getListeColumns())
-				ordCol.getItems().add(c.getName());
-
-			classMethod.setValue("Randomizer");
-			classMethod.getItems().add("Randomizer");
-			classMethod.getItems().add("Knn");
-			
-			// ajout des points dans le graphique
-
-			XYChart.Series series1 = new XYChart.Series();
-			series1.setName(p.getTitle());
-			for(IPoint i : datas.getListePoints()) {
-				series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
-			}
-			
-			// evenement 
-			
-			irisLoadButton.setOnAction(e-> new Parser());
-			pokemonLoadButton.setOnAction(e-> new Parser());
-			titanicLoadButton.setOnAction(e-> new Parser());
-			
-			classifier.setOnAction(e-> {
-//				absSelected=searchColumnbyName(absCol.getValue());
-//				ordSelected=searchColumnbyName(absCol.getValue());
+			irisLoadButton.setOnAction(e-> {
+				start(p,pathIris);
 			});
-			classifier.setOnAction(e-> chart.getData().addAll(series1));
-			clear.setOnAction(e-> chart.getData().removeAll(series1));
+			pokemonLoadButton.setOnAction(e-> {
+				start(p,pathPokemon);
+			});
+			titanicLoadButton.setOnAction(e-> {
+				start(p,pathTitanic);
+			});
+			explorateur.setOnAction(e-> {
+				File f = new FileChooser().showOpenDialog(this);
+				if (f!=null)
+					start(p,f.getAbsolutePath());
+			});
+
 			addPoint.setOnAction(e-> new AddPointView(p));
 			viewPoint.setOnAction(e-> new PointView(p));
-			explorateur.setOnAction(e-> {File f = new FileChooser().showOpenDialog(this);});
-			
+			clear.setOnAction(e-> chart.getData().clear());
+
 			stage.setScene(scene);
-			
 
 		} catch (IOException e) {
 			System.err.println("Erreur au chargement: " +e.getMessage());
 		}
-		/*
-		 * mettre un systeme de search file dans le menu file 
-		 */
 
-		/*
-		 * mettre les colonnes sur la gauche du graphique avec des canvas de différentes couleur 
-		 */
 		stage.show();
 	}
 
-	Column searchColumnbyName(String name){
+	private Column searchColumnbyName(String name){
 		for(Column c : datas.getListeColumns())
 			if(name.equals(c.getName())) 
 				return c;
 		return null;
 	}
+	public void loadModel(Parser p) {
+
+		// ajout des colonnes dans la comboBox
+
+		absCol.setValue(p.defaultXCol().getName());
+		for(Column c: datas.getListeColumns())
+			absCol.getItems().add(c.getName());
+
+		ordCol.setValue(p.defaultYCol().getName());
+		for(Column c: datas.getListeColumns())
+			ordCol.getItems().add(c.getName());
+
+		classMethod.setValue("Randomizer");
+		classMethod.getItems().add("Randomizer");
+		classMethod.getItems().add("Knn");
+		classifier.setOnAction(e -> pointGenerator(p));
+	}
+	private void resetModel(Parser p){
+		absCol.getItems().clear();
+		ordCol.getItems().clear();
+		classMethod.getItems().clear();
+		chart.getData().clear();
+	}
+
+	private void start(Parser p, String path) {
+		resetModel(p);
+		p.loadFromFile(path);
+		datas = p.getDatas();
+		loadModel(p);
+	}
+	private void pointGenerator(Parser p){
+		Column absSelected=searchColumnbyName(absCol.getValue());
+		Column ordSelected=searchColumnbyName(ordCol.getValue());
+
+		XYChart.Series series1 = new XYChart.Series();
+		series1.setName(p.getTitle());
+
+		for(IPoint i : datas.getListePoints()) {
+			series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
+		}
+		chart.getData().clear();
+		chart.getData().addAll(series1);
+	}
+	
 }
