@@ -29,13 +29,22 @@ public class GraphView extends AbstractView{
 	private Button clear;
 
     @FXML
-    private Button seePoint;
+    private Button viewPoint;
 
 	@FXML
-	private Button ajoutPoint;
+	private Button addPoint;
 
 	@FXML
 	private Button classifier;
+	
+    @FXML
+    private MenuItem titanicLoadButton;
+
+    @FXML
+    private MenuItem pokemonLoadButton;
+    
+    @FXML
+    private MenuItem irisLoadButton;
 
 	@FXML
 	private ComboBox<String> absCol;
@@ -61,8 +70,8 @@ public class GraphView extends AbstractView{
 		try {
 			VBox fxml = initFxml();
 			Scene scene = initScene(fxml);
-			//Column absSelected=p.defaultXCol();
-			//Column ordSelected=p.defaultYCol();
+			Column absSelected=p.defaultXCol();
+			Column ordSelected=p.defaultYCol();
 			// ajout des colonnes dans la comboBox
 
 			//absCol.setValue(absSelected.getName());
@@ -73,6 +82,9 @@ public class GraphView extends AbstractView{
 			for(Column c: datas.getListeColumns())
 				ordCol.getItems().add(c.getName());
 
+			classMethod.getItems().add("Randomizer");
+			classMethod.getItems().add("Knn");
+			
 			
 			absCol.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 				@Override
@@ -92,15 +104,19 @@ public class GraphView extends AbstractView{
 			XYChart.Series series1 = new XYChart.Series();
 			series1.setName("test");
 			for(IPoint i : datas.getListePoints()) {
-				//series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
+				series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
 			}
 			
 			// évenement 
 			
+			irisLoadButton.setOnAction(e-> new Parser());
+			pokemonLoadButton.setOnAction(e-> new Parser());
+			titanicLoadButton.setOnAction(e-> new Parser());
+			
 			classifier.setOnAction(e-> chart.getData().addAll(series1));
 			clear.setOnAction(e-> chart.getData().removeAll(series1));
-			ajoutPoint.setOnAction(e-> new AddPointView(p));
-			seePoint.setOnAction(e-> new PointView(p));
+			addPoint.setOnAction(e-> new AddPointView(p));
+			viewPoint.setOnAction(e-> new PointView(p));
 			explorateur.setOnAction(e-> {File f = new FileChooser().showOpenDialog(this);});
 			
 			stage.setScene(scene);

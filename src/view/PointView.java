@@ -24,11 +24,11 @@ public class PointView extends AbstractView{
 		Stage stage = initStage();
 		VBox vb = new VBox(); 
 		TableView<IPoint> table = new TableView<IPoint>();
-		List<TableColumn<IPoint,?>> listColumn = new ArrayList<>();
+		List<TableColumn<IPoint,Object>> listColumn = new ArrayList<>();
 		for(Column c: datas.getListeColumns()) {
 			TableColumn column = new TableColumn(c.getName());
 			column.setMinWidth(100);
-			column.setCellValueFactory(new PropertyValueFactory<IPoint, String>("lastName"));
+			column.setCellValueFactory(new PropertyValueFactory<IPoint, Object>(c.getName()));
 			listColumn.add(column);
 		}
 

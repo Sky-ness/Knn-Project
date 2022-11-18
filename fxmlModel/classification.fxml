@@ -54,9 +54,9 @@
         <Menu mnemonicParsing="false" text="File">
           <items>
             <MenuItem fx:id="explorateur" mnemonicParsing="false" text="Open Csv file" />
-            <MenuItem mnemonicParsing="false" text="Load Iris" />
-                  <MenuItem mnemonicParsing="false" text="Load Pokemon" />
-                  <MenuItem mnemonicParsing="false" text="Load Titanic" />
+            <MenuItem fx:id="irisLoadButton" mnemonicParsing="false" text="Load Iris" />
+                  <MenuItem fx:id="pokemonLoadButton" mnemonicParsing="false" text="Load Pokemon" />
+                  <MenuItem fx:id="titanicLoadButton" mnemonicParsing="false" text="Load Titanic" />
             <SeparatorMenuItem mnemonicParsing="false" />
           </items>
         </Menu>
@@ -102,8 +102,8 @@
                      </font>
                   </Label>
                   <Label fx:id="robustesse" alignment="BOTTOM_CENTER" text="0%" />
-                  <Button fx:id="ajoutPoint" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="ajouter un point" />
-                  <Button fx:id="seePoint" mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" text="voir les points" />
+                  <Button fx:id="addPoint" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="ajouter un point" />
+                  <Button fx:id="viewPoint" mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" text="voir les points" />
                </children>
             </VBox>
          </right>
