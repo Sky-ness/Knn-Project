@@ -23,8 +23,6 @@ public class Iris implements IPoint {
 		
 	}
 	
-	
-
 	public Iris(double sepalLength, double sepalWidth, double petalLength, double petalWidth, IrisVariety variety) {
 		super();
 		this.sepalLength = sepalLength;
@@ -71,4 +69,5 @@ public class Iris implements IPoint {
 	public double getNormalizedValue(Column xcol){
 		return xcol.getNormalizedValue(this);
 	}
+
 }

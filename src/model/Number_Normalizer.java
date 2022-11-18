@@ -26,7 +26,6 @@ public class Number_Normalizer implements IValueNormalizer{
 			}
 		}
 
-		
 		return new double [] {min,max};
 	}
 	

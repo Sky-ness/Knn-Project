@@ -30,7 +30,6 @@ public class AddPointView extends AbstractView{
 		b.setAlignment(Pos.CENTER);
 		List<Label> listLbl = new ArrayList<Label>();
 		List<TextField> listTf = new ArrayList<TextField>();
-//		List<Object> 
 
 		for(Column c: datas.getListeColumns()) {
 			Label column = new Label(c.getName());
@@ -38,15 +37,16 @@ public class AddPointView extends AbstractView{
 			listLbl.add(column);
 			listTf.add(tf);
 		}
-//		for(TextField tf : listTf)
-	
-//		if(datas.getClass().equals(Iris.class))
-//			b.setOnAction(e-> p.getDatas().addLine(new Iris()));
-//		if(datas.getClass().equals(Pokemon.class))
-//			b.setOnAction(e-> p.getDatas().addLine(new Pokemon()));
-//		if(datas.getClass().equals(Titanic.class))
-//			b.setOnAction(e-> p.getDatas().addLine(new Titanic()));
-//		
+		for(TextField tf : listTf) {
+			tf.getText();
+		}
+		if(datas.getClass().equals(Iris.class))
+			b.setOnAction(e-> p.getDatas().addLine(new Iris()));
+		if(datas.getClass().equals(Pokemon.class))
+			b.setOnAction(e-> p.getDatas().addLine(new Pokemon()));
+		if(datas.getClass().equals(Titanic.class))
+			b.setOnAction(e-> p.getDatas().addLine(new Titanic()));
+
 		for(int i=0;i<listLbl.size();i++) {
 			vb.getChildren().addAll(listLbl.get(i),listTf.get(i));
 		}
@@ -54,15 +54,6 @@ public class AddPointView extends AbstractView{
 		Scene scene = initScene(vb);
 		stage.setScene(scene);
 		stage.show();
-	}
-	public Class instance() {
-		if(datas.getClass().equals(Iris.class))
-			return Iris.class;
-		if(datas.getClass().equals(Pokemon.class))
-			return Pokemon.class;
-		if(datas.getClass().equals(Titanic.class))
-			return Titanic.class;
-		return null;
 	}
 
 }
