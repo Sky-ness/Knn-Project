@@ -16,16 +16,11 @@ import utils.IMVCModel;
 import utils.IPoint;
 
 public class Parser implements IMVCModel{
-	protected List<IPoint> lines;
 	protected String title;
 	protected DataSet datas;
 	
-	public Parser() {
-	}
-	
-	public Parser(String title, List<IPoint> listePoints){
+	public Parser(String title){
 		this.title=title;
-		this.lines=listePoints;
 	}
 	
 	@Override
@@ -59,35 +54,34 @@ public class Parser implements IMVCModel{
 	@Override
 	public int getNbLines() {
 		// TODO Auto-generated method stub
-		return lines.size();
+		return datas.getNbLines();
 	}
 
 	@Override
 	public void setLines(List<IPoint> lines) {
-		this.lines=lines;
+		this.datas.setLines(lines);
 		
 	}
 
 	@Override
 	public void addLine(IPoint element) {
-		this.lines.add(element);
+		this.datas.listePoints.add(element);
 		
 	}
 
 	@Override
 	public void addAllLine(List<IPoint> element) {
-		this.lines.addAll(element);
+		this.datas.listePoints.addAll(element);
 		
 	}
 
 	@Override
 	public Iterator<IPoint> iterator() {
-		return lines.iterator();
+		return datas.iterator();
 	}
 
 	@Override
 	public void loadFromString(String data) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -99,16 +93,6 @@ public class Parser implements IMVCModel{
 	@Override
 	public Column defaultYCol() {
 		return datas.listeColumns.get(0);
-	}
-
-	@Override
-	public void addCategory(ICategory classe) {
-		// TODO
-	}
-
-	@Override
-	public Collection<ICategory> allCategories() {
-		return null;
 	}
 
 	@Override
@@ -133,4 +117,14 @@ public class Parser implements IMVCModel{
 		 */
 		return new DataSet("test",points);
 	}
+	@Override
+	public void addCategory(ICategory classe) {
+		// TODO
+	}
+
+	@Override
+	public Collection<ICategory> allCategories() {
+		return null;
+	}
+
 }

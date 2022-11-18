@@ -3,8 +3,8 @@ package view;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -46,52 +46,50 @@ public class GraphView extends Stage{
 
 	public GraphView(DataSet ds){
 		ds2=ds;
-		Parser p = new Parser();
+		Parser p = new Parser("Parser");
 		Stage stage = initStage();
 		try {
 			VBox fxml = initFxml();
 			Scene scene = initScene(fxml);
 			Column absSelected=p.defaultXCol();
-			Column ordSelected=p.defaultXCol();
+			Column ordSelected=p.defaultYCol();
 			// ajout des colonnes dans la comboBox
 
-			absCol.setValue(p.defaultXCol().getName());
+			absCol.setValue(absSelected.getName());
 			for(Column c: ds.getListeColumns())
 				absCol.getItems().add(c.getName());
 			
-			ordCol.setValue(p.defaultYCol().getName());
+			ordCol.setValue(ordSelected.getName());
 			for(Column c: ds.getListeColumns())
 				ordCol.getItems().add(c.getName());
 
-			EventHandler<ActionEvent> absSelect =
-					new EventHandler<ActionEvent>() {
-				public void handle(ActionEvent e)
-				{
-//					absSelected = searchColumnbyName(ordCol.getValue());
-				}
-			};
-
-			EventHandler<ActionEvent> ordSelect =
-					new EventHandler<ActionEvent>() {
-				public void handle(ActionEvent e)
-				{
-//					ordSelected = searchColumnbyName(ordCol.getValue());
-				}
-			};
 			
-			absCol.setOnAction(absSelect);
-			ordCol.setOnAction(ordSelect);
+			absCol.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+				@Override
+				public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
+					
+				}
+			});
+			ordCol.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+				@Override
+				public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
+					
+				}
+			});
 			
 			// ajout des points dans le graphique
-//
-//			XYChart.Series series1 = new XYChart.Series();
-//
-//			if (classifier.isPressed()) {
-//				for(IPoint i : ds.getListePoints()) {
-//					series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
-//				}
-//			}
-			
+
+			XYChart.Series series1 = new XYChart.Series();
+			series1.setName("test");
+			if (classifier.isPressed()) {
+				for(IPoint i : ds.getListePoints()) {
+					series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
+				}
+			}
+			chart.getData().addAll(series1);
+			if (Clear.isPressed()) {
+				chart.getData().removeAll(series1);
+			}
 			stage.setScene(scene);
 
 		} catch (IOException e) {
