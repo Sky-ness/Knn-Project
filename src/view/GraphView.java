@@ -89,7 +89,7 @@ public class GraphView extends AbstractView{
 			// ajout des points dans le graphique
 
 			XYChart.Series series1 = new XYChart.Series();
-			series1.setName("Pokemon");
+			series1.setName(p.getTitle());
 			for(IPoint i : datas.getListePoints()) {
 				series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
 			}
