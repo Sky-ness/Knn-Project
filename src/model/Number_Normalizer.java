@@ -12,7 +12,7 @@ public class Number_Normalizer implements IValueNormalizer{
 		this.column=column;
 	}
 	
-	public double amplitude() {
+	public double [] amplitude() {
 		List<Object> list = column.getDataset().valueByColumn(column);
 		Number d = (Number)list.get(0);
 		double max = d.doubleValue(); double min = d.doubleValue();
@@ -25,18 +25,29 @@ public class Number_Normalizer implements IValueNormalizer{
 				min = d.doubleValue();
 			}
 		}
-		return max-min;
+
+		
+		return new double [] {min,max};
 	}
 	
 	@Override
 	public double normalize(Object value) {
-		Number d = (Number)value;
-		return d.doubleValue()/this.amplitude();
+		Number dividende = (Number)value;
+		double [] ampli = this.amplitude();
+		dividende = dividende.doubleValue()-ampli[0];
+		double diviseur = ampli[1]-ampli[0];
+		return dividende.doubleValue()/diviseur;
 	}
 
 	@Override
 	public Object denormalize(double value) {
-		return value * this.amplitude();
+		Number d = (Number)value;
+		double [] ampli = this.amplitude();
+		double diviseur = ampli[1]-ampli[0];
+		d = d.doubleValue() * diviseur + ampli[0];
+		return d;
+
+
 	}
 
 }
