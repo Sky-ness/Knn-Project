@@ -5,7 +5,7 @@ import utils.IValueNormalizer;
 public class Pokemon_Type_Normalizer implements IValueNormalizer{
 	
 	// nombre de types-1
-	private static final int NB_TYPES = 18;
+	private static final int NB_TYPES = 17;
 	
 
 	@Override
