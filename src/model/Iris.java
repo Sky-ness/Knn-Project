@@ -18,7 +18,18 @@ public class Iris implements IPoint {
 	private double petalWidth;
 	@CsvBindByName(column = "variety")
 	private IrisVariety variety;
+	
+	
+	
 
+	public Iris(double sepalLength, double sepalWidth, double petalLength, double petalWidth, IrisVariety variety) {
+		super();
+		this.sepalLength = sepalLength;
+		this.sepalWidth = sepalWidth;
+		this.petalLength = petalLength;
+		this.petalWidth = petalWidth;
+		this.variety = variety;
+	}
 	public double getSepalLength() {
 		return sepalLength;
 	}

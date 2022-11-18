@@ -32,6 +32,24 @@ public class Titanic implements IPoint {
 	@CsvBindByName(column = "Embarked")
 	private char embarked;
 
+	
+	
+	public Titanic(int passengerId, int survived, int pclass, String name, Sexe sex, double age, int sibSp, int parch,
+			String ticket, double fare, String cabin, char embarked) {
+		super();
+		this.passengerId = passengerId;
+		this.survived = survived;
+		Pclass = pclass;
+		this.name = name;
+		this.sex = sex;
+		this.age = age;
+		this.sibSp = sibSp;
+		this.parch = parch;
+		this.ticket = ticket;
+		this.fare = fare;
+		this.cabin = cabin;
+		this.embarked = embarked;
+	}
 	public int getPassengerId() {return passengerId;}
 	public int getSurvived() {return survived;}
 	public int getPclass() {return Pclass;}

@@ -70,8 +70,8 @@ public class GraphView extends AbstractView{
 		try {
 			VBox fxml = initFxml();
 			Scene scene = initScene(fxml);
-			//Column absSelected=p.defaultXCol();
-			//Column ordSelected=p.defaultYCol();
+			Column absSelected=p.defaultXCol();
+			Column ordSelected=p.defaultYCol();
 			// ajout des colonnes dans la comboBox
 
 			//absCol.setValue(absSelected.getName());

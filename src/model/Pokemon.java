@@ -36,6 +36,25 @@ public class Pokemon implements IPoint{
 	boolean legendary;
 
 
+	
+	
+	public Pokemon(String name, int attack, int baseEggSteps, double captureRate, int defense, int xpGrowth, int hp,
+			int spAttack, int spDefense, PokemonType type1, PokemonType type2, double speed, boolean legendary) {
+		super();
+		this.name = name;
+		this.attack = attack;
+		this.baseEggSteps = baseEggSteps;
+		this.captureRate = captureRate;
+		this.defense = defense;
+		this.xpGrowth = xpGrowth;
+		this.hp = hp;
+		this.spAttack = spAttack;
+		this.spDefense = spDefense;
+		this.type1 = type1;
+		this.type2 = type2;
+		this.speed = speed;
+		this.legendary = legendary;
+	}
 	// Getters
 	public String getName() {return name;}
 	public int getAttack() {return attack;}
