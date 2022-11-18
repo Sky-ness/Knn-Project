@@ -10,10 +10,14 @@ public class Pokemon_Type_Normalizer implements IValueNormalizer{
 
 	@Override
 	public double normalize(Object value) {
+		if(value==null) {
+			return 0;
+		}
 		if(PokemonType.class.equals(value.getClass())) {
 			PokemonType pt = (PokemonType) value;
 			return (double)pt.ordinal()/NB_TYPES;
 		}
+		
 			
 		return -1;
 	}
