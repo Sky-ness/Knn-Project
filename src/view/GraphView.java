@@ -1,37 +1,35 @@
 package view;
 
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.IOException;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.MenuBar;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Column;
 import model.DataSet;
 import model.Parser;
 import utils.IPoint;
 
-public class GraphView extends Stage{
+public class GraphView extends AbstractView{
 	@FXML
 	private ScatterChart<Double,Double> chart;
 
 	@FXML
-	private Button Clear;
+	private Button clear;
 
-	@FXML
-	private ComboBox<String> absCol;
-
-	@FXML
-	private ComboBox<String> ordCol;
+    @FXML
+    private Button seePoint;
 
 	@FXML
 	private Button ajoutPoint;
@@ -40,27 +38,39 @@ public class GraphView extends Stage{
 	private Button classifier;
 
 	@FXML
-	private MenuBar menu;
+	private ComboBox<String> absCol;
 
-	public DataSet ds2;
+	@FXML
+	private ComboBox<String> ordCol;
 
-	public GraphView(DataSet ds){
-		ds2=ds;
-		Parser p = new Parser();
+    @FXML
+    private ComboBox<String> classMethod;
+
+    @FXML
+    private MenuItem explorateur;
+
+
+    @FXML
+    private Label robustesse;
+
+	public DataSet datas;
+
+	public GraphView(Parser p){
+		datas=p.getDatas();
 		Stage stage = initStage();
 		try {
 			VBox fxml = initFxml();
 			Scene scene = initScene(fxml);
-			Column absSelected=p.defaultXCol();
-			Column ordSelected=p.defaultYCol();
+			//Column absSelected=p.defaultXCol();
+			//Column ordSelected=p.defaultYCol();
 			// ajout des colonnes dans la comboBox
 
-			absCol.setValue(absSelected.getName());
-			for(Column c: ds.getListeColumns())
+			//absCol.setValue(absSelected.getName());
+			for(Column c: datas.getListeColumns())
 				absCol.getItems().add(c.getName());
 			
-			ordCol.setValue(ordSelected.getName());
-			for(Column c: ds.getListeColumns())
+			//ordCol.setValue(ordSelected.getName());
+			for(Column c: datas.getListeColumns())
 				ordCol.getItems().add(c.getName());
 
 			
@@ -81,25 +91,24 @@ public class GraphView extends Stage{
 
 			XYChart.Series series1 = new XYChart.Series();
 			series1.setName("test");
-			if (classifier.isPressed()) {
-				for(IPoint i : ds.getListePoints()) {
-					series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
-				}
+			for(IPoint i : datas.getListePoints()) {
+				//series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
 			}
-			chart.getData().addAll(series1);
-			if (Clear.isPressed()) {
-				chart.getData().removeAll(series1);
-			}
+			
+			// évenement 
+			
+			classifier.setOnAction(e-> chart.getData().addAll(series1));
+			clear.setOnAction(e-> chart.getData().removeAll(series1));
+			ajoutPoint.setOnAction(e-> new AddPointView(p));
+			seePoint.setOnAction(e-> new PointView(p));
+			explorateur.setOnAction(e-> {File f = new FileChooser().showOpenDialog(this);});
+			
 			stage.setScene(scene);
+			
 
 		} catch (IOException e) {
 			System.err.println("Erreur au chargement: " +e.getMessage());
 		}
-
-		/*
-		 * bouton classifier pour refresh 
-		 */
-
 		/*
 		 * mettre un systeme de search file dans le menu file 
 		 */
@@ -109,26 +118,9 @@ public class GraphView extends Stage{
 		 */
 		stage.show();
 	}
-	public Stage initStage() {
-		Stage stage = new Stage();
-		stage.setTitle("Graphique");
-		return stage;
-	}
-	public Scene initScene(VBox vbox) {
-		Scene scene = new Scene(vbox);
-		return scene;
-	}
-	public VBox initFxml()throws IOException{
-		FXMLLoader loader = new FXMLLoader();
-		loader.setController(this);
-		String fxmlDocPath = "fxmlModel/classification.fxml";
-		FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
-		VBox vbox = (VBox) loader.load(fxmlStream);
-		return vbox;
-	}
 
 	Column searchColumnbyName(String name){
-		for(Column c : ds2.getListeColumns())
+		for(Column c : datas.getListeColumns())
 			if(name.equals(c.getName())) 
 				return c;
 		return null;
