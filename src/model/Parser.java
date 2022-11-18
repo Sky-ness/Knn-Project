@@ -112,10 +112,8 @@ public class Parser implements IMVCModel{
 				.withSeparator(',')
 				.withType(cl)
 				.build().parse();
-		/*
-		 * remplacer le "test" par le nom du fichier dans le lien
-		 */
-		return new DataSet("test",points);
+		String [] parse = link.split("/");
+		return new DataSet(parse[parse.length-1],points);
 	}
 	@Override
 	public void addCategory(ICategory classe) {
@@ -126,5 +124,5 @@ public class Parser implements IMVCModel{
 	public Collection<ICategory> allCategories() {
 		return null;
 	}
-
+	
 }
