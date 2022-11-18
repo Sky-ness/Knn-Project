@@ -19,6 +19,9 @@ public class Iris implements IPoint {
 	@CsvBindByName(column = "variety")
 	private IrisVariety variety;
 	
+	public Iris() {
+		
+	}
 	
 	
 

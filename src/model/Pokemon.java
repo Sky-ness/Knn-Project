@@ -35,7 +35,9 @@ public class Pokemon implements IPoint{
 	@CsvBindByName(column = "is_legendary")
 	boolean legendary;
 
-
+	public Pokemon() {
+		
+	}
 	
 	
 	public Pokemon(String name, int attack, int baseEggSteps, double captureRate, int defense, int xpGrowth, int hp,

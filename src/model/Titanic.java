@@ -31,7 +31,10 @@ public class Titanic implements IPoint {
 	private String cabin;
 	@CsvBindByName(column = "Embarked")
 	private char embarked;
-
+	
+	public Titanic(){
+		
+	}
 	
 	
 	public Titanic(int passengerId, int survived, int pclass, String name, Sexe sex, double age, int sibSp, int parch,
