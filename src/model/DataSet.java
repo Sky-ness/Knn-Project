@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import chifoumi.Boolean_Normalizer;
+import chifoumi.Column;
+import chifoumi.Number_Normalizer;
+import chifoumi.Pokemon_Type_Normalizer;
 import utils.IColumn;
 import utils.IDataset;
 import utils.IPoint;
@@ -23,13 +27,28 @@ public class DataSet implements IDataset{
 
 	public List<Column> listColumn(){
 		List<Column> list = new ArrayList<Column>();
-		IPoint point = listePoints.get(0);
-		Field[] fs = point.getClass().getFields();
+		Column column = null;
+		Field[] fs = listePoints.get(0).getClass().getDeclaredFields();
+		String type = "";
 		for(Field field : fs) {
-			list.add(new Column(field.getName(),this));
+			column = new Column(field.getName(),this);
+			type = field.getType().getName();
+			System.out.println(type);
+			if(type.equals("double") || type.equals("int")) {
+				column.setNormalizer(new Number_Normalizer(column));
+			}
+			if(type.equals("boolean")) {
+				column.setNormalizer(new Boolean_Normalizer());
+			}
+			if(type.equals("model.PokemonType")) {
+				column.setNormalizer(new Pokemon_Type_Normalizer());
+			}
+			list.add(column);
+			
 		}
 		return list;
 	}
+	
 	@Override
 	public Iterator<IPoint> iterator() {
 		return listePoints.iterator();

@@ -3,11 +3,11 @@ package model;
 import java.lang.reflect.Field;
 
 public class Test {
-	public String testString = "paker";
-	public int testInt = 22;
+	private String terivatstString = "paker";
+	private int testInt = 22;
 	
 	public Object searchAttributes(String name) throws IllegalArgumentException, IllegalAccessException {
-		Field[] fs = this.getClass().getFields();
+		Field[] fs = this.getClass().getDeclaredFields();
 		for(Field f : fs) {
 			if(f.getName().equals(name)){
 				return f.get(this);

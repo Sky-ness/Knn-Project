@@ -5,20 +5,19 @@ import utils.IValueNormalizer;
 
 public class Column {
 
-	protected static IValueNormalizer valueNormalizer;
+	protected IValueNormalizer valueNormalizer;
 	protected String name;
 	protected DataSet dataset;
 	
 	public Column(String name, DataSet dataset) {
 		this.name = name;
 		this.dataset = dataset;
-		this.valueNormalizer = new Number_Normalizer(this);
 	}
 	/*
 	 * abstract car chaque colonne a un normalizer different
 	 */
 	public void setNormalizer(IValueNormalizer valueNormalizer) {
-		Column.valueNormalizer = valueNormalizer;
+		this.valueNormalizer = valueNormalizer;
 	}
 	/*
 	 * abstract car chaque colonne a un nom  
@@ -31,6 +30,14 @@ public class Column {
 	 */
 	public DataSet getDataset() {
 		return dataset;
+	}
+	
+	public IValueNormalizer getValueNormalizer() {
+		return valueNormalizer;
+	}
+	
+	public void setValueNormalizer(IValueNormalizer valueNormalizer) {
+		this.valueNormalizer = valueNormalizer;
 	}
 	
 	public boolean isNormalizable() {
@@ -48,6 +55,8 @@ public class Column {
 			return valueNormalizer.denormalize(value);
 		return -1.0;
 	}
-
-
+	@Override
+	public String toString() {
+		return "Column name=" + name;
+	}
 }
