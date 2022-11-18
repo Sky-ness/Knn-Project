@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -39,6 +40,10 @@ public class Parser implements IMVCModel{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void loadFromFile(File f) {
+		loadFromFile(f.getAbsolutePath());
 	}
 
 	@Override
