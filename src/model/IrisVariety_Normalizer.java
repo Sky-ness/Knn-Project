@@ -2,20 +2,19 @@ package model;
 
 import utils.IValueNormalizer;
 
-public class Pokemon_Type_Normalizer implements IValueNormalizer{
-	
+public class IrisVariety_Normalizer implements IValueNormalizer{
+
 
 	@Override
 	public double normalize(Object value) {
 		if(value==null) {
 			return 0;
 		}
-		if(PokemonType.class.equals(value.getClass())) {
-			PokemonType pt = (PokemonType) value;
-			return (double)pt.ordinal()/(PokemonType.values().length-1);
-		}
 		
-			
+		if(IrisVariety.class.equals(value.getClass())) {
+			IrisVariety iv = (IrisVariety) value;
+			return (double)iv.ordinal()/(IrisVariety.values().length-1);
+		}
 		return -1;
 	}
 

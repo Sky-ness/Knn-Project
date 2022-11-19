@@ -9,15 +9,15 @@ import utils.IPoint;
 public class Iris implements IPoint {
 
 	@CsvBindByName(column = "sepal.length")
-	private double sepalLength;
+	protected double sepalLength;
 	@CsvBindByName(column = "sepal.width")
-	private double sepalWidth;
+	protected double sepalWidth;
 	@CsvBindByName(column = "petal.length")
-	private double petalLength;
+	protected double petalLength;
 	@CsvBindByName(column = "petal.width")
-	private double petalWidth;
+	protected double petalWidth;
 	@CsvBindByName(column = "variety")
-	private IrisVariety variety;
+	protected IrisVariety variety;
 	
 	public Iris() {
 		
