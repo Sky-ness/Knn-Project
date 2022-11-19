@@ -40,14 +40,15 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="425.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -57,9 +58,14 @@
             <MenuItem fx:id="irisLoadButton" mnemonicParsing="false" text="Load Iris" />
                   <MenuItem fx:id="pokemonLoadButton" mnemonicParsing="false" text="Load Pokemon" />
                   <MenuItem fx:id="titanicLoadButton" mnemonicParsing="false" text="Load Titanic" />
-            <SeparatorMenuItem mnemonicParsing="false" />
           </items>
         </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem fx:id="addPoint" mnemonicParsing="false" text="Add Point" />
+                  <MenuItem fx:id="pointView" mnemonicParsing="false" text="Show Point" />
+               </items>
+            </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
             <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
@@ -76,37 +82,57 @@
         </Label>
          </top>
          <bottom>
-            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="821.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane prefHeight="68.0" prefWidth="266.0">
+                  <Pane prefHeight="68.0" prefWidth="198.0">
                      <children>
-                        <Button fx:id="clear" alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="21.0" mnemonicParsing="false" text="Clear" />
-                        <ComboBox fx:id="classMethod" layoutX="95.0" layoutY="21.0" prefWidth="150.0" />
+                        <Button fx:id="clear" alignment="CENTER" contentDisplay="CENTER" layoutX="-7.0" layoutY="21.0" mnemonicParsing="false" text="Clear" />
                      </children>
                   </Pane>
-                  <ComboBox id="abscisse" fx:id="absCol" prefHeight="26.0" prefWidth="162.0" promptText="selectionner abscisse" />
-                  <Button id="classifier" fx:id="classifier" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Classifier" />
-                  <ComboBox id="ordonnee" fx:id="ordCol" prefHeight="26.0" prefWidth="164.0" promptText="Selectionner ordonne" />
+                  <ComboBox id="abscisse" fx:id="absCol" prefHeight="26.0" prefWidth="162.0" promptText="Sélectionner abscisse" />
+                  <Button id="classifier" fx:id="load" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Charger" />
+                  <ComboBox id="ordonnee" fx:id="ordCol" prefHeight="26.0" prefWidth="164.0" promptText="Sélectionner ordonne" />
                </children>
             </HBox>
          </bottom>
          <left>
-            <VBox prefHeight="280.0" prefWidth="81.0" BorderPane.alignment="CENTER" />
-         </left>
-         <right>
-            <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="283.0" prefWidth="146.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="143.0" text="Robustesse du modele">
+                  <VBox alignment="TOP_CENTER" prefHeight="181.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="164.0" text="Méthode de classification" textFill="#0f0fcc">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="classMethod" prefWidth="150.0" />
+                        <ComboBox fx:id="distance" prefWidth="150.0" />
+                        <Label text="Nombre de voisin" textFill="#0f0fcc">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="34.0" prefWidth="200.0">
+                           <children>
+                              <Slider fx:id="neighborSlider" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" minorTickCount="1" prefHeight="34.0" prefWidth="227.0" showTickLabels="true" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="classifier" mnemonicParsing="false" text="Valider" />
+                     </children>
+                  </VBox>
+                  <Label alignment="CENTER" prefHeight="19.0" prefWidth="169.0" text="Robustesse du modele" textFill="#1f762c">
                      <font>
-                        <Font name="Calibri Light" size="15.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="robustesse" alignment="BOTTOM_CENTER" text="0%" />
-                  <Button fx:id="addPoint" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="ajouter un point" />
-                  <Button fx:id="viewPoint" mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" text="voir les points" />
-               </children>
-            </VBox>
-         </right>
+                  <ProgressBar fx:id="robustesseBar" prefWidth="200.0" progress="0.0" />
+                  <Label fx:id="robustesse" text="0%" textFill="#1f762c">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children></VBox>
+         </left>
          <center>
             <ScatterChart id="chart" fx:id="chart" BorderPane.alignment="CENTER">
               <xAxis>

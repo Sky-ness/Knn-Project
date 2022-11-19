@@ -8,29 +8,29 @@ import utils.IPoint;
 
 public class Titanic implements IPoint {
 	@CsvBindByName(column = "PassengerId")
-	private int passengerId;
+	protected int passengerId;
 	@CsvBindByName(column = "Survived")
-	private int survived;
+	protected int survived;
 	@CsvBindByName(column = "Pclass")
-	private int Pclass;
+	protected int Pclass;
 	@CsvBindByName(column = "Name")
-	private String name;
+	protected String name;
 	@CsvBindByName(column = "Sex")
-	private Sexe sex;
+	protected Sexe sex;
 	@CsvBindByName(column = "Age")
-	private double age;
+	protected double age;
 	@CsvBindByName(column = "SibSp")
-	private int sibSp;
+	protected int sibSp;
 	@CsvBindByName(column = "Parch")
-	private int parch;
+	protected int parch;
 	@CsvBindByName(column = "Ticket")
-	private String ticket;
+	protected String ticket;
 	@CsvBindByName(column = "Fare")
-	private double fare;
+	protected double fare;
 	@CsvBindByName(column = "Cabin")
-	private String cabin;
+	protected String cabin;
 	@CsvBindByName(column = "Embarked")
-	private char embarked;
+	protected char embarked;
 	
 	public Titanic(){
 		

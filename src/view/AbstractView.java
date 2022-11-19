@@ -24,7 +24,6 @@ public class AbstractView extends Stage{
 		String fxmlDocPath = "fxmlModel/classification.fxml";
 		FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
 		VBox vbox = (VBox) loader.load(fxmlStream);
-		vbox.setPrefSize(1000, getHeight());
 		return vbox;
 	}
 }

@@ -58,7 +58,6 @@ public class Column {
 				try {
 					result = valueNormalizer.normalize(field.get(point));
 				} catch (IllegalArgumentException | IllegalAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

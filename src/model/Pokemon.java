@@ -9,31 +9,31 @@ import utils.IPoint;
 public class Pokemon implements IPoint{
 
 	@CsvBindByName(column = "name")
-	String name;
+	protected String name;
 	@CsvBindByName(column = "attack")
-	int attack;
+	protected int attack;
 	@CsvBindByName(column = "base_egg_steps")
-	int baseEggSteps;
+	protected int baseEggSteps;
 	@CsvBindByName(column = "capture_rate")
-	double captureRate;
+	protected double captureRate;
 	@CsvBindByName(column = "defense")
-	int defense;
+	protected int defense;
 	@CsvBindByName(column = "experience_growth")
-	int xpGrowth;
+	protected int xpGrowth;
 	@CsvBindByName(column = "hp")
-	int hp;
+	protected int hp;
 	@CsvBindByName(column = "sp_attack")
-	int spAttack;
+	protected int spAttack;
 	@CsvBindByName(column = "sp_defense")
-	int spDefense;
+	protected int spDefense;
 	@CsvBindByName(column = "type1")
-	PokemonType type1;
+	protected PokemonType type1;
 	@CsvBindByName(column = "type2")
-	PokemonType type2;
+	protected PokemonType type2;
 	@CsvBindByName(column = "speed")
-	double speed;
+	protected double speed;
 	@CsvBindByName(column = "is_legendary")
-	boolean legendary;
+	protected boolean legendary;
 
 	public Pokemon() {
 		
