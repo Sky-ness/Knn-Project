@@ -30,7 +30,7 @@ public class Iris implements IPoint {
 		petalWidth = Double.valueOf((String)objects[3]);
 		
 
-		String name = ((String)objects[3]).toLowerCase();
+		String name = ((String)objects[4]).toLowerCase();
 		if(name.contains("setosa")){
 			variety=IrisVariety.Setosa;
 		} else if(name.contains("versicolor")){
