@@ -41,7 +41,7 @@ public class AddPointView extends AbstractView{
 		@SuppressWarnings("rawtypes")
 		Class c = datas.getListePoints().get(0).getClass();
 		b.setOnAction((event) -> {
-			Object [] parameter = new Object [listTf.size()];
+			String [] parameter = new String [listTf.size()];
 			for(int i =0;i<listTf.size();i++) {
 				parameter[i]=listTf.get(i).getText();
 			}
@@ -49,15 +49,14 @@ public class AddPointView extends AbstractView{
 
 			if(c.equals(Iris.class)) {
 				p.getDatas().addLine(new Iris(parameter));
-				//System.out.println(new Iris(parameter));
-			}
+	}
 
 			if(c.equals(Pokemon.class)) {
-
+				p.getDatas().addLine(new Pokemon(parameter));
 			}
 			
 			if(c.equals(Titanic.class)) {
-
+				p.getDatas().addLine(new Titanic(parameter));
 			}
 			
 			

@@ -23,14 +23,33 @@ public class Iris implements IPoint {
 		
 	}
 	
-	public Iris(Object ...objects) {
-		sepalLength = Double.valueOf((String)objects[0]);
-		sepalWidth = Double.valueOf((String)objects[1]);
-		petalLength = Double.valueOf((String)objects[2]);
-		petalWidth = Double.valueOf((String)objects[3]);
-		
+	public Iris(String ...param) {
 
-		String name = ((String)objects[4]).toLowerCase();
+		try {
+			sepalLength = Double.valueOf(param[0]);
+		} catch (Exception e) {
+			sepalLength = 0.0;
+		}
+		
+		try {
+			sepalWidth = Double.valueOf(param[1]);
+		} catch (Exception e) {
+			sepalWidth = 0.0;
+		}
+		
+		try {
+			petalLength = Double.valueOf(param[2]);
+		} catch (Exception e) {
+			petalLength = 0.0;
+		}
+		
+		try {
+			petalWidth = Double.valueOf(param[3]);
+		} catch (Exception e) {
+			petalWidth = 0.0;
+		}
+		
+		String name = param[4].toLowerCase();
 		if(name.contains("setosa")){
 			variety=IrisVariety.Setosa;
 		} else if(name.contains("versicolor")){
@@ -43,15 +62,7 @@ public class Iris implements IPoint {
 		
 
 	}
-	
-	public Iris(double sepalLength, double sepalWidth, double petalLength, double petalWidth, IrisVariety variety) {
-		super();
-		this.sepalLength = sepalLength;
-		this.sepalWidth = sepalWidth;
-		this.petalLength = petalLength;
-		this.petalWidth = petalWidth;
-		this.variety = variety;
-	}
+
 	public double getSepalLength() {
 		return sepalLength;
 	}

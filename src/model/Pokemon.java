@@ -36,31 +36,87 @@ public class Pokemon implements IPoint{
 	protected boolean legendary;
 
 	public Pokemon() {
-		
+
 	}
-	
-	public Pokemon(Object ...objects) {
-		
+
+	public Pokemon(String ...param) {
+		name=param[0];
+
+		try {
+			attack=Integer.valueOf(param[1]);
+		} catch (Exception e) {
+			attack=0;
+		}
+
+		try {
+			baseEggSteps =Integer.valueOf(param[2]);
+		} catch (Exception e) {
+			baseEggSteps = 0;
+		}
+
+		try {
+			captureRate =Double.valueOf(param[3]);
+		} catch (Exception e) {
+			captureRate = 0.0;
+		}
+
+		try {
+			defense=Integer.valueOf(param[4]);
+		} catch (Exception e) {
+			defense=0;
+		}
+
+		try {
+			xpGrowth=Integer.valueOf(param[5]);
+		} catch (Exception e) {
+			xpGrowth=0;
+		}
+
+		try {
+			hp=Integer.valueOf(param[6]);
+		} catch (Exception e) {
+			hp=0;
+		}
+
+		try {
+			spAttack=Integer.valueOf(param[7]);
+		} catch (Exception e) {
+			spAttack=0;
+		}
+		try {
+			spDefense=Integer.valueOf(param[8]);
+		} catch (Exception e) {
+			spDefense=0;
+		}
+
+
+		type1=checkPokemonType(param[9]);
+
+		type2=checkPokemonType(param[10]);
+		try {
+			speed =Double.valueOf(param[11]);
+		} catch (Exception e) {
+			speed = 0.0;
+		}
+
+		try {
+			legendary =Boolean.valueOf(param[11]);
+		} catch (Exception e) {
+			legendary = false;
+		}
 	}
-	
-	public Pokemon(String name, int attack, int baseEggSteps, double captureRate, int defense, int xpGrowth, int hp,
-			int spAttack, int spDefense, PokemonType type1, PokemonType type2, double speed, boolean legendary) {
-		super();
-		this.name = name;
-		this.attack = attack;
-		this.baseEggSteps = baseEggSteps;
-		this.captureRate = captureRate;
-		this.defense = defense;
-		this.xpGrowth = xpGrowth;
-		this.hp = hp;
-		this.spAttack = spAttack;
-		this.spDefense = spDefense;
-		this.type1 = type1;
-		this.type2 = type2;
-		this.speed = speed;
-		this.legendary = legendary;
+
+	private PokemonType checkPokemonType(String type) {
+		PokemonType [] listeType=PokemonType.values();
+		for(PokemonType pt : listeType) {
+			if(pt.name().equalsIgnoreCase(type)) {
+				return pt;
+			}
+		}
+		return null; 
 	}
-	// Getters
+
+
 	public String getName() {return name;}
 	public int getAttack() {return attack;}
 	public int getBaseEggSteps() {return baseEggSteps;}
