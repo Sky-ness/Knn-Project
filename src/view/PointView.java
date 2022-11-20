@@ -39,7 +39,6 @@ public class PointView extends AbstractView{
 		
 		table.setItems(data);
 		table.getColumns().addAll(listColumn);
-		
 		vb.getChildren().add(table);
 		Scene scene = initScene(vb);
 		stage.setScene(scene);

@@ -86,7 +86,7 @@
                <children>
                   <Pane prefHeight="68.0" prefWidth="198.0">
                      <children>
-                        <Button fx:id="clear" alignment="CENTER" contentDisplay="CENTER" layoutX="-7.0" layoutY="21.0" mnemonicParsing="false" text="Clear" />
+                        <Button fx:id="clear" alignment="CENTER" contentDisplay="CENTER" layoutY="22.0" mnemonicParsing="false" text="Clear" />
                      </children>
                   </Pane>
                   <ComboBox id="abscisse" fx:id="absCol" prefHeight="26.0" prefWidth="162.0" promptText="Sélectionner abscisse" />
@@ -105,8 +105,8 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="classMethod" prefWidth="150.0" />
-                        <ComboBox fx:id="distance" prefWidth="150.0" />
+                        <ComboBox fx:id="classMethod" prefHeight="26.0" prefWidth="185.0" promptText="Sélectionne classification" />
+                        <ComboBox fx:id="distance" prefHeight="26.0" prefWidth="186.0" promptText="Sélectionne distance" />
                         <Label text="Nombre de voisin" textFill="#0f0fcc">
                            <font>
                               <Font size="14.0" />
@@ -114,7 +114,7 @@
                         </Label>
                         <HBox prefHeight="34.0" prefWidth="200.0">
                            <children>
-                              <Slider fx:id="neighborSlider" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" minorTickCount="1" prefHeight="34.0" prefWidth="227.0" showTickLabels="true" />
+                              <Slider fx:id="neighborSlider" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" prefHeight="34.0" prefWidth="227.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
                            </children>
                         </HBox>
                         <Button fx:id="classifier" mnemonicParsing="false" text="Valider" />

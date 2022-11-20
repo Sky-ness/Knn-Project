@@ -112,6 +112,7 @@ public class GraphView extends AbstractView{
 
 		// ajout des colonnes dans la comboBox
 
+		
 		absCol.setValue(p.defaultXCol().getName());
 		for(Column c: datas.getListeColumns())
 			absCol.getItems().add(c.getName());
@@ -123,20 +124,20 @@ public class GraphView extends AbstractView{
 		classMethod.setValue("Randomizer");
 		classMethod.getItems().add("Randomizer");
 		classMethod.getItems().add("Knn");
+		
 		load.setOnAction(e -> pointGenerator(p));
+		
+		robustesseBar.setProgress(0.50);
+		
 		classifier.setOnAction(e-> {
 			/*
 			 * j'ai mis un point par default mais il faudra le selectionné
 			 */
 			IPoint defaultPoint = p.getDatas().getListePoints().get(0);
+			modelClassification(classMethod.getValue(),defaultPoint,new Distance(),(int) neighborSlider.getValue());
 			/*
-			 * Pareil pour la distance 
+			 * retourne la liste des voisins les plus proche
 			 */
-			Distance defaultDistance  = new Distance();
-			/*
-			 * choisir le nombre de voisin par default 0
-			 */
-			modelClassification(classMethod.getValue(),defaultPoint,defaultDistance);	
 		});
 	}
 	private void resetModel(Parser p){
@@ -166,14 +167,14 @@ public class GraphView extends AbstractView{
 				return c;
 		return null;
 	}
-	private List<IPoint> modelClassification(String classification, IPoint point, Distance distance) {
+	private List<IPoint> modelClassification(String classification, IPoint point, Distance distance,int voisin) {
 		if (classification.equals("Knn")) {
 			Knn k = new Knn();
-			return k.neighbor(3, point, distance, datas.getListePoints(), datas.getListeColumns());
+			return k.neighbor(voisin, point, distance, datas.getListePoints(), datas.getListeColumns());
 		}
 		if (classification.equals("Randomizer")) {
 			Randomizer r = new Randomizer();
-			return r.neighbor(0, point, distance, datas.getListePoints(), datas.getListeColumns());
+			return r.neighbor(voisin, point, distance, datas.getListePoints(), datas.getListeColumns());
 		}
 		return null;
 	}
