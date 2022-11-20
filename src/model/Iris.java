@@ -23,6 +23,27 @@ public class Iris implements IPoint {
 		
 	}
 	
+	public Iris(Object ...objects) {
+		sepalLength = Double.valueOf((String)objects[0]);
+		sepalWidth = Double.valueOf((String)objects[1]);
+		petalLength = Double.valueOf((String)objects[2]);
+		petalWidth = Double.valueOf((String)objects[3]);
+		
+
+		String name = ((String)objects[4]).toLowerCase();
+		if(name.contains("setosa")){
+			variety=IrisVariety.Setosa;
+		} else if(name.contains("versicolor")){
+			variety=IrisVariety.Versicolor;
+		} else if(name.contains("virginica")){
+			variety=IrisVariety.Virginica;
+		} else {
+			variety=null;
+		}
+		
+
+	}
+	
 	public Iris(double sepalLength, double sepalWidth, double petalLength, double petalWidth, IrisVariety variety) {
 		super();
 		this.sepalLength = sepalLength;

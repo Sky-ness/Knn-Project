@@ -39,7 +39,7 @@ public class DataSet implements IDataset{
 				column.setNormalizer(new Pokemon_Type_Normalizer());
 			}
 			if(type.equals("model.IrisVariety")) {
-				column.setNormalizer(new IrisVarity_Normalizer());
+				column.setNormalizer(new IrisVariety_Normalizer());
 			}
 			if(type.equals("model.Sexe")) {
 				column.setNormalizer(new Sexe_Normalizer());
