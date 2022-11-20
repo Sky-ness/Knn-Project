@@ -51,18 +51,18 @@ public class AddPointView extends AbstractView{
 
 			if(c.equals(Iris.class)) {
 				p.getDatas().addLine(new Iris(parameter));
-	}
+			}
 
 			if(c.equals(Pokemon.class)) {
 				p.getDatas().addLine(new Pokemon(parameter));
 			}
-			
+
 			if(c.equals(Titanic.class)) {
 				p.getDatas().addLine(new Titanic(parameter));
 			}
-			
-			
-	    });
+
+
+		});
 
 		for(int i=0;i<listLbl.size();i++) {
 			vb.getChildren().addAll(listLbl.get(i),listTf.get(i));
