@@ -4,6 +4,7 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,7 +26,8 @@ public class AddPointView extends AbstractView{
 	public AddPointView(Parser p) {
 		datas=p.getDatas();
 		Stage stage = initStage();
-		VBox vb = new VBox(); 
+		VBox vb = new VBox();
+		vb.setPadding(new Insets(40,40,40,40));
 		Button b = new Button("valider");
 		b.setAlignment(Pos.CENTER);
 		List<Label> listLbl = new ArrayList<Label>();
