@@ -18,8 +18,10 @@ import model.Iris;
 import model.Parser;
 import model.Pokemon;
 import model.Titanic;
+import utils.Observer;
+import utils.Subject;
 
-public class AddPointView extends AbstractView{
+public class AddPointView extends AbstractView implements Observer{
 
 	public DataSet datas;
 
@@ -72,6 +74,18 @@ public class AddPointView extends AbstractView{
 		Scene scene = initScene(vb);
 		stage.setScene(scene);
 		stage.show();
+	}
+
+	@Override
+	public void update(Subject subj) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(Subject subj, Object data) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

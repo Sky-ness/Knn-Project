@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" prefHeight="28.0" prefWidth="164.0" text="Méthode de classification" textFill="#0f0fcc">
          <font>
@@ -42,5 +42,8 @@
          </padding>
       </Slider>
       <Button fx:id="classifier" mnemonicParsing="false" text="Valider" />
+      <Label fx:id="testVoisin1" text="Voisin 1" />
+      <Label fx:id="testVoisin2" text="Voisin 2" />
+      <Label fx:id="testVoisin3" text="Voisin 3" />
    </children>
 </VBox>

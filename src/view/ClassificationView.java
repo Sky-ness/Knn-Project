@@ -16,8 +16,10 @@ import model.Knn;
 import model.Parser;
 import model.Randomizer;
 import utils.IPoint;
+import utils.Observer;
+import utils.Subject;
 
-public class ClassificationView extends AbstractView{
+public class ClassificationView extends AbstractView implements Observer{
 	@FXML
 	private Button buttonSelectPoint;
 	@FXML
@@ -30,6 +32,12 @@ public class ClassificationView extends AbstractView{
 	private Slider neighborSlider;
 	@FXML
 	private Label labelSelectPoint;
+    @FXML
+    private Label testVoisin1;
+    @FXML
+    private Label testVoisin2;
+    @FXML
+    private Label testVoisin3;
 
 	private DataSet datas;
 
@@ -41,16 +49,22 @@ public class ClassificationView extends AbstractView{
 			VBox fxml = initFxml("fxmlModel/classification.fxml");
 			Scene scene = initScene(fxml);
 			classMethod.setValue("KNN");
-			classMethod.getItems().add("Randomizer");
 			classMethod.getItems().add("KNN");
+			classMethod.getItems().add("Randomizer");
+
 			
 			buttonSelectPoint.setOnAction(e-> new PointView(p));
 			labelSelectPoint.setOnMouseClicked(e-> labelSelectPoint.setText(PointView.selectedPoint.toString()));
 			classifier.setOnAction(e-> {
 				/*
-				 * point View en static a changer pour l'actualisé sur toutes les vues
+				 *TODO Point View en static a update pour l'actualisé sur toutes les vues
+				 *TODO Graphique a update quand on appuie sur la classification 
 				 */
-				modelClassification(classMethod.getValue(),PointView.selectedPoint,new Distance(),(int) neighborSlider.getValue());
+				List<IPoint> voisin = modelClassification(classMethod.getValue(),PointView.selectedPoint,new Distance(),(int) neighborSlider.getValue());
+				testVoisin1.setText(voisin.get(1).toString());
+				testVoisin2.setText(voisin.get(2).toString());
+				testVoisin3.setText(voisin.get(3).toString());
+			
 			});
 			stage.setScene(scene);
 		}catch(Exception e) {e.printStackTrace();}
@@ -60,7 +74,7 @@ public class ClassificationView extends AbstractView{
 	 * retourne la liste des voisins les plus proches
 	 */
 	private List<IPoint> modelClassification(String classification, IPoint point, Distance distance,int voisin) {
-		if (classification.equals("Knn")) {
+		if (classification.equals("KNN")) {
 			Knn k = new Knn();
 			return k.neighbor(voisin, point, distance, datas.getListePoints(), datas.getListeColumns());
 		}
@@ -69,5 +83,15 @@ public class ClassificationView extends AbstractView{
 			return r.neighbor(voisin, point, distance, datas.getListePoints(), datas.getListeColumns());
 		}
 		return null;
+	}
+	@Override
+	public void update(Subject subj) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void update(Subject subj, Object data) {
+		// TODO Auto-generated method stub
+		
 	}
 }

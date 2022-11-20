@@ -24,8 +24,10 @@ import model.Knn;
 import model.Parser;
 import model.Randomizer;
 import utils.IPoint;
+import utils.Observer;
+import utils.Subject;
 
-public class GraphView extends AbstractView{
+public class GraphView extends AbstractView implements Observer{
 	@FXML
 	private ComboBox<String> absCol;
 	@FXML
@@ -62,7 +64,9 @@ public class GraphView extends AbstractView{
 	private final String pathTitanic="data/titanic.csv";
 
 	public GraphView(){
-
+		/*
+		 *TODO update le dataSet des qu'on load un autre model au lieu d'utiliser un parser en paramètre 
+		 */
 		Stage stage = initStage();
 		try {
 			VBox fxml = initFxml("fxmlModel/graphique.fxml");
@@ -86,10 +90,10 @@ public class GraphView extends AbstractView{
 			addPoint.setOnAction(e-> new AddPointView(p));
 			pointView.setOnAction(e-> new PointView(p));
 			classification.setOnAction(e-> new ClassificationView(p));
-			
+
 			clear.setOnAction(e-> chart.getData().clear());
 			stage.setScene(scene);
-			
+
 		} catch (IOException e) {
 			System.err.println("Erreur au chargement: " +e.getMessage());
 		}
@@ -106,11 +110,13 @@ public class GraphView extends AbstractView{
 
 		absCol.setValue(p.defaultXCol().getName());
 		for(Column c: datas.getListeColumns())
-			absCol.getItems().add(c.getName());
+			if(c.isNormalizable())
+				absCol.getItems().add(c.getName());
 
 		ordCol.setValue(p.defaultYCol().getName());
 		for(Column c: datas.getListeColumns())
-			ordCol.getItems().add(c.getName());
+			if(c.isNormalizable())
+				ordCol.getItems().add(c.getName());
 
 		load.setOnAction(e -> pointGenerator(p));
 		robustesseBar.setProgress(0.50);
@@ -141,6 +147,16 @@ public class GraphView extends AbstractView{
 			if(name.equals(c.getName())) 
 				return c;
 		return null;
+	}
+	@Override
+	public void update(Subject subj) {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public void update(Subject subj, Object data) {
+		// TODO Auto-generated method stub
+
 	}
 
 

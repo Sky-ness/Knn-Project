@@ -17,8 +17,10 @@ import javafx.stage.Stage;
 import model.Column;
 import model.Parser;
 import utils.IPoint;
+import utils.Observer;
+import utils.Subject;
 
-public class PointView extends AbstractView{
+public class PointView extends AbstractView implements Observer{
 
 	protected static IPoint selectedPoint ;
 	
@@ -39,14 +41,15 @@ public class PointView extends AbstractView{
 			column.setCellValueFactory(new PropertyValueFactory<IPoint,Double>(c.getName()));
 			listColumn.add(column);
 		}
-
 		table.setItems(data);
 		table.getColumns().addAll(listColumn);
 		
 		b.setOnAction(e->{
+			/*
+			 *TODO update le point sélectionné avec un update 
+			 */
 			selectedPoint = table.getSelectionModel().getSelectedItem();
 		});
-		
 		vb.getChildren().addAll(table,b);
 		vb.setAlignment(Pos.CENTER);
 		Scene scene = initScene(vb);
@@ -54,9 +57,17 @@ public class PointView extends AbstractView{
 		stage.show();
 	}
 	public void update() {
-		/*
-		 * envoyer a toute les vue que le point sélectionné est le point de point View
-		 */
+		
+	}
+	@Override
+	public void update(Subject subj) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void update(Subject subj, Object data) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
