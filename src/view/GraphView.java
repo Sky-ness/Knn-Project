@@ -27,37 +27,33 @@ import utils.IPoint;
 
 public class GraphView extends AbstractView{
 	@FXML
-	private ScatterChart<Double,Double> chart;
-	@FXML
-	private Button clear;
-	@FXML
-	private MenuItem pointView;
+	private ComboBox<String> absCol;
 	@FXML
 	private MenuItem addPoint;
 	@FXML
-	private Button classifier;
+	private ScatterChart<Double,Double> chart;
 	@FXML
-	private Button load;
+	private Button classification;
 	@FXML
-	private MenuItem titanicLoadButton;
-	@FXML
-	private MenuItem pokemonLoadButton;
-	@FXML
-	private MenuItem irisLoadButton;
+	private Button clear;
 	@FXML
 	private MenuItem explorateur;
 	@FXML
-	private ComboBox<String> absCol;
+	private MenuItem irisLoadButton;
+	@FXML
+	private Button load;
 	@FXML
 	private ComboBox<String> ordCol;
 	@FXML
-	private ComboBox<String> classMethod;
+	private MenuItem pointView;
+	@FXML
+	private MenuItem pokemonLoadButton;
+	@FXML
+	private Label robustesse;
 	@FXML
 	private ProgressBar robustesseBar;
 	@FXML
-	private Slider neighborSlider;
-	@FXML
-	private Label robustesse;
+	private MenuItem titanicLoadButton;
 
 	private DataSet datas;
 
@@ -69,11 +65,10 @@ public class GraphView extends AbstractView{
 
 		Stage stage = initStage();
 		try {
-			VBox fxml = initFxml();
+			VBox fxml = initFxml("fxmlModel/graphique.fxml");
 			Scene scene = initScene(fxml);			
 			Parser p = new Parser();
 			start(p,pathPokemon);
-
 			irisLoadButton.setOnAction(e-> {
 				start(p,pathIris);
 			});
@@ -88,17 +83,16 @@ public class GraphView extends AbstractView{
 				if (f!=null)
 					start(p,f.getAbsolutePath());
 			});
-
 			addPoint.setOnAction(e-> new AddPointView(p));
 			pointView.setOnAction(e-> new PointView(p));
+			classification.setOnAction(e-> new ClassificationView(p));
+			
 			clear.setOnAction(e-> chart.getData().clear());
-
 			stage.setScene(scene);
-
+			
 		} catch (IOException e) {
 			System.err.println("Erreur au chargement: " +e.getMessage());
 		}
-
 		stage.show();
 	}
 	private void start(Parser p, String path) {
@@ -110,9 +104,6 @@ public class GraphView extends AbstractView{
 
 	public void loadModel(Parser p) {
 
-		// ajout des colonnes dans la comboBox
-
-		
 		absCol.setValue(p.defaultXCol().getName());
 		for(Column c: datas.getListeColumns())
 			absCol.getItems().add(c.getName());
@@ -121,29 +112,13 @@ public class GraphView extends AbstractView{
 		for(Column c: datas.getListeColumns())
 			ordCol.getItems().add(c.getName());
 
-		classMethod.setValue("Randomizer");
-		classMethod.getItems().add("Randomizer");
-		classMethod.getItems().add("Knn");
-		
 		load.setOnAction(e -> pointGenerator(p));
-		
 		robustesseBar.setProgress(0.50);
-		
-		classifier.setOnAction(e-> {
-			/*
-			 * j'ai mis un point par default mais il faudra le selectionné
-			 */
-			IPoint defaultPoint = p.getDatas().getListePoints().get(0);
-			modelClassification(classMethod.getValue(),defaultPoint,new Distance(),(int) neighborSlider.getValue());
-			/*
-			 * retourne la liste des voisins les plus proche
-			 */
-		});
 	}
+
 	private void resetModel(Parser p){
 		absCol.getItems().clear();
 		ordCol.getItems().clear();
-		classMethod.getItems().clear();
 		chart.getData().clear();
 	}
 
@@ -167,16 +142,6 @@ public class GraphView extends AbstractView{
 				return c;
 		return null;
 	}
-	private List<IPoint> modelClassification(String classification, IPoint point, Distance distance,int voisin) {
-		if (classification.equals("Knn")) {
-			Knn k = new Knn();
-			return k.neighbor(voisin, point, distance, datas.getListePoints(), datas.getListeColumns());
-		}
-		if (classification.equals("Randomizer")) {
-			Randomizer r = new Randomizer();
-			return r.neighbor(voisin, point, distance, datas.getListePoints(), datas.getListeColumns());
-		}
-		return null;
-	}
+
 
 }

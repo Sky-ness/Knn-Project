@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="425.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem fx:id="explorateur" mnemonicParsing="false" text="Open Csv file" />
+            <MenuItem fx:id="irisLoadButton" mnemonicParsing="false" text="Load Iris" />
+                  <MenuItem fx:id="pokemonLoadButton" mnemonicParsing="false" text="Load Pokemon" />
+                  <MenuItem fx:id="titanicLoadButton" mnemonicParsing="false" text="Load Titanic" />
+          </items>
+        </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem fx:id="addPoint" mnemonicParsing="false" text="Add Point" />
+                  <MenuItem fx:id="pointView" mnemonicParsing="false" text="Show/Select Point" />
+               </items>
+            </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+      <BorderPane id="borderpane" prefHeight="396.0" prefWidth="640.0">
+         <top>
+        <Label alignment="CENTER" style="&#10;" text="Classification des données" textAlignment="CENTER" textFill="#ea7d7d" wrapText="false" BorderPane.alignment="CENTER">
+          <font>
+            <Font size="18.0" />
+          </font>
+        </Label>
+         </top>
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="821.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="68.0" prefWidth="198.0">
+                     <children>
+                        <Button fx:id="clear" alignment="CENTER" contentDisplay="CENTER" layoutY="22.0" mnemonicParsing="false" text="Clear" />
+                     </children>
+                  </Pane>
+                  <ComboBox id="abscisse" fx:id="absCol" prefHeight="26.0" prefWidth="162.0" promptText="Sélectionner abscisse" />
+                  <Button id="classifier" fx:id="load" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Charger" />
+                  <ComboBox id="ordonnee" fx:id="ordCol" prefHeight="26.0" prefWidth="164.0" promptText="Sélectionner ordonne" />
+               </children>
+            </HBox>
+         </bottom>
+         <left>
+            <VBox alignment="CENTER" prefHeight="301.0" prefWidth="178.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="121.0" prefWidth="178.0">
+                     <children>
+                        <Button fx:id="classification" mnemonicParsing="false" text="Classifier le modele" />
+                     </children>
+                  </VBox>
+                  <Label alignment="CENTER" prefHeight="19.0" prefWidth="169.0" text="Robustesse du modele" textFill="#1f762c">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="robustesseBar" prefHeight="18.0" prefWidth="153.0" progress="0.0" />
+                  <Label fx:id="robustesse" text="0%" textFill="#1f762c">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children></VBox>
+         </left>
+         <center>
+            <ScatterChart id="chart" fx:id="chart" BorderPane.alignment="CENTER">
+              <xAxis>
+                <NumberAxis side="BOTTOM" upperBound="0.9" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" upperBound="0.9" />
+              </yAxis>
+            </ScatterChart>
+         </center>
+      </BorderPane>
+  </children>
+</VBox>

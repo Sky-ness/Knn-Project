@@ -7,8 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import utils.IPoint;
 
 public class AbstractView extends Stage{
+		
 	public Stage initStage() {
 		Stage stage = new Stage();
 		stage.setTitle("Graphique");
@@ -18,11 +20,10 @@ public class AbstractView extends Stage{
 		Scene scene = new Scene(vbox);
 		return scene;
 	}
-	public VBox initFxml()throws IOException{
+	public VBox initFxml(String path)throws IOException{
 		FXMLLoader loader = new FXMLLoader();
 		loader.setController(this);
-		String fxmlDocPath = "fxmlModel/classification.fxml";
-		FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
+		FileInputStream fxmlStream = new FileInputStream(path);
 		VBox vbox = (VBox) loader.load(fxmlStream);
 		return vbox;
 	}

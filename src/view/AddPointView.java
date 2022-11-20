@@ -27,14 +27,14 @@ public class AddPointView extends AbstractView{
 		datas=p.getDatas();
 		Stage stage = initStage();
 		VBox vb = new VBox();
-		vb.setPadding(new Insets(40,40,40,40));
+		vb.setPadding(new Insets(40));
 		Button b = new Button("valider");
-		b.setAlignment(Pos.CENTER);
 		List<Label> listLbl = new ArrayList<Label>();
 		List<TextField> listTf = new ArrayList<TextField>();
 
 		for(Column c: datas.getListeColumns()) {
 			Label label = new Label(c.getName());
+			label.setPadding(new Insets(5));
 			TextField tf =new TextField();
 			listLbl.add(label);
 			listTf.add(tf);
@@ -68,6 +68,7 @@ public class AddPointView extends AbstractView{
 			vb.getChildren().addAll(listLbl.get(i),listTf.get(i));
 		}
 		vb.getChildren().add(b);
+		vb.setAlignment(Pos.CENTER);
 		Scene scene = initScene(vb);
 		stage.setScene(scene);
 		stage.show();
