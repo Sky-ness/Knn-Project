@@ -36,6 +36,10 @@ public class Titanic implements IPoint {
 		
 	}
 	
+	public Titanic(Object ...objects){
+		
+	}
+	
 	
 	public Titanic(int passengerId, int survived, int pclass, String name, Sexe sex, double age, int sibSp, int parch,
 			String ticket, double fare, String cabin, char embarked) {
