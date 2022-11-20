@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.IPoint;
+import utils.Observer;
 
 public class AbstractView extends Stage{
 		
