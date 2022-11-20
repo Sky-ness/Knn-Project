@@ -19,7 +19,7 @@ import utils.IPoint;
 public class Parser implements IMVCModel{
 	protected String title;
 	protected DataSet datas;
-	
+
 	@Override
 	public void loadFromFile(String datafile) {
 		String lowercase = datafile.toLowerCase();
@@ -34,14 +34,14 @@ public class Parser implements IMVCModel{
 				datas = readFile(datafile, Iris.class);
 				title = "Iris";
 			}
-			
+
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void loadFromFile(File f) {
 		loadFromFile(f.getAbsolutePath());
 	}
@@ -54,7 +54,7 @@ public class Parser implements IMVCModel{
 	public DataSet getDatas() {
 		return datas;
 	}
-	
+
 	@Override
 	public int getNbLines() {
 		// TODO Auto-generated method stub
@@ -64,19 +64,19 @@ public class Parser implements IMVCModel{
 	@Override
 	public void setLines(List<IPoint> lines) {
 		this.datas.setLines(lines);
-		
+
 	}
 
 	@Override
 	public void addLine(IPoint element) {
 		this.datas.listePoints.add(element);
-		
+
 	}
 
 	@Override
 	public void addAllLine(List<IPoint> element) {
 		this.datas.listePoints.addAll(element);
-		
+
 	}
 
 	@Override
@@ -86,17 +86,23 @@ public class Parser implements IMVCModel{
 
 	@Override
 	public void loadFromString(String data) {
-		
+
 	}
 
 	@Override
 	public Column defaultXCol() {
-		return datas.listeColumns.get(1);
+		for(Column c : datas.listeColumns)
+			if (c.isNormalizable())
+				return c;
+		return null;
 	}
 
 	@Override
 	public Column defaultYCol() {
-		return datas.listeColumns.get(2);
+		for(Column c : datas.listeColumns)
+			if (c.isNormalizable()&& c!=defaultXCol())
+				return c;
+		return null;
 	}
 
 	@Override
@@ -108,7 +114,7 @@ public class Parser implements IMVCModel{
 	public List<IColumn> getNormalizableColumns() {
 		return datas.getNormalizableColumns();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public DataSet readFile(String link,@SuppressWarnings("rawtypes") Class cl) throws IllegalStateException, IOException {
 		List<IPoint> points = new ArrayList<IPoint>();
@@ -127,5 +133,5 @@ public class Parser implements IMVCModel{
 	public Collection<ICategory> allCategories() {
 		return null;
 	}
-	
+
 }
