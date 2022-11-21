@@ -4,10 +4,10 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import utils.Classifieur;
+import utils.Classifier;
 import utils.IPoint;
 
-public class Knn extends Classifieur{
+public class Knn extends Classifier{
 	
 	@Override
 	public List<IPoint> neighbor(int k, IPoint point, Distance distance,List<IPoint> list,List<Column> c1) {
@@ -18,6 +18,5 @@ public class Knn extends Classifieur{
 		}
 		return test;
 	}
-
 
 }

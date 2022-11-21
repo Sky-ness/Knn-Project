@@ -29,19 +29,19 @@ public class DataSet implements IDataset{
 		for(Field field : fs) {
 			column = new Column(field.getName(),this);
 			type = field.getType().getName();
-			if(type.equals("double") || type.equals("int")) {
+			if(type.equals(double.class.toString()) || type.equals(int.class.toString())) {
 				column.setNormalizer(new Number_Normalizer(column));
 			}
-			if(type.equals("boolean")) {
+			if(type.equals(boolean.class.toString())) {
 				column.setNormalizer(new Boolean_Normalizer());
 			}
-			if(type.equals("model.PokemonType")) {
+			if(type.equals(Pokemon_Type_Normalizer.class.toString())) {
 				column.setNormalizer(new Pokemon_Type_Normalizer());
 			}
-			if(type.equals("model.IrisVariety")) {
+			if(type.equals(IrisVariety_Normalizer.class.toString())) {
 				column.setNormalizer(new IrisVariety_Normalizer());
 			}
-			if(type.equals("model.Sexe")) {
+			if(type.equals(Sexe_Normalizer.class.toString())) {
 				column.setNormalizer(new Sexe_Normalizer());
 			}
 			list.add(column);
