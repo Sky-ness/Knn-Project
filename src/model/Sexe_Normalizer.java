@@ -11,8 +11,8 @@ public class Sexe_Normalizer implements IValueNormalizer{
 			return 0;
 		}
 		if(Sexe.class.equals(value.getClass())) {
-			Sexe iv = (Sexe) value;
-			return (double)iv.ordinal()/(Sexe.values().length-1);
+			Sexe sexe = (Sexe) value;
+			return (double)sexe.ordinal()/(Sexe.values().length-1);
 		}
 		return -1;
 	}
