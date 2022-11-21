@@ -69,7 +69,6 @@ public class DataSet extends Subject implements IDataset{
 	@Override
 	public void setLines(List<IPoint> lines) {
 		listePoints=lines;
-		notifyObservers();
 	}
 
 	@Override

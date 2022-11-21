@@ -54,14 +54,12 @@ public class GraphView extends AbstractView implements Observer{
 	private final String pathPokemon="data/pokemon_train.csv";
 	private final String pathIris="data/iris.csv";
 	private final String pathTitanic="data/titanic.csv";
-
-	protected static Parser p;
 	
 	public GraphView(){
 		/*
 		 *TODO update le dataSet des qu'on load un autre model au lieu d'utiliser un parser en paramètre 
 		 */
-		p= new Parser();
+		Parser p = new Parser();
 		Stage stage = initStage();
 		try {
 			VBox fxml = initFxml("fxmlModel/graphique.fxml");
@@ -87,7 +85,6 @@ public class GraphView extends AbstractView implements Observer{
 			addPoint.setOnAction(e-> new AddPointView(p));
 			pointView.setOnAction(e-> new PointView(p));
 			classification.setOnAction(e-> new ClassificationView(p));
-
 			clear.setOnAction(e-> resetModel());
 			stage.setScene(scene);
 
@@ -146,7 +143,8 @@ public class GraphView extends AbstractView implements Observer{
 	}
 	@Override
 	public void update(Subject subj) {
-		loadView(p);
+//		loadView(p);
+		System.out.println("ajout d'un point dans le graph");
 	}
 
 }

@@ -87,6 +87,7 @@ public class ClassificationView extends AbstractView implements Observer{
 	}
 	@Override
 	public void update(Subject subj) {
-		loadView(GraphView.p);
+//		loadView(GraphView.p);
+		System.out.println("ajout d'un point dans la classification");
 	}
 }
