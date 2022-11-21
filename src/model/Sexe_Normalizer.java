@@ -3,22 +3,23 @@ package model;
 import utils.IValueNormalizer;
 
 public class Sexe_Normalizer implements IValueNormalizer{
-	private static final int NB_TYPES = 2;
+	
 
 	@Override
 	public double normalize(Object value) {
+		if(value==null) {
+			return 0;
+		}
 		if(Sexe.class.equals(value.getClass())) {
 			Sexe iv = (Sexe) value;
-			return (double)iv.ordinal()/NB_TYPES;
+			return (double)iv.ordinal()/(Sexe.values().length-1);
 		}
 		return -1;
 	}
 
 	@Override
 	public Object denormalize(double value) {
-		if(value < 0 || value > 1)
-			return null;
-		Sexe.MALE.ordinal();
-		return Sexe.values()[(int) (value * NB_TYPES)];
+		Sexe sexe[] = Sexe.values();
+		return sexe[(int) (value*(sexe.length-1))];
 	}
 }
