@@ -20,7 +20,7 @@ public class IrisVariety_Normalizer implements IValueNormalizer{
 
 	@Override
 	public Object denormalize(double value) {
-		PokemonType[] PkType = PokemonType.values();
-		return PkType[(int) (value*(PkType.length-1))];
+		IrisVariety[] variety = IrisVariety.values();
+		return variety[(int) (value*(variety.length-1))];
 	}
 }
