@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.DataSet;
 import model.Distance;
 import model.Knn;
 import model.Parser;
@@ -39,33 +38,15 @@ public class ClassificationView extends AbstractView implements Observer{
     @FXML
     private Label testVoisin3;
 
-	private DataSet datas;
-
 	public ClassificationView(Parser p) {
 
-		datas =p.getDatas();
+		datas=p.getDatas();
+		datas.attach(this);
 		Stage stage = initStage();
 		try {
 			VBox fxml = initFxml("fxmlModel/classification.fxml");
 			Scene scene = initScene(fxml);
-			classMethod.setValue("KNN");
-			classMethod.getItems().add("KNN");
-			classMethod.getItems().add("Randomizer");
-
-			
-			buttonSelectPoint.setOnAction(e-> new PointView(p));
-			labelSelectPoint.setOnMouseClicked(e-> labelSelectPoint.setText(PointView.selectedPoint.toString()));
-			classifier.setOnAction(e-> {
-				/*
-				 *TODO Point View en static a update pour l'actualisé sur toutes les vues
-				 *TODO Graphique a update quand on appuie sur la classification 
-				 */
-				List<IPoint> voisin = modelClassification(classMethod.getValue(),PointView.selectedPoint,new Distance(),(int) neighborSlider.getValue());
-				testVoisin1.setText(voisin.get(1).toString());
-				testVoisin2.setText(voisin.get(2).toString());
-				testVoisin3.setText(voisin.get(3).toString());
-			
-			});
+			loadView(p);
 			stage.setScene(scene);
 		}catch(Exception e) {e.printStackTrace();}
 		stage.show();
@@ -84,14 +65,28 @@ public class ClassificationView extends AbstractView implements Observer{
 		}
 		return null;
 	}
-	@Override
-	public void update(Subject subj) {
-		// TODO Auto-generated method stub
+
+	public void loadView(Parser p) {
+		classMethod.setValue("KNN");
+		classMethod.getItems().add("KNN");
+		classMethod.getItems().add("Randomizer");
 		
+		buttonSelectPoint.setOnAction(e-> new PointView(p));
+		labelSelectPoint.setOnMouseClicked(e-> labelSelectPoint.setText(PointView.selectedPoint.toString()));
+		classifier.setOnAction(e-> {
+			/*
+			 *TODO Point View en static a update pour l'actualisé sur toutes les vues
+			 *TODO Graphique a update quand on appuie sur la classification 
+			 */
+			List<IPoint> voisin = modelClassification(classMethod.getValue(),PointView.selectedPoint,new Distance(),(int) neighborSlider.getValue());
+			testVoisin1.setText(voisin.get(1).toString());
+			testVoisin2.setText(voisin.get(2).toString());
+			testVoisin3.setText(voisin.get(3).toString());
+		
+		});
 	}
 	@Override
-	public void update(Subject subj, Object data) {
-		// TODO Auto-generated method stub
-		
+	public void update(Subject subj) {
+		loadView(GraphView.p);
 	}
 }

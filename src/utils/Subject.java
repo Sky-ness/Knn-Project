@@ -28,12 +28,5 @@ public abstract class Subject {
         }
     }
 
-
-    public void notifyObservers(Object data) {
-        for (Observer o : attached) {
-            o.update(this, data);
-        }
-    }
-
 }
 

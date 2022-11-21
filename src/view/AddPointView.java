@@ -23,11 +23,18 @@ import utils.Subject;
 
 public class AddPointView extends AbstractView implements Observer{
 
-	public DataSet datas;
-
 	public AddPointView(Parser p) {
+		
 		datas=p.getDatas();
+		datas.attach(this);
+		VBox vb = loadView(p);
 		Stage stage = initStage();
+		Scene scene = initScene(vb);
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	public VBox loadView(Parser P) {
 		VBox vb = new VBox();
 		vb.setPadding(new Insets(40));
 		Button b = new Button("valider");
@@ -41,7 +48,6 @@ public class AddPointView extends AbstractView implements Observer{
 			listLbl.add(label);
 			listTf.add(tf);
 		}
-
 		@SuppressWarnings("rawtypes")
 		Class c = datas.getListePoints().get(0).getClass();
 		b.setOnAction((event) -> {
@@ -49,43 +55,26 @@ public class AddPointView extends AbstractView implements Observer{
 			for(int i =0;i<listTf.size();i++) {
 				parameter[i]=listTf.get(i).getText();
 			}
-
-
 			if(c.equals(Iris.class)) {
-				p.getDatas().addLine(new Iris(parameter));
+				datas.addLine(new Iris(parameter));
 			}
-
 			if(c.equals(Pokemon.class)) {
-				p.getDatas().addLine(new Pokemon(parameter));
+				datas.addLine(new Pokemon(parameter));
 			}
-
 			if(c.equals(Titanic.class)) {
-				p.getDatas().addLine(new Titanic(parameter));
+				datas.addLine(new Titanic(parameter));
 			}
-
-
 		});
-
 		for(int i=0;i<listLbl.size();i++) {
 			vb.getChildren().addAll(listLbl.get(i),listTf.get(i));
 		}
 		vb.getChildren().add(b);
 		vb.setAlignment(Pos.CENTER);
-		Scene scene = initScene(vb);
-		stage.setScene(scene);
-		stage.show();
+		return vb;
 	}
-
 	@Override
 	public void update(Subject subj) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(Subject subj, Object data) {
-		// TODO Auto-generated method stub
-		
+		loadView(GraphView.p);
 	}
 
 }

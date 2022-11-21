@@ -8,8 +8,9 @@ import java.util.List;
 import utils.IColumn;
 import utils.IDataset;
 import utils.IPoint;
+import utils.Subject;
 
-public class DataSet implements IDataset{
+public class DataSet extends Subject implements IDataset{
 	
 	protected String title;
 	protected List<IPoint> listePoints;
@@ -68,19 +69,19 @@ public class DataSet implements IDataset{
 	@Override
 	public void setLines(List<IPoint> lines) {
 		listePoints=lines;
-
+		notifyObservers();
 	}
 
 	@Override
 	public void addLine(IPoint element) {
 		listePoints.add(element);
-
+		notifyObservers();
 	}
 
 	@Override
 	public void addAllLine(List<IPoint> element) {
 		listePoints.addAll(element);
-
+		notifyObservers();
 	}
 
 	@Override

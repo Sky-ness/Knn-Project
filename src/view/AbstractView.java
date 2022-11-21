@@ -7,11 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import utils.IPoint;
-import utils.Observer;
+import model.DataSet;
+import model.Parser;
 
-public class AbstractView extends Stage{
+public abstract class AbstractView extends Stage{
 		
+	protected DataSet datas;
+	
 	public Stage initStage() {
 		Stage stage = new Stage();
 		stage.setTitle("Graphique");
@@ -25,7 +27,6 @@ public class AbstractView extends Stage{
 		FXMLLoader loader = new FXMLLoader();
 		loader.setController(this);
 		FileInputStream fxmlStream = new FileInputStream(path);
-		VBox vbox = (VBox) loader.load(fxmlStream);
-		return vbox;
+		return (VBox) loader.load(fxmlStream);
 	}
 }
