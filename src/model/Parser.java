@@ -15,37 +15,48 @@ import utils.ICategory;
 import utils.IColumn;
 import utils.IMVCModel;
 import utils.IPoint;
+import utils.Subject;
 
-public class Parser implements IMVCModel{
+public class Parser extends Subject implements IMVCModel {
+	
 	protected String title;
 	protected DataSet datas;
 
 	@Override
-	public void loadFromFile(String datafile) {
-		String lowercase = datafile.toLowerCase();
+	public void loadFromFile(String datafile,Class c) throws IllegalStateException, IOException {
+		List<IPoint> points = new ArrayList<IPoint>();
+		points = new CsvToBeanBuilder<IPoint>(Files.newBufferedReader(Paths.get(datafile)))
+				.withSeparator(',')
+				.withType(c)
+				.build().parse();
+		datas = new DataSet(title,points);
+	}
+	
+	public void loadFromFile(File f,Class c) throws IllegalStateException, IOException {
+		loadFromFile(f.getAbsolutePath(),c);
+	}
+	
+	@Override
+	public void loadFromString(String data) {
+		String lowercase = data.toLowerCase();
 		try {
 			if(lowercase.contains("pokemon")) { 
-				datas = readFile(datafile, Pokemon.class);
+				loadFromFile(data, Pokemon.class);
 				title = "Pokemon";
 			} else if(lowercase.contains("titanic")) { 
-				datas = readFile(datafile, Titanic.class);
+				loadFromFile(data, Titanic.class);
 				title = "Titanic";
 			} else if(lowercase.contains("iris")) {
-				datas = readFile(datafile, Iris.class);
+				loadFromFile(data, Iris.class);
 				title = "Iris";
 			}
-
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
-	public void loadFromFile(File f) {
-		loadFromFile(f.getAbsolutePath());
-	}
-
+	
 	@Override
 	public String getTitle() {
 		return title;
@@ -64,29 +75,24 @@ public class Parser implements IMVCModel{
 	@Override
 	public void setLines(List<IPoint> lines) {
 		this.datas.setLines(lines);
-
+		notifyObservers();
 	}
 
 	@Override
 	public void addLine(IPoint element) {
 		this.datas.listePoints.add(element);
-
+		notifyObservers();
 	}
 
 	@Override
 	public void addAllLine(List<IPoint> element) {
 		this.datas.listePoints.addAll(element);
-
+		notifyObservers();
 	}
 
 	@Override
 	public Iterator<IPoint> iterator() {
 		return datas.iterator();
-	}
-
-	@Override
-	public void loadFromString(String data) {
-
 	}
 
 	@Override
@@ -115,15 +121,6 @@ public class Parser implements IMVCModel{
 		return datas.getNormalizableColumns();
 	}
 
-	@SuppressWarnings("unchecked")
-	public DataSet readFile(String link,@SuppressWarnings("rawtypes") Class cl) throws IllegalStateException, IOException {
-		List<IPoint> points = new ArrayList<IPoint>();
-		points = new CsvToBeanBuilder<IPoint>(Files.newBufferedReader(Paths.get(link)))
-				.withSeparator(',')
-				.withType(cl)
-				.build().parse();
-		return new DataSet(title,points);
-	}
 	@Override
 	public void addCategory(ICategory classe) {
 		// TODO
@@ -132,6 +129,18 @@ public class Parser implements IMVCModel{
 	@Override
 	public Collection<ICategory> allCategories() {
 		return null;
+	}
+
+	@Override
+	public List<Column> getListeColumns() {
+		// TODO Auto-generated method stub
+		return datas.listeColumns;
+	}
+
+	@Override
+	public List<IPoint> getListePoints() {
+		// TODO Auto-generated method stub
+		return datas.listePoints;
 	}
 
 }

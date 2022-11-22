@@ -10,7 +10,7 @@ import utils.IDataset;
 import utils.IPoint;
 import utils.Subject;
 
-public class DataSet extends Subject implements IDataset{
+public class DataSet implements IDataset{
 	
 	protected String title;
 	protected List<IPoint> listePoints;
@@ -74,15 +74,23 @@ public class DataSet extends Subject implements IDataset{
 	@Override
 	public void addLine(IPoint element) {
 		listePoints.add(element);
-		notifyObservers();
 	}
 
 	@Override
 	public void addAllLine(List<IPoint> element) {
 		listePoints.addAll(element);
-		notifyObservers();
 	}
 
+	@Override
+	public List<Column> getListeColumns() {
+		return listeColumns;
+	}
+	
+	@Override
+	public List<IPoint> getListePoints() {
+		return listePoints;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("");
@@ -111,10 +119,4 @@ public class DataSet extends Subject implements IDataset{
 		return res;
 	}
 
-	public List<Column> getListeColumns() {
-		return listeColumns;
-	}
-	public List<IPoint> getListePoints() {
-		return listePoints;
-	}
 }

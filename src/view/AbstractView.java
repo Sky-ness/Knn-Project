@@ -9,10 +9,17 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.DataSet;
 import model.Parser;
+import utils.Observer;
 
-public abstract class AbstractView extends Stage{
+public abstract class AbstractView extends Stage implements Observer{
 		
-	protected DataSet datas;
+	protected Parser parser;
+	
+	public AbstractView(Parser p) {
+		this.parser=p;
+		parser.attach(this);
+		
+	}
 	
 	public Stage initStage() {
 		Stage stage = new Stage();

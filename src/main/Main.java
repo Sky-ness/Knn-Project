@@ -2,8 +2,8 @@ package main;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.Parser;
 import view.GraphView;
-import view.PointView;
 
 public class Main extends Application{
 
@@ -13,6 +13,7 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		new GraphView();
+		Parser p = new Parser();
+		new GraphView(p);
 	}
 }

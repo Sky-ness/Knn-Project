@@ -18,7 +18,7 @@ import utils.IPoint;
 import utils.Observer;
 import utils.Subject;
 
-public class ClassificationView extends AbstractView implements Observer{
+public class ClassificationView extends AbstractView{
 	@FXML
 	private Button buttonSelectPoint;
 	@FXML
@@ -39,14 +39,13 @@ public class ClassificationView extends AbstractView implements Observer{
     private Label testVoisin3;
 
 	public ClassificationView(Parser p) {
-
-		datas=p.getDatas();
-		datas.attach(this);
+		super(p);
+		
 		Stage stage = initStage();
 		try {
 			VBox fxml = initFxml("fxmlModel/classification.fxml");
 			Scene scene = initScene(fxml);
-			loadView(p);
+			loadView();
 			stage.setScene(scene);
 		}catch(Exception e) {e.printStackTrace();}
 		stage.show();
@@ -57,21 +56,21 @@ public class ClassificationView extends AbstractView implements Observer{
 	private List<IPoint> modelClassification(String classification, IPoint point, Distance distance,int voisin) {
 		if (classification.equals("KNN")) {
 			Knn k = new Knn();
-			return k.neighbor(voisin, point, distance, datas.getListePoints(), datas.getListeColumns());
+			return k.neighbor(voisin, point, distance, parser.getListePoints(), parser.getListeColumns());
 		}
 		if (classification.equals("Randomizer")) {
 			Randomizer r = new Randomizer();
-			return r.neighbor(voisin, point, distance, datas.getListePoints(), datas.getListeColumns());
+			return r.neighbor(voisin, point, distance, parser.getListePoints(), parser.getListeColumns());
 		}
 		return null;
 	}
 
-	public void loadView(Parser p) {
+	public void loadView() {
 		classMethod.setValue("KNN");
 		classMethod.getItems().add("KNN");
 		classMethod.getItems().add("Randomizer");
 		
-		buttonSelectPoint.setOnAction(e-> new PointView(p));
+		buttonSelectPoint.setOnAction(e-> new PointView(parser));
 		labelSelectPoint.setOnMouseClicked(e-> labelSelectPoint.setText(PointView.selectedPoint.toString()));
 		classifier.setOnAction(e-> {
 			/*
@@ -87,7 +86,7 @@ public class ClassificationView extends AbstractView implements Observer{
 	}
 	@Override
 	public void update(Subject subj) {
-//		loadView(GraphView.p);
+		loadView();
 		System.out.println("ajout d'un point dans la classification");
 	}
 }

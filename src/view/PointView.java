@@ -22,14 +22,18 @@ import utils.Subject;
 public class PointView extends AbstractView implements Observer{
 
 	protected static IPoint selectedPoint ;
+	private TableView<IPoint> table;
+	private Button b;
 	
 	public PointView(Parser p){
-		
-		datas=p.getDatas();
-		datas.attach(this);
-		VBox vb= loadView(p);
+		super(p);
+				
 		Stage stage = initStage();
-		Scene scene = initScene(vb);
+
+		loadView();
+		setButton(table);
+		
+		Scene scene = initScene(initVbox());
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -37,7 +41,7 @@ public class PointView extends AbstractView implements Observer{
 	public List<TableColumn<IPoint,?>> columnFactory() {
 		List<TableColumn<IPoint,?>> listColumn = new ArrayList<>();
 		
-		for(Column c: datas.getListeColumns()) {
+		for(Column c: parser.getListeColumns()) {
 			TableColumn column = new TableColumn(c.getName());
 			column.setMinWidth(100);
 			column.setCellValueFactory(new PropertyValueFactory<IPoint,Double>(c.getName()));
@@ -46,29 +50,33 @@ public class PointView extends AbstractView implements Observer{
 		
 		return listColumn;
 	}
-	public VBox loadView(Parser p) {
-		VBox vb = new VBox(); 
-		final ObservableList<IPoint> data = FXCollections.observableArrayList(datas.getListePoints());
-		
-		Button b = new Button("selectionner un point");
-		TableView<IPoint> table = new TableView<IPoint>();
+	public void loadView() {
+		table = new TableView<IPoint>();
 		table.setEditable(true);
-
+		
+		ObservableList<IPoint> data = FXCollections.observableArrayList(parser.getListePoints());		
+	
 		List<TableColumn<IPoint,?>> listColumn = columnFactory();
 
 		table.setItems(data);
-		table.getColumns().addAll(listColumn);
-		
+		table.getColumns().addAll(listColumn);		
+	}
+	public void setButton(TableView<IPoint> table) {
+		b = new Button("selectionner un point");
 		b.setOnAction(e->{
 			selectedPoint = table.getSelectionModel().getSelectedItem();
 		});
+	}
+	
+	public VBox initVbox() {
+		VBox vb = new VBox();
 		vb.getChildren().addAll(table,b);
 		vb.setAlignment(Pos.CENTER);
 		return vb;
 	}
 	@Override
 	public void update(Subject subj) {
-//		loadView(GraphView.p);
+		loadView();
 		System.out.println("ajout d'un point dans point View");
 	}
 }

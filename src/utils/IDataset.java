@@ -2,6 +2,8 @@ package utils;
 
 import java.util.List;
 
+import model.Column;
+
 /**
 * Decrit un <i>DatSet</i>, c'est a dire un ensemble de points (ou lignes,
 * ou donnees) ayant tous la meme structure (les memes colonnes)
@@ -33,4 +35,8 @@ void addLine(IPoint element);
 * Ajoute une collection de donnees dans le DataSet
 */
 void addAllLine(List<IPoint> element);
+
+public List<Column> getListeColumns();
+
+public List<IPoint> getListePoints();
 }

@@ -13,21 +13,20 @@ import model.Parser;
 import model.Pokemon;
 
 public class testDistancePokemon {
-	DataSet ds;
+	Parser parser = new Parser();
 	Distance distance;
 	
 	@BeforeEach
 	public void init() throws IllegalStateException, IOException {
-		Parser parser = new Parser();
-		ds = parser.readFile("data/pokemon_train.csv", Pokemon.class);
+		parser.loadFromString("data/pokemon_train.csv");
 		distance = new Distance();
 	}
 	
 	@Test
 	public void TestDistanceManhattanPokemon() {
-		assertEquals(0.0,distance.distanceManhattan(ds.getListePoints().get(0),ds.getListePoints().get(1), ds.getListeColumns()));
-		assertEquals(0.0,distance.distanceManhattan(ds.getListePoints().get(0),ds.getListePoints().get(2), ds.getListeColumns()));
-		assertEquals(0.0,distance.distanceManhattan(ds.getListePoints().get(0),ds.getListePoints().get(3), ds.getListeColumns()));
+		assertEquals(0.0,distance.distanceManhattan(parser.getListePoints().get(0),parser.getListePoints().get(1), parser.getListeColumns()));
+		assertEquals(0.0,distance.distanceManhattan(parser.getListePoints().get(0),parser.getListePoints().get(2), parser.getListeColumns()));
+		assertEquals(0.0,distance.distanceManhattan(parser.getListePoints().get(0),parser.getListePoints().get(3), parser.getListeColumns()));
 
 
 		
@@ -36,9 +35,9 @@ public class testDistancePokemon {
 
 	@Test
 	public void TestDistanceEuclidiennePokemon() {
-		assertEquals(0.0,distance.distanceEuclidienne(ds.getListePoints().get(0),ds.getListePoints().get(1), ds.getListeColumns()));
-		assertEquals(0.0,distance.distanceEuclidienne(ds.getListePoints().get(0),ds.getListePoints().get(2), ds.getListeColumns()));
-		assertEquals(0.0,distance.distanceEuclidienne(ds.getListePoints().get(0),ds.getListePoints().get(3), ds.getListeColumns()));
+		assertEquals(0.0,distance.distanceEuclidienne(parser.getListePoints().get(0),parser.getListePoints().get(1), parser.getListeColumns()));
+		assertEquals(0.0,distance.distanceEuclidienne(parser.getListePoints().get(0),parser.getListePoints().get(2), parser.getListeColumns()));
+		assertEquals(0.0,distance.distanceEuclidienne(parser.getListePoints().get(0),parser.getListePoints().get(3), parser.getListeColumns()));
 		
 	}
 	

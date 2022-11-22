@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,8 +17,10 @@ import model.Column;
 public interface IMVCModel extends IDataset {
 /**
 * Charge les donnees du modele d'un fichier CSV.
+ * @throws IOException 
+ * @throws IllegalStateException 
 */
-public void loadFromFile(String datafile);
+public void loadFromFile(String datafile,Class c) throws IllegalStateException, IOException;
 /**
 * Charge les donnees du modele d'une String "CSV".
 * Cette methode est surtout un utilitaire de test pour eviter d'avoir a

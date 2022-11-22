@@ -21,7 +21,7 @@ import utils.IPoint;
 import utils.Observer;
 import utils.Subject;
 
-public class GraphView extends AbstractView implements Observer{
+public class GraphView extends AbstractView {
 	@FXML
 	private ComboBox<String> absCol;
 	@FXML
@@ -55,36 +55,36 @@ public class GraphView extends AbstractView implements Observer{
 	private final String pathIris="data/iris.csv";
 	private final String pathTitanic="data/titanic.csv";
 	
-	public GraphView(){
+	public GraphView(Parser p){
+		super(p);
 		/*
 		 *TODO update le dataSet des qu'on load un autre model au lieu d'utiliser un parser en paramètre 
 		 */
-		Parser p = new Parser();
+		
 		Stage stage = initStage();
 		try {
 			VBox fxml = initFxml("fxmlModel/graphique.fxml");
 			Scene scene = initScene(fxml);
 			
-			start(p,pathPokemon);
-			datas.attach(this);
+			start(pathPokemon);
 			
 			irisLoadButton.setOnAction(e-> {
-				start(p,pathIris);
+				start(pathIris);
 			});
 			pokemonLoadButton.setOnAction(e-> {
-				start(p,pathPokemon);
+				start(pathPokemon);
 			});
 			titanicLoadButton.setOnAction(e-> {
-				start(p,pathTitanic);
+				start(pathTitanic);
 			});
 			explorateur.setOnAction(e-> {
 				File f = new FileChooser().showOpenDialog(this);
 				if (f!=null)
-					start(p,f.getAbsolutePath());
+					start(f.getAbsolutePath());
 			});
-			addPoint.setOnAction(e-> new AddPointView(p));
-			pointView.setOnAction(e-> new PointView(p));
-			classification.setOnAction(e-> new ClassificationView(p));
+			addPoint.setOnAction(e-> new AddPointView(parser));
+			pointView.setOnAction(e-> new PointView(parser));
+			classification.setOnAction(e-> new ClassificationView(parser));
 			clear.setOnAction(e-> resetModel());
 			stage.setScene(scene);
 
@@ -93,24 +93,23 @@ public class GraphView extends AbstractView implements Observer{
 		}
 		stage.show();
 	}
-	private void start(Parser p, String path) {
+	private void start(String path) {
 		resetModel();
-		p.loadFromFile(path);
-		datas = p.getDatas();
-		loadView(p);
+		parser.loadFromString(path);
+		loadView();
 	}
-	public void loadView(Parser p) {
+	public void loadView() {
 
-		absCol.setValue(p.defaultXCol().getName());
-		for(Column c: datas.getListeColumns())
+		absCol.setValue(parser.defaultXCol().getName());
+		for(Column c: parser.getListeColumns())
 			if(c.isNormalizable())
 				absCol.getItems().add(c.getName());
 
-		ordCol.setValue(p.defaultYCol().getName());
-		for(Column c: datas.getListeColumns())
+		ordCol.setValue(parser.defaultYCol().getName());
+		for(Column c: parser.getListeColumns())
 			if(c.isNormalizable())
 				ordCol.getItems().add(c.getName());
-
+		pointGenerator();
 		load.setOnAction(e -> pointGenerator());
 		robustesseBar.setProgress(0.50);
 	}
@@ -126,24 +125,25 @@ public class GraphView extends AbstractView implements Observer{
 		Column ordSelected=searchColumnbyName(ordCol.getValue());
 
 		XYChart.Series series1 = new XYChart.Series();
-		series1.setName(datas.getTitle());
+		series1.setName(parser.getTitle());
 
-		for(IPoint i : datas.getListePoints()) {
+		for(IPoint i : parser.getListePoints()) {
 			series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
 		}
+		
 		chart.getData().clear();
 		chart.getData().addAll(series1);
 	}
 
 	private Column searchColumnbyName(String name){
-		for(Column c : datas.getListeColumns())
+		for(Column c : parser.getListeColumns())
 			if(name.equals(c.getName())) 
 				return c;
 		return null;
 	}
 	@Override
 	public void update(Subject subj) {
-//		loadView(p);
+		pointGenerator();
 		System.out.println("ajout d'un point dans le graph");
 	}
 
