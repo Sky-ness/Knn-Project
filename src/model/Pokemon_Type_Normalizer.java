@@ -21,6 +21,8 @@ public class Pokemon_Type_Normalizer implements IValueNormalizer{
 
 	@Override
 	public Object denormalize(double value) {
+		if(value > 1 || value < 0)
+			return null;
 		PokemonType[] PkType = PokemonType.values();
 		return PkType[(int) (value*(PkType.length-1))];
 	}
