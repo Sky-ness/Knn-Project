@@ -55,6 +55,7 @@ public class Parser extends Subject implements IMVCModel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		notifyObservers();
 	}
 	
 	@Override
@@ -68,8 +69,19 @@ public class Parser extends Subject implements IMVCModel {
 
 	@Override
 	public int getNbLines() {
-		// TODO Auto-generated method stub
 		return datas.getNbLines();
+	}
+	
+	@Override
+	public List<Column> getListeColumns() {
+		// TODO Auto-generated method stub
+		return datas.listeColumns;
+	}
+
+	@Override
+	public List<IPoint> getListePoints() {
+		// TODO Auto-generated method stub
+		return datas.listePoints;
 	}
 
 	@Override
@@ -129,18 +141,6 @@ public class Parser extends Subject implements IMVCModel {
 	@Override
 	public Collection<ICategory> allCategories() {
 		return null;
-	}
-
-	@Override
-	public List<Column> getListeColumns() {
-		// TODO Auto-generated method stub
-		return datas.listeColumns;
-	}
-
-	@Override
-	public List<IPoint> getListePoints() {
-		// TODO Auto-generated method stub
-		return datas.listePoints;
 	}
 
 }

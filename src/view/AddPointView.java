@@ -25,21 +25,20 @@ public class AddPointView extends AbstractView {
 	public AddPointView(Parser p) {
 		super(p);
 		
-		VBox vb = loadView(p);
 		Stage stage = initStage();
-		Scene scene = initScene(vb);
+		Scene scene = initScene(loadView());
 		stage.setScene(scene);
 		stage.show();
 	}
 
-	public VBox loadView(Parser p) {
+	public VBox loadView() {
 		VBox vb = new VBox();
 		vb.setPadding(new Insets(40));
 		Button b = new Button("valider");
 		List<Label> listLbl = new ArrayList<Label>();
 		List<TextField> listTf = new ArrayList<TextField>();
 
-		for(Column c: p.getListeColumns()) {
+		for(Column c: parser.getListeColumns()) {
 			Label label = new Label(c.getName());
 			label.setPadding(new Insets(5));
 			TextField tf =new TextField();
@@ -48,20 +47,20 @@ public class AddPointView extends AbstractView {
 		}
 		
 		@SuppressWarnings("rawtypes")
-		Class c = p.getListePoints().get(0).getClass();
+		Class c = parser.getListePoints().get(0).getClass();
 		b.setOnAction((event) -> {
 			String [] parameter = new String [listTf.size()];
 			for(int i =0;i<listTf.size();i++) {
 				parameter[i]=listTf.get(i).getText();
 			}
 			if(c.equals(Iris.class)) {
-				p.addLine(new Iris(parameter));
+				parser.addLine(new Iris(parameter));
 			}
 			if(c.equals(Pokemon.class)) {
-				p.addLine(new Pokemon(parameter));
+				parser.addLine(new Pokemon(parameter));
 			}
 			if(c.equals(Titanic.class)) {
-				p.addLine(new Titanic(parameter));
+				parser.addLine(new Titanic(parameter));
 			}
 		});
 		for(int i=0;i<listLbl.size();i++) {
@@ -73,7 +72,7 @@ public class AddPointView extends AbstractView {
 	}
 	@Override
 	public void update(Subject subj) {
-		loadView(parser);
+		loadView();
 		System.out.println("ajout d'un point");
 	}
 

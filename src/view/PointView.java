@@ -29,10 +29,7 @@ public class PointView extends AbstractView implements Observer{
 		super(p);
 				
 		Stage stage = initStage();
-
 		loadView();
-		setButton(table);
-		
 		Scene scene = initScene(initVbox());
 		stage.setScene(scene);
 		stage.show();
@@ -42,7 +39,7 @@ public class PointView extends AbstractView implements Observer{
 		List<TableColumn<IPoint,?>> listColumn = new ArrayList<>();
 		
 		for(Column c: parser.getListeColumns()) {
-			TableColumn column = new TableColumn(c.getName());
+			TableColumn<IPoint,Double> column = new TableColumn<IPoint,Double>(c.getName());
 			column.setMinWidth(100);
 			column.setCellValueFactory(new PropertyValueFactory<IPoint,Double>(c.getName()));
 			listColumn.add(column);
@@ -56,10 +53,9 @@ public class PointView extends AbstractView implements Observer{
 		
 		ObservableList<IPoint> data = FXCollections.observableArrayList(parser.getListePoints());		
 	
-		List<TableColumn<IPoint,?>> listColumn = columnFactory();
-
 		table.setItems(data);
-		table.getColumns().addAll(listColumn);		
+		table.getColumns().addAll(columnFactory());	
+		setButton(table);
 	}
 	public void setButton(TableView<IPoint> table) {
 		b = new Button("selectionner un point");

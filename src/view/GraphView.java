@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 import model.Column;
 import model.Parser;
 import utils.IPoint;
-import utils.Observer;
 import utils.Subject;
 
 public class GraphView extends AbstractView {
@@ -143,7 +142,7 @@ public class GraphView extends AbstractView {
 	}
 	@Override
 	public void update(Subject subj) {
-		pointGenerator();
+		loadView();
 		System.out.println("ajout d'un point dans le graph");
 	}
 

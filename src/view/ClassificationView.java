@@ -74,7 +74,6 @@ public class ClassificationView extends AbstractView{
 		labelSelectPoint.setOnMouseClicked(e-> labelSelectPoint.setText(PointView.selectedPoint.toString()));
 		classifier.setOnAction(e-> {
 			/*
-			 *TODO Point View en static a update pour l'actualisé sur toutes les vues
 			 *TODO Graphique a update quand on appuie sur la classification 
 			 */
 			List<IPoint> voisin = modelClassification(classMethod.getValue(),PointView.selectedPoint,new Distance(),(int) neighborSlider.getValue());
