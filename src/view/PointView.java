@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -15,9 +16,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Column;
 import model.Parser;
+import utils.AbstractSubject;
 import utils.IPoint;
 import utils.Observer;
-import utils.Subject;
 
 public class PointView extends AbstractView implements Observer{
 
@@ -38,7 +39,7 @@ public class PointView extends AbstractView implements Observer{
 	public List<TableColumn<IPoint,?>> columnFactory() {
 		List<TableColumn<IPoint,?>> listColumn = new ArrayList<>();
 		
-		for(Column c: parser.getListeColumns()) {
+		for(Column c: parser.getListColumns()) {
 			TableColumn<IPoint,Double> column = new TableColumn<IPoint,Double>(c.getName());
 			column.setMinWidth(100);
 			column.setCellValueFactory(new PropertyValueFactory<IPoint,Double>(c.getName()));
@@ -51,7 +52,7 @@ public class PointView extends AbstractView implements Observer{
 		table = new TableView<IPoint>();
 		table.setEditable(true);
 		
-		ObservableList<IPoint> data = FXCollections.observableArrayList(parser.getListePoints());		
+		ObservableList<IPoint> data = FXCollections.observableArrayList(parser.getListPoints());		
 	
 		table.setItems(data);
 		table.getColumns().addAll(columnFactory());	
@@ -66,12 +67,13 @@ public class PointView extends AbstractView implements Observer{
 	
 	public VBox initVbox() {
 		VBox vb = new VBox();
-		vb.getChildren().addAll(table,b);
+		ObservableList<Node> children = vb.getChildren();
+		children.addAll(table,b);
 		vb.setAlignment(Pos.CENTER);
 		return vb;
 	}
 	@Override
-	public void update(Subject subj) {
+	public void update(AbstractSubject subj) {
 		loadView();
 		System.out.println("ajout d'un point dans point View");
 	}

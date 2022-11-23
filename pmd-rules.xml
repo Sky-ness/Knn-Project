@@ -1,0 +1,65 @@
+<ruleset name="pmd-rules" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+<description>CleanCode R3.02</description>
+<rule ref="category/java/codestyle.xml/ClassNamingConventions">
+<priority>2</priority>
+</rule>
+<rule ref="category/java/codestyle.xml/FieldNamingConventions">
+</rule>
+<rule ref="category/java/codestyle.xml/FormalParameterNamingConventions">
+<priority>2</priority>
+</rule>
+<rule ref="category/java/codestyle.xml/LocalVariableNamingConventions">
+<priority>2</priority>
+</rule>
+<rule ref="category/java/codestyle.xml/MethodNamingConventions">
+<priority>2</priority>
+</rule>
+<rule ref="category/java/codestyle.xml/VariableNamingConventions">
+<priority>2</priority>
+</rule>
+<rule ref="category/java/codestyle.xml/AbstractNaming"/>
+<rule ref="category/java/codestyle.xml/GenericsNaming"/>
+<rule ref="category/java/codestyle.xml/LinguisticNaming"/>
+<rule ref="category/java/codestyle.xml/ShortClassName"/>
+<rule ref="category/java/codestyle.xml/ShortMethodName"/>
+<rule ref="category/java/design.xml/ExcessiveMethodLength">
+<properties>
+<property name="minimum" value="60.0"/>
+</properties>
+</rule>
+<rule ref="category/java/design.xml/ExcessiveParameterList">
+<properties>
+<property name="minimum" value="4.0"/>
+</properties>
+</rule>
+<rule ref="category/java/design.xml/FinalFieldCouldBeStatic"/>
+<rule ref="category/java/design.xml/GodClass"/>
+<rule ref="category/java/design.xml/LawOfDemeter"/>
+<rule ref="category/java/design.xml/ModifiedCyclomaticComplexity"/>
+<rule ref="category/java/errorprone.xml/AvoidFieldNameMatchingMethodName"/>
+<rule ref="category/java/errorprone.xml/AvoidFieldNameMatchingTypeName"/>
+<rule ref="category/java/errorprone.xml/MethodWithSameNameAsEnclosingClass"/>
+<rule ref="category/java/design.xml/ExcessiveClassLength">
+<properties>
+<property name="minimum" value="200.0"/>
+</properties>
+</rule>
+<rule ref="category/java/design.xml/ExcessivePublicCount"/>
+<rule ref="category/java/codestyle.xml/DefaultPackage"/>
+<rule ref="category/java/bestpractices.xml/LooseCoupling"/>
+<rule ref="category/java/design.xml/CognitiveComplexity"/>
+<rule ref="category/java/design.xml/CyclomaticComplexity"/>
+<rule ref="category/java/design.xml/LogicInversion"/>
+<rule ref="category/java/design.xml/CouplingBetweenObjects"/>
+<rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts"/>
+<rule ref="category/java/design.xml/TooManyFields">
+<properties>
+<property name="maxfields" value="15"/>
+</properties>
+</rule>
+<rule ref="category/java/design.xml/TooManyMethods">
+<properties>
+<property name="maxmethods" value="15"/>
+</properties>
+</rule>
+</ruleset>

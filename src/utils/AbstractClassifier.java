@@ -4,10 +4,10 @@ import java.util.List;
 
 import model.Column;
 import model.Distance;
-import model.Parser;
 
-public abstract class Classifier {
+public abstract class AbstractClassifier {
 
+	@SuppressWarnings("PMD.ExcessiveParameterList")
 	public abstract List<IPoint> neighbor(int k, IPoint point, Distance distance, List<IPoint> list, List<Column> c1);
 	
 	public Object classify(List<IPoint> neighbor, Column col){

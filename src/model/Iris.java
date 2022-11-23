@@ -6,6 +6,7 @@ import com.opencsv.bean.CsvBindByName;
 
 import utils.IPoint;
 
+@SuppressWarnings("PMD.ShortClassName")
 public class Iris implements IPoint {
 
 	@CsvBindByName(column = "sepal.length")
@@ -51,11 +52,11 @@ public class Iris implements IPoint {
 		
 		String name = param[4].toLowerCase();
 		if(name.contains("setosa")){
-			variety=IrisVariety.Setosa;
+			variety=IrisVariety.SETOSA;
 		} else if(name.contains("versicolor")){
-			variety=IrisVariety.Versicolor;
+			variety=IrisVariety.VERSICOLOR;
 		} else if(name.contains("virginica")){
-			variety=IrisVariety.Virginica;
+			variety=IrisVariety.VIRGINICA;
 		} else {
 			variety=null;
 		}
@@ -86,8 +87,9 @@ public class Iris implements IPoint {
 	@Override
 	public Object getValue(Column col){
 		Field[] fs = this.getClass().getDeclaredFields();
+		String colName = col.getName();
 		for(Field f : fs) {
-			if(f.getName().equals(col.getName())){
+			if(colName.equals(f.getName())) {
 				try {
 					return f.get(this);
 				} catch (IllegalArgumentException | IllegalAccessException e) {

@@ -2,7 +2,7 @@ package model;
 
 import utils.IValueNormalizer;
 
-public class IrisVariety_Normalizer implements IValueNormalizer{
+public class IrisVarietyNormalizer implements IValueNormalizer{
 
 
 	@Override
@@ -10,10 +10,13 @@ public class IrisVariety_Normalizer implements IValueNormalizer{
 		if(value==null) {
 			return 0;
 		}
-		
+		IrisVariety[] values = IrisVariety.values();
+		int length = values.length;
+		IrisVariety iv;
 		if(IrisVariety.class.equals(value.getClass())) {
-			IrisVariety iv = (IrisVariety) value;
-			return (double)iv.ordinal()/(IrisVariety.values().length-1);
+			iv = (IrisVariety) value;
+			int ordinal = iv.ordinal();
+			return (double)ordinal/(length-1);
 		}
 		return -1;
 	}

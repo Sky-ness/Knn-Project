@@ -2,7 +2,7 @@ package model;
 
 import utils.IValueNormalizer;
 
-public class Sexe_Normalizer implements IValueNormalizer{
+public class SexeNormalizer implements IValueNormalizer{
 	
 
 	@Override
@@ -10,9 +10,11 @@ public class Sexe_Normalizer implements IValueNormalizer{
 		if(value==null) {
 			return 0;
 		}
+		Sexe sexe;
+		Sexe[] sexes = Sexe.values();
 		if(Sexe.class.equals(value.getClass())) {
-			Sexe sexe = (Sexe) value;
-			return (double)sexe.ordinal()/(Sexe.values().length-1);
+			sexe = (Sexe) value;
+			return (double)sexe.ordinal()/(sexes.length-1);
 		}
 		return -1;
 	}

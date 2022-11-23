@@ -8,7 +8,6 @@ import java.util.List;
 import utils.IColumn;
 import utils.IDataset;
 import utils.IPoint;
-import utils.Subject;
 
 public class DataSet implements IDataset{
 	
@@ -25,25 +24,28 @@ public class DataSet implements IDataset{
 	public List<Column> listColumn(){
 		List<Column> list = new ArrayList<Column>();
 		Column column = null;
+		@SuppressWarnings("PMD.LawOfDemeter")
 		Field[] fs = listePoints.get(0).getClass().getDeclaredFields();
 		String type = "";
+		Class<?> classField;
 		for(Field field : fs) {
 			column = new Column(field.getName(),this);
-			type = field.getType().getName();
+			classField = field.getType();
+			type = classField.getName();
 			if(type.equals(double.class.toString()) || type.equals(int.class.toString())) {
-				column.setNormalizer(new Number_Normalizer(column));
+				column.setNormalizer(new NumberNormalizer(column));
 			}
 			if(type.equals(boolean.class.toString())) {
-				column.setNormalizer(new Boolean_Normalizer());
+				column.setNormalizer(new BooleanNormalizer());
 			}
-			if(type.equals(Pokemon_Type_Normalizer.class.toString())) {
-				column.setNormalizer(new Pokemon_Type_Normalizer());
+			if(type.equals(PokemonTypeNormalizer.class.toString())) {
+				column.setNormalizer(new PokemonTypeNormalizer());
 			}
-			if(type.equals(IrisVariety_Normalizer.class.toString())) {
-				column.setNormalizer(new IrisVariety_Normalizer());
+			if(type.equals(IrisVarietyNormalizer.class.toString())) {
+				column.setNormalizer(new IrisVarietyNormalizer());
 			}
-			if(type.equals(Sexe_Normalizer.class.toString())) {
-				column.setNormalizer(new Sexe_Normalizer());
+			if(type.equals(SexeNormalizer.class.toString())) {
+				column.setNormalizer(new SexeNormalizer());
 			}
 			list.add(column);
 			
@@ -82,12 +84,12 @@ public class DataSet implements IDataset{
 	}
 
 	@Override
-	public List<Column> getListeColumns() {
+	public List<Column> getListColumns() {
 		return listeColumns;
 	}
 	
 	@Override
-	public List<IPoint> getListePoints() {
+	public List<IPoint> getListPoints() {
 		return listePoints;
 	}
 	

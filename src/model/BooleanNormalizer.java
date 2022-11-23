@@ -2,7 +2,7 @@ package model;
 
 import utils.IValueNormalizer;
 
-public class Boolean_Normalizer implements IValueNormalizer{
+public class BooleanNormalizer implements IValueNormalizer{
 
 	@Override
 	public double normalize(Object value) {

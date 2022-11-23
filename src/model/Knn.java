@@ -4,12 +4,14 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import utils.Classifier;
+import utils.AbstractClassifier;
 import utils.IPoint;
 
-public class Knn extends Classifier{
+@SuppressWarnings("PMD.ShortClassName")
+public class Knn extends AbstractClassifier{
 	
 	@Override
+	@SuppressWarnings("PMD.ExcessiveParameterList")
 	public List<IPoint> neighbor(int k, IPoint point, Distance distance,List<IPoint> list,List<Column> c1) {
 		List<IPoint> test= new ArrayList<IPoint>();
 		list.sort((i1,i2) -> Double.compare(distance.distanceManhattan(i1,point,c1), distance.distanceManhattan(i2, point,c1)));
@@ -18,5 +20,5 @@ public class Knn extends Classifier{
 		}
 		return test;
 	}
-
+	
 }

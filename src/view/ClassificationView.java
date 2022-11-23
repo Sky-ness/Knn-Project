@@ -2,6 +2,7 @@ package view;
 
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,9 +15,8 @@ import model.Distance;
 import model.Knn;
 import model.Parser;
 import model.Randomizer;
+import utils.AbstractSubject;
 import utils.IPoint;
-import utils.Observer;
-import utils.Subject;
 
 public class ClassificationView extends AbstractView{
 	@FXML
@@ -37,6 +37,8 @@ public class ClassificationView extends AbstractView{
     private Label testVoisin2;
     @FXML
     private Label testVoisin3;
+    
+    protected ObservableList<String> items;
 
 	public ClassificationView(Parser p) {
 		super(p);
@@ -53,22 +55,24 @@ public class ClassificationView extends AbstractView{
 	/*
 	 * retourne la liste des voisins les plus proches
 	 */
+	@SuppressWarnings("PMD.ExcessiveParameterList")
 	private List<IPoint> modelClassification(String classification, IPoint point, Distance distance,int voisin) {
 		if (classification.equals("KNN")) {
 			Knn k = new Knn();
-			return k.neighbor(voisin, point, distance, parser.getListePoints(), parser.getListeColumns());
+			return k.neighbor(voisin, point, distance, parser.getListPoints(), parser.getListColumns());
 		}
 		if (classification.equals("Randomizer")) {
 			Randomizer r = new Randomizer();
-			return r.neighbor(voisin, point, distance, parser.getListePoints(), parser.getListeColumns());
+			return r.neighbor(voisin, point, distance, parser.getListPoints(), parser.getListColumns());
 		}
 		return null;
 	}
 
 	public void loadView() {
+		items = classMethod.getItems();
 		classMethod.setValue("KNN");
-		classMethod.getItems().add("KNN");
-		classMethod.getItems().add("Randomizer");
+		items.add("KNN");
+		items.add("Randomizer");
 		
 		buttonSelectPoint.setOnAction(e-> new PointView(parser));
 		labelSelectPoint.setOnMouseClicked(e-> labelSelectPoint.setText(PointView.selectedPoint.toString()));
@@ -84,7 +88,7 @@ public class ClassificationView extends AbstractView{
 		});
 	}
 	@Override
-	public void update(Subject subj) {
+	public void update(AbstractSubject subj) {
 		loadView();
 		System.out.println("ajout d'un point dans la classification");
 	}

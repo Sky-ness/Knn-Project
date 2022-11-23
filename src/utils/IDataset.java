@@ -36,7 +36,7 @@ void addLine(IPoint element);
 */
 void addAllLine(List<IPoint> element);
 
-public List<Column> getListeColumns();
+public List<Column> getListColumns();
 
-public List<IPoint> getListePoints();
+public List<IPoint> getListPoints();
 }

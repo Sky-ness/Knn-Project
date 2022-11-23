@@ -6,13 +6,14 @@ import com.opencsv.bean.CsvBindByName;
 
 import utils.IPoint;
 
+@SuppressWarnings("PMD.ModifiedCyclomaticComplexity")
 public class Titanic implements IPoint {
 	@CsvBindByName(column = "PassengerId")
 	protected int passengerId;
 	@CsvBindByName(column = "Survived")
 	protected int survived;
 	@CsvBindByName(column = "Pclass")
-	protected int Pclass;
+	protected int pClass;
 	@CsvBindByName(column = "Name")
 	protected String name;
 	@CsvBindByName(column = "Sex")
@@ -30,12 +31,13 @@ public class Titanic implements IPoint {
 	@CsvBindByName(column = "Cabin")
 	protected String cabin;
 	@CsvBindByName(column = "Embarked")
-	protected char embarked;
+	protected Embarked embarked;
 
 	public Titanic(){
 
 	}
 
+	@SuppressWarnings("PMD.CyclomaticComplexity")
 	public Titanic(String ...param){
 		try {
 			passengerId = Integer.valueOf(param[0]);
@@ -51,9 +53,9 @@ public class Titanic implements IPoint {
 
 
 		try {
-			Pclass= Integer.valueOf(param[2]);
+			pClass= Integer.valueOf(param[2]);
 		} catch (Exception e) {
-			Pclass=0;
+			pClass=0;
 		}
 
 		name = param[3];
@@ -94,27 +96,24 @@ public class Titanic implements IPoint {
 		}
 
 		cabin = param[10];
-		Character [] valideEmbaked = new Character [] {'S','C','Q'};
+		
+		String emb = param[11].toUpperCase();
+		
+		Embarked [] em = Embarked.values();
+		embarked=null;
+		for(Embarked e: em) {
 
-		embarked=0;
-		Character emb = param[10].toUpperCase().charAt(0);
-		for(Character c:valideEmbaked) {
-			if(c.equals(emb)) {
-				embarked=c;
+			if(emb.equalsIgnoreCase(e.name())){
+				embarked = e;
 			}
-
 		}
-
-
-
-
 
 	}
 
 
 	public int getPassengerId() {return passengerId;}
 	public int getSurvived() {return survived;}
-	public int getPclass() {return Pclass;}
+	public int getPclass() {return pClass;}
 	public String getName() {return name;}
 	public Sexe getSex() {return sex;}
 	public double getAge() {return age;}
@@ -123,12 +122,13 @@ public class Titanic implements IPoint {
 	public String getTicket() {return ticket;}
 	public double getFare() {return fare;}
 	public String getCabin() {return cabin;}
-	public char getEmbarked() {return embarked;}
+	public Embarked getEmbarked() {return embarked;}
 	@Override
 	public Object getValue(Column col){
 		Field[] fs = this.getClass().getDeclaredFields();
+		String colName = col.getName();
 		for(Field f : fs) {
-			if(f.getName().equals(col.getName())){
+			if(colName.equals(f.getName())){
 				try {
 					return f.get(this);
 				} catch (IllegalArgumentException | IllegalAccessException e) {

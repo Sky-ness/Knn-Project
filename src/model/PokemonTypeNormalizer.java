@@ -2,7 +2,7 @@ package model;
 
 import utils.IValueNormalizer;
 
-public class Pokemon_Type_Normalizer implements IValueNormalizer{
+public class PokemonTypeNormalizer implements IValueNormalizer{
 	
 
 	@Override
@@ -10,9 +10,11 @@ public class Pokemon_Type_Normalizer implements IValueNormalizer{
 		if(value==null) {
 			return 0;
 		}
+		PokemonType pt;
+		PokemonType[] pokemonTypes = PokemonType.values();
 		if(PokemonType.class.equals(value.getClass())) {
-			PokemonType pt = (PokemonType) value;
-			return (double)pt.ordinal()/(PokemonType.values().length-1);
+			 pt = (PokemonType) value;
+			return (double)pt.ordinal()/(pokemonTypes.length-1);
 		}
 		
 			
@@ -23,7 +25,7 @@ public class Pokemon_Type_Normalizer implements IValueNormalizer{
 	public Object denormalize(double value) {
 		if(value > 1 || value < 0)
 			return null;
-		PokemonType[] PkType = PokemonType.values();
-		return PkType[(int) (value*(PkType.length-1))];
+		PokemonType[] pkType = PokemonType.values();
+		return pkType[(int) (value*(pkType.length-1))];
 	}
 }

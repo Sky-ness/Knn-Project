@@ -1,7 +1,6 @@
 package model;
 
 import java.lang.reflect.Field;
-import java.text.Normalizer;
 
 import utils.IPoint;
 import utils.IValueNormalizer;
@@ -53,8 +52,9 @@ public class Column {
 			return -1.0;
 		}
 		double result = 0.0;
-		for(Field field : point.getClass().getDeclaredFields()) {
-			if(field.getName().equals(this.name)) {
+		Class<? extends IPoint> pt = point.getClass();
+		for(Field field : pt.getDeclaredFields()) {
+			if(this.name.equals(field.getName())) {
 				try {
 					result = valueNormalizer.normalize(field.get(point));
 				} catch (IllegalArgumentException | IllegalAccessException e) {

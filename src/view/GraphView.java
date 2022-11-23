@@ -3,10 +3,12 @@ package view;
 import java.io.File;
 import java.io.IOException;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -17,9 +19,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Column;
 import model.Parser;
+import utils.AbstractSubject;
 import utils.IPoint;
-import utils.Subject;
 
+@SuppressWarnings("PMD.TooManyFields")
 public class GraphView extends AbstractView {
 	@FXML
 	private ComboBox<String> absCol;
@@ -50,9 +53,16 @@ public class GraphView extends AbstractView {
 	@FXML
 	private MenuItem titanicLoadButton;
 
-	private final String pathPokemon="data/pokemon_train.csv";
-	private final String pathIris="data/iris.csv";
-	private final String pathTitanic="data/titanic.csv";
+	private static final String PATHPOKEMON="data/pokemon_train.csv";
+	private static final String PATHIRIS="data/iris.csv";
+	private static final String PATHTITANIC="data/titanic.csv";
+	
+	private Column defaultXCol;
+	private Column defaultYCol;
+	
+	private ObservableList<String> absColItems;
+	private ObservableList<String> ordColItems;
+	private ObservableList<Series<Double,Double>> chartData;
 	
 	public GraphView(Parser p){
 		super(p);
@@ -64,17 +74,17 @@ public class GraphView extends AbstractView {
 		try {
 			VBox fxml = initFxml("fxmlModel/graphique.fxml");
 			Scene scene = initScene(fxml);
-			
-			start(pathPokemon);
+
+			start(PATHPOKEMON);
 			
 			irisLoadButton.setOnAction(e-> {
-				start(pathIris);
+				start(PATHIRIS);
 			});
 			pokemonLoadButton.setOnAction(e-> {
-				start(pathPokemon);
+				start(PATHPOKEMON);
 			});
 			titanicLoadButton.setOnAction(e-> {
-				start(pathTitanic);
+				start(PATHTITANIC);
 			});
 			explorateur.setOnAction(e-> {
 				File f = new FileChooser().showOpenDialog(this);
@@ -98,50 +108,59 @@ public class GraphView extends AbstractView {
 		loadView();
 	}
 	public void loadView() {
-
-		absCol.setValue(parser.defaultXCol().getName());
-		for(Column c: parser.getListeColumns())
+		defaultXCol = parser.defaultXCol();
+		absCol.setValue(defaultXCol.getName());
+		absColItems = absCol.getItems();
+		for(Column c: parser.getListColumns())
 			if(c.isNormalizable())
-				absCol.getItems().add(c.getName());
-
-		ordCol.setValue(parser.defaultYCol().getName());
-		for(Column c: parser.getListeColumns())
+				absColItems.add(c.getName());
+		
+		defaultYCol = parser.defaultYCol();
+		ordCol.setValue(defaultYCol.getName());
+		ordColItems = ordCol.getItems();
+		for(Column c: parser.getListColumns())
 			if(c.isNormalizable())
-				ordCol.getItems().add(c.getName());
+				ordColItems.add(c.getName());
 		pointGenerator();
 		load.setOnAction(e -> pointGenerator());
 		robustesseBar.setProgress(0.50);
 	}
 
 	private void resetModel(){
-		absCol.getItems().clear();
-		ordCol.getItems().clear();
-		chart.getData().clear();
+		chartData = chart.getData();
+		if(absColItems != null)
+			absColItems.clear();
+		if(ordColItems != null)
+			ordColItems.clear();
+		if(chartData != null)
+			chartData.clear();
 	}
 
 	private void pointGenerator(){
 		Column absSelected=searchColumnbyName(absCol.getValue());
 		Column ordSelected=searchColumnbyName(ordCol.getValue());
 
-		XYChart.Series series1 = new XYChart.Series();
+		XYChart.Series<Double, Double> series1 = new XYChart.Series<Double, Double>();
 		series1.setName(parser.getTitle());
 
-		for(IPoint i : parser.getListePoints()) {
+		for(IPoint i : parser.getListPoints()) {
 			series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
 		}
 		
-		chart.getData().clear();
-		chart.getData().addAll(series1);
+		chartData.clear();
+		chartData.addAll(series1);
 	}
 
 	private Column searchColumnbyName(String name){
-		for(Column c : parser.getListeColumns())
+		if(name == null)
+			name = "";
+		for(Column c : parser.getListColumns())
 			if(name.equals(c.getName())) 
 				return c;
 		return null;
 	}
 	@Override
-	public void update(Subject subj) {
+	public void update(AbstractSubject subj) {
 		loadView();
 		System.out.println("ajout d'un point dans le graph");
 	}

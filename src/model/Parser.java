@@ -15,15 +15,15 @@ import utils.ICategory;
 import utils.IColumn;
 import utils.IMVCModel;
 import utils.IPoint;
-import utils.Subject;
+import utils.AbstractSubject;
 
-public class Parser extends Subject implements IMVCModel {
+public class Parser extends AbstractSubject implements IMVCModel {
 	
 	protected String title;
 	protected DataSet datas;
 
 	@Override
-	public void loadFromFile(String datafile,Class c) throws IllegalStateException, IOException {
+	public void loadFromFile(String datafile,Class<? extends IPoint> c) throws IllegalStateException, IOException {
 		List<IPoint> points = new ArrayList<IPoint>();
 		points = new CsvToBeanBuilder<IPoint>(Files.newBufferedReader(Paths.get(datafile)))
 				.withSeparator(',')
@@ -32,7 +32,7 @@ public class Parser extends Subject implements IMVCModel {
 		datas = new DataSet(title,points);
 	}
 	
-	public void loadFromFile(File f,Class c) throws IllegalStateException, IOException {
+	public void loadFromFile(File f,Class<? extends IPoint> c) throws IllegalStateException, IOException {
 		loadFromFile(f.getAbsolutePath(),c);
 	}
 	
@@ -73,14 +73,12 @@ public class Parser extends Subject implements IMVCModel {
 	}
 	
 	@Override
-	public List<Column> getListeColumns() {
-		// TODO Auto-generated method stub
+	public List<Column> getListColumns() {
 		return datas.listeColumns;
 	}
 
 	@Override
-	public List<IPoint> getListePoints() {
-		// TODO Auto-generated method stub
+	public List<IPoint> getListPoints() {
 		return datas.listePoints;
 	}
 
@@ -124,8 +122,9 @@ public class Parser extends Subject implements IMVCModel {
 	}
 
 	@Override
+	@SuppressWarnings("PMD.LawOfDemeter")
 	public int nbColumns() {
-		return datas.listeColumns.size();
+		return getListColumns().size();
 	}
 
 	@Override

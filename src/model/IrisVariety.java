@@ -1,7 +1,7 @@
 package model;
 
 public enum IrisVariety {
-	Setosa(1), Versicolor(2), Virginica(3);
+	SETOSA(1), VERSICOLOR(2), VIRGINICA(3);
 	
 	private int value;
 	

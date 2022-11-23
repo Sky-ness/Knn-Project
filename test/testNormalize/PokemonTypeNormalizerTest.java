@@ -44,6 +44,7 @@ class PokemonTypeNormalizerTest {
 
 	@Test
 	void denormalizeTest() {
+		assertEquals(null, pokemon_type_normalizer.denormalize(10));
 		assertEquals(PokemonType.DARK, pokemon_type_normalizer.denormalize(1/(17+0.0)));
 		assertEquals(PokemonType.DRAGON, pokemon_type_normalizer.denormalize(2/(17+0.0)));
 		assertEquals(PokemonType.ELECTRIC, pokemon_type_normalizer.denormalize(3/(17+0.0)));
