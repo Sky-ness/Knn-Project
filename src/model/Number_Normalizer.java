@@ -8,24 +8,31 @@ public class Number_Normalizer implements IValueNormalizer{
 
 	protected Column column;
 	
+	protected boolean executed;
+
+	protected double max; protected double min;
+	
 	public Number_Normalizer(Column column) {
-		this.column=column;
+		this.column = column;
+		this.executed = false;
 	}
 	
 	public double [] amplitude() {
-		List<Object> list = column.getDataset().valueByColumn(column);
-		Number d = (Number)list.get(0);
-		double max = d.doubleValue(); double min = d.doubleValue();
-		for(Object obj : list) {
-			d = (Number)obj;
-			if(d.doubleValue() > max) {
-				max = d.doubleValue();
+		if(!executed) {
+			List<Object> list = column.getDataset().valueByColumn(column);
+			Number d = (Number)list.get(0);
+			max = d.doubleValue();min = d.doubleValue();
+			for(Object obj : list) {
+				d = (Number)obj;
+				if(d.doubleValue() > max) {
+					max = d.doubleValue();
+				}
+				if(d.doubleValue() < min) {
+					min = d.doubleValue();
+				}
 			}
-			if(d.doubleValue() < min) {
-				min = d.doubleValue();
-			}
+			executed = true;
 		}
-
 		return new double [] {min,max};
 	}
 	
