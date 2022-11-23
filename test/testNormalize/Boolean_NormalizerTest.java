@@ -7,14 +7,14 @@ import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.Boolean_Normalizer;
+import model.BooleanNormalizer;
 
 class Boolean_NormalizerTest {
-	Boolean_Normalizer boo_normalizer;
+	BooleanNormalizer boo_normalizer;
 
 	@BeforeEach
 	public void init() throws IllegalStateException, IOException {
-		boo_normalizer = new Boolean_Normalizer();
+		boo_normalizer = new BooleanNormalizer();
 	}
 	
 	

@@ -79,11 +79,7 @@ public class Iris implements IPoint {
 	public IrisVariety getVariety() {
 		return variety;
 	}
-	@Override
-	public String toString() {
-		return "Iris [sepalLength=" + sepalLength + ", sepaiWidth=" + sepalWidth + ", petalLength=" + petalLength
-				+ ", petalWidth=" + petalWidth + ", variety=" + variety + "]";
-	}
+
 	@Override
 	public Object getValue(Column col){
 		Field[] fs = this.getClass().getDeclaredFields();

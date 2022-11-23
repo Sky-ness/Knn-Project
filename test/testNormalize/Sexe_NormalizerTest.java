@@ -8,15 +8,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.Sexe;
-import model.Sexe_Normalizer;
+import model.SexeNormalizer;
 
 class Sexe_NormalizerTest {
 
-	Sexe_Normalizer sexe_normalizer;
+	SexeNormalizer sexe_normalizer;
 
 	@BeforeEach
 	public void init() throws IllegalStateException, IOException {
-		sexe_normalizer = new Sexe_Normalizer();
+		sexe_normalizer = new SexeNormalizer();
 	}
 	
 	

@@ -1,21 +1,20 @@
 package testNormalize;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.PokemonType;
-import model.Pokemon_Type_Normalizer;
+import model.PokemonTypeNormalizer;
 
 class PokemonTypeNormalizerTest {
 	
-	Pokemon_Type_Normalizer pokemon_type_normalizer;
+	PokemonTypeNormalizer pokemon_type_normalizer;
 
 	@BeforeEach
 	void init() {
-		pokemon_type_normalizer = new Pokemon_Type_Normalizer();
+		pokemon_type_normalizer = new PokemonTypeNormalizer();
 	}
 	
 	@Test

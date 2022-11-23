@@ -6,30 +6,30 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.IrisVariety;
-import model.IrisVariety_Normalizer;
+import model.IrisVarietyNormalizer;
 
 class IrisVariety_NormalizerTest {
 
-	IrisVariety_Normalizer irisvariety;
+	IrisVarietyNormalizer irisvariety;
 
 	@BeforeEach
 	void init() {
-		 irisvariety= new IrisVariety_Normalizer();
+		 irisvariety= new IrisVarietyNormalizer();
 	}
 	
 	@Test
 	void normalizeTest() {
 		assertEquals(0.0,irisvariety.normalize(null));
 		assertEquals(-1,irisvariety.normalize(0));
-		assertEquals(0/(2+0.0),irisvariety.normalize(IrisVariety.Setosa));
-		assertEquals(1/(2+0.0),irisvariety.normalize(IrisVariety.Versicolor));
-		assertEquals(2/(2+0.0),irisvariety.normalize(IrisVariety.Virginica));
+		assertEquals(0/(2+0.0),irisvariety.normalize(IrisVariety.SETOSA));
+		assertEquals(1/(2+0.0),irisvariety.normalize(IrisVariety.VERSICOLOR));
+		assertEquals(2/(2+0.0),irisvariety.normalize(IrisVariety.VIRGINICA));
 	}
 
 	@Test
 	void denormalizeTest() {
-		assertEquals(IrisVariety.Setosa,irisvariety.denormalize(0/(2+0.0)));
-		assertEquals(IrisVariety.Versicolor,irisvariety.denormalize(1/(2+0.0)));
-		assertEquals(IrisVariety.Virginica,irisvariety.denormalize(2/(2+0.0)));
+		assertEquals(IrisVariety.SETOSA,irisvariety.denormalize(0/(2+0.0)));
+		assertEquals(IrisVariety.VERSICOLOR,irisvariety.denormalize(1/(2+0.0)));
+		assertEquals(IrisVariety.VIRGINICA,irisvariety.denormalize(2/(2+0.0)));
 	}
 }

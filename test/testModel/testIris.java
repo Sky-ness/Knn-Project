@@ -18,13 +18,13 @@ class testIris {
 		assertEquals(1.1+0.0,iris.getPetalWidth());
 		assertEquals(1.1+0.0,iris.getSepalLength());
 		assertEquals(1.1+0.0,iris.getSepalWidth());
-		assertEquals(IrisVariety.Setosa,iris.getVariety());
+		assertEquals(IrisVariety.SETOSA,iris.getVariety());
 		
 		iris = new Iris( "" , "" , "" , "", "Versicolor");
-		assertEquals(IrisVariety.Versicolor,iris.getVariety());
+		assertEquals(IrisVariety.VERSICOLOR,iris.getVariety());
 		
 		iris = new Iris( "" , "" , "" , "", "Virginica");
-		assertEquals(IrisVariety.Virginica,iris.getVariety());
+		assertEquals(IrisVariety.VIRGINICA,iris.getVariety());
 		
 	}
 	
@@ -38,15 +38,6 @@ class testIris {
 		assertEquals(0.0,iris.getSepalLength());
 		assertEquals(0.0,iris.getSepalWidth());
 		assertEquals(null,iris.getVariety());
-		
-	}
-	
-	void testToString() {
-		Iris iris = new Iris("1.1","1.1","1.1","1.1","Setosa");
-
-		String test = "Iris [sepalLength="+iris.getSepalLength()+", sepaiWidth="+iris.getSepalWidth()
-		+", petalLength="+iris.getPetalLength()+", petalWidth="+iris.getPetalWidth()+", variety=" + iris.getVariety();
-		assertEquals(test,iris.toString());
 		
 	}
 	
