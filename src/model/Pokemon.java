@@ -99,11 +99,8 @@ public class Pokemon implements IPoint{
 			speed = 0.0;
 		}
 
-		try {
-			legendary =Boolean.valueOf(param[11]);
-		} catch (Exception e) {
-			legendary = false;
-		}
+		legendary = Boolean.valueOf(param[12]);
+
 	}
 
 	private PokemonType checkPokemonType(String type) {
@@ -132,13 +129,6 @@ public class Pokemon implements IPoint{
 	public boolean getLegendary() {return legendary;}
 
 
-	@Override
-	public String toString() {
-		return "Pokemon [name=" + name + ", attack=" + attack + ", base=" + baseEggSteps + ", captureRate=" + captureRate
-				+ ", defense=" + defense + ", xpGrowth=" + xpGrowth + ", hp=" + hp + ", spAttack=" + spAttack
-				+ ", spDefense=" + spDefense + ", type1=" + type1 + ", type2=" + type2 + ", speed=" + speed
-				+ ", legendary=" + legendary + "]";
-	}
 	@Override
 	public Object getValue(Column col){
 		Field[] fs = this.getClass().getDeclaredFields();

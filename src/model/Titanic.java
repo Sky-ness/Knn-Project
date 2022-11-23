@@ -30,7 +30,7 @@ public class Titanic implements IPoint {
 	@CsvBindByName(column = "Cabin")
 	protected String cabin;
 	@CsvBindByName(column = "Embarked")
-	protected char embarked;
+	protected Embarked embarked;
 
 	public Titanic(){
 
@@ -94,20 +94,17 @@ public class Titanic implements IPoint {
 		}
 
 		cabin = param[10];
-		Character [] valideEmbaked = new Character [] {'S','C','Q'};
+		
+		String emb = param[11].toUpperCase();
+		
+		Embarked [] em = Embarked.values();
+		embarked=null;
+		for(Embarked e: em) {
 
-		embarked=0;
-		Character emb = param[10].toUpperCase().charAt(0);
-		for(Character c:valideEmbaked) {
-			if(c.equals(emb)) {
-				embarked=c;
+			if(emb.equalsIgnoreCase(e.name())){
+				embarked = e;
 			}
-
 		}
-
-
-
-
 
 	}
 
@@ -123,7 +120,7 @@ public class Titanic implements IPoint {
 	public String getTicket() {return ticket;}
 	public double getFare() {return fare;}
 	public String getCabin() {return cabin;}
-	public char getEmbarked() {return embarked;}
+	public Embarked getEmbarked() {return embarked;}
 	@Override
 	public Object getValue(Column col){
 		Field[] fs = this.getClass().getDeclaredFields();

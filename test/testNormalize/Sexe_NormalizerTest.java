@@ -25,6 +25,7 @@ class Sexe_NormalizerTest {
 		assertEquals(0.0,sexe_normalizer.normalize(null));
 		assertEquals(0,sexe_normalizer.normalize(Sexe.MALE));
 		assertEquals(1,sexe_normalizer.normalize(Sexe.FEMALE));
+		assertEquals(-1,sexe_normalizer.normalize("zzzz"));
 	}
 	
 	@Test
