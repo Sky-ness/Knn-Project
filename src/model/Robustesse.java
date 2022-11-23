@@ -11,15 +11,26 @@ public class Robustesse {
 		Object value;
 		double i = 0.0;
 		List<IPoint> neighbor;
-		for(IPoint point : ds.getListePoints()) {
-			neighbor = classifier.neighbor(k, point, distance, ds.getListePoints(), ds.getListeColumns());
+		List<IPoint> list = ds.getListePoints();
+		System.out.println("1");
+		for(int j = 0; j<list.size();j++) {
+			neighbor = classifier.neighbor(k,list.get(j), distance, ds.getListePoints(), ds.getListeColumns());
+			System.out.println(j);
 			value = classifier.classify(neighbor,col);
-			if(value.equals(point.getValue(col))){
+			if(value.equals(list.get(j).getValue(col))){
 				i++;
 			}
 		}
-		return i/(ds.getNbLines()+0.0);
+		return i+0.0/(ds.getNbLines()+0.0);
 	}
 
-	
+	public static void main(String[] args) {
+		Parser parser = new Parser();
+		parser.loadFromString("data/iris.csv");
+		Column col = parser.getDatas().getListeColumns().get(3);
+		Robustesse rob = new Robustesse();
+		System.out.println("Pourcentage : " + rob.calc(parser.datas,3,new Knn(),new Distance(),col));
+		
+		
+	}
 }

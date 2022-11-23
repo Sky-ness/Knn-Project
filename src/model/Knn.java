@@ -18,5 +18,5 @@ public class Knn extends Classifier{
 		}
 		return test;
 	}
-
+	
 }
