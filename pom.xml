@@ -3,6 +3,10 @@
   <groupId>equipe-H5</groupId>
   <artifactId>equipe-H5</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <properties>
+  	<maven.compiler.source>17</maven.compiler.source>
+  	<maven.compiler.target>17</maven.compiler.target>
+  </properties>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <testSourceDirectory>test</testSourceDirectory>
