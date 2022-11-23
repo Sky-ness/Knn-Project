@@ -43,10 +43,9 @@ public class ClassificationView extends AbstractView{
 	public ClassificationView(Parser p) {
 		super(p);
 		
-		Stage stage = initStage();
 		try {
-			VBox fxml = initFxml("fxmlModel/classification.fxml");
-			Scene scene = initScene(fxml);
+			vb = initFxml("fxmlModel/classification.fxml");
+			Scene scene = initScene(vb);
 			loadView();
 			stage.setScene(scene);
 		}catch(Exception e) {e.printStackTrace();}

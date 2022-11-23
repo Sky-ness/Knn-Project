@@ -50,6 +50,9 @@ public class Parser extends AbstractSubject implements IMVCModel {
 				loadFromFile(data, Iris.class);
 				title = "Iris";
 			}
+			else {
+				title = "Other";
+			}
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -61,10 +64,6 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	@Override
 	public String getTitle() {
 		return title;
-	}
-
-	public DataSet getDatas() {
-		return datas;
 	}
 
 	@Override

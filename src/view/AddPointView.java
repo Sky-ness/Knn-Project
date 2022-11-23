@@ -26,9 +26,8 @@ public class AddPointView extends AbstractView {
 
 	public AddPointView(Parser p) {
 		super(p);
-		
-		Stage stage = initStage();
-		Scene scene = initScene(loadView());
+		vb = loadView();
+		Scene scene = initScene(vb);
 		stage.setScene(scene);
 		stage.show();
 	}

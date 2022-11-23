@@ -21,7 +21,7 @@ public class DataSet implements IDataset{
 		this.listeColumns=listColumn();
 	}
 
-	public List<Column> listColumn(){
+	private List<Column> listColumn(){
 		List<Column> list = new ArrayList<Column>();
 		Column column = null;
 		@SuppressWarnings("PMD.LawOfDemeter")

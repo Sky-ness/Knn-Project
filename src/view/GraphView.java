@@ -70,7 +70,6 @@ public class GraphView extends AbstractView {
 		 *TODO update le dataSet des qu'on load un autre model au lieu d'utiliser un parser en paramètre 
 		 */
 		
-		Stage stage = initStage();
 		try {
 			VBox fxml = initFxml("fxmlModel/graphique.fxml");
 			Scene scene = initScene(fxml);
@@ -91,10 +90,14 @@ public class GraphView extends AbstractView {
 				if (f!=null)
 					start(f.getAbsolutePath());
 			});
+			/*
+			 * evenement
+			 */
 			addPoint.setOnAction(e-> new AddPointView(parser));
 			pointView.setOnAction(e-> new PointView(parser));
 			classification.setOnAction(e-> new ClassificationView(parser));
 			clear.setOnAction(e-> resetModel());
+			
 			stage.setScene(scene);
 
 		} catch (IOException e) {
@@ -149,6 +152,12 @@ public class GraphView extends AbstractView {
 		
 		chartData.clear();
 		chartData.addAll(series1);
+	}
+	
+	private void resetModel(){
+		absCol.getItems().clear();
+		ordCol.getItems().clear();
+		chart.getData().clear();
 	}
 
 	private Column searchColumnbyName(String name){

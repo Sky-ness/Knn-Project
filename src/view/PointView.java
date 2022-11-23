@@ -25,13 +25,15 @@ public class PointView extends AbstractView implements Observer{
 	protected static IPoint selectedPoint ;
 	private TableView<IPoint> table;
 	private Button b;
+	Stage stage = initStage();
+	VBox vbx = new VBox();
 	
 	public PointView(Parser p){
 		super(p);
-				
-		Stage stage = initStage();
+	
+
 		loadView();
-		Scene scene = initScene(initVbox());
+		Scene scene = initScene(vbx);
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -57,6 +59,9 @@ public class PointView extends AbstractView implements Observer{
 		table.setItems(data);
 		table.getColumns().addAll(columnFactory());	
 		setButton(table);
+		vbx.getChildren().addAll(table,b);
+		vbx.setAlignment(Pos.CENTER);
+		stage.show();
 	}
 	public void setButton(TableView<IPoint> table) {
 		b = new Button("selectionner un point");
@@ -65,13 +70,6 @@ public class PointView extends AbstractView implements Observer{
 		});
 	}
 	
-	public VBox initVbox() {
-		VBox vb = new VBox();
-		ObservableList<Node> children = vb.getChildren();
-		children.addAll(table,b);
-		vb.setAlignment(Pos.CENTER);
-		return vb;
-	}
 	@Override
 	public void update(AbstractSubject subj) {
 		loadView();

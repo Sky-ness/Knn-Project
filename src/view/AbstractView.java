@@ -13,15 +13,17 @@ import utils.Observer;
 public abstract class AbstractView extends Stage implements Observer{
 		
 	protected Parser parser;
+	protected Stage stage;
+	protected VBox vb;
 	
 	public AbstractView(Parser p) {
 		this.parser=p;
 		parser.attach(this);
-		
+		stage = initStage();
 	}
 	
 	public Stage initStage() {
-		Stage stage = new Stage();
+		stage = new Stage();
 		stage.setTitle("Graphique");
 		return stage;
 	}
@@ -35,4 +37,5 @@ public abstract class AbstractView extends Stage implements Observer{
 		FileInputStream fxmlStream = new FileInputStream(path);
 		return (VBox) loader.load(fxmlStream);
 	}
+
 }
