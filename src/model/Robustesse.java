@@ -7,6 +7,8 @@ import utils.AbstractClassifier;
 import utils.IPoint;
 
 public class Robustesse {
+	
+	@SuppressWarnings("PMD.ExcessiveParameterList")
 	public double calc(DataSet ds, int k, AbstractClassifier classifier, Distance distance, Column col) {
 		Object value;
 		double i = 0.0;
