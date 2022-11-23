@@ -154,11 +154,6 @@ public class GraphView extends AbstractView {
 		chartData.addAll(series1);
 	}
 	
-	private void resetModel(){
-		absCol.getItems().clear();
-		ordCol.getItems().clear();
-		chart.getData().clear();
-	}
 
 	private Column searchColumnbyName(String name){
 		if(name == null)

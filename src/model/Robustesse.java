@@ -31,7 +31,7 @@ public class Robustesse {
 	public static void main(String[] args) {
 		Parser parser = new Parser();
 		parser.loadFromString("data/titanic.csv");
-		Column col = parser.getDatas().getListColumns().get(11);
+		Column col = parser.getListColumns().get(11);
 		Robustesse rob = new Robustesse();
 		System.out.println("Pourcentage : " + rob.calc(parser.datas,5,new Knn(),new Distance(),col));
 		
