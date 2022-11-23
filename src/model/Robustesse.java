@@ -14,12 +14,14 @@ public class Robustesse {
 		List<IPoint> neighbor;
 		List<IPoint> list = ds.getListPoints();
 		System.out.println("1");
+		IPoint point;
 		for(int j = 0; j<list.size();j++) {
-			neighbor = classifier.neighbor(k,list.get(j), distance, ds.getListPoints(), ds.getListColumns());
+			point = list.get(j);
+			neighbor = classifier.neighbor(k,point, distance, ds.getListPoints(), ds.getListColumns());
 			System.out.println(j);
 			value = classifier.classify(neighbor,col);
-			System.out.println("test : "+list.get(j).getValue(col) + " " + value);
-			if(value.equals(list.get(j).getValue(col))){
+			System.out.println("test : "+ point.getValue(col) + " " + value);
+			if(value.equals(point.getValue(col))){
 				
 				i++;
 				
@@ -30,8 +32,10 @@ public class Robustesse {
 
 	public static void main(String[] args) {
 		Parser parser = new Parser();
+		List<Column> cols = parser.getListColumns();
 		parser.loadFromString("data/titanic.csv");
-		Column col = parser.getListColumns().get(11);
+		@SuppressWarnings("PMD.LawOfDemeter")
+		Column col = cols.get(11);
 		Robustesse rob = new Robustesse();
 		System.out.println("Pourcentage : " + rob.calc(parser.datas,5,new Knn(),new Distance(),col));
 		
