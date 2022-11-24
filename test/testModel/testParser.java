@@ -28,7 +28,7 @@ public class testParser {
 	
 	@Test
 	void testNbLines() {
-		assertEquals(parser.getNbLines(),parser.getNbLines());
+		assertEquals(150,parser.getNbLines());
 	}
 	
 	@Test
@@ -43,9 +43,29 @@ public class testParser {
 	
 	
 	@Test
+	void testColumnX() {
+		assertEquals("Column name=sepalLength",parser.defaultXCol().toString());
+
+	}
+	
+	@Test
+	void testColumnY() {
+		assertEquals("Column name=sepalWidth",parser.defaultYCol().toString());
+	}
+	
+	@Test
 	void testaddPoint() {
 		
 	}
 	
+	@Test
+	void testLoadFile() {
+		Parser par = new Parser();
+		par.loadFromString("");
+		
+		assertEquals("Other",par.getTitle());
+		assertEquals(null,par.defaultXCol());
+		assertEquals(null,par.defaultYCol());
+	}
 	
 }

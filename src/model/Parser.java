@@ -37,8 +37,9 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	
 	@Override
 	public void loadFromString(String data) {
-		String lowercase = data.toLowerCase();
+		String lowercase;
 		try {
+			lowercase = data.toLowerCase();
 			if(lowercase.contains("pokemon")) { 
 				loadFromFile(data, Pokemon.class);
 				title = "Pokemon";
@@ -51,6 +52,7 @@ public class Parser extends AbstractSubject implements IMVCModel {
 			}
 			else {
 				title = "Other";
+				datas = new DataSet(title,new ArrayList<IPoint>());
 			}
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
