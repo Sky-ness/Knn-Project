@@ -113,10 +113,11 @@ public class DataSet implements IDataset{
 	
 	public List<Column> getNormalizableColumns() {
 		List<Column> res = new ArrayList<>();
-		for (Column Column : res) {
+		for (Column Column : listeColumns) {
 			if(Column.isNormalizable())
 				res.add(Column);
 		}
+		System.out.println(res.toString());
 		return res;
 	}
 
