@@ -16,9 +16,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import model.Column;
 import model.Parser;
+import model.Robustesse;
 import utils.AbstractSubject;
 import utils.IPoint;
 
@@ -66,9 +66,6 @@ public class GraphView extends AbstractView {
 	
 	public GraphView(Parser p){
 		super(p);
-		/*
-		 *TODO update le dataSet des qu'on load un autre model au lieu d'utiliser un parser en paramètre 
-		 */
 		
 		try {
 			VBox fxml = initFxml("fxmlModel/graphique.fxml");
@@ -111,6 +108,8 @@ public class GraphView extends AbstractView {
 		loadView();
 	}
 	public void loadView() {
+		Robustesse r = new Robustesse();
+		
 		defaultXCol = parser.defaultXCol();
 		absCol.setValue(defaultXCol.getName());
 		absColItems = absCol.getItems();
@@ -124,9 +123,10 @@ public class GraphView extends AbstractView {
 		for(Column c: parser.getListColumns())
 			if(c.isNormalizable())
 				ordColItems.add(c.getName());
+		
 		pointGenerator();
 		load.setOnAction(e -> pointGenerator());
-		robustesseBar.setProgress(0.50);
+//		robustesseBar.setProgress(r.calc(parser, 0, null, null, defaultXCol));
 	}
 
 	private void resetModel(){

@@ -8,10 +8,10 @@ import model.Distance;
 public abstract class AbstractClassifier {
 
 	
-	@SuppressWarnings("PMD.ExcessiveParameterList")
-	public abstract List<IPoint> neighborManhattan(int k, IPoint point, Distance distance, List<IPoint> list, List<Column> c1);
+
+	public abstract List<IPoint> neighborManhattan(int k, IPoint point, List<IPoint> list, List<Column> c1);
 	
-	public abstract List<IPoint> neighborEuclidienne(int k, IPoint point, Distance distance, List<IPoint> list, List<Column> c1);
+	public abstract List<IPoint> neighborEuclidienne(int k, IPoint point, List<IPoint> list, List<Column> c1);
 	
 	public Object classify(List<IPoint> neighbor, Column col){
 		Object value;

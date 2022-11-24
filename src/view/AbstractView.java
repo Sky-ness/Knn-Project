@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;

@@ -1,8 +1,10 @@
 package view;
 
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -77,5 +79,6 @@ public class AddPointView extends AbstractView {
 		loadView();
 		System.out.println("ajout d'un point");
 	}
+
 
 }
