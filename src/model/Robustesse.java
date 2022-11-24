@@ -38,8 +38,8 @@ public class Robustesse {
 
 	public static void main(String[] args) {
 		Parser parser = new Parser();
-		parser.loadFromString("data/pokemon_test.csv");
-		Column col = parser.getListColumns().get(12);
+		parser.loadFromString("data/pokemon_train.csv");
+		Column col = parser.getListColumns().get(4);
 		Robustesse rob = new Robustesse();
 		System.out.println("Pourcentage : " + rob.calc(parser.datas,5,new Knn(),new Distance(),col));
 		

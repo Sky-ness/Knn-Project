@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import utils.IColumn;
 import utils.IDataset;
 import utils.IPoint;
 
@@ -112,11 +111,11 @@ public class DataSet implements IDataset{
 		return list;
 	}
 	
-	public List<IColumn> getNormalizableColumns() {
-		List<IColumn> res = new ArrayList<>();
-		for (IColumn iColumn : res) {
-			if(iColumn.isNormalizable())
-				res.add(iColumn);
+	public List<Column> getNormalizableColumns() {
+		List<Column> res = new ArrayList<>();
+		for (Column Column : res) {
+			if(Column.isNormalizable())
+				res.add(Column);
 		}
 		return res;
 	}

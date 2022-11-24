@@ -11,11 +11,10 @@ import java.util.List;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 
+import utils.AbstractSubject;
 import utils.ICategory;
-import utils.IColumn;
 import utils.IMVCModel;
 import utils.IPoint;
-import utils.AbstractSubject;
 
 public class Parser extends AbstractSubject implements IMVCModel {
 	
@@ -127,7 +126,7 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	}
 
 	@Override
-	public List<IColumn> getNormalizableColumns() {
+	public List<Column> getNormalizableColumns() {
 		return datas.getNormalizableColumns();
 	}
 

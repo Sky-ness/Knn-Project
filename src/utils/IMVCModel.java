@@ -59,5 +59,5 @@ abstract public int nbColumns();
 * nuage de points.
 * La normalisation doit retourner une valeur dans l’intervalle [0;1]
 */
-public List<IColumn> getNormalizableColumns();
+public List<Column> getNormalizableColumns();
 }

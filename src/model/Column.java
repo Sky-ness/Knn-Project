@@ -49,7 +49,7 @@ public class Column {
 	
 	public double getNormalizedValue(IPoint point){
 		if(!isNormalizable()) {
-			return -1.0;
+			return 0.0;
 		}
 		double result = 0.0;
 		Class<? extends IPoint> pt = point.getClass();
@@ -68,7 +68,7 @@ public class Column {
 	public Object getDenormalizedValue(double value){
 		if(isNormalizable())
 			return valueNormalizer.denormalize(value);
-		return -1.0;
+		return 0.0;
 	}
 	@Override
 	public String toString() {
