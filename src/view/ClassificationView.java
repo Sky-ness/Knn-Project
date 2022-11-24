@@ -5,12 +5,10 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import model.Distance;
 import model.Knn;
 import model.Parser;
 import model.Randomizer;
@@ -24,7 +22,7 @@ public class ClassificationView extends AbstractView{
 	@FXML
 	private ComboBox<String> classMethod;
 	@FXML
-	private Button classifier;
+	private Button valider;
 	@FXML
 	private ComboBox<String> distance;
 	@FXML
@@ -45,27 +43,19 @@ public class ClassificationView extends AbstractView{
 		
 		try {
 			vb = initFxml("fxmlModel/classification.fxml");
-			Scene scene = initScene(vb);
+			
 			loadView();
-			stage.setScene(scene);
-		}catch(Exception e) {e.printStackTrace();}
-		stage.show();
+			
+			eventDetachWindow(p);
+			afficher(vb);
+			
+		}catch(Exception e) {
+			System.err.println("Erreur au chargement: " +e.getMessage());
+		}
 	}
 	/*
 	 * retourne la liste des voisins les plus proches
 	 */
-	@SuppressWarnings("PMD.ExcessiveParameterList")
-	private AbstractClassifier modelClassification(String classification) {
-		if (classification.equals("KNN")) {
-			Knn k = new Knn();
-			return k;
-		}
-		if (classification.equals("Randomizer")) {
-			Randomizer r = new Randomizer();
-			return r;
-		}
-		return null;
-	}
 
 	public void loadView() {
 		items = classMethod.getItems();
@@ -73,20 +63,18 @@ public class ClassificationView extends AbstractView{
 		items.add("KNN");
 		items.add("Randomizer");
 		
+		items = distance.getItems();
+		distance.setValue("Manhattan");
+		items.add("Manhattan");
+		items.add("Euclidienne");
+		
 		buttonSelectPoint.setOnAction(e-> new PointView(parser));
 		labelSelectPoint.setOnMouseClicked(e-> labelSelectPoint.setText(PointView.selectedPoint.toString()));
-		classifier.setOnAction(e-> {
-			/*
-			 *TODO Graphique a update quand on appuie sur la classification 
-			 */
-			AbstractClassifier a = modelClassification(classMethod.getValue());
-			List<IPoint> voisin= new ArrayList<IPoint>();
-			if(distance.getValue().equals("Manhattan")) {
-				voisin = a.neighborManhattan((int) neighborSlider.getValue(),PointView.selectedPoint,parser.getListPoints(),parser.getListColumns() );	
-			}
-			if(distance.getValue().equals("Euclidienne")) {
-				voisin = a.neighborEuclidienne((int) neighborSlider.getValue(),PointView.selectedPoint,parser.getListPoints(),parser.getListColumns() );	
-			}
+		valider.setOnAction(e-> {
+			//TODO Graphique a update quand on appuie sur la classification 
+			 
+			AbstractClassifier a = ChooseClassifier(classMethod.getValue());
+			List<IPoint> voisin = ChooseDistance(a, distance.getValue(),(int) neighborSlider.getValue());
 					
 			testVoisin1.setText(voisin.get(1).toString());
 			testVoisin2.setText(voisin.get(2).toString());

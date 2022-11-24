@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="326.0" prefWidth="266.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" prefHeight="28.0" prefWidth="164.0" text="Robustesse" textFill="#0f0fcc">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" prefHeight="163.0" prefWidth="300.0">
+         <children>
+            <ComboBox fx:id="colonne" prefWidth="150.0" />
+            <ComboBox fx:id="distance" prefWidth="150.0" />
+            <Label text="Nombre de voisin" textFill="#249c30">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <Slider fx:id="neighborSlider" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+               <padding>
+                  <Insets left="50.0" right="50.0" top="10.0" />
+               </padding>
+            </Slider>
+         </children>
+      </VBox>
+      <ProgressBar fx:id="robustesseBar" prefWidth="200.0" progress="0.0" />
+      <Label fx:id="robustesseIndicator" text="0%" />
+      <VBox alignment="CENTER" prefHeight="68.0" prefWidth="300.0">
+         <children>
+            <Button fx:id="valider" alignment="TOP_LEFT" mnemonicParsing="false" text="Valider" />
+         </children>
+      </VBox>
+   </children>
+</VBox>

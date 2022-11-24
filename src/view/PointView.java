@@ -32,9 +32,9 @@ public class PointView extends AbstractView implements Observer{
 	
 		vb = new VBox();
 		loadView();
-		Scene scene = initScene(vb);
-		stage.setScene(scene);
-		stage.show();
+		
+		eventDetachWindow(p);
+		afficher(vb);
 	}
 
 	public List<TableColumn<IPoint,?>> columnFactory() {
@@ -50,6 +50,7 @@ public class PointView extends AbstractView implements Observer{
 		return listColumn;
 	}
 	public void loadView() {
+		
 		table = new TableView<IPoint>();
 		table.setEditable(true);
 		

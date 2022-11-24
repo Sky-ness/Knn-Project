@@ -5,20 +5,15 @@ import java.io.IOException;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import model.Column;
 import model.Parser;
-import model.Robustesse;
 import utils.AbstractSubject;
 import utils.IPoint;
 
@@ -47,12 +42,9 @@ public class GraphView extends AbstractView {
 	@FXML
 	private MenuItem pokemonLoadButton;
 	@FXML
-	private Label robustesse;
-	@FXML
-	private ProgressBar robustesseBar;
-	@FXML
 	private MenuItem titanicLoadButton;
-
+	@FXML
+	private Button robustesse;
 	private static final String PATHPOKEMON="data/pokemon_train.csv";
 	private static final String PATHIRIS="data/iris.csv";
 	private static final String PATHTITANIC="data/titanic.csv";
@@ -68,9 +60,8 @@ public class GraphView extends AbstractView {
 		super(p);
 		
 		try {
-			VBox fxml = initFxml("fxmlModel/graphique.fxml");
-			Scene scene = initScene(fxml);
-
+			vb = initFxml("fxmlModel/graphique.fxml");
+			
 			start(PATHPOKEMON);
 			
 			irisLoadButton.setOnAction(e-> {
@@ -93,14 +84,17 @@ public class GraphView extends AbstractView {
 			addPoint.setOnAction(e-> new AddPointView(parser));
 			pointView.setOnAction(e-> new PointView(parser));
 			classification.setOnAction(e-> new ClassificationView(parser));
-			clear.setOnAction(e-> resetModel());
+			robustesse.setOnAction(e-> new RobustesseView(parser));
 			
-			stage.setScene(scene);
+			clear.setOnAction(e-> resetModel());
+
+			eventDetachWindow(p);			
+			afficher(vb);
 
 		} catch (IOException e) {
 			System.err.println("Erreur au chargement: " +e.getMessage());
 		}
-		stage.show();
+		
 	}
 	private void start(String path) {
 		resetModel();
@@ -108,8 +102,6 @@ public class GraphView extends AbstractView {
 		loadView();
 	}
 	public void loadView() {
-		Robustesse r = new Robustesse();
-		
 		defaultXCol = parser.defaultXCol();
 		absCol.setValue(defaultXCol.getName());
 		absColItems = absCol.getItems();
@@ -126,7 +118,6 @@ public class GraphView extends AbstractView {
 		
 		pointGenerator();
 		load.setOnAction(e -> pointGenerator());
-//		robustesseBar.setProgress(r.calc(parser, 0, null, null, defaultXCol));
 	}
 
 	private void resetModel(){
@@ -155,14 +146,6 @@ public class GraphView extends AbstractView {
 	}
 	
 
-	private Column searchColumnbyName(String name){
-		if(name == null)
-			name = "";
-		for(Column c : parser.getListColumns())
-			if(name.equals(c.getName())) 
-				return c;
-		return null;
-	}
 	@Override
 	public void update(AbstractSubject subj) {
 		loadView();

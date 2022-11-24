@@ -40,14 +40,13 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="425.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -72,7 +71,7 @@
         </Menu>
       </menus>
     </MenuBar>
-      <BorderPane id="borderpane" prefHeight="396.0" prefWidth="640.0">
+      <BorderPane id="borderpane">
          <top>
         <Label alignment="CENTER" style="&#10;" text="Classification des données" textAlignment="CENTER" textFill="#ea7d7d" wrapText="false" BorderPane.alignment="CENTER">
           <font>
@@ -81,9 +80,9 @@
         </Label>
          </top>
          <bottom>
-            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="821.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <Pane prefHeight="68.0" prefWidth="198.0">
+                  <Pane prefHeight="68.0" prefWidth="150.0">
                      <children>
                         <Button fx:id="clear" alignment="CENTER" contentDisplay="CENTER" layoutY="22.0" mnemonicParsing="false" text="Clear" />
                      </children>
@@ -95,24 +94,14 @@
             </HBox>
          </bottom>
          <left>
-            <VBox alignment="CENTER" prefHeight="301.0" prefWidth="178.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
                   <VBox alignment="CENTER" prefHeight="121.0" prefWidth="178.0">
                      <children>
                         <Button fx:id="classification" mnemonicParsing="false" text="Classifier le modele" />
                      </children>
                   </VBox>
-                  <Label alignment="CENTER" prefHeight="19.0" prefWidth="169.0" text="Robustesse du modele" textFill="#1f762c">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <ProgressBar fx:id="robustesseBar" prefHeight="18.0" prefWidth="153.0" progress="0.0" />
-                  <Label fx:id="robustesse" text="0%" textFill="#1f762c">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <Button fx:id="robustesse" mnemonicParsing="false" text="Robustesse du modèle" />
                </children></VBox>
          </left>
          <center>

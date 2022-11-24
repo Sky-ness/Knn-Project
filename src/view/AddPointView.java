@@ -28,10 +28,11 @@ public class AddPointView extends AbstractView {
 
 	public AddPointView(Parser p) {
 		super(p);
+		
 		vb = loadView();
-		Scene scene = initScene(vb);
-		stage.setScene(scene);
-		stage.show();
+		
+		eventDetachWindow(p);		
+		afficher(vb);
 	}
 
 	@SuppressWarnings("PMD.LawOfDemeter")
