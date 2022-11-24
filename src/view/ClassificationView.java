@@ -1,5 +1,6 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -9,12 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import model.Distance;
 import model.Knn;
 import model.Parser;
 import model.Randomizer;
+import utils.AbstractClassifier;
 import utils.AbstractSubject;
 import utils.IPoint;
 
@@ -55,14 +55,14 @@ public class ClassificationView extends AbstractView{
 	 * retourne la liste des voisins les plus proches
 	 */
 	@SuppressWarnings("PMD.ExcessiveParameterList")
-	private List<IPoint> modelClassification(String classification, IPoint point, Distance distance,int voisin) {
+	private AbstractClassifier modelClassification(String classification) {
 		if (classification.equals("KNN")) {
 			Knn k = new Knn();
-			return k.neighbor(voisin, point, distance, parser.getListPoints(), parser.getListColumns());
+			return k;
 		}
 		if (classification.equals("Randomizer")) {
 			Randomizer r = new Randomizer();
-			return r.neighbor(voisin, point, distance, parser.getListPoints(), parser.getListColumns());
+			return r;
 		}
 		return null;
 	}
@@ -79,7 +79,15 @@ public class ClassificationView extends AbstractView{
 			/*
 			 *TODO Graphique a update quand on appuie sur la classification 
 			 */
-			List<IPoint> voisin = modelClassification(classMethod.getValue(),PointView.selectedPoint,new Distance(),(int) neighborSlider.getValue());
+			AbstractClassifier a = modelClassification(classMethod.getValue());
+			List<IPoint> voisin= new ArrayList<IPoint>();
+			if(distance.getValue().equals("Manhattan")) {
+				voisin = a.neighbor((int) neighborSlider.getValue(),PointView.selectedPoint,new Distance(),parser.getListPoints(),parser.getListColumns() );	
+			}
+			if(distance.getValue().equals("Euclidienne")) {
+				voisin = a.neighbor((int) neighborSlider.getValue(),PointView.selectedPoint,new Distance(),parser.getListPoints(),parser.getListColumns() );	
+			}
+					
 			testVoisin1.setText(voisin.get(1).toString());
 			testVoisin2.setText(voisin.get(2).toString());
 			testVoisin3.setText(voisin.get(3).toString());

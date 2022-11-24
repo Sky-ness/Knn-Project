@@ -9,7 +9,7 @@ import utils.IPoint;
 public class Robustesse {
 	
 	@SuppressWarnings("PMD.ExcessiveParameterList")
-	public double calc(DataSet ds, int k, AbstractClassifier classifier, Distance distance, Column col) {
+	public double calc(Parser p, int k, AbstractClassifier classifier, Distance distance, Column col) {
 		Object value;
 		double i = 0.0;
 		List<IPoint> neighbor;
@@ -25,7 +25,7 @@ public class Robustesse {
 				
 			}
 		}
-		return (i+0.0)/(ds.getNbLines()+0.0)*100;
+		return (i+0.0)/(p.getNbLines()+0.0)*100;
 	}
 	
 	public List<IPoint> init(DataSet ds){
@@ -37,10 +37,9 @@ public class Robustesse {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("1");
 		Parser parser = new Parser();
-		parser.loadFromString("data/pokemon_train.csv");
-		Column col = parser.getListColumns().get(12);
+		parser.loadFromString("data/titanic.csv");
+		Column col = parser.getListColumns().get(11);
 		Robustesse rob = new Robustesse();
 		System.out.println("Pourcentage : " + rob.calc(parser.datas,5,new Knn(),new Distance(),col));
 		
