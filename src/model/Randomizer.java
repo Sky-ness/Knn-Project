@@ -12,7 +12,7 @@ public class Randomizer extends AbstractClassifier {
 	
 
 	@Override
-	public List<IPoint> neighborEuclidienne(int k, IPoint point, Distance distance, List<IPoint> list,
+	public List<IPoint> neighborEuclidienne(int k, IPoint point, List<IPoint> list,
 			List<Column> c1) {
 		List<IPoint> res = new ArrayList<IPoint>();
 		Collections.shuffle(list);
@@ -24,7 +24,7 @@ public class Randomizer extends AbstractClassifier {
 	}
 
 	@Override
-	public List<IPoint> neighborManhattan(int k, IPoint point, Distance distance, List<IPoint> list, List<Column> c1) {
+	public List<IPoint> neighborManhattan(int k, IPoint point, List<IPoint> list, List<Column> c1) {
 		List<IPoint> res = new ArrayList<IPoint>();
 		Collections.shuffle(list);
 

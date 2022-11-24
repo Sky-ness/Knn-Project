@@ -9,16 +9,16 @@ import utils.IPoint;
 public class Robustesse {
 	
 	@SuppressWarnings("PMD.ExcessiveParameterList")
-	public double calc(Parser p, int k, AbstractClassifier classifier, Distance distance, Column col) {
+	public double calc(Parser p, int k, AbstractClassifier classifier, Column col) {
 		Object value;
 		double i = 0.0;
 		List<IPoint> neighbor;
-		List<IPoint> list = init(ds);
+		List<IPoint> list = init(p);
 		for(int j = 0; j<list.size();j++) {
-			list = init(ds);
-			neighbor = classifier.neighborManhattan(k,list.get(j), distance, list, ds.getListColumns());
+			list = init(p);
+			neighbor = classifier.neighborManhattan(k,list.get(j), list, p.getListColumns());
 			value = classifier.classify(neighbor,col);
-			list = init(ds);
+			list = init(p);
 			if(value.equals(list.get(j).getValue(col))){
 				
 				i++;
@@ -28,9 +28,9 @@ public class Robustesse {
 		return (i+0.0)/(p.getNbLines()+0.0)*100;
 	}
 	
-	public List<IPoint> init(DataSet ds){
+	public List<IPoint> init(Parser p){
 		List<IPoint> list = new ArrayList<IPoint>();
-		for(IPoint point : ds.getListPoints()) {
+		for(IPoint point : p.getListPoints()) {
 			list.add(point);
 		}
 		return list;
@@ -41,7 +41,7 @@ public class Robustesse {
 		parser.loadFromString("data/titanic.csv");
 		Column col = parser.getListColumns().get(11);
 		Robustesse rob = new Robustesse();
-		System.out.println("Pourcentage : " + rob.calc(parser.datas,5,new Knn(),new Distance(),col));
+		System.out.println("Pourcentage : " + rob.calc(parser,5,new Knn(),col));
 		
 		
 	}

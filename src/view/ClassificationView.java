@@ -82,10 +82,10 @@ public class ClassificationView extends AbstractView{
 			AbstractClassifier a = modelClassification(classMethod.getValue());
 			List<IPoint> voisin= new ArrayList<IPoint>();
 			if(distance.getValue().equals("Manhattan")) {
-				voisin = a.neighbor((int) neighborSlider.getValue(),PointView.selectedPoint,new Distance(),parser.getListPoints(),parser.getListColumns() );	
+				voisin = a.neighborManhattan((int) neighborSlider.getValue(),PointView.selectedPoint,parser.getListPoints(),parser.getListColumns() );	
 			}
 			if(distance.getValue().equals("Euclidienne")) {
-				voisin = a.neighbor((int) neighborSlider.getValue(),PointView.selectedPoint,new Distance(),parser.getListPoints(),parser.getListColumns() );	
+				voisin = a.neighborEuclidienne((int) neighborSlider.getValue(),PointView.selectedPoint,parser.getListPoints(),parser.getListColumns() );	
 			}
 					
 			testVoisin1.setText(voisin.get(1).toString());
