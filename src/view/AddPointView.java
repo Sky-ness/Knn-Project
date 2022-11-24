@@ -1,21 +1,17 @@
 package view;
 
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import model.Column;
 import model.Iris;
 import model.Parser;
@@ -28,21 +24,26 @@ public class AddPointView extends AbstractView {
 
 	public AddPointView(Parser p) {
 		super(p);
-		
-		vb = loadView();
-		
+
+		vb = initVBox();
+		load();
+
 		eventDetachWindow(p);		
 		afficher(vb);
 	}
 
 	@SuppressWarnings("PMD.LawOfDemeter")
-	public VBox loadView() {
-		VBox vb = new VBox();
+	@Override
+	public void load() {
+
+		reset();
+
 		ObservableList<Node> childs = vb.getChildren();
-		vb.setPadding(new Insets(40));
+
 		Button b = new Button("valider");
 		List<Label> listLbl = new ArrayList<Label>();
 		List<TextField> listTf = new ArrayList<TextField>();
+
 		for(Column c: parser.getListColumns()) {
 			Label label = new Label(c.getName());
 			label.setPadding(new Insets(5));
@@ -50,6 +51,7 @@ public class AddPointView extends AbstractView {
 			listLbl.add(label);
 			listTf.add(tf);
 		}
+
 		List<IPoint> points = parser.getListPoints();
 		IPoint first = points.get(0);
 		Class<? extends IPoint> c = first.getClass();
@@ -72,14 +74,22 @@ public class AddPointView extends AbstractView {
 			childs.addAll(listLbl.get(i),listTf.get(i));
 		}
 		childs.add(b);
-		vb.setAlignment(Pos.CENTER);
-		return vb;
+	}
+	@Override
+	public void reset() {
+		if (vb.getChildren() != null)
+			vb.getChildren().clear();
+	}
+	public VBox initVBox() {
+		VBox vbx = new VBox();
+		vbx.setPadding(new Insets(40));
+		vbx.setAlignment(Pos.CENTER);
+		return vbx;
 	}
 	@Override
 	public void update(AbstractSubject subj) {
-		loadView();
-		System.out.println("ajout d'un point");
+		load();
+		System.out.println("update point");
 	}
-
 
 }

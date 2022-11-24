@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Column;
@@ -23,6 +24,7 @@ public abstract class AbstractView extends Stage implements Observer{
 	protected Parser parser;
 	protected Stage stage;
 	protected VBox vb;
+	protected ObservableList<String> items;
 
 	public AbstractView(Parser p) {
 		this.parser=p;
@@ -30,6 +32,9 @@ public abstract class AbstractView extends Stage implements Observer{
 		stage = initStage();
 	}
 
+	public abstract void load();
+	public abstract void reset();
+	
 	public Stage initStage() {
 		stage = new Stage();
 		stage.setTitle("Graphique");
@@ -64,7 +69,7 @@ public abstract class AbstractView extends Stage implements Observer{
 	}
 	
 	public AbstractClassifier ChooseClassifier(String classification) {
-		if (classification.equals("KNN")) {
+		if (classification.equals("Knn")) {
 			Knn k = new Knn();
 			return k;
 		}
@@ -85,6 +90,18 @@ public abstract class AbstractView extends Stage implements Observer{
 			voisin = a.neighborEuclidienne(nbVoisin,PointView.selectedPoint,parser.getListPoints(),parser.getListColumns() );	
 		}
 		return voisin;
+	}
+	public void initComboBoxDistance(ComboBox<String> distance) {
+		items = distance.getItems();
+		distance.setValue("Manhattan");
+		items.add("Manhattan");
+		items.add("Euclidienne");
+	}
+	public void initComboBoxClassification(ComboBox<String> classification) {
+		items = classification.getItems();
+		classification.setValue("Knn");
+		items.add("Knn");
+		items.add("Randomizer");
 	}
 	
 }

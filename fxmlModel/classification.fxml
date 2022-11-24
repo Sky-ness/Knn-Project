@@ -15,35 +15,38 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <VBox alignment="CENTER" prefHeight="156.0" prefWidth="300.0">
-         <children>
-            <ComboBox fx:id="classMethod" prefHeight="26.0" prefWidth="185.0" promptText="Sélectionne classification" />
-            <ComboBox fx:id="distance" prefHeight="26.0" prefWidth="186.0" promptText="Sélectionne distance" />
-            <Button fx:id="buttonSelectPoint" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="186.0" text="Sélectionne point" />
-            <Label text="Point sélectionné :">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </Label>
-            <Label fx:id="labelSelectPoint" text="point" />
-         </children>
-      </VBox>
+      <ComboBox fx:id="classification" prefHeight="26.0" prefWidth="185.0" promptText="Sélectionne classification" />
+      <ComboBox fx:id="distance" prefHeight="26.0" prefWidth="186.0" promptText="Sélectionne distance">
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin></ComboBox>
+      <Button fx:id="buttonSelectPoint" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="186.0" text="Sélectionne point">
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin></Button>
+      <Label text="Point sélectionné :">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </Label>
+      <Label fx:id="labelSelectPoint" text="point" />
       <Label text="Nombre de voisin" textFill="#249c30">
          <font>
             <Font size="14.0" />
          </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
       </Label>
       <Slider fx:id="neighborSlider" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" prefHeight="34.0" prefWidth="59.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
-         <padding>
-            <Insets bottom="20.0" left="50.0" right="50.0" />
-         </padding>
+         <VBox.margin>
+            <Insets left="50.0" right="50.0" top="15.0" />
+         </VBox.margin>
       </Slider>
-      <Button fx:id="classifier" mnemonicParsing="false" text="Valider" />
+      <Button fx:id="valider" mnemonicParsing="false" text="Valider" />
       <Label fx:id="testVoisin1" text="Voisin 1" />
-      <Label fx:id="testVoisin2" text="Voisin 2" />
-      <Label fx:id="testVoisin3" text="Voisin 3" />
    </children>
 </VBox>

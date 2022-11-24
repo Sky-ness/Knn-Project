@@ -16,32 +16,39 @@
          <font>
             <Font size="14.0" />
          </font>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
       </Label>
-      <VBox alignment="CENTER" prefHeight="163.0" prefWidth="300.0">
-         <children>
-            <ComboBox fx:id="colonne" prefWidth="150.0" />
-            <ComboBox fx:id="distance" prefWidth="150.0" />
-            <Label text="Nombre de voisin" textFill="#249c30">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </Label>
-            <Slider fx:id="neighborSlider" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
-               <padding>
-                  <Insets left="50.0" right="50.0" top="10.0" />
-               </padding>
-            </Slider>
-         </children>
-      </VBox>
+      <ComboBox fx:id="colonne" prefHeight="26.0" prefWidth="180.0" promptText="Selectionne colonne " />
+      <ComboBox fx:id="distance" prefHeight="26.0" prefWidth="180.0" promptText="Selectionne Distance">
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
+      </ComboBox>
+      <ComboBox fx:id="classification" prefHeight="26.0" prefWidth="180.0" promptText="Selectionne classification">
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
+      </ComboBox>
+      <Label text="Nombre de voisin" textFill="#249c30">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </Label>
+      <Slider fx:id="neighborSlider" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+         <padding>
+            <Insets left="50.0" right="50.0" top="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Slider>
       <ProgressBar fx:id="robustesseBar" prefWidth="200.0" progress="0.0" />
       <Label fx:id="robustesseIndicator" text="0%" />
-      <VBox alignment="CENTER" prefHeight="68.0" prefWidth="300.0">
-         <children>
-            <Button fx:id="valider" alignment="TOP_LEFT" mnemonicParsing="false" text="Valider" />
-         </children>
-      </VBox>
+      <Button fx:id="valider" alignment="TOP_LEFT" mnemonicParsing="false" text="Valider" />
    </children>
 </VBox>

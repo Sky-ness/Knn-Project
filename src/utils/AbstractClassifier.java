@@ -3,7 +3,6 @@ package utils;
 import java.util.List;
 
 import model.Column;
-import model.Distance;
 
 public abstract class AbstractClassifier {
 

@@ -54,6 +54,7 @@ public class GraphView extends AbstractView {
 	
 	private ObservableList<String> absColItems;
 	private ObservableList<String> ordColItems;
+	
 	private ObservableList<Series<Double,Double>> chartData;
 	
 	public GraphView(Parser p){
@@ -61,9 +62,8 @@ public class GraphView extends AbstractView {
 		
 		try {
 			vb = initFxml("fxmlModel/graphique.fxml");
-			
+
 			start(PATHPOKEMON);
-			
 			irisLoadButton.setOnAction(e-> {
 				start(PATHIRIS);
 			});
@@ -78,15 +78,12 @@ public class GraphView extends AbstractView {
 				if (f!=null)
 					start(f.getAbsolutePath());
 			});
-			/*
-			 * evenement
-			 */
+
 			addPoint.setOnAction(e-> new AddPointView(parser));
 			pointView.setOnAction(e-> new PointView(parser));
 			classification.setOnAction(e-> new ClassificationView(parser));
 			robustesse.setOnAction(e-> new RobustesseView(parser));
-			
-			clear.setOnAction(e-> resetModel());
+			clear.setOnAction(e-> reset());
 
 			eventDetachWindow(p);			
 			afficher(vb);
@@ -97,11 +94,14 @@ public class GraphView extends AbstractView {
 		
 	}
 	private void start(String path) {
-		resetModel();
 		parser.loadFromString(path);
-		loadView();
+		load();
 	}
-	public void loadView() {
+	
+	@Override
+	public void load() {
+		reset();
+		
 		defaultXCol = parser.defaultXCol();
 		absCol.setValue(defaultXCol.getName());
 		absColItems = absCol.getItems();
@@ -119,8 +119,8 @@ public class GraphView extends AbstractView {
 		pointGenerator();
 		load.setOnAction(e -> pointGenerator());
 	}
-
-	private void resetModel(){
+	@Override
+	public void reset(){
 		chartData = chart.getData();
 		if(absColItems != null)
 			absColItems.clear();
@@ -145,11 +145,10 @@ public class GraphView extends AbstractView {
 		chartData.addAll(series1);
 	}
 	
-
 	@Override
 	public void update(AbstractSubject subj) {
-		loadView();
-		System.out.println("ajout d'un point dans le graph");
+		load();
+		System.out.println("update le graph");
 	}
 
 }

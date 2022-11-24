@@ -32,6 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.ScatterChart?>
 <?import javafx.scene.control.Button?>
@@ -96,13 +97,19 @@
          <left>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER" prefHeight="121.0" prefWidth="178.0">
-                     <children>
-                        <Button fx:id="classification" mnemonicParsing="false" text="Classifier le modele" />
-                     </children>
-                  </VBox>
-                  <Button fx:id="robustesse" mnemonicParsing="false" text="Robustesse du modèle" />
-               </children></VBox>
+                  <Button fx:id="robustesse" mnemonicParsing="false" text="Robustesse du modèle">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="classification" mnemonicParsing="false" text="Classifier le modele">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </padding></VBox>
          </left>
          <center>
             <ScatterChart id="chart" fx:id="chart" BorderPane.alignment="CENTER">
