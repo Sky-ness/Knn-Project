@@ -16,7 +16,7 @@ public class Robustesse {
 		List<IPoint> list = init(ds);
 		for(int j = 0; j<list.size();j++) {
 			list = init(ds);
-			neighbor = classifier.neighbor(k,list.get(j), distance, list, ds.getListColumns());
+			neighbor = classifier.neighborManhattan(k,list.get(j), distance, list, ds.getListColumns());
 			value = classifier.classify(neighbor,col);
 			list = init(ds);
 			if(value.equals(list.get(j).getValue(col))){
@@ -37,9 +37,10 @@ public class Robustesse {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("1");
 		Parser parser = new Parser();
 		parser.loadFromString("data/pokemon_train.csv");
-		Column col = parser.getListColumns().get(4);
+		Column col = parser.getListColumns().get(12);
 		Robustesse rob = new Robustesse();
 		System.out.println("Pourcentage : " + rob.calc(parser.datas,5,new Knn(),new Distance(),col));
 		
