@@ -3,14 +3,17 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import utils.AbstractClassifier;
 import utils.IPoint;
 
 public class Randomizer extends AbstractClassifier {
+
+	
+
 	@Override
-	public List<IPoint> neighborManhattan(int k, IPoint point, Distance distance, List<IPoint> list, List<Column> c1) {
+	public List<IPoint> neighborEuclidienne(int k, IPoint point, Distance distance, List<IPoint> list,
+			List<Column> c1) {
 		List<IPoint> res = new ArrayList<IPoint>();
 		Collections.shuffle(list);
 
@@ -21,8 +24,7 @@ public class Randomizer extends AbstractClassifier {
 	}
 
 	@Override
-	public List<IPoint> neighborEuclidienne(int k, IPoint point, Distance distance, List<IPoint> list,
-			List<Column> c1) {
+	public List<IPoint> neighborManhattan(int k, IPoint point, Distance distance, List<IPoint> list, List<Column> c1) {
 		List<IPoint> res = new ArrayList<IPoint>();
 		Collections.shuffle(list);
 
