@@ -24,9 +24,9 @@ public class testDistancePokemon {
 	
 	@Test
 	public void TestDistanceManhattanPokemon() {
-		assertEquals(0.0,distance.distanceManhattan(parser.getListPoints().get(0),parser.getListPoints().get(1), parser.getListColumns()));
-		assertEquals(0.0,distance.distanceManhattan(parser.getListPoints().get(0),parser.getListPoints().get(2), parser.getListColumns()));
-		assertEquals(0.0,distance.distanceManhattan(parser.getListPoints().get(0),parser.getListPoints().get(3), parser.getListColumns()));
+		assertEquals(0.6876757224257224,distance.distanceManhattan(parser.getListPoints().get(0),parser.getListPoints().get(1), parser.getListColumns()));
+		assertEquals(1.03459900862259,distance.distanceManhattan(parser.getListPoints().get(0),parser.getListPoints().get(2), parser.getListColumns()));
+		assertEquals(1.4851361021957927,distance.distanceManhattan(parser.getListPoints().get(0),parser.getListPoints().get(3), parser.getListColumns()));
 
 
 		
@@ -35,7 +35,7 @@ public class testDistancePokemon {
 
 	@Test
 	public void TestDistanceEuclidiennePokemon() {
-		assertEquals(0.0,distance.distanceEuclidienne(parser.getListPoints().get(0),parser.getListPoints().get(1), parser.getListColumns()));
+		assertEquals(0.6876757224257224,distance.distanceEuclidienne(parser.getListPoints().get(0),parser.getListPoints().get(1), parser.getListColumns()));
 		assertEquals(0.0,distance.distanceEuclidienne(parser.getListPoints().get(0),parser.getListPoints().get(2), parser.getListColumns()));
 		assertEquals(0.0,distance.distanceEuclidienne(parser.getListPoints().get(0),parser.getListPoints().get(3), parser.getListColumns()));
 		
