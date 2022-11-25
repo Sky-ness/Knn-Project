@@ -83,6 +83,11 @@
          <bottom>
             <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
+                  <Label fx:id="easterEgg" prefHeight="45.0" prefWidth="130.0" text="\@Copyright Equipe H5" textAlignment="CENTER" textOverrun="CLIP" underline="true" wrapText="true">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </Label>
                   <Pane prefHeight="68.0" prefWidth="150.0">
                      <children>
                         <Button fx:id="clear" alignment="CENTER" contentDisplay="CENTER" layoutY="22.0" mnemonicParsing="false" text="Clear" />

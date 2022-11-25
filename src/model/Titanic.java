@@ -6,14 +6,13 @@ import com.opencsv.bean.CsvBindByName;
 
 import utils.IPoint;
 
-@SuppressWarnings("PMD.ModifiedCyclomaticComplexity")
 public class Titanic implements IPoint {
 	@CsvBindByName(column = "PassengerId")
 	protected int passengerId;
 	@CsvBindByName(column = "Survived")
 	protected int survived;
 	@CsvBindByName(column = "Pclass")
-	protected int pClass;
+	protected int Pclass;
 	@CsvBindByName(column = "Name")
 	protected String name;
 	@CsvBindByName(column = "Sex")
@@ -32,88 +31,34 @@ public class Titanic implements IPoint {
 	protected String cabin;
 	@CsvBindByName(column = "Embarked")
 	protected Embarked embarked;
-
+	
 	public Titanic(){
-
-	}
-
-	@SuppressWarnings("PMD.CyclomaticComplexity")
-	public Titanic(String ...param){
-		try {
-			passengerId = Integer.valueOf(param[0]);
-		} catch (Exception e) {
-			passengerId = 0;
-		}
-
-		try {
-			survived= Integer.valueOf(param[1]);
-		} catch (Exception e) {
-			survived=0;
-		}
-
-
-		try {
-			pClass= Integer.valueOf(param[2]);
-		} catch (Exception e) {
-			pClass=0;
-		}
-
-		name = param[3];
-
-
-		Sexe [] se = Sexe.values();
-		sex = null;
-		for(Sexe s:se) {
-			if(s.name().equalsIgnoreCase(param[4])) {
-				sex = s;
-			}
-		}
-
-		try {
-			age = Double.valueOf(param[5]);
-		} catch (Exception e) {
-			age = 0.0;
-		}
-
-		try {
-			sibSp = Integer.valueOf(param[6]);
-		} catch (Exception e) {
-			sibSp = 0;
-		}
-
-		try {
-			parch = Integer.valueOf(param[7]);
-		} catch (Exception e) {
-			parch = 0;
-		}
-
-		ticket = param[8];
-
-		try {
-			fare= Double.valueOf(param[9]);
-		} catch (Exception e) {
-			fare=0.0;
-		}
-
-		cabin = param[10];
 		
-		String emb = param[11].toUpperCase();
-		
-		Embarked [] em = Embarked.values();
-		embarked=null;
-		for(Embarked e: em) {
-
-			if(emb.equalsIgnoreCase(e.name())){
-				embarked = e;
-			}
-		}
-
 	}
-
-
+	
+	public Titanic(Object ...objects){
+		
+	}
+	
+	public Titanic(int passengerId, int survived, int pclass, String name, Sexe sex, double age, int sibSp, int parch,
+			String ticket, double fare, String cabin, Embarked embarked) {
+		super();
+		this.passengerId = passengerId;
+		this.survived = survived;
+		Pclass = pclass;
+		this.name = name;
+		this.sex = sex;
+		this.age = age;
+		this.sibSp = sibSp;
+		this.parch = parch;
+		this.ticket = ticket;
+		this.fare = fare;
+		this.cabin = cabin;
+		this.embarked = embarked;
+	}
 	public int getPassengerId() {return passengerId;}
 	public int getSurvived() {return survived;}
-	public int getPclass() {return pClass;}
+	public int getPclass() {return Pclass;}
 	public String getName() {return name;}
 	public Sexe getSex() {return sex;}
 	public double getAge() {return age;}
@@ -126,9 +71,8 @@ public class Titanic implements IPoint {
 	@Override
 	public Object getValue(Column col){
 		Field[] fs = this.getClass().getDeclaredFields();
-		String colName = col.getName();
 		for(Field f : fs) {
-			if(colName.equals(f.getName())){
+			if(f.getName().equals(col.getName())){
 				try {
 					return f.get(this);
 				} catch (IllegalArgumentException | IllegalAccessException e) {

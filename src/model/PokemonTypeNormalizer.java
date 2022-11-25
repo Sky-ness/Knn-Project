@@ -4,7 +4,6 @@ import utils.IValueNormalizer;
 
 public class PokemonTypeNormalizer implements IValueNormalizer{
 	
-
 	@Override
 	public double normalize(Object value) {
 		if(value==null) {
@@ -15,9 +14,7 @@ public class PokemonTypeNormalizer implements IValueNormalizer{
 		if(PokemonType.class.equals(value.getClass())) {
 			 pt = (PokemonType) value;
 			return (double)pt.ordinal()/(pokemonTypes.length-1);
-		}
-		
-			
+		}	
 		return -1;
 	}
 

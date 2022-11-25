@@ -4,7 +4,6 @@ import utils.IValueNormalizer;
 
 public class IrisVarietyNormalizer implements IValueNormalizer{
 
-
 	@Override
 	public double normalize(Object value) {
 		if(value==null) {

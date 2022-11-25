@@ -9,8 +9,6 @@ import utils.IPoint;
 
 public class Randomizer extends AbstractClassifier {
 
-	
-
 	@Override
 	public List<IPoint> neighborEuclidienne(int k, IPoint point, List<IPoint> list,
 			List<Column> c1) {

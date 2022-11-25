@@ -73,6 +73,7 @@ public class PointView extends AbstractView implements Observer{
 		b = new Button("selectionner un point");
 		b.setOnAction(e->{
 			selectedPoint = table.getSelectionModel().getSelectedItem();
+			stage.close();
 		});
 	}
 

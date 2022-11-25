@@ -9,7 +9,7 @@ import utils.IDataset;
 import utils.IPoint;
 
 public class DataSet implements IDataset{
-	
+
 	protected String title;
 	protected List<IPoint> listePoints;
 	protected List<Column> listeColumns; 
@@ -37,21 +37,24 @@ public class DataSet implements IDataset{
 			if(type.equals(boolean.class.toString())) {
 				column.setNormalizer(new BooleanNormalizer());
 			}
-			if(type.equals(PokemonTypeNormalizer.class.toString())) {
+			if(type.equals(PokemonType.class.getName())) {
 				column.setNormalizer(new PokemonTypeNormalizer());
 			}
-			if(type.equals(IrisVarietyNormalizer.class.toString())) {
+			if(type.equals(IrisVariety.class.getName())) {
 				column.setNormalizer(new IrisVarietyNormalizer());
 			}
-			if(type.equals(SexeNormalizer.class.toString())) {
+			if(type.equals(Sexe.class.getName())) {
 				column.setNormalizer(new SexeNormalizer());
 			}
-			list.add(column);
+			if(type.equals(Embarked.class.getName())) {
+				column.setNormalizer(new EmbarkedNormalizer());
+			}
 			
+			list.add(column);
 		}
 		return list;
 	}
-	
+
 	@Override
 	public Iterator<IPoint> iterator() {
 		return listePoints.iterator();
@@ -86,12 +89,12 @@ public class DataSet implements IDataset{
 	public List<Column> getListColumns() {
 		return listeColumns;
 	}
-	
+
 	@Override
 	public List<IPoint> getListPoints() {
 		return listePoints;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("");
@@ -110,7 +113,7 @@ public class DataSet implements IDataset{
 		}
 		return list;
 	}
-	
+
 	public List<Column> getNormalizableColumns() {
 		List<Column> res = new ArrayList<>();
 		for (Column Column : listeColumns) {
@@ -120,5 +123,4 @@ public class DataSet implements IDataset{
 		System.out.println(res.toString());
 		return res;
 	}
-
 }

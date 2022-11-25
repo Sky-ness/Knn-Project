@@ -26,8 +26,7 @@ public class ClassificationView extends AbstractView{
 	private Slider neighborSlider;
 	@FXML
 	private Label labelSelectPoint;
-    @FXML
-    private Label testVoisin1;
+
 
 	public ClassificationView(Parser p) {
 		super(p);
@@ -52,16 +51,16 @@ public class ClassificationView extends AbstractView{
 		buttonSelectPoint.setOnAction(e-> new PointView(parser));
 		labelSelectPoint.setOnMouseClicked(e-> labelSelectPoint.setText(PointView.selectedPoint.toString()));
 		valider.setOnAction(e-> {
-			//TODO Graphique a update quand on appuie sur la classification 
+
 			AbstractClassifier a = ChooseClassifier(classification.getValue());
 			List<IPoint> voisin = ChooseDistance(a, distance.getValue(),(int) neighborSlider.getValue());
-					
-			testVoisin1.setText(voisin.get(1).toString());
+			parser.setLines(voisin);
 		});
 	}
 	@Override
 	public void reset() {
-
+		classification.getItems().clear();
+		distance.getItems().clear();
 	}
 	@Override
 	public void update(AbstractSubject subj) {

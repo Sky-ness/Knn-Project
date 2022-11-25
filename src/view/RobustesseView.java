@@ -35,7 +35,7 @@ public class RobustesseView extends AbstractView{
 
 		try {
 			vb = initFxml("fxmlModel/robustesse.fxml");
-		
+
 			load();
 			valider.setOnAction(e-> afficherRobustesse(p));
 
@@ -57,8 +57,9 @@ public class RobustesseView extends AbstractView{
 	}
 	@Override
 	public void reset() {
-		if (colonne.getItems() != null)
-			colonne.getItems().clear();
+		colonne.getItems().clear();
+		distance.getItems().clear();
+		classification.getItems().clear();
 	}
 	@Override
 	public void load() {

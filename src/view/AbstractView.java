@@ -24,6 +24,7 @@ public abstract class AbstractView extends Stage implements Observer{
 	protected Parser parser;
 	protected Stage stage;
 	protected VBox vb;
+	
 	protected ObservableList<String> items;
 
 	public AbstractView(Parser p) {
