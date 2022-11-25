@@ -3,20 +3,19 @@ package view;
 import java.io.File;
 import java.io.IOException;
 
-import javafx.event.EventHandler;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 import model.Column;
 import model.Parser;
 import utils.AbstractSubject;
@@ -52,6 +51,8 @@ public class GraphView extends AbstractView {
 	private Button robustesse;
 	@FXML
 	private Label easterEgg;
+	@FXML
+	private Label pointSelect;
 
 	private static final String PATHPOKEMON="data/pokemon_train.csv";
 	private static final String PATHIRIS="data/iris.csv";
@@ -60,10 +61,9 @@ public class GraphView extends AbstractView {
 	private Column defaultXCol;
 	private Column defaultYCol;
 
-	//	private ObservableList<String> absColItems;
-	//	private ObservableList<String> ordColItems;
-	//
-	//	private ObservableList<Series<Double,Double>> chartData;
+	private ObservableList<String> absColItems;
+	private ObservableList<String> ordColItems;	
+	private ObservableList<Series<Double,Double>> chartData;
 
 	public GraphView(Parser p){
 		super(p);
@@ -111,44 +111,32 @@ public class GraphView extends AbstractView {
 	public void load() {
 		reset();
 
-		//		defaultXCol = parser.defaultXCol();
-		//		absCol.setValue(defaultXCol.getName());
-		//		absColItems = absCol.getItems();
-		//		for(Column c: parser.getListColumns())
-		//			if(c.isNormalizable())
-		//				absColItems.add(c.getName());
-
 		defaultXCol = parser.defaultXCol();
 		absCol.setValue(defaultXCol.getName());
+		absColItems = absCol.getItems();
 		for(Column c: parser.getListColumns())
 			if(c.isNormalizable())
-				absCol.getItems().add(c.getName());
+				absColItems.add(c.getName());
 
 		defaultYCol = parser.defaultYCol();
 		ordCol.setValue(defaultYCol.getName());
+		ordColItems = ordCol.getItems();
 		for(Column c: parser.getListColumns())
 			if(c.isNormalizable())
-				ordCol.getItems().add(c.getName());
-
-		//		defaultYCol = parser.defaultYCol();
-		//		ordCol.setValue(defaultYCol.getName());
-		//		ordColItems = ordCol.getItems();
-		//		for(Column c: parser.getListColumns())
-		//			if(c.isNormalizable())
-		//				ordColItems.add(c.getName());
+				ordColItems.add(c.getName());
 
 		pointGenerator();
 		load.setOnAction(e -> pointGenerator());
 	}
 	@Override
 	public void reset(){
-		//		chartData = chart.getData();
-		//		if(absColItems != null)
-		//			absColItems.clear();
-		//		if(ordColItems != null)
-		//			ordColItems.clear();
-		//		if(chartData != null)
-		//			chartData.clear();
+		chartData = chart.getData();
+		if(absColItems != null)
+			absColItems.clear();
+		if(ordColItems != null)
+			ordColItems.clear();
+		if(chartData != null)
+			chartData.clear();
 	}
 
 	private void pointGenerator(){
@@ -163,12 +151,14 @@ public class GraphView extends AbstractView {
 		}
 		chart.getData().clear();
 		chart.getData().addAll(series1);
-		
+
 		for (Data<Double, Double> entry : series1.getData()) {                
 			Tooltip t = new Tooltip(absSelected.getName() + "=" + absSelected.getDenormalizedValue(entry.getXValue()).toString() 
-									+ "    "
-									+ ordSelected.getName() +"=" + ordSelected.getDenormalizedValue(entry.getYValue()).toString());
+					+ "    "
+					+ ordSelected.getName() +"=" + ordSelected.getDenormalizedValue(entry.getYValue()).toString());
 			Tooltip.install(entry.getNode(), t);
+			t.setShowDelay(Duration.millis(10));
+			entry.getNode().setOnMouseClicked(e-> pointSelect.setText(t.getText()));
 		}
 	}
 
