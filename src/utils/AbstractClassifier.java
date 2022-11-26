@@ -20,7 +20,7 @@ public abstract class AbstractClassifier {
 			value = point.getValue(col);
 			i = 0;
 			for(IPoint pointCompare  : neighbor) {
-				if(value==pointCompare.getValue(col) && !point.equals(pointCompare)) {
+				if(value.equals(pointCompare.getValue(col))) {
 					i++;
 					if(i>max){
 						max = i ;

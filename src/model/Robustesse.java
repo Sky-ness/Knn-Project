@@ -20,7 +20,6 @@ public class Robustesse {
 			value = classifier.classify(neighbor,col);
 			list = init(p);
 			if(value.equals(list.get(j).getValue(col))){
-				
 				i++;
 				
 			}
@@ -35,5 +34,4 @@ public class Robustesse {
 		}
 		return list;
 	}
-
 }

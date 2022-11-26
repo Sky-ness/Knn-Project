@@ -18,7 +18,7 @@ public class Knn extends AbstractClassifier{
 		Distance distance = new Distance();
 		list.sort((i1,i2) -> Double.compare(distance.distanceManhattan(i1,point,c1), distance.distanceManhattan(i2, point,c1)));
 		for(int i = 0; i < k; i++) {
-			result.add(list.get(i));
+			result.add(list.get(i+1));
 		}
 		return result;
 	}
