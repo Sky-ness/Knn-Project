@@ -11,8 +11,8 @@ import java.util.List;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 
+import utils.AbstractClassifier;
 import utils.AbstractSubject;
-import utils.ICategory;
 import utils.IMVCModel;
 import utils.IPoint;
 
@@ -20,6 +20,7 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	
 	protected String title;
 	protected DataSet datas;
+	protected Collection<Category> categories;
 
 	@Override
 	public void loadFromFile(String datafile,Class<? extends IPoint> c) throws IllegalStateException, IOException {
@@ -42,12 +43,15 @@ public class Parser extends AbstractSubject implements IMVCModel {
 			lowercase = data.toLowerCase();
 			if(lowercase.contains("pokemon")) { 
 				loadFromFile(data, Pokemon.class);
+				categories = classification(3, new Knn(), defaultColCategory());
 				title = "Pokemon";
 			} else if(lowercase.contains("titanic")) { 
 				loadFromFile(data, Titanic.class);
+				categories = classification(3, new Knn(), defaultColCategory());
 				title = "Titanic";
 			} else if(lowercase.contains("iris")) {
 				loadFromFile(data, Iris.class);
+				categories = classification(3, new Knn(), defaultColCategory());
 				title = "Iris";
 			}
 			else {
@@ -120,6 +124,17 @@ public class Parser extends AbstractSubject implements IMVCModel {
 				return c;
 		return null;
 	}
+	
+
+	public Column defaultColCategory() {
+		// partant de la fin pour mieux voir genre col pokemon sera legendaire, iris sera variety
+		for(int i=this.getListColumns().size()-1;i>0;i--) {
+			if(this.getListColumns().get(i).isNormalizable()) {
+				return this.getListColumns().get(i);
+			}
+		}
+		return null;
+	}
 
 	@Override
 	@SuppressWarnings("PMD.LawOfDemeter")
@@ -133,13 +148,52 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	}
 
 	@Override
-	public void addCategory(ICategory classe) {
-		// TODO
+	public void addCategory(Category classe) {
+		categories.add(classe);
 	}
 
 	@Override
-	public Collection<ICategory> allCategories() {
-		return null;
+	public Collection<Category> allCategories() {
+		return categories;
+	}
+	
+	private Collection<Category> classification(int k,AbstractClassifier classifier,Column col) {
+		Collection<Category> categories = new ArrayList<>();
+		List<IPoint> points = this.getListPoints();
+		List<Column> columns = this.getListColumns();
+		List<Object> disctintValue = new ArrayList<>();
+		Object value;
+		for(IPoint point:points) {
+			value = point.getValue(col);
+			if(!disctintValue.contains(value)){
+				disctintValue.add(value);
+			}
+			
+		}
+		List<IPoint> lp = new ArrayList<IPoint>();
+		for(IPoint point : points) {
+			lp.add(point);
+		}
+		
+		List<IPoint> neighbor;
+		for(Object object: disctintValue) {
+			Category c = new Category(col.getName()+" "+object.toString(), new ArrayList<IPoint>());
+			
+			for(IPoint point:lp) {
+				
+				neighbor = classifier.neighborManhattan(k,point, points,columns);
+				value = classifier.classify(neighbor,col);
+
+				if(value.equals(object)){
+					c.addLine(point);
+					
+				}
+			}
+			categories.add(c);
+		}
+		
+		return categories;
+		
 	}
 
 }

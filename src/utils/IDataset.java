@@ -30,13 +30,13 @@ public void setLines(List<IPoint> lines);
 /**
 * Ajoute une donnee dans le DataSet
 */
-void addLine(IPoint element);
+public void addLine(IPoint element);
 /**
 * Ajoute une collection de donnees dans le DataSet
 */
-void addAllLine(List<IPoint> element);
+public void  addAllLine(List<IPoint> element);
 
-public List<Column> getListColumns();
+public  List<Column> getListColumns();
 
 public List<IPoint> getListPoints();
 }

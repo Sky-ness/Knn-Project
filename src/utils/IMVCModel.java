@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
+import model.Category;
 import model.Column;
 
 /**
@@ -42,11 +43,11 @@ public Column defaultYCol();
 /**
 * Ajoute une Categorie (ou classe) de donnees au model.
 */
-public void addCategory(ICategory classe);
+public void addCategory(Category classe);
 /**
 * Retourne toutes les categories du modele.
 */
-public Collection<ICategory> allCategories();
+public Collection<Category> allCategories();
 /**
 * Nombre de colonnes dans le modele (egale au nombre de colonnes du
 * DataSet associe a ce modele)
