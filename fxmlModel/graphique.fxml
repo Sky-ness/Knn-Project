@@ -46,7 +46,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -97,7 +97,7 @@
                </padding></VBox>
          </left>
          <center>
-            <ScatterChart id="chart" fx:id="chart" BorderPane.alignment="CENTER">
+            <ScatterChart id="chart" fx:id="chart" prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER">
               <xAxis>
                 <NumberAxis side="BOTTOM" upperBound="0.9" />
               </xAxis>
@@ -107,14 +107,14 @@
             </ScatterChart>
          </center>
          <bottom>
-            <VBox prefHeight="64.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="pointSelect" alignment="CENTER" prefHeight="0.0" prefWidth="797.0" text="point selectionné">
+                  <Label fx:id="pointSelect" alignment="CENTER" text="point selectionné">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox>
                      <children>
                         <Label fx:id="easterEgg" prefHeight="29.0" prefWidth="130.0" text="\@Copyright Equipe H5" textAlignment="CENTER" textOverrun="CLIP" underline="true" wrapText="true">
                            <HBox.margin>

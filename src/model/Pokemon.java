@@ -114,6 +114,14 @@ public class Pokemon implements IPoint{
 	}
 
 
+	@Override
+	public String toString() {
+		return "Pokemon [name=" + name + ", attack=" + attack + ", baseEggSteps=" + baseEggSteps + ", captureRate="
+				+ captureRate + ", defense=" + defense + ", xpGrowth=" + xpGrowth + ", hp=" + hp + ", spAttack="
+				+ spAttack + ", spDefense=" + spDefense + ", type1=" + type1 + ", type2=" + type2 + ", speed=" + speed
+				+ ", legendary=" + legendary + "]";
+	}
+
 	public String getName() {return name;}
 	public int getAttack() {return attack;}
 	public int getBaseEggSteps() {return baseEggSteps;}

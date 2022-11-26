@@ -56,6 +56,15 @@ public class Titanic implements IPoint {
 		this.cabin = cabin;
 		this.embarked = embarked;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "Titanic [passengerId=" + passengerId + ", survived=" + survived + ", Pclass=" + Pclass + ", name="
+				+ name + ", sex=" + sex + ", age=" + age + ", sibSp=" + sibSp + ", parch=" + parch + ", ticket="
+				+ ticket + ", fare=" + fare + ", cabin=" + cabin + ", embarked=" + embarked + "]";
+	}
+
 	public int getPassengerId() {return passengerId;}
 	public int getSurvived() {return survived;}
 	public int getPclass() {return Pclass;}

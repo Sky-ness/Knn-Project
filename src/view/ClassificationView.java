@@ -51,7 +51,6 @@ public class ClassificationView extends AbstractView{
 		buttonSelectPoint.setOnAction(e-> new PointView(parser));
 		labelSelectPoint.setOnMouseClicked(e-> labelSelectPoint.setText(PointView.selectedPoint.toString()));
 		valider.setOnAction(e-> {
-
 			AbstractClassifier a = ChooseClassifier(classification.getValue());
 			List<IPoint> voisin = ChooseDistance(a, distance.getValue(),(int) neighborSlider.getValue());
 			parser.setLines(voisin);

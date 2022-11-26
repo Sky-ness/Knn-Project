@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
@@ -100,7 +101,6 @@ public class GraphView extends AbstractView {
 		} catch (IOException e) {
 			System.err.println("Erreur au chargement: " +e.getMessage());
 		}
-
 	}
 	private void start(String path) {
 		parser.loadFromString(path);
@@ -112,15 +112,16 @@ public class GraphView extends AbstractView {
 		reset();
 
 		defaultXCol = parser.defaultXCol();
-		absCol.setValue(defaultXCol.getName());
+		defaultYCol = parser.defaultYCol();
 		absColItems = absCol.getItems();
+		ordColItems = ordCol.getItems();
+		
+		absCol.setValue(defaultXCol.getName());
 		for(Column c: parser.getListColumns())
 			if(c.isNormalizable())
 				absColItems.add(c.getName());
 
-		defaultYCol = parser.defaultYCol();
 		ordCol.setValue(defaultYCol.getName());
-		ordColItems = ordCol.getItems();
 		for(Column c: parser.getListColumns())
 			if(c.isNormalizable())
 				ordColItems.add(c.getName());
@@ -130,7 +131,7 @@ public class GraphView extends AbstractView {
 	}
 	@Override
 	public void reset(){
-		chartData = chart.getData();
+		
 		if(absColItems != null)
 			absColItems.clear();
 		if(ordColItems != null)
@@ -140,28 +141,48 @@ public class GraphView extends AbstractView {
 	}
 
 	private void pointGenerator(){
+		chartData = chart.getData();
+		
+		if(chartData != null)
+			chartData.clear();
+
+		//stockage de la colonne selectionné
 		Column absSelected=searchColumnbyName(absCol.getValue());
 		Column ordSelected=searchColumnbyName(ordCol.getValue());
 
+		//création de la serie principale
 		XYChart.Series<Double, Double> series1 = new XYChart.Series<Double, Double>();
 		series1.setName(parser.getTitle());
-
+		chartData.add(series1);
+		
+		int cpt=0;
 		for(IPoint i : parser.getListPoints()) {
 			series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
-		}
-		chart.getData().clear();
-		chart.getData().addAll(series1);
-
-		for (Data<Double, Double> entry : series1.getData()) {                
-			Tooltip t = new Tooltip(absSelected.getName() + "=" + absSelected.getDenormalizedValue(entry.getXValue()).toString() 
-					+ "    "
-					+ ordSelected.getName() +"=" + ordSelected.getDenormalizedValue(entry.getYValue()).toString());
-			Tooltip.install(entry.getNode(), t);
-			t.setShowDelay(Duration.millis(10));
-			entry.getNode().setOnMouseClicked(e-> pointSelect.setText(t.getText()));
+			Data<Double, Double> data = series1.getData().get(cpt);
+			Node point = series1.getData().get(cpt).getNode();
+			
+			//mise en place d'une fenetre au survole de la souris
+			Tooltip tool = new Tooltip(absSelected.getName() + "=" + absSelected.getDenormalizedValue(data.getXValue()).toString() + "    "
+					+ ordSelected.getName() +"=" + ordSelected.getDenormalizedValue(data.getYValue()).toString());
+			Tooltip.install(point, tool);
+			tool.setShowDelay(Duration.millis(10));
+			
+			//changement de couleur du point et affichage du point au survol de la souris
+			String color = point.getStyle();
+			point.setScaleX(1.25);
+			point.setScaleY(1.25);
+	
+			point.setOnMouseEntered(e->{
+				pointSelect.setText(i.toString()); 
+				point.setStyle("-fx-background-color: red");
+			});
+			point.setOnMouseExited(e->{
+				pointSelect.setText(""); 
+				point.setStyle(color);
+			});
+			cpt++;
 		}
 	}
-
 	@Override
 	public void update(AbstractSubject subj) {
 		load();
