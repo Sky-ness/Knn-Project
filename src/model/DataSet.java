@@ -25,31 +25,9 @@ public class DataSet implements IDataset{
 		Column column = null;
 		@SuppressWarnings("PMD.LawOfDemeter")
 		Field[] fs = listePoints.get(0).getClass().getDeclaredFields();
-		String type = "";
-		Class<?> classField;
+		FactoryColumn factory = new FactoryColumn();
 		for(Field field : fs) {
-			column = new Column(field.getName(),this);
-			classField = field.getType();
-			type = classField.getName();
-			if(type.equals(double.class.toString()) || type.equals(int.class.toString())) {
-				column.setNormalizer(new NumberNormalizer(column));
-			}
-			if(type.equals(boolean.class.toString())) {
-				column.setNormalizer(new BooleanNormalizer());
-			}
-			if(type.equals(PokemonType.class.getName())) {
-				column.setNormalizer(new PokemonTypeNormalizer());
-			}
-			if(type.equals(IrisVariety.class.getName())) {
-				column.setNormalizer(new IrisVarietyNormalizer());
-			}
-			if(type.equals(Sexe.class.getName())) {
-				column.setNormalizer(new SexeNormalizer());
-			}
-			if(type.equals(Embarked.class.getName())) {
-				column.setNormalizer(new EmbarkedNormalizer());
-			}
-			
+			column = factory.createColumn(this, field);
 			list.add(column);
 		}
 		return list;
