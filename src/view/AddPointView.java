@@ -23,7 +23,7 @@ import utils.AbstractSubject;
 
 public class AddPointView extends AbstractView {
 	
-	private Category category;
+	private Category category =null;
 	
 	public AddPointView(Parser p) {
 		super(p);
