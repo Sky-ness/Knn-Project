@@ -160,7 +160,6 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	private Collection<Category> classification(int k,AbstractClassifier classifier,Column col) {
 		Collection<Category> categories = new ArrayList<>();
 		List<IPoint> points = this.getListPoints();
-		List<Column> columns = this.getListColumns();
 		List<Object> disctintValue = new ArrayList<>();
 		Object value;
 		for(IPoint point:points) {
@@ -175,16 +174,12 @@ public class Parser extends AbstractSubject implements IMVCModel {
 			lp.add(point);
 		}
 		
-		List<IPoint> neighbor;
+
 		for(Object object: disctintValue) {
 			Category c = new Category(col.getName()+" "+object.toString(), new ArrayList<IPoint>());
 			
 			for(IPoint point:lp) {
-				
-				neighbor = classifier.neighborManhattan(k,point, points,columns);
-				value = classifier.classify(neighbor,col);
-
-				if(value.equals(object)){
+				if(point.equals(object)){
 					c.addLine(point);
 					
 				}

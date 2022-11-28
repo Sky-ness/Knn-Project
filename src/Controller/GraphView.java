@@ -1,4 +1,4 @@
-package view;
+package Controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +21,11 @@ import model.Column;
 import model.Parser;
 import utils.AbstractSubject;
 import utils.IPoint;
+import view.AbstractView;
+import view.AddPointView;
+import view.ClassificationView;
+import view.PointView;
+import view.RobustesseView;
 
 @SuppressWarnings("PMD.TooManyFields")
 public class GraphView extends AbstractView {

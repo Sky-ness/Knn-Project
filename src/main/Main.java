@@ -1,9 +1,9 @@
 package main;
 
+import Controller.GraphView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.Parser;
-import view.GraphView;
 
 @SuppressWarnings("PMD.ShortClassName")
 public class Main extends Application{
