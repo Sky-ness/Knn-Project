@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import utils.IDataset;
-import utils.IPoint;
 
 public class DataSet implements IDataset{
 

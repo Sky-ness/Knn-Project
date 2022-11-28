@@ -6,6 +6,7 @@ import java.util.List;
 
 import model.Category;
 import model.Column;
+import model.IPoint;
 
 /**
 * Decrit un modele de donnee dans le MVC.

@@ -4,10 +4,8 @@ import java.lang.reflect.Field;
 
 import com.opencsv.bean.CsvBindByName;
 
-import utils.IPoint;
-
 @SuppressWarnings("PMD.ShortClassName")
-public class Iris implements IPoint {
+public class Iris extends IPoint {
 
 	@CsvBindByName(column = "sepal.length")
 	protected double sepalLength;

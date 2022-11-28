@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utils.AbstractClassifier;
-import utils.IPoint;
 
 public class Robustesse {
 	

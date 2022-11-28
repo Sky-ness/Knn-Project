@@ -13,12 +13,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import model.Column;
+import model.IPoint;
 import model.Iris;
 import model.Parser;
 import model.Pokemon;
 import model.Titanic;
 import utils.AbstractSubject;
-import utils.IPoint;
 
 public class AddPointView extends AbstractView {
 

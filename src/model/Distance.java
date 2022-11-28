@@ -2,8 +2,6 @@ package model;
 
 import java.util.List;
 
-import utils.IPoint;
-
 public class Distance{
 
 	public double distanceEuclidienne(IPoint i1, IPoint i2,List<Column> c1){

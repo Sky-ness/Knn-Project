@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import model.Column;
 import model.DataSet;
+import model.IPoint;
 import model.Iris;
 import model.Parser;
-import utils.IPoint;
 
 class testDataSet {
 
