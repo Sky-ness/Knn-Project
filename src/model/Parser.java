@@ -43,15 +43,15 @@ public class Parser extends AbstractSubject implements IMVCModel {
 			lowercase = data.length()>0 ? data.toLowerCase() : "";
 			if(lowercase.contains("pokemon")) { 
 				loadFromFile(data, Pokemon.class);
-				categories = classification(3, new Knn(), defaultColCategory());
+				categories = creerCategory(defaultColCategory());
 				title = "Pokemon";
 			} else if(lowercase.contains("titanic")) { 
 				loadFromFile(data, Titanic.class);
-				categories = classification(3, new Knn(), defaultColCategory());
+				categories = creerCategory(defaultColCategory());
 				title = "Titanic";
 			} else if(lowercase.contains("iris")) {
 				loadFromFile(data, Iris.class);
-				categories = classification(3, new Knn(), defaultColCategory());
+				categories = creerCategory(defaultColCategory());
 				title = "Iris";
 			}
 			else {
@@ -158,7 +158,7 @@ public class Parser extends AbstractSubject implements IMVCModel {
 		return categories;
 	}
 	
-	private Collection<Category> classification(int k,AbstractClassifier classifier,Column col) {
+	private Collection<Category> creerCategory(Column col) {
 		Collection<Category> categories = new ArrayList<>();
 		List<IPoint> points = this.getListPoints();
 		List<Object> disctintValue = new ArrayList<>();
@@ -180,7 +180,7 @@ public class Parser extends AbstractSubject implements IMVCModel {
 		
 
 		for(Object object: disctintValue) {
-			Category c = new Category(col.getName()+" "+object.toString(), new ArrayList<IPoint>());
+			Category c = new Category(col.getName()+" "+object.toString(), new ArrayList<IPoint>(),this.getListColumns());
 		
 			for(IPoint point:lp) {
 				if(object.equals(point.getValue(col))){

@@ -16,10 +16,11 @@ public class NumberNormalizer implements IValueNormalizer{
 	public NumberNormalizer(Column column) {
 		this.column=column;
 		this.executed = false;
+		amplitude();
 	}
 
 	@SuppressWarnings("PMD.LawOfDemeter")
-	public double [] amplitude() {
+	public void amplitude() {
 		if(!executed) {
 			List<Object> list = column.getDataset().valueByColumn(column);
 			Number d = (Number)list.get(0);
@@ -35,16 +36,14 @@ public class NumberNormalizer implements IValueNormalizer{
 			}
 			executed = true;
 		}
-		return new double [] {min,max};
 	}
 	
 	@Override
 	@SuppressWarnings("PMD.LawOfDemeter")
 	public double normalize(Object value) {
 		Number dividende = (Number)value;
-		double [] ampli = this.amplitude();
-		dividende = dividende.doubleValue()-ampli[0];
-		double diviseur = ampli[1]-ampli[0];
+		dividende = dividende.doubleValue()-min;
+		double diviseur = max-min;
 		return dividende.doubleValue()/diviseur;
 	}
 
@@ -52,9 +51,8 @@ public class NumberNormalizer implements IValueNormalizer{
 	@SuppressWarnings("PMD.LawOfDemeter")
 	public Object denormalize(double value) {
 		Number d = (Number)value;
-		double [] ampli = this.amplitude();
-		double diviseur = ampli[1]-ampli[0];
-		d = d.doubleValue() * diviseur + ampli[0];
+		double diviseur = max-min;
+		d = d.doubleValue() * diviseur + min;
 		return d;
 
 

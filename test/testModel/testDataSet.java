@@ -74,4 +74,18 @@ class testDataSet {
 		assertEquals(res,dataset.getNormalizableColumns().toString());
 		dataset.getNormalizableColumns();
 	}
+	
+	@Test
+	void testToString() {
+		List<IPoint> iris = new ArrayList<IPoint>();
+		iris.add(new Iris());
+		iris.add(new Iris());
+		dataset.setLines(iris);
+		String res = "DataSet [title=IrisIris [sepalLength=0.0, sepalWidth=0.0, petalLength=0.0, petalWidth=0.0, variety=null]"
+				+"\nIris [sepalLength=0.0, sepalWidth=0.0, petalLength=0.0, petalWidth=0.0, variety=null]"
+						+"\nListeColumns=[Column name=sepalLength, Column name=sepalWidth, Column name=petalLength, Column name=petalWidth, Column name=variety]"
+;
+		assertEquals(res,dataset.toString());
+	}
+	
 }

@@ -50,5 +50,13 @@ class testTitanic {
 		Titanic titanic = new Titanic();
 		assertEquals(null,titanic.getValue(new Column(null, null)));
 	}
+	
+	@Test
+	void testToString() {
+		Titanic titanic = new Titanic(1,0,3,"Sir Faker",Sexe.MALE,26.0,1,0,"Goat",7.25,"y",Embarked.C);
+		String res = "Titanic [passengerId=1, survived=0, Pclass=3, name=Sir Faker, sex=MALE, age=26.0, sibSp=1, parch=0, ticket=Goat, fare=7.25, cabin=y, embarked=C]"
+;		
+		assertEquals(res,titanic.toString());
+	}
 
 }
