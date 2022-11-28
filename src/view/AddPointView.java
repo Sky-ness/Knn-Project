@@ -63,21 +63,22 @@ public class AddPointView extends AbstractView {
 			parser.addAllLine(category.getListPoints());
 			parser.allCategories().remove(category);
 		}
+		
 		b.setOnAction((event) -> {
 			String [] parameter = new String [listTf.size()];
 			for(int i =0;i<listTf.size();i++) {
 				parameter[i]=listTf.get(i).getText();
 			}
 			if(c.equals(Iris.class)) {
-				category = new Category("ajout",new Iris(parameter));
+				category = new Category("ajout",new Iris(parameter),parser.getListColumns());
 				parser.addCategory(category);
 			}
 			if(c.equals(Pokemon.class)) {
-				category = new Category("ajout",new Pokemon(parameter));
+				category = new Category("ajout",new Pokemon(parameter),parser.getListColumns());
 				parser.addCategory(category);
 			}
 			if(c.equals(Titanic.class)) {
-				category = new Category("ajout",new Titanic(parameter));
+				category = new Category("ajout",new Titanic(parameter),parser.getListColumns());
 				parser.addCategory(category);
 			}
 		});

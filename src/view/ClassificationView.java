@@ -56,9 +56,9 @@ public class ClassificationView extends AbstractView{
 		valider.setOnAction(e-> {
 			AbstractClassifier a = ChooseClassifier(classification.getValue());
 			List<IPoint> voisin = ChooseDistance(a, distance.getValue(),(int) neighborSlider.getValue());
-			if(c!=null) 
+			if(c!=null)
 				parser.allCategories().remove(c);
-			c=new Category("voisin", voisin);
+			c= new Category("voisin", voisin,parser.getListColumns());
 			parser.addCategory(c);	
 		});
 	}

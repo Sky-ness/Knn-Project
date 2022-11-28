@@ -18,11 +18,12 @@ public class Category implements ICategory{
 		this.listePoints = listePoints;
 		this.listeColumns = listeColumn;
 	}
-	public Category(String title,IPoint points) {
+	public Category(String title,IPoint points, List<Column> listeColumn) {
 		super();
 		this.title = title;
 		this.listePoints = new ArrayList<IPoint>();
 		this.listePoints.add(points);
+		this.listeColumns=listeColumn;
 	}
 
 	@Override

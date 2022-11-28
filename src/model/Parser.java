@@ -85,7 +85,7 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	public List<IPoint> getListPoints() {
 		return datas.listePoints;
 	}
-
+	
 	@Override
 	public void setLines(List<IPoint> lines) {
 		this.datas.setLines(lines);
@@ -101,7 +101,6 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	@Override
 	public void addAllLine(List<IPoint> element) {
 		this.datas.listePoints.addAll(element);
-		notifyObservers();
 	}
 
 	@Override

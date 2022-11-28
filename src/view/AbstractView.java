@@ -85,7 +85,8 @@ public abstract class AbstractView extends Stage implements Observer{
 		List<IPoint> voisin= new ArrayList<IPoint>();
 		
 		if(distance.equals("Manhattan")) {
-			voisin = a.neighborManhattan(nbVoisin,PointView.selectedPoint,parser.getListPoints(),parser.getListColumns() );	
+			voisin = a.neighborManhattan(nbVoisin,PointView.selectedPoint,parser.getListPoints(),parser.getListColumns() );
+			
 		}
 		if(distance.equals("Euclidienne")) {
 			voisin = a.neighborEuclidienne(nbVoisin,PointView.selectedPoint,parser.getListPoints(),parser.getListColumns() );	
