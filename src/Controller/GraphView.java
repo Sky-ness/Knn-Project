@@ -2,6 +2,8 @@ package Controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import model.Category;
 import model.Column;
 import model.Parser;
 import utils.AbstractSubject;
@@ -98,7 +101,7 @@ public class GraphView extends AbstractView {
 			classification.setOnAction(e-> new ClassificationView(parser));
 			robustesse.setOnAction(e-> new RobustesseView(parser));
 			clear.setOnAction(e-> chart.getData().clear());
-			easterEgg.setOnMouseClicked(e-> easterEgg.setText("vous avez un sacré petard mr Delecroix"));
+			easterEgg.setOnMouseClicked(e-> easterEgg.setText("merci de nous avoir éci"));
 
 			eventDetachWindow(p);			
 			afficher(vb);
@@ -120,7 +123,7 @@ public class GraphView extends AbstractView {
 		defaultYCol = parser.defaultYCol();
 		absColItems = absCol.getItems();
 		ordColItems = ordCol.getItems();
-		
+
 		absCol.setValue(defaultXCol.getName());
 		for(Column c: parser.getListColumns())
 			if(c.isNormalizable())
@@ -136,7 +139,7 @@ public class GraphView extends AbstractView {
 	}
 	@Override
 	public void reset(){
-		
+
 		if(absColItems != null)
 			absColItems.clear();
 		if(ordColItems != null)
@@ -147,7 +150,7 @@ public class GraphView extends AbstractView {
 
 	private void pointGenerator(){
 		chartData = chart.getData();
-		
+
 		if(chartData != null)
 			chartData.clear();
 
@@ -156,37 +159,42 @@ public class GraphView extends AbstractView {
 		Column ordSelected=searchColumnbyName(ordCol.getValue());
 
 		//création de la serie principale
-		XYChart.Series<Double, Double> series1 = new XYChart.Series<Double, Double>();
-		series1.setName(parser.getTitle());
-		chartData.add(series1);
-		
-		int cpt=0;
-		for(IPoint i : parser.getListPoints()) {
-			series1.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
-			Data<Double, Double> data = series1.getData().get(cpt);
-			Node point = series1.getData().get(cpt).getNode();
+		XYChart.Series<Double, Double> series2 = new XYChart.Series<Double, Double>();
+		for(Category c: parser.allCategories()) {
+			XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
 			
-			//mise en place d'une fenetre au survole de la souris
-			Tooltip tool = new Tooltip(absSelected.getName() + "=" + absSelected.getDenormalizedValue(data.getXValue()).toString() + "    "
-					+ ordSelected.getName() +"=" + ordSelected.getDenormalizedValue(data.getYValue()).toString());
-			Tooltip.install(point, tool);
-			tool.setShowDelay(Duration.millis(10));
-			
-			//changement de couleur du point et affichage du point au survol de la souris
-			String color = point.getStyle();
-			point.setScaleX(1.25);
-			point.setScaleY(1.25);
-	
-			point.setOnMouseEntered(e->{
-				pointSelect.setText(i.toString()); 
-				point.setStyle("-fx-background-color: red");
-			});
-			point.setOnMouseExited(e->{
-				pointSelect.setText(""); 
-				point.setStyle(color);
-			});
-			cpt++;
+			series.setName(c.getTitle());
+			chartData.add(series);
+			int cpt=0;
+			for (IPoint i : c.getListPoints()) {
+				
+				series.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
+				Data<Double, Double> data = series.getData().get(cpt);
+				Node point = series.getData().get(cpt).getNode();
+
+				//mise en place d'une fenetre au survole de la souris
+				Tooltip tool = new Tooltip(absSelected.getName() + "=" + absSelected.getDenormalizedValue(data.getXValue()).toString() + "    "
+						+ ordSelected.getName() +"=" + ordSelected.getDenormalizedValue(data.getYValue()).toString());
+				Tooltip.install(point, tool);
+				tool.setShowDelay(Duration.millis(10));
+
+				//changement de couleur du point et affichage du point au survol de la souris
+				String color = point.getStyle();
+				point.setScaleX(1.25);
+				point.setScaleY(1.25);
+
+				point.setOnMouseEntered(e->{
+					pointSelect.setText(i.toString()); 
+					point.setStyle("-fx-background-color: black");
+				});
+				point.setOnMouseExited(e->{
+					pointSelect.setText("point sélectionné"); 
+					point.setStyle(color);
+				});
+				cpt++;
+			}	
 		}
+		chartData.add(series2);
 	}
 	@Override
 	public void update(AbstractSubject subj) {

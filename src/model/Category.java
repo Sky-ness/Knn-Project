@@ -11,6 +11,7 @@ public class Category implements ICategory{
 
 	protected String title;
 	protected List<IPoint> listePoints;
+	protected List<Column> listeColumns; 
 	
 	public Category(String title, List<IPoint> listePoints) {
 		super();
@@ -61,6 +62,14 @@ public class Category implements ICategory{
 	@Override
 	public String toString() {
 		return "Category [title=" + title + "]";
+	}
+
+	public List<Column> getListeColumns() {
+		return listeColumns;
+	}
+
+	public void setListeColumns(List<Column> listeColumns) {
+		this.listeColumns = listeColumns;
 	}
 
 	
