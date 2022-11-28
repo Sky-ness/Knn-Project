@@ -12,11 +12,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Column;
+import model.IPoint;
 import model.Knn;
 import model.Parser;
 import model.Randomizer;
 import utils.AbstractClassifier;
-import utils.IPoint;
 import utils.Observer;
 
 public abstract class AbstractView extends Stage implements Observer{

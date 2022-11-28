@@ -21,9 +21,9 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import model.Category;
 import model.Column;
+import model.IPoint;
 import model.Parser;
 import utils.AbstractSubject;
-import utils.IPoint;
 import view.AbstractView;
 import view.AddPointView;
 import view.ClassificationView;
@@ -201,5 +201,5 @@ public class GraphView extends AbstractView {
 		load();
 		System.out.println("update le graph");
 	}
-
+	
 }

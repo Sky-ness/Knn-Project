@@ -2,7 +2,6 @@ package model;
 
 import java.lang.reflect.Field;
 
-import utils.IPoint;
 import utils.IValueNormalizer;
 
 public class Column {
@@ -72,6 +71,6 @@ public class Column {
 	}
 	@Override
 	public String toString() {
-		return "Column name=" + name +" Normaliser "+ valueNormalizer;
+		return "Column name=" + name;
 	}
 }

@@ -3,6 +3,7 @@ package utils;
 import java.util.List;
 
 import model.Column;
+import model.IPoint;
 
 /**
 * Decrit un <i>DatSet</i>, c'est a dire un ensemble de points (ou lignes,

@@ -14,7 +14,6 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import utils.AbstractClassifier;
 import utils.AbstractSubject;
 import utils.IMVCModel;
-import utils.IPoint;
 
 public class Parser extends AbstractSubject implements IMVCModel {
 	
@@ -32,6 +31,7 @@ public class Parser extends AbstractSubject implements IMVCModel {
 		datas = new DataSet(title,points);
 	}
 	
+	
 	public void loadFromFile(File f,Class<? extends IPoint> c) throws IllegalStateException, IOException {
 		loadFromFile(f.getAbsolutePath(),c);
 	}
@@ -40,7 +40,7 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	public void loadFromString(String data) {
 		String lowercase;
 		try {
-			lowercase = data.toLowerCase();
+			lowercase = data.length()>0 ? data.toLowerCase() : "";
 			if(lowercase.contains("pokemon")) { 
 				loadFromFile(data, Pokemon.class);
 				categories = creerCategories(defaultColCategory());
@@ -165,6 +165,9 @@ public class Parser extends AbstractSubject implements IMVCModel {
 		Object value;
 		for(IPoint point:points) {
 			value = point.getValue(col);
+			if(value == null) {
+				value = new NullObject();
+			}
 			if(!disctintValue.contains(value)){
 				disctintValue.add(value);
 			}
@@ -176,8 +179,8 @@ public class Parser extends AbstractSubject implements IMVCModel {
 		
 
 		for(Object object: disctintValue) {
-			Category c = new Category(col.getName()+" "+object.toString(), new ArrayList<IPoint>());
-			c.setListeColumns(this.getListColumns());
+			String cat = object == null ? "" : object.toString();
+			Category c = new Category(col.getName()+" "+cat, new ArrayList<IPoint>());
 			
 			for(IPoint point:lp) {
 				if(object.equals(point.getValue(col))){

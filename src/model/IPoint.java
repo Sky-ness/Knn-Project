@@ -1,0 +1,46 @@
+package model;
+
+import java.lang.reflect.Field;
+
+/**
+ * Decrit un Point (ou donnee, ou ligne) dans un DataSet.
+ */
+public abstract class  IPoint {
+	/**
+	 * Retourne la valeur de ce point pour la colonne en parametre.
+	 *
+	 * Note, on aurait pu utiliser une interface generique (parametree avec
+	 * un type), mais cela complique significativement d'autres parties
+	 * du code.
+	 * @throws Exception 
+	 * @throws SecurityException 
+
+	 */
+	public Object getValue(Column col) {
+		Field[] fs = this.getClass().getDeclaredFields();
+		String colName = col.getName();
+		for(Field f : fs) {
+			if(colName.equals(f.getName())){
+				try {
+					return f.get(this);
+				} catch (IllegalArgumentException | IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return new NullObject();
+	}
+	/**
+	 * Retourne la valeur de ce point normalisee pour la colonne en parametre.
+	 *
+	 * La normalisation se fait avec le <i>normaliseur</i> de la colonne.
+	 * Si la colonne n'est pas normalisable, le comportement n'est pas defini.
+	 * @throws Exception 
+	 */
+	public double getNormalizedValue(Column xcol) {
+		return xcol.getNormalizedValue(this);
+	}
+
+
+
+}

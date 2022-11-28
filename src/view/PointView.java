@@ -13,9 +13,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Column;
+import model.IPoint;
 import model.Parser;
 import utils.AbstractSubject;
-import utils.IPoint;
 import utils.Observer;
 
 public class PointView extends AbstractView implements Observer{

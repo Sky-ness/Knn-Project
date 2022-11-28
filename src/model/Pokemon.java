@@ -4,9 +4,7 @@ import java.lang.reflect.Field;
 
 import com.opencsv.bean.CsvBindByName;
 
-import utils.IPoint;
-
-public class Pokemon implements IPoint{
+public class Pokemon extends IPoint{
 
 	@CsvBindByName(column = "name")
 	protected String name;
@@ -137,11 +135,10 @@ public class Pokemon implements IPoint{
 	public double getSpeed() {return speed;}
 	public boolean getLegendary() {return legendary;}
 
-
 	@Override
 	public Object getValue(Column col){
 		Field[] fs = this.getClass().getDeclaredFields();
-		String colName = col.getName();
+		String colName = col.getName() == null ? "" : col.getName();
 		for(Field f : fs) {
 			if(colName.equals(f.getName())){
 				try {
@@ -157,7 +154,5 @@ public class Pokemon implements IPoint{
 	public double getNormalizedValue(Column xcol){
 		return xcol.getNormalizedValue(this);
 	}
-
-
 
 }

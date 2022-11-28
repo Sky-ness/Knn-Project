@@ -13,7 +13,7 @@ class testTitanic {
 	
 	@Test
 	void testInstantationGeneriqueSansErreur() {
-		Titanic titanic = new Titanic("1","0","3","Sir Faker","MALE","26.0","1","0","Goat","7.25","y","C");
+		Titanic titanic = new Titanic(1,0,3,"Sir Faker",Sexe.MALE,26.0,1,0,"Goat",7.25,"y",Embarked.C);
 		assertEquals(1,titanic.getPassengerId());
 		assertEquals(0,titanic.getSurvived());
 		assertEquals(3,titanic.getPclass());
@@ -34,19 +34,15 @@ class testTitanic {
 		assertEquals(0,titanic.getPassengerId());
 		assertEquals(0,titanic.getSurvived());
 		assertEquals(0,titanic.getPclass());
-		assertEquals("",titanic.getName());
+		assertEquals(null,titanic.getName());
 		assertEquals(null,titanic.getSex());
 		assertEquals(0,titanic.getAge());
 		assertEquals(0,titanic.getSibSp());
 		assertEquals(0,titanic.getParch());
-		assertEquals("",titanic.getTicket());
+		assertEquals(null,titanic.getTicket());
 		assertEquals(0,titanic.getFare());
-		assertEquals("",titanic.getCabin());
+		assertEquals(null,titanic.getCabin());
 		assertEquals(null,titanic.getEmbarked());
-		Titanic titanic2 = new Titanic("","","","","","","","","","","","S");
-		assertEquals(Embarked.S,titanic2.getEmbarked());
-		Titanic titanic3 = new Titanic("","","","","","","","","","","","Q");
-		assertEquals(Embarked.Q,titanic3.getEmbarked());
 	}
 	
 	@Test

@@ -1,15 +1,14 @@
 package testModel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.Iris;
 import model.Parser;
-import model.Pokemon;
 
 public class testParser {
 	Parser parser;
@@ -33,7 +32,7 @@ public class testParser {
 	
 	@Test
 	void testIterator() {
-		assertEquals(parser.iterator(),parser.iterator());
+		assertIterableEquals(parser, parser);
 	}
 	
 	@Test
