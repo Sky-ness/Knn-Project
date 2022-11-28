@@ -159,10 +159,9 @@ public class GraphView extends AbstractView {
 		Column ordSelected=searchColumnbyName(ordCol.getValue());
 
 		//création de la serie principale
-		XYChart.Series<Double, Double> series2 = new XYChart.Series<Double, Double>();
+		
 		for(Category c: parser.allCategories()) {
 			XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
-			
 			series.setName(c.getTitle());
 			chartData.add(series);
 			int cpt=0;
@@ -194,7 +193,7 @@ public class GraphView extends AbstractView {
 				cpt++;
 			}	
 		}
-		chartData.add(series2);
+		chartData.add(new XYChart.Series<Double, Double>());
 	}
 	@Override
 	public void update(AbstractSubject subj) {
