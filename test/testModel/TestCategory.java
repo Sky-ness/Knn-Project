@@ -11,8 +11,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.Category;
+import model.Column;
 import model.IPoint;
 import model.Iris;
+import model.Parser;
 
 class TestCategory {
 
@@ -20,7 +22,7 @@ class TestCategory {
 	
 	@BeforeEach
 	void init() {
-		cat = new Category("Cat", new ArrayList<>());
+		cat = new Category("Cat", new ArrayList<>(),new ArrayList<Column>());
 	}
 	
 	@Test
@@ -59,5 +61,29 @@ class TestCategory {
 		cat.addLine(ir);
 		assertEquals(pts.toString(), cat.getListPoints().toString());
 	}
+	
+	@Test
+	void testIterator() {
+		assertEquals(cat.iterator(), cat.iterator());
+	}
+
+	@Test
+	void testToString() {
+		assertEquals("Category [title=Cat]", cat.toString());
+	}
+	
+	@Test
+	void testGetterCol() {
+		assertEquals(new ArrayList<Column>(), cat.getListeColumns());
+	}
+	
+	@Test
+	void testSetterCol() {
+		Parser p = new Parser();
+		p.loadFromString("data/iris.csv");
+		cat.setListeColumns(p.getListColumns());
+		assertEquals(p.getListColumns(), cat.getListeColumns());
+	}
+
 
 }
