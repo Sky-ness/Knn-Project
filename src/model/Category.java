@@ -11,10 +11,11 @@ public class Category implements ICategory{
 	protected List<IPoint> listePoints;
 	protected List<Column> listeColumns; 
 	
-	public Category(String title, List<IPoint> listePoints) {
+	public Category(String title, List<IPoint> listePoints,List<Column> listeColumn) {
 		super();
 		this.title = title;
 		this.listePoints = listePoints;
+		this.listeColumns = listeColumn;
 	}
 
 	@Override
