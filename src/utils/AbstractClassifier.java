@@ -20,7 +20,6 @@ public abstract class AbstractClassifier {
 			value = point.getValue(col);
 			i = 0;
 			for(IPoint pointCompare  : neighbor) {
-				System.out.println(value + " " + pointCompare );
 				if(value == null) {
 					value = new NullObject();
 				}

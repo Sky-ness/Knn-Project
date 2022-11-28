@@ -23,6 +23,8 @@ public class Robustesse {
 				
 			}
 		}
+		System.out.println("Total correct : " + i);
+		System.out.println("Nombre de pokemon : "+list.size());
 		return (i+0.0)/(p.getNbLines()+0.0)*100;
 	}
 	
