@@ -40,7 +40,7 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	public void loadFromString(String data) {
 		String lowercase;
 		try {
-			lowercase = data.toLowerCase();
+			lowercase = data.length()>0 ? data.toLowerCase() : "";
 			if(lowercase.contains("pokemon")) { 
 				loadFromFile(data, Pokemon.class);
 				categories = classification(3, new Knn(), defaultColCategory());
@@ -176,7 +176,8 @@ public class Parser extends AbstractSubject implements IMVCModel {
 		
 
 		for(Object object: disctintValue) {
-			Category c = new Category(col.getName()+" "+object.toString(), new ArrayList<IPoint>());
+			String cat = object == null ? "" : object.toString();
+			Category c = new Category(col.getName()+" "+cat, new ArrayList<IPoint>());
 			
 			for(IPoint point:lp) {
 				if(point.equals(object)){

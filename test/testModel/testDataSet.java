@@ -9,7 +9,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.Column;
 import model.DataSet;
 import model.Iris;
 import model.Parser;
@@ -71,7 +70,7 @@ class testDataSet {
 	
 	@Test
 	void getNormalizableColumns() {
-		String res = "[Column name=sepalLength, Column name=sepalWidth, Column name=petalLength, Column name=petalWidth]";
+		String res = "[Column name=sepalLength, Column name=sepalWidth, Column name=petalLength, Column name=petalWidth, Column name=variety]";
 		assertEquals(res,dataset.getNormalizableColumns().toString());
 		dataset.getNormalizableColumns();
 	}

@@ -23,6 +23,8 @@ public class DataSet implements IDataset{
 	private List<Column> listColumn(){
 		List<Column> list = new ArrayList<Column>();
 		Column column = null;
+		if(listePoints.size() == 0)
+			return list;
 		@SuppressWarnings("PMD.LawOfDemeter")
 		Field[] fs = listePoints.get(0).getClass().getDeclaredFields();
 		FactoryColumn factory = new FactoryColumn();
@@ -98,7 +100,6 @@ public class DataSet implements IDataset{
 			if(Column.isNormalizable())
 				res.add(Column);
 		}
-		System.out.println(res.toString());
 		return res;
 	}
 }
