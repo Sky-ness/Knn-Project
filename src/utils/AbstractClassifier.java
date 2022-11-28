@@ -8,8 +8,6 @@ import model.NullObject;
 
 public abstract class AbstractClassifier {
 
-	
-
 	public abstract List<IPoint> neighborManhattan(int k, IPoint point, List<IPoint> list, List<Column> c1);
 	
 	public abstract List<IPoint> neighborEuclidienne(int k, IPoint point, List<IPoint> list, List<Column> c1);
