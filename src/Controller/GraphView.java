@@ -161,7 +161,6 @@ public class GraphView extends AbstractView {
 		//création de la serie principale
 		for(Category c: parser.allCategories()) {
 			XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
-			
 			series.setName(c.getTitle());
 			chartData.add(series);
 			int cpt=0;
