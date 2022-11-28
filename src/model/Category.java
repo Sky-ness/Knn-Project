@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,6 +16,12 @@ public class Category implements ICategory{
 		super();
 		this.title = title;
 		this.listePoints = listePoints;
+	}
+	public Category(String title,IPoint points) {
+		super();
+		this.title = title;
+		this.listePoints = new ArrayList<IPoint>();
+		this.listePoints.add(points);
 	}
 
 	@Override

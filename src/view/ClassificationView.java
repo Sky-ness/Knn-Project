@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import model.Category;
 import model.IPoint;
 import model.Parser;
 import utils.AbstractClassifier;
@@ -27,16 +28,17 @@ public class ClassificationView extends AbstractView{
 	@FXML
 	private Label labelSelectPoint;
 
+	private Category c;
 
 	public ClassificationView(Parser p) {
 		super(p);
 		try {
 			vb = initFxml("fxmlModel/classification.fxml");
 			load();
-			
+
 			eventDetachWindow(p);
 			afficher(vb);
-			
+
 		}catch(Exception e) {
 			System.err.println("Erreur au chargement: " +e.getMessage());
 		}
@@ -44,16 +46,20 @@ public class ClassificationView extends AbstractView{
 	@Override
 	public void load() {
 		reset();
-		
+
 		initComboBoxClassification(classification);
 		initComboBoxDistance(distance);
-		
+
 		buttonSelectPoint.setOnAction(e-> new PointView(parser));
 		labelSelectPoint.setOnMouseClicked(e-> labelSelectPoint.setText(PointView.selectedPoint.toString()));
+
 		valider.setOnAction(e-> {
 			AbstractClassifier a = ChooseClassifier(classification.getValue());
 			List<IPoint> voisin = ChooseDistance(a, distance.getValue(),(int) neighborSlider.getValue());
-			parser.setLines(voisin);
+			if(c!=null) 
+				parser.allCategories().remove(c);
+			c=new Category("voisin", voisin);
+			parser.addCategory(c);	
 		});
 	}
 	@Override

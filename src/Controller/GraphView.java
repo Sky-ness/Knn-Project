@@ -159,7 +159,6 @@ public class GraphView extends AbstractView {
 		Column ordSelected=searchColumnbyName(ordCol.getValue());
 
 		//création de la serie principale
-		XYChart.Series<Double, Double> series2 = new XYChart.Series<Double, Double>();
 		for(Category c: parser.allCategories()) {
 			XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
 			
@@ -171,13 +170,15 @@ public class GraphView extends AbstractView {
 				series.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
 				Data<Double, Double> data = series.getData().get(cpt);
 				Node point = series.getData().get(cpt).getNode();
-
+				
 				//mise en place d'une fenetre au survole de la souris
 				Tooltip tool = new Tooltip(absSelected.getName() + "=" + absSelected.getDenormalizedValue(data.getXValue()).toString() + "    "
 						+ ordSelected.getName() +"=" + ordSelected.getDenormalizedValue(data.getYValue()).toString());
 				Tooltip.install(point, tool);
+				
 				tool.setShowDelay(Duration.millis(10));
 
+				
 				//changement de couleur du point et affichage du point au survol de la souris
 				String color = point.getStyle();
 				point.setScaleX(1.25);
@@ -194,7 +195,6 @@ public class GraphView extends AbstractView {
 				cpt++;
 			}	
 		}
-		chartData.add(series2);
 	}
 	@Override
 	public void update(AbstractSubject subj) {

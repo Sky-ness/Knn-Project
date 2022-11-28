@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import model.Category;
 import model.Column;
 import model.IPoint;
 import model.Iris;
@@ -21,7 +22,9 @@ import model.Titanic;
 import utils.AbstractSubject;
 
 public class AddPointView extends AbstractView {
-
+	
+	private Category category;
+	
 	public AddPointView(Parser p) {
 		super(p);
 
@@ -55,19 +58,27 @@ public class AddPointView extends AbstractView {
 		List<IPoint> points = parser.getListPoints();
 		IPoint first = points.get(0);
 		Class<? extends IPoint> c = first.getClass();
+		
+		if (category!=null) {
+			parser.addAllLine(category.getListPoints());
+			parser.allCategories().remove(category);
+		}
 		b.setOnAction((event) -> {
 			String [] parameter = new String [listTf.size()];
 			for(int i =0;i<listTf.size();i++) {
 				parameter[i]=listTf.get(i).getText();
 			}
 			if(c.equals(Iris.class)) {
-				parser.addLine(new Iris(parameter));
+				category = new Category("ajout",new Iris(parameter));
+				parser.addCategory(category);
 			}
 			if(c.equals(Pokemon.class)) {
-				parser.addLine(new Pokemon(parameter));
+				category = new Category("ajout",new Pokemon(parameter));
+				parser.addCategory(category);
 			}
 			if(c.equals(Titanic.class)) {
-				parser.addLine(new Titanic(parameter));
+				category = new Category("ajout",new Titanic(parameter));
+				parser.addCategory(category);
 			}
 		});
 		for(int i=0;i<listLbl.size();i++) {

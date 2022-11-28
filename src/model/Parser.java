@@ -150,6 +150,7 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	@Override
 	public void addCategory(Category classe) {
 		categories.add(classe);
+		notifyObservers();
 	}
 
 	@Override
