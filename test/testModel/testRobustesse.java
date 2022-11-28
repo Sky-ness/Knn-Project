@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import model.Knn;
 import model.Parser;
-import model.Pokemon;
 import model.Robustesse;
 
 class testRobustesse {

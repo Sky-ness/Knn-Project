@@ -1,7 +1,5 @@
 package model;
 
-import java.lang.reflect.Field;
-
 import com.opencsv.bean.CsvBindByName;
 
 public class Titanic extends IPoint {
