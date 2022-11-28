@@ -11,11 +11,11 @@ import org.junit.jupiter.api.Test;
 
 import model.DataSet;
 import model.Distance;
+import model.IPoint;
 import model.Iris;
 import model.Knn;
 import model.Parser;
 import model.Titanic;
-import utils.IPoint;
 
 public class testDistanceTitanic {
 	Parser parser = new Parser();

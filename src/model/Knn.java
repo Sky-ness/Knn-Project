@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utils.AbstractClassifier;
-import utils.IPoint;
 
 @SuppressWarnings("PMD.ShortClassName")
 public class Knn extends AbstractClassifier{

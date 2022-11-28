@@ -14,7 +14,6 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import utils.AbstractClassifier;
 import utils.AbstractSubject;
 import utils.IMVCModel;
-import utils.IPoint;
 
 public class Parser extends AbstractSubject implements IMVCModel {
 	
@@ -31,6 +30,7 @@ public class Parser extends AbstractSubject implements IMVCModel {
 				.build().parse();
 		datas = new DataSet(title,points);
 	}
+	
 	
 	public void loadFromFile(File f,Class<? extends IPoint> c) throws IllegalStateException, IOException {
 		loadFromFile(f.getAbsolutePath(),c);
@@ -164,6 +164,9 @@ public class Parser extends AbstractSubject implements IMVCModel {
 		Object value;
 		for(IPoint point:points) {
 			value = point.getValue(col);
+			if(value == null) {
+				value = new NullObject();
+			}
 			if(!disctintValue.contains(value)){
 				disctintValue.add(value);
 			}

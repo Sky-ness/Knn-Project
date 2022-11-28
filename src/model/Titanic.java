@@ -4,9 +4,7 @@ import java.lang.reflect.Field;
 
 import com.opencsv.bean.CsvBindByName;
 
-import utils.IPoint;
-
-public class Titanic implements IPoint {
+public class Titanic extends IPoint {
 	@CsvBindByName(column = "PassengerId")
 	protected int passengerId;
 	@CsvBindByName(column = "Survived")
@@ -77,25 +75,4 @@ public class Titanic implements IPoint {
 	public double getFare() {return fare;}
 	public String getCabin() {return cabin;}
 	public Embarked getEmbarked() {return embarked;}
-	@Override
-	public Object getValue(Column col){
-		Field[] fs = this.getClass().getDeclaredFields();
-		for(Field f : fs) {
-			if(f.getName().equals(col.getName())){
-				try {
-					return f.get(this);
-				} catch (IllegalArgumentException | IllegalAccessException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return null;
-	}
-	@Override
-	public double getNormalizedValue(Column xcol){
-		return xcol.getNormalizedValue(this);
-	}
-
-
-
 }

@@ -8,10 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import model.IPoint;
 import model.Parser;
 import utils.AbstractClassifier;
 import utils.AbstractSubject;
-import utils.IPoint;
 
 public class ClassificationView extends AbstractView{
 	@FXML

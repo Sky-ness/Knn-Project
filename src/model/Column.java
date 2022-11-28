@@ -2,7 +2,6 @@ package model;
 
 import java.lang.reflect.Field;
 
-import utils.IPoint;
 import utils.IValueNormalizer;
 
 public class Column {

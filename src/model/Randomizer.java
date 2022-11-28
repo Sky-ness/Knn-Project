@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 import utils.AbstractClassifier;
-import utils.IPoint;
 
 public class Randomizer extends AbstractClassifier {
 
