@@ -67,7 +67,7 @@ public class GraphView extends AbstractView {
 	private static final String PATHPOKEMON="data/pokemon_train.csv";
 	private static final String PATHIRIS="data/iris.csv";
 	private static final String PATHTITANIC="data/titanic.csv";
-
+	
 	private Column defaultXCol;
 	private Column defaultYCol;
 	private Column defaultCategory;
@@ -166,15 +166,18 @@ public class GraphView extends AbstractView {
 
 		if(chartData != null)
 			chartData.clear();
-
+		
 		//stockage de la colonne selectionné
 		Column absSelected=searchColumnbyName(absCol.getValue());
 		Column ordSelected=searchColumnbyName(ordCol.getValue());
-		Column categorySelected=searchColumnbyName(category.getValue()); 
+		Column categorySelected = searchColumnbyName(category.getValue());
 		
+		/* 
+		 * a faire que si la categories est différentes de l'ancienne
+		 */
 		Collection<Category> categories = parser.creerCategory(categorySelected);
 		parser.setCategories(categories);
-		
+		 
 		//création de la serie principale
 		for(Category c: parser.allCategories()) {
 			XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
