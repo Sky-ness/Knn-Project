@@ -14,10 +14,11 @@ public abstract class AbstractClassifier {
 	
 	public Object classify(List<IPoint> neighbor, Column col){
 		Object value;
+		neighbor.remove(0);
 		int i = 0; int max = 0;
-		Object valueFound = neighbor.get(1);
-		for(int j = 1 ; j < neighbor.size() ; j++) {
-			value = neighbor.get(j).getValue(col);
+		Object valueFound = neighbor.get(0);
+		for(IPoint point  : neighbor) {
+			value = point.getValue(col);
 			i = 0;
 			for(IPoint pointCompare  : neighbor) {
 				if(value == null) {
