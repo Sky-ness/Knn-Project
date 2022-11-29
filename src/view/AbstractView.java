@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.Category;
 import model.Column;
 import model.IPoint;
 import model.Knn;
@@ -68,6 +69,7 @@ public abstract class AbstractView extends Stage implements Observer{
 				return c;
 		return null;
 	}
+
 	
 	public AbstractClassifier ChooseClassifier(String classification) {
 		if (classification.equals("Knn")) {

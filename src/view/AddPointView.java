@@ -22,9 +22,9 @@ import model.Titanic;
 import utils.AbstractSubject;
 
 public class AddPointView extends AbstractView {
-	
-	private Category category =null;
-	
+
+	private Category category;
+
 	public AddPointView(Parser p) {
 		super(p);
 
@@ -58,29 +58,32 @@ public class AddPointView extends AbstractView {
 		List<IPoint> points = parser.getListPoints();
 		IPoint first = points.get(0);
 		Class<? extends IPoint> c = first.getClass();
-		
-		if (category!=null) {
-			parser.addAllLine(category.getListPoints());
-			parser.allCategories().remove(category);
-		}
-		
+		List<IPoint> ajout = new ArrayList<>();
+
+
 		b.setOnAction((event) -> {
+			if(category==null) {
+				category = new Category("ajout",ajout,parser.getListColumns());
+			}else {
+				parser.removeCategory(category);
+			}
 			String [] parameter = new String [listTf.size()];
 			for(int i =0;i<listTf.size();i++) {
 				parameter[i]=listTf.get(i).getText();
 			}
 			if(c.equals(Iris.class)) {
-				category = new Category("ajout",new Iris(parameter),parser.getListColumns());
-				parser.addCategory(category);
+				category.addLine(new Iris(parameter));
+				parser.addLine(new Iris(parameter));
 			}
 			if(c.equals(Pokemon.class)) {
-				category = new Category("ajout",new Pokemon(parameter),parser.getListColumns());
-				parser.addCategory(category);
+				category.addLine(new Iris(parameter));
+				parser.addLine(new Iris(parameter));
 			}
 			if(c.equals(Titanic.class)) {
-				category = new Category("ajout",new Titanic(parameter),parser.getListColumns());
-				parser.addCategory(category);
+				category.addLine(new Iris(parameter));
+				parser.addLine(new Iris(parameter));
 			}
+			parser.addCategory(category);
 		});
 		for(int i=0;i<listLbl.size();i++) {
 			childs.addAll(listLbl.get(i),listTf.get(i));

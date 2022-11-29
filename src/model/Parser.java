@@ -151,13 +151,18 @@ public class Parser extends AbstractSubject implements IMVCModel {
 		categories.add(classe);
 		notifyObservers();
 	}
+	public void removeCategory(Category classe) {
+		categories.remove(classe);
+	}
 
 	@Override
 	public Collection<Category> allCategories() {
 		return categories;
 	}
-	
-	private Collection<Category> creerCategory(Column col) {
+	public void setCategories(Collection<Category> categories) {
+		this.categories = categories;
+	}
+	public Collection<Category> creerCategory(Column col) {
 		Collection<Category> categories = new ArrayList<>();
 		List<IPoint> points = this.getListPoints();
 		List<Object> disctintValue = new ArrayList<>();

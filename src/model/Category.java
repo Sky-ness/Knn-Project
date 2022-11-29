@@ -1,12 +1,12 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import utils.AbstractSubject;
 import utils.ICategory;
 
-public class Category implements ICategory{
+public class Category extends AbstractSubject implements ICategory {
 
 	protected String title;
 	protected List<IPoint> listePoints;
@@ -17,13 +17,6 @@ public class Category implements ICategory{
 		this.title = title;
 		this.listePoints = listePoints;
 		this.listeColumns = listeColumn;
-	}
-	public Category(String title,IPoint points, List<Column> listeColumn) {
-		super();
-		this.title = title;
-		this.listePoints = new ArrayList<IPoint>();
-		this.listePoints.add(points);
-		this.listeColumns=listeColumn;
 	}
 
 	@Override
@@ -44,16 +37,19 @@ public class Category implements ICategory{
 	@Override
 	public void setLines(List<IPoint> lines) {
 		listePoints=lines;
+		notifyObservers();
 	}
 
 	@Override
 	public void addLine(IPoint element) {
 		listePoints.add(element);
+		notifyObservers();
 	}
 
 	@Override
 	public void addAllLine(List<IPoint> element) {
 		listePoints.addAll(element);
+		notifyObservers();
 	}
 
 	@Override

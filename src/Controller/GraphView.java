@@ -2,8 +2,7 @@ package Controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -49,6 +48,8 @@ public class GraphView extends AbstractView {
 	@FXML
 	private ComboBox<String> ordCol;
 	@FXML
+	private ComboBox<String> category;
+	@FXML
 	private ScatterChart<Double,Double> chart;
 	@FXML
 	private Button clear;
@@ -69,9 +70,11 @@ public class GraphView extends AbstractView {
 
 	private Column defaultXCol;
 	private Column defaultYCol;
+	private Column defaultCategory;
 
 	private ObservableList<String> absColItems;
 	private ObservableList<String> ordColItems;	
+	private ObservableList<String> categoryItems;	
 	private ObservableList<Series<Double,Double>> chartData;
 
 	public GraphView(Parser p){
@@ -121,8 +124,11 @@ public class GraphView extends AbstractView {
 
 		defaultXCol = parser.defaultXCol();
 		defaultYCol = parser.defaultYCol();
+		defaultCategory = parser.defaultColCategory();
+
 		absColItems = absCol.getItems();
 		ordColItems = ordCol.getItems();
+		categoryItems = category.getItems();
 
 		absCol.setValue(defaultXCol.getName());
 		for(Column c: parser.getListColumns())
@@ -134,6 +140,11 @@ public class GraphView extends AbstractView {
 			if(c.isNormalizable())
 				ordColItems.add(c.getName());
 
+		category.setValue(defaultCategory.getName());
+		for(Column c: parser.getListColumns())
+			if(c.isNormalizable())
+				categoryItems.add(c.getName());
+
 		pointGenerator();
 		load.setOnAction(e -> pointGenerator());
 	}
@@ -144,6 +155,8 @@ public class GraphView extends AbstractView {
 			absColItems.clear();
 		if(ordColItems != null)
 			ordColItems.clear();
+		if(categoryItems != null)
+			categoryItems.clear();
 		if(chartData != null)
 			chartData.clear();
 	}
@@ -157,7 +170,11 @@ public class GraphView extends AbstractView {
 		//stockage de la colonne selectionné
 		Column absSelected=searchColumnbyName(absCol.getValue());
 		Column ordSelected=searchColumnbyName(ordCol.getValue());
-
+		Column categorySelected=searchColumnbyName(category.getValue()); 
+		
+		Collection<Category> categories = parser.creerCategory(categorySelected);
+		parser.setCategories(categories);
+		
 		//création de la serie principale
 		for(Category c: parser.allCategories()) {
 			XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
@@ -165,19 +182,18 @@ public class GraphView extends AbstractView {
 			chartData.add(series);
 			int cpt=0;
 			for (IPoint i : c.getListPoints()) {
-				
+
 				series.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
 				Data<Double, Double> data = series.getData().get(cpt);
 				Node point = series.getData().get(cpt).getNode();
-				
+
 				//mise en place d'une fenetre au survole de la souris
 				Tooltip tool = new Tooltip(absSelected.getName() + "=" + absSelected.getDenormalizedValue(data.getXValue()).toString() + "    "
 						+ ordSelected.getName() +"=" + ordSelected.getDenormalizedValue(data.getYValue()).toString());
 				Tooltip.install(point, tool);
-				
+
 				tool.setShowDelay(Duration.millis(10));
 
-				
 				//changement de couleur du point et affichage du point au survol de la souris
 				String color = point.getStyle();
 				point.setScaleX(1.25);
@@ -200,5 +216,5 @@ public class GraphView extends AbstractView {
 		load();
 		System.out.println("update le graph");
 	}
-	
+
 }
