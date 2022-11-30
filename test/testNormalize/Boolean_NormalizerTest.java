@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import model.BooleanNormalizer;
 
-class Boolean_NormalizerTest {
+public class Boolean_NormalizerTest {
 	BooleanNormalizer boo_normalizer;
 
 	@BeforeEach

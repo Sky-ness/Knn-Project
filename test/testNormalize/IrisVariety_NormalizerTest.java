@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import model.IrisVariety;
 import model.IrisVarietyNormalizer;
 
-class IrisVariety_NormalizerTest {
+public class IrisVariety_NormalizerTest {
 
 	IrisVarietyNormalizer irisvariety;
 

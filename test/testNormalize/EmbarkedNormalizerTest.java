@@ -7,9 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import model.Embarked;
 import model.EmbarkedNormalizer;
-import model.IrisVariety;
 
-class EmbarkedNormalizerTest {
+public class EmbarkedNormalizerTest {
 	EmbarkedNormalizer embarked_norm;
 
 	@BeforeEach

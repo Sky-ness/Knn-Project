@@ -13,7 +13,7 @@ import model.Knn;
 import model.Parser;
 import model.Pokemon;
 
-public class testKnn {
+public class TestKnn {
 	Parser p ;
 	Knn knn;
 	int k;

@@ -16,7 +16,7 @@ import model.IPoint;
 import model.Iris;
 import model.Parser;
 
-class TestCategory {
+public class TestCategory {
 
 	Category cat;
 	

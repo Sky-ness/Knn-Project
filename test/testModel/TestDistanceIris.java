@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import model.Distance;
 import model.Parser;
 
-public class testDistanceIris {
+public class TestDistanceIris {
 	Parser parser = new Parser();
 	Distance distance;
 	

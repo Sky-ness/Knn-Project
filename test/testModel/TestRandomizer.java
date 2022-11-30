@@ -12,7 +12,7 @@ import model.IPoint;
 import model.Pokemon;
 import model.Randomizer;
 
-class testRandomizer {
+public class TestRandomizer {
 	Randomizer randominzer;
 	@BeforeEach
 	void init() {

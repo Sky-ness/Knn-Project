@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import model.Iris;
 import model.IrisVariety;
 
-class testIris {
+public class TestIris {
 
 	@Test
 	void testInstantationGeneriqueSansErreur() {

@@ -12,7 +12,7 @@ import model.Distance;
 import model.Parser;
 import model.Pokemon;
 
-public class testDistancePokemon {
+public class TestDistancePokemon {
 	Parser parser = new Parser();
 	Distance distance;
 	

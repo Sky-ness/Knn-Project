@@ -9,7 +9,7 @@ import model.Knn;
 import model.Parser;
 import model.Robustesse;
 
-class testRobustesse {
+public class TestRobustesse {
 	
 	Parser p;
 	Robustesse rob;
@@ -26,7 +26,7 @@ class testRobustesse {
 	
 	
 	@Test
-	void testRobustesseCalc() {
+	void RobustesseCalcTest() {
 		assertEquals(100.0,rob.calc(p, k, knn, p.getListColumns().get(4)));
 	}
 

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import model.Parser;
 
-public class testParser {
+public class TestParser {
 	Parser parser;
 	
 	@BeforeEach
