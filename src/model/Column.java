@@ -71,6 +71,6 @@ public class Column {
 	}
 	@Override
 	public String toString() {
-		return "Column name=" + name;
+		return "Column name=" + name +" " + valueNormalizer;
 	}
 }

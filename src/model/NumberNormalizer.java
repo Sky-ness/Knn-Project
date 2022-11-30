@@ -38,6 +38,10 @@ public class NumberNormalizer implements IValueNormalizer{
 		}
 	}
 	
+	public void setExecuted(boolean executed) {
+		this.executed = executed;
+	}
+
 	@Override
 	@SuppressWarnings("PMD.LawOfDemeter")
 	public double normalize(Object value) {

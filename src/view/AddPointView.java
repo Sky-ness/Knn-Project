@@ -16,10 +16,12 @@ import model.Category;
 import model.Column;
 import model.IPoint;
 import model.Iris;
+import model.NumberNormalizer;
 import model.Parser;
 import model.Pokemon;
 import model.Titanic;
 import utils.AbstractSubject;
+import utils.IValueNormalizer;
 
 public class AddPointView extends AbstractView {
 
@@ -76,14 +78,27 @@ public class AddPointView extends AbstractView {
 				parser.addLine(new Iris(parameter));
 			}
 			if(c.equals(Pokemon.class)) {
-				category.addLine(new Iris(parameter));
-				parser.addLine(new Iris(parameter));
+				category.addLine(new Pokemon(parameter));
+				parser.addLine(new Pokemon(parameter));
 			}
 			if(c.equals(Titanic.class)) {
-				category.addLine(new Iris(parameter));
-				parser.addLine(new Iris(parameter));
+				category.addLine(new Titanic(parameter));
+				parser.addLine(new Titanic(parameter));
 			}
+			for(Column col : parser.getListColumns()) {
+				System.out.println(col);
+				IValueNormalizer normalizer = col.getValueNormalizer();
+				if(normalizer != null) {
+					if(normalizer.getClass().equals(NumberNormalizer.class)) {
+						((NumberNormalizer)col.getValueNormalizer()).setExecuted(false);
+						((NumberNormalizer)normalizer).amplitude();
+					}
+				}
+
+			}
+			
 			parser.addCategory(category);
+			
 		});
 		for(int i=0;i<listLbl.size();i++) {
 			childs.addAll(listLbl.get(i),listTf.get(i));
