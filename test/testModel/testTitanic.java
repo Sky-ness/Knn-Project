@@ -35,7 +35,7 @@ class testTitanic {
 		assertEquals(0,titanic.getPassengerId());
 		assertEquals(0,titanic.getSurvived());
 		assertEquals(0,titanic.getPclass());
-		assertEquals("",titanic.getName());
+		assertEquals(null,titanic.getName());
 		assertEquals(null,titanic.getSex());
 		assertEquals(0,titanic.getAge());
 		assertEquals(0,titanic.getSibSp());
