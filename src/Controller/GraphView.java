@@ -113,6 +113,7 @@ public class GraphView extends AbstractView {
 			System.err.println("Erreur au chargement: " +e.getMessage());
 		}
 	}
+	
 	private void start(String path) {
 		parser.loadFromString(path);
 		load();
