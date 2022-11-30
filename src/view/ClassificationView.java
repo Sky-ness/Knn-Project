@@ -9,7 +9,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import model.Category;
+import model.Column;
 import model.IPoint;
+import model.Knn;
 import model.Parser;
 import utils.AbstractClassifier;
 import utils.AbstractSubject;
@@ -64,6 +66,18 @@ public class ClassificationView extends AbstractView{
 				parser.allCategories().remove(c);
 			c= new Category("voisin", voisin,parser.getListColumns());
 			parser.addCategory(c);	
+			boolean find = false;
+			int i = 0;
+			Column col = null;
+			while(!find && i < parser.getListColumns().size()) {
+				if(selectCol.getValue().equals(parser.getListColumns().get(i).getName())) {
+					col = parser.getListColumns().get(i);
+					find = true;
+				}
+				i++;
+			}
+			Knn classifier = new Knn();
+			classeCategory.setText("Valeur trouvé : " +classifier.classify(voisin, col));
 		});
 	}
 	@Override
