@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import model.Column;
 import model.Parser;
 import model.Robustesse;
@@ -29,7 +30,9 @@ public class RobustesseView extends AbstractView{
 	private Slider neighborSlider;
 	@FXML
 	private Button valider;
-
+	@FXML 
+	private VBox vboxColonne;
+	
 	public RobustesseView(Parser p) {
 		super(p);
 
