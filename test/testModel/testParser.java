@@ -43,13 +43,13 @@ public class testParser {
 	
 	@Test
 	void testColumnX() {
-		assertEquals("Column name=sepalLength",parser.defaultXCol().toString());
+		assertEquals("sepalLength",parser.defaultXCol().getName());
 
 	}
 	
 	@Test
 	void testColumnY() {
-		assertEquals("Column name=sepalWidth",parser.defaultYCol().toString());
+		assertEquals("sepalWidth",parser.defaultYCol().getName());
 	}
 	
 	@Test
