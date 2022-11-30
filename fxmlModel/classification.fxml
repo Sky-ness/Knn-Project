@@ -16,6 +16,7 @@
          </font>
       </Label>
       <ComboBox fx:id="classification" prefHeight="26.0" prefWidth="185.0" promptText="Sélectionne classification" />
+       <ComboBox fx:id="selectCol" prefHeight="26.0" prefWidth="185.0" promptText="Sélectionner votre colonne" />
       <ComboBox fx:id="distance" prefHeight="26.0" prefWidth="186.0" promptText="Sélectionne distance">
          <VBox.margin>
             <Insets top="15.0" />
@@ -47,5 +48,6 @@
          </VBox.margin>
       </Slider>
       <Button fx:id="valider" mnemonicParsing="false" text="Valider" />
+      <Label fx:id="classeCategory" text="category" />
    </children>
 </VBox>
