@@ -108,4 +108,16 @@ public abstract class AbstractView extends Stage implements Observer{
 		items.add("Randomizer");
 	}
 	
+	public void initComboBoxSelectcol(ComboBox<String> selectCol) {
+		items = selectCol.getItems();
+		
+		for(Column col:parser.getListColumns()) {
+			if(col.isNormalizable()) {
+				items.add(col.toString());
+				selectCol.setValue(col.toString());
+			}
+		}
+		
+	}
+	
 }

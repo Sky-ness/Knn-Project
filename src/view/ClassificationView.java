@@ -20,6 +20,8 @@ public class ClassificationView extends AbstractView{
 	@FXML
 	private ComboBox<String> classification;
 	@FXML
+	private ComboBox<String> selectCol;
+	@FXML
 	private ComboBox<String> distance;
 	@FXML
 	private Button valider;
@@ -27,7 +29,8 @@ public class ClassificationView extends AbstractView{
 	private Slider neighborSlider;
 	@FXML
 	private Label labelSelectPoint;
-
+	@FXML
+	private Label classeCategory;
 	private Category c;
 
 	public ClassificationView(Parser p) {
@@ -49,6 +52,7 @@ public class ClassificationView extends AbstractView{
 
 		initComboBoxClassification(classification);
 		initComboBoxDistance(distance);
+		initComboBoxSelectcol(selectCol);
 
 		buttonSelectPoint.setOnAction(e-> new PointView(parser));
 		labelSelectPoint.setOnMouseClicked(e-> labelSelectPoint.setText(PointView.selectedPoint.toString()));
@@ -66,6 +70,7 @@ public class ClassificationView extends AbstractView{
 	public void reset() {
 		classification.getItems().clear();
 		distance.getItems().clear();
+		selectCol.getItems().clear();
 	}
 	@Override
 	public void update(AbstractSubject subj) {
