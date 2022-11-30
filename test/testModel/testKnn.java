@@ -28,6 +28,7 @@ public class testKnn {
 	@Test
 	void testNeighborManhattan() {
 		List<String> voisin = new ArrayList<>() ;
+		voisin.add("Dialga");
 		voisin.add("Giratina");
 		voisin.add("Palkia");
 		voisin.add("Necrozma");
@@ -42,6 +43,7 @@ public class testKnn {
 	@Test
 	void testNeighborEuclidienne() {
 		List<String> voisin = new ArrayList<>() ;
+		voisin.add("Dialga");
 		voisin.add("Giratina");
 		voisin.add("Palkia");
 		voisin.add("Necrozma");

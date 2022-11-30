@@ -53,4 +53,12 @@ public class testPokemon {
 		Pokemon pokemon = new Pokemon();
 		assertEquals(null,pokemon.getValue(new Column(null, null)));
 	}
+	
+	@Test
+	void testToString() {
+		Pokemon pokemon = new Pokemon();
+		String res = "Pokemon [name=null, attack=0, baseEggSteps=0, captureRate=0.0, defense=0, xpGrowth=0, hp=0, spAttack=0, spDefense=0, type1=null, type2=null, speed=0.0, legendary=false]"
+;	
+		assertEquals(res,pokemon.toString());
+	}
 }
