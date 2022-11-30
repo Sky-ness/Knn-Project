@@ -32,6 +32,24 @@ public class Titanic extends IPoint {
 		
 	}
 
+	public Titanic(int id, int survived, int pclass, String name,
+				   Sexe sexe, double age, int sibSp, int parch,
+				   String ticket, double fare, String cabin,
+				   Embarked embarked) {
+
+		this.passengerId = id;
+		this.survived = survived;
+		this.Pclass = pclass;
+		this.name = name;
+		this.sex = sexe;
+		this.age = age;
+		this.sibSp = sibSp;
+		this.parch = parch;
+		this.ticket = ticket;
+		this.fare = fare;
+		this.cabin = cabin;
+		this.embarked = embarked;
+	}
 	
 	public Titanic(String ...param){
 		try {
@@ -53,7 +71,9 @@ public class Titanic extends IPoint {
 			Pclass=0;
 		}
 
-		name = param[3];
+		name = null;
+		if(!param[3].equals(""))
+			name = param[3];
 
 
 		Sexe [] se = Sexe.values();
@@ -82,7 +102,9 @@ public class Titanic extends IPoint {
 			parch = 0;
 		}
 
-		ticket = param[8];
+		ticket = null;
+		if(!param[8].equals(""))
+			ticket = param[8];
 
 		try {
 			fare= Double.valueOf(param[9]);
@@ -90,21 +112,11 @@ public class Titanic extends IPoint {
 			fare=0.0;
 		}
 
-		cabin = param[10];
+		cabin = null;
+		if(!param[8].equals(""))
+			cabin = param[10];
+
 		Character [] valideEmbaked = new Character [] {'S','C','Q'};
-
-		embarked=0;
-		Character emb = param[10].toUpperCase().charAt(0);
-		for(Character c:valideEmbaked) {
-			if(c.equals(emb)) {
-				embarked=c;
-			}
-
-		}
-
-
-
-
 
 	}
 
