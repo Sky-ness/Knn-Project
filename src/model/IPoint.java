@@ -17,8 +17,12 @@ public abstract class  IPoint {
 
 	 */
 	public Object getValue(Column col) {
+		if(col == null)
+			return new NullObject();
 		Field[] fs = this.getClass().getDeclaredFields();
 		String colName = col.getName();
+		if(colName == null)
+			return new NullObject();
 		for(Field f : fs) {
 			if(colName.equals(f.getName())){
 				try {

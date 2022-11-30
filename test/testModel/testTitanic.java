@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import model.Column;
 import model.Embarked;
+import model.NullObject;
 import model.Sexe;
 import model.Titanic;
 
@@ -48,7 +49,7 @@ class testTitanic {
 	@Test
 	void testGetValue() {
 		Titanic titanic = new Titanic();
-		assertEquals(null,titanic.getValue(new Column(null, null)));
+		assertEquals(new NullObject().toString(), titanic.getValue(new Column(null, null)).toString());
 	}
 	
 	@Test
