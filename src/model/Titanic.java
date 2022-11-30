@@ -116,10 +116,14 @@ public class Titanic extends IPoint {
 		if(!param[8].equals(""))
 			cabin = param[10];
 
-		Character [] valideEmbaked = new Character [] {'S','C','Q'};
-
+		this.embarked = null;
+		String embarked = param[11].toUpperCase();
+		for(Embarked emb : Embarked.values()) {
+			if(embarked.equals(emb.toString())) {
+				this.embarked = emb;
+			}
+		}
 	}
-
 	
 	
 	@Override
