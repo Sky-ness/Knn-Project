@@ -85,9 +85,9 @@ public class Iris extends IPoint {
 	}
 
 	@Override
-	public Object getValue(Column col){
+	public Object getValue(Column column){
 		Field[] fs = this.getClass().getDeclaredFields();
-		String colName = col.getName();
+		String colName = column.getName();
 		for(Field f : fs) {
 			if(colName.equals(f.getName())) {
 				try {

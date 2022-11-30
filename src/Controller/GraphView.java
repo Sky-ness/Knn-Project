@@ -67,7 +67,7 @@ public class GraphView extends AbstractView {
 	private static final String PATHPOKEMON="data/pokemon_train.csv";
 	private static final String PATHIRIS="data/iris.csv";
 	private static final String PATHTITANIC="data/titanic.csv";
-	
+
 	private Column defaultXCol;
 	private Column defaultYCol;
 	private Column defaultCategory;
@@ -104,7 +104,7 @@ public class GraphView extends AbstractView {
 			classification.setOnAction(e-> new ClassificationView(parser));
 			robustesse.setOnAction(e-> new RobustesseView(parser));
 			clear.setOnAction(e-> chart.getData().clear());
-			easterEgg.setOnMouseClicked(e-> easterEgg.setText("merci de nous avoir éci"));
+			easterEgg.setOnMouseClicked(e-> easterEgg.setText("merci de nous avoir écouter"));
 
 			eventDetachWindow(p);			
 			afficher(vb);
@@ -113,7 +113,7 @@ public class GraphView extends AbstractView {
 			System.err.println("Erreur au chargement: " +e.getMessage());
 		}
 	}
-	
+
 	private void start(String path) {
 		parser.loadFromString(path);
 		load();
@@ -167,25 +167,25 @@ public class GraphView extends AbstractView {
 
 		if(chartData != null)
 			chartData.clear();
-		
+
 		//stockage de la colonne selectionné
 		Column absSelected=searchColumnbyName(absCol.getValue());
 		Column ordSelected=searchColumnbyName(ordCol.getValue());
 		Column categorySelected = searchColumnbyName(category.getValue());
-		
+
 		/* 
 		 * a faire que si la categories est différentes de l'ancienne
 		 */
 		Collection<Category> categories = parser.creerCategory(categorySelected);
 		parser.setCategories(categories);
-		 
+
 		//création de la serie principale
-		XYChart.Series<Double, Double> series2 = new XYChart.Series<Double, Double>();
 		for(Category c: parser.allCategories()) {
 			XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
 			series.setName(c.getTitle());
 			chartData.add(series);
 			int cpt=0;
+			XYChart.Series<Double, Double> series2 = new XYChart.Series<Double, Double>();
 			for (IPoint i : c.getListPoints()) {
 
 				series.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
@@ -214,8 +214,9 @@ public class GraphView extends AbstractView {
 				});
 				cpt++;
 			}	
+			chartData.add(series2);
 		}
-		chartData.add(series2);
+
 	}
 	@Override
 	public void update(AbstractSubject subj) {

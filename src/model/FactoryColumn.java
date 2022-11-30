@@ -4,9 +4,9 @@ import java.lang.reflect.Field;
 
 public class FactoryColumn {
 	
-	public Column createColumn(DataSet ds, Field field) {
+	public Column createColumn(DataSet dataset, Field field) {
 		
-		Column column = new Column(field.getName(),ds);
+		Column column = new Column(field.getName(),dataset);
 		Class<?> classField = field.getType();
 		String type = classField.getName();
 		

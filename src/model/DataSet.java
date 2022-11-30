@@ -76,29 +76,29 @@ public class DataSet implements IDataset{
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("");
-		sb.append("DataSet [title=" + title);
+		StringBuilder stringbuilder = new StringBuilder("");
+		stringbuilder.append("DataSet [title=" + title);
 		for(IPoint ipoint : listePoints) {
-			sb.append(ipoint + "\n");
+			stringbuilder.append(ipoint + "\n");
 		}
-		sb.append("ListeColumns=" + listeColumns);
-		return sb.toString();
+		stringbuilder.append("ListeColumns=" + listeColumns);
+		return stringbuilder.toString();
 	}
 
-	public List<Object> valueByColumn(Column col) {
+	public List<Object> valueByColumn(Column column) {
 		List<Object> list = new ArrayList<Object>();
 		for(IPoint point : listePoints) {
-			list.add(point.getValue(col));
+			list.add(point.getValue(column));
 		}
 		return list;
 	}
 
 	public List<Column> getNormalizableColumns() {
-		List<Column> res = new ArrayList<>();
+		List<Column> resultat = new ArrayList<>();
 		for (Column Column : listeColumns) {
 			if(Column.isNormalizable())
-				res.add(Column);
+				resultat.add(Column);
 		}
-		return res;
+		return resultat;
 	}
 }
