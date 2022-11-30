@@ -10,7 +10,7 @@ import model.NullObject;
 import model.Sexe;
 import model.Titanic;
 
-public class TestTitanic {
+public class testTitanic {
 	
 	@Test
 	void testInstantationGeneriqueSansErreur() {

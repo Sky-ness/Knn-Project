@@ -52,7 +52,7 @@ public class RobustesseView extends AbstractView{
 		AbstractClassifier a = ChooseClassifier(classification.getValue());
 		Column c = searchColumnbyName(colonne.getValue());
 
-		robustesseBar.setProgress(r.calc(p,(int)neighborSlider.getValue(),a,c));
+		robustesseBar.setProgress(r.calc(p,(int)neighborSlider.getValue(),a,c)/100.0);
 		robustesseIndicator.setText(""+r.calc(p,(int)neighborSlider.getValue(),a,c)+"%");
 	}
 	@Override

@@ -71,6 +71,8 @@ public class GraphView extends AbstractView {
 	private Column defaultXCol;
 	private Column defaultYCol;
 	private Column defaultCategory;
+	
+	private String oldCategorySelected;
 
 	private ObservableList<String> absColItems;
 	private ObservableList<String> ordColItems;	
@@ -176,8 +178,11 @@ public class GraphView extends AbstractView {
 		/* 
 		 * a faire que si la categories est différentes de l'ancienne
 		 */
-		Collection<Category> categories = parser.creerCategory(categorySelected);
-		parser.setCategories(categories);
+		if(oldCategorySelected==null || oldCategorySelected!=category.getValue()) {
+			oldCategorySelected = category.getValue();
+			Collection<Category> categories = parser.creerCategory(categorySelected);
+			parser.setCategories(categories);
+		}
 
 		//création de la serie principale
 		for(Category c: parser.allCategories()) {
