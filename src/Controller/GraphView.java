@@ -180,6 +180,7 @@ public class GraphView extends AbstractView {
 		parser.setCategories(categories);
 		 
 		//création de la serie principale
+		XYChart.Series<Double, Double> series2 = new XYChart.Series<Double, Double>();
 		for(Category c: parser.allCategories()) {
 			XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
 			series.setName(c.getTitle());
@@ -214,6 +215,7 @@ public class GraphView extends AbstractView {
 				cpt++;
 			}	
 		}
+		chartData.add(series2);
 	}
 	@Override
 	public void update(AbstractSubject subj) {

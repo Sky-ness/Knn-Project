@@ -8,11 +8,11 @@ public class SexeNormalizer implements IValueNormalizer{
 		if(value==null) {
 			return 0;
 		}
-		Sexe s;
+		Sexe sexe;
 		Sexe[] Sexes = Sexe.values();
 		if(Sexe.class.equals(value.getClass())) {
-			 s = (Sexe) value;
-			return (double)s.ordinal()/(Sexes.length-1);
+			 sexe = (Sexe) value;
+			return (double)sexe.ordinal()/(Sexes.length-1);
 		}
 		return -1;
 	}
