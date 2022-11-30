@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.Column;
-import model.Embarked;
 import model.NumberNormalizer;
 import model.Parser;
 

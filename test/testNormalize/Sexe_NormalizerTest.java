@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import model.Sexe;
 import model.SexeNormalizer;
 
-class Sexe_NormalizerTest {
+public class Sexe_NormalizerTest {
 
 	SexeNormalizer sexe_normalizer;
 

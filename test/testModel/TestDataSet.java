@@ -14,7 +14,7 @@ import model.IPoint;
 import model.Iris;
 import model.Parser;
 
-class testDataSet {
+public class TestDataSet {
 
 	Parser parser;
 	DataSet dataset;

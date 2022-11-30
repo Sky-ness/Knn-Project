@@ -3,21 +3,14 @@ package testModel;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.DataSet;
 import model.Distance;
-import model.IPoint;
-import model.Iris;
-import model.Knn;
 import model.Parser;
-import model.Titanic;
 
-public class testDistanceTitanic {
+public class TestDistanceTitanic {
 	Parser parser = new Parser();
 	Distance distance;
 	

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import model.PokemonType;
 import model.PokemonTypeNormalizer;
 
-class PokemonTypeNormalizerTest {
+public class PokemonTypeNormalizerTest {
 	
 	PokemonTypeNormalizer pokemon_type_normalizer;
 

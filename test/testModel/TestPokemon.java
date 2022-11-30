@@ -8,7 +8,7 @@ import model.Column;
 import model.Pokemon;
 import model.PokemonType;
 
-public class testPokemon {
+public class TestPokemon {
 	@Test
 	void testInstantationGeneriqueSansErreur() {
 		Pokemon pokemon = new Pokemon("Lucagod","1","1","1","1","1","1","1","1","Fire","FIGHTING","1","true");
