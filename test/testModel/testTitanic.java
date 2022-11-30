@@ -40,9 +40,9 @@ class testTitanic {
 		assertEquals(0,titanic.getAge());
 		assertEquals(0,titanic.getSibSp());
 		assertEquals(0,titanic.getParch());
-		assertEquals("",titanic.getTicket());
+		assertEquals(null,titanic.getTicket());
 		assertEquals(0,titanic.getFare());
-		assertEquals("",titanic.getCabin());
+		assertEquals(null,titanic.getCabin());
 		assertEquals(null,titanic.getEmbarked());
 	}
 	
