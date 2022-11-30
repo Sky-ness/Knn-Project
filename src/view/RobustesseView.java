@@ -1,9 +1,13 @@
 package view;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -42,8 +46,11 @@ public class RobustesseView extends AbstractView{
 			load();
 			valider.setOnAction(e-> afficherRobustesse(p));
 
+			
 			eventDetachWindow(p);
 			afficher(vb);
+			
+			
 
 		} catch (IOException e) {
 			System.err.println("Erreur au chargement: " +e.getMessage());
@@ -51,18 +58,29 @@ public class RobustesseView extends AbstractView{
 
 	}
 	public void afficherRobustesse(Parser p) {
+		List<Column> listColumn = new ArrayList<>();
+		CheckBox checkbox;
+		for(Node n:vboxColonne.getChildren()) {
+			checkbox = (CheckBox)n ;
+			if(checkbox.isSelected()){
+				listColumn.add(searchColumnbyName(checkbox.getText()));
+			}
+		}
+
 		Robustesse r = new Robustesse();
 		AbstractClassifier a = ChooseClassifier(classification.getValue());
 		Column c = searchColumnbyName(colonne.getValue());
-
-		robustesseBar.setProgress(r.calc(p,(int)neighborSlider.getValue(),a,c)/100.0);
-		robustesseIndicator.setText(""+r.calc(p,(int)neighborSlider.getValue(),a,c)+"%");
+		
+		
+		robustesseBar.setProgress(r.calc(p,(int)neighborSlider.getValue(),a,c,listColumn)/100.0);
+		robustesseIndicator.setText(""+r.calc(p,(int)neighborSlider.getValue(),a,c,listColumn)+"%");
 	}
 	@Override
 	public void reset() {
 		colonne.getItems().clear();
 		distance.getItems().clear();
 		classification.getItems().clear();
+		vboxColonne.getChildren().clear();
 	}
 	@Override
 	public void load() {
@@ -71,7 +89,10 @@ public class RobustesseView extends AbstractView{
 		initComboBoxDistance(distance);
 		for(Column c: parser.getListColumns()) {
 			colonne.getItems().add(c.getName());
+			vboxColonne.getChildren().add(new CheckBox(c.getName()));
 		}
+		
+		
 	}
 	@Override
 	public void update(AbstractSubject subj) {
