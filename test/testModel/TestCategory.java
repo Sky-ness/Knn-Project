@@ -64,7 +64,8 @@ class TestCategory {
 	
 	@Test
 	void testIterator() {
-		assertEquals(cat.iterator(), cat.iterator());
+		while(cat.iterator().hasNext())
+		assertEquals(cat.iterator().next(), cat.iterator());
 	}
 
 	@Test
