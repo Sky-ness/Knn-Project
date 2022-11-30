@@ -16,11 +16,11 @@ public abstract class  IPoint {
 	 * @throws SecurityException 
 
 	 */
-	public Object getValue(Column col) {
-		if(col == null)
+	public Object getValue(Column column) {
+		if(column == null)
 			return new NullObject();
 		Field[] fs = this.getClass().getDeclaredFields();
-		String colName = col.getName();
+		String colName = column.getName();
 		if(colName == null)
 			return new NullObject();
 		for(Field f : fs) {
@@ -41,8 +41,8 @@ public abstract class  IPoint {
 	 * Si la colonne n'est pas normalisable, le comportement n'est pas defini.
 	 * @throws Exception 
 	 */
-	public double getNormalizedValue(Column xcol) {
-		return xcol.getNormalizedValue(this);
+	public double getNormalizedValue(Column xcolumn) {
+		return xcolumn.getNormalizedValue(this);
 	}
 
 

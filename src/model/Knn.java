@@ -12,24 +12,24 @@ public class Knn extends AbstractClassifier{
 
 	@Override
 	@SuppressWarnings("PMD.ExcessiveParameterList")
-	public List<IPoint> neighborManhattan(int k, IPoint point, List<IPoint> list, List<Column> c1) {
+	public List<IPoint> neighborManhattan(int k, IPoint point, List<IPoint> listPoint, List<Column> columns) {
 		List<IPoint> result= new ArrayList<IPoint>();
 		Distance distance = new Distance();
-		list.sort((i1,i2) -> Double.compare(distance.distanceManhattan(i1,point,c1), distance.distanceManhattan(i2, point,c1)));
+		listPoint.sort((i1,i2) -> Double.compare(distance.distanceManhattan(i1,point,columns), distance.distanceManhattan(i2, point,columns)));
 		for(int i = 0; i < k+1; i++) {
-			result.add(list.get(i));
+			result.add(listPoint.get(i));
 		}
 		return result;
 	}
 
 	@Override
 	@SuppressWarnings("PMD.ExcessiveParameterList")
-	public List<IPoint> neighborEuclidienne(int k, IPoint point, List<IPoint> list, List<Column> c1) {
+	public List<IPoint> neighborEuclidienne(int k, IPoint point, List<IPoint> listPoint, List<Column> columns) {
 		List<IPoint> result= new ArrayList<IPoint>();
 		Distance distance = new Distance();
-		list.sort((i1,i2) -> Double.compare(distance.distanceEuclidienne(i1,point,c1), distance.distanceEuclidienne(i2, point,c1)));
+		listPoint.sort((i1,i2) -> Double.compare(distance.distanceEuclidienne(i1,point,columns), distance.distanceEuclidienne(i2, point,columns)));
 		for(int i = 0; i < k+1; i++) {
-			result.add(list.get(i));
+			result.add(listPoint.get(i));
 		}
 		return result;
 	}

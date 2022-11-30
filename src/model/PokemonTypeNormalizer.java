@@ -9,11 +9,11 @@ public class PokemonTypeNormalizer implements IValueNormalizer{
 		if(value==null) {
 			return 0;
 		}
-		PokemonType pt;
+		PokemonType type;
 		PokemonType[] pokemonTypes = PokemonType.values();
 		if(PokemonType.class.equals(value.getClass())) {
-			 pt = (PokemonType) value;
-			return (double)pt.ordinal()/(pokemonTypes.length-1);
+			 type = (PokemonType) value;
+			return (double)type.ordinal()/(pokemonTypes.length-1);
 		}	
 		return -1;
 	}

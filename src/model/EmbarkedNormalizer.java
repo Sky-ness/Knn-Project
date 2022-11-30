@@ -8,11 +8,11 @@ public class EmbarkedNormalizer implements IValueNormalizer{
 		if(value==null) {
 			return 0;
 		}
-		Embarked e;
+		Embarked embarked;
 		Embarked[] embarkeds = Embarked.values();
 		if(Embarked.class.equals(value.getClass())) {
-			 e = (Embarked) value;
-			return (double)e.ordinal()/(embarkeds.length-1);
+			 embarked = (Embarked) value;
+			return (double)embarked.ordinal()/(embarkeds.length-1);
 		}
 		return -1;
 	}

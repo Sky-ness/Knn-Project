@@ -11,10 +11,10 @@ public class IrisVarietyNormalizer implements IValueNormalizer{
 		}
 		IrisVariety[] values = IrisVariety.values();
 		int length = values.length;
-		IrisVariety iv;
+		IrisVariety iris_variety;
 		if(IrisVariety.class.equals(value.getClass())) {
-			iv = (IrisVariety) value;
-			int ordinal = iv.ordinal();
+			iris_variety = (IrisVariety) value;
+			int ordinal = iris_variety.ordinal();
 			return (double)ordinal/(length-1);
 		}
 		return -1;

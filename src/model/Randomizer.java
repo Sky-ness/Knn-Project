@@ -9,24 +9,24 @@ import utils.AbstractClassifier;
 public class Randomizer extends AbstractClassifier {
 
 	@Override
-	public List<IPoint> neighborEuclidienne(int k, IPoint point, List<IPoint> list,
-			List<Column> c1) {
+	public List<IPoint> neighborEuclidienne(int k, IPoint point, List<IPoint> points,
+			List<Column> columns) {
 		List<IPoint> res = new ArrayList<IPoint>();
-		Collections.shuffle(list);
+		Collections.shuffle(points);
 
 		for(int i=0;i<k;i++) {
-			res.add(list.get(i));
+			res.add(points.get(i));
 		}
 		return res;
 	}
 
 	@Override
-	public List<IPoint> neighborManhattan(int k, IPoint point, List<IPoint> list, List<Column> c1) {
+	public List<IPoint> neighborManhattan(int k, IPoint point, List<IPoint> points, List<Column> columns) {
 		List<IPoint> res = new ArrayList<IPoint>();
-		Collections.shuffle(list);
+		Collections.shuffle(points);
 
 		for(int i=0;i<k;i++) {
-			res.add(list.get(i));
+			res.add(points.get(i));
 		}
 		return res;
 	}

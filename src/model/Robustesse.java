@@ -8,22 +8,22 @@ import utils.AbstractClassifier;
 public class Robustesse {
 	
 	@SuppressWarnings("PMD.ExcessiveParameterList")
-	public double calc(Parser p, int k, AbstractClassifier classifier, Column col) {
+	public double calc(Parser parser, int k, AbstractClassifier classifier, Column column) {
 		Object value;
 		double i = 0.0;
 		List<IPoint> neighbor;
-		List<IPoint> list = init(p);
+		List<IPoint> list = init(parser);
 		for(int j = 0; j<list.size();j++) {
-			list = init(p);
-			neighbor = classifier.neighborManhattan(k,list.get(j), list, p.getListColumns());
-			value = classifier.classify(neighbor,col);
-			list = init(p);
-			if(value.equals(list.get(j).getValue(col))){
+			list = init(parser);
+			neighbor = classifier.neighborManhattan(k,list.get(j), list, parser.getListColumns());
+			value = classifier.classify(neighbor,column);
+			list = init(parser);
+			if(value.equals(list.get(j).getValue(column))){
 				i++;
 				
 			}
 		}
-		return (i+0.0)/(p.getNbLines()+0.0)*100;
+		return (i+0.0)/(parser.getNbLines()+0.0)*100;
 	}
 	
 	public List<IPoint> init(Parser p){

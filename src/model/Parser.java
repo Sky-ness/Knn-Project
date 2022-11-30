@@ -22,18 +22,18 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	protected Collection<Category> categories;
 
 	@Override
-	public void loadFromFile(String datafile,Class<? extends IPoint> c) throws IllegalStateException, IOException {
+	public void loadFromFile(String datafile,Class<? extends IPoint> classe) throws IllegalStateException, IOException {
 		List<IPoint> points = new ArrayList<IPoint>();
 		points = new CsvToBeanBuilder<IPoint>(Files.newBufferedReader(Paths.get(datafile)))
 				.withSeparator(',')
-				.withType(c)
+				.withType(classe)
 				.build().parse();
 		datas = new DataSet(title,points);
 	}
 	
 	
-	public void loadFromFile(File f,Class<? extends IPoint> c) throws IllegalStateException, IOException {
-		loadFromFile(f.getAbsolutePath(),c);
+	public void loadFromFile(File file,Class<? extends IPoint> classe) throws IllegalStateException, IOException {
+		loadFromFile(file.getAbsolutePath(),classe);
 	}
 	
 	@Override
@@ -177,16 +177,16 @@ public class Parser extends AbstractSubject implements IMVCModel {
 			}
 			
 		}
-		List<IPoint> lp = new ArrayList<IPoint>();
+		List<IPoint> listPoint = new ArrayList<IPoint>();
 		for(IPoint point : points) {
-			lp.add(point);
+			listPoint.add(point);
 		}
 		
 
 		for(Object object: disctintValue) {
 			Category c = new Category(col.getName()+" "+object.toString(), new ArrayList<IPoint>(),this.getListColumns());
 		
-			for(IPoint point:lp) {
+			for(IPoint point:listPoint) {
 				if(object.equals(point.getValue(col))){
 					c.addLine(point);
 					

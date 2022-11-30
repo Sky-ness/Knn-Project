@@ -23,15 +23,15 @@ public class NumberNormalizer implements IValueNormalizer{
 	public void amplitude() {
 		if(!executed) {
 			List<Object> list = column.getDataset().valueByColumn(column);
-			Number d = (Number)list.get(0);
-			max = d.doubleValue();min = d.doubleValue();
+			Number num = (Number)list.get(0);
+			max = num.doubleValue();min = num.doubleValue();
 			for(Object obj : list) {
-				d = (Number)obj;
-				if(d.doubleValue() > max) {
-					max = d.doubleValue();
+				num = (Number)obj;
+				if(num.doubleValue() > max) {
+					max = num.doubleValue();
 				}
-				if(d.doubleValue() < min) {
-					min = d.doubleValue();
+				if(num.doubleValue() < min) {
+					min = num.doubleValue();
 				}
 			}
 			executed = true;
@@ -54,10 +54,10 @@ public class NumberNormalizer implements IValueNormalizer{
 	@Override
 	@SuppressWarnings("PMD.LawOfDemeter")
 	public Object denormalize(double value) {
-		Number d = (Number)value;
+		Number num = (Number)value;
 		double diviseur = max-min;
-		d = d.doubleValue() * diviseur + min;
-		return d;
+		num = num.doubleValue() * diviseur + min;
+		return num;
 
 
 	}
