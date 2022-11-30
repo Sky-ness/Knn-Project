@@ -86,7 +86,6 @@ public class AddPointView extends AbstractView {
 				parser.addLine(new Titanic(parameter));
 			}
 			for(Column col : parser.getListColumns()) {
-				System.out.println(col);
 				IValueNormalizer normalizer = col.getValueNormalizer();
 				if(normalizer != null) {
 					if(normalizer.getClass().equals(NumberNormalizer.class)) {
