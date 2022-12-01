@@ -23,7 +23,6 @@ public class PointView extends AbstractView implements Observer{
 	protected static IPoint selectedPoint ;
 	private TableView<IPoint> table = new TableView<IPoint>();;
 	private Button button;
-	Stage stage = initStage();
 
 	public PointView(Parser p){
 		super(p);
