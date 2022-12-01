@@ -9,9 +9,9 @@ import utils.AbstractClassifier;
 public class Randomizer extends AbstractClassifier {
 
 	@Override
-	public List<AbstractPoint> neighborEuclidienne(int k, AbstractPoint point, List<AbstractPoint> points,
+	public List<IPoint> neighborEuclidienne(int k, IPoint point, List<IPoint> points,
 			List<Column> columns) {
-		List<AbstractPoint> res = new ArrayList<AbstractPoint>();
+		List<IPoint> res = new ArrayList<IPoint>();
 		Collections.shuffle(points);
 
 		for(int i=0;i<k;i++) {
@@ -21,8 +21,8 @@ public class Randomizer extends AbstractClassifier {
 	}
 
 	@Override
-	public List<AbstractPoint> neighborManhattan(int k, AbstractPoint point, List<AbstractPoint> points, List<Column> columns) {
-		List<AbstractPoint> res = new ArrayList<AbstractPoint>();
+	public List<IPoint> neighborManhattan(int k, IPoint point, List<IPoint> points, List<Column> columns) {
+		List<IPoint> res = new ArrayList<IPoint>();
 		Collections.shuffle(points);
 
 		for(int i=0;i<k;i++) {

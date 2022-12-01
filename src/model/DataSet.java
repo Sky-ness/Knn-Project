@@ -10,10 +10,10 @@ import utils.IDataset;
 public class DataSet implements IDataset{
 
 	protected String title;
-	protected List<AbstractPoint> listePoints;
+	protected List<IPoint> listePoints;
 	protected List<Column> listeColumns; 
 
-	public DataSet(String title,List<AbstractPoint> listePoints) {
+	public DataSet(String title,List<IPoint> listePoints) {
 		this.title=title;
 		this.listePoints=listePoints;
 		this.listeColumns=listColumn();
@@ -35,7 +35,7 @@ public class DataSet implements IDataset{
 	}
 
 	@Override
-	public Iterator<AbstractPoint> iterator() {
+	public Iterator<IPoint> iterator() {
 		return listePoints.iterator();
 	}
 
@@ -50,17 +50,17 @@ public class DataSet implements IDataset{
 	}
 
 	@Override
-	public void setLines(List<AbstractPoint> lines) {
+	public void setLines(List<IPoint> lines) {
 		listePoints=lines;
 	}
 
 	@Override
-	public void addLine(AbstractPoint element) {
+	public void addLine(IPoint element) {
 		listePoints.add(element);
 	}
 
 	@Override
-	public void addAllLine(List<AbstractPoint> element) {
+	public void addAllLine(List<IPoint> element) {
 		listePoints.addAll(element);
 	}
 
@@ -70,7 +70,7 @@ public class DataSet implements IDataset{
 	}
 
 	@Override
-	public List<AbstractPoint> getListPoints() {
+	public List<IPoint> getListPoints() {
 		return listePoints;
 	}
 
@@ -78,7 +78,7 @@ public class DataSet implements IDataset{
 	public String toString() {
 		StringBuilder stringbuilder = new StringBuilder("");
 		stringbuilder.append("DataSet [title=" + title);
-		for(AbstractPoint ipoint : listePoints) {
+		for(IPoint ipoint : listePoints) {
 			stringbuilder.append(ipoint + "\n");
 		}
 		stringbuilder.append("ListeColumns=" + listeColumns);
@@ -87,7 +87,7 @@ public class DataSet implements IDataset{
 
 	public List<Object> valueByColumn(Column column) {
 		List<Object> list = new ArrayList<Object>();
-		for(AbstractPoint point : listePoints) {
+		for(IPoint point : listePoints) {
 			list.add(point.getValue(column));
 		}
 		return list;
@@ -95,9 +95,9 @@ public class DataSet implements IDataset{
 
 	public List<Column> getNormalizableColumns() {
 		List<Column> resultat = new ArrayList<>();
-		for (Column column : listeColumns) {
-			if(column.isNormalizable())
-				resultat.add(column);
+		for (Column Column : listeColumns) {
+			if(Column.isNormalizable())
+				resultat.add(Column);
 		}
 		return resultat;
 	}

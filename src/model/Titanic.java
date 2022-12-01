@@ -2,13 +2,13 @@ package model;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class Titanic extends AbstractPoint {
+public class Titanic extends IPoint {
 	@CsvBindByName(column = "PassengerId")
 	protected int passengerId;
 	@CsvBindByName(column = "Survived")
 	protected int survived;
 	@CsvBindByName(column = "Pclass")
-	protected int pClass;
+	protected int Pclass;
 	@CsvBindByName(column = "Name")
 	protected String name;
 	@CsvBindByName(column = "Sex")
@@ -39,7 +39,7 @@ public class Titanic extends AbstractPoint {
 
 		this.passengerId = id;
 		this.survived = survived;
-		this.pClass = pclass;
+		this.Pclass = pclass;
 		this.name = name;
 		this.sex = sexe;
 		this.age = age;
@@ -66,9 +66,9 @@ public class Titanic extends AbstractPoint {
 
 
 		try {
-			pClass= Integer.valueOf(param[2]);
+			Pclass= Integer.valueOf(param[2]);
 		} catch (Exception e) {
-			pClass=0;
+			Pclass=0;
 		}
 
 		name = null;
@@ -128,14 +128,14 @@ public class Titanic extends AbstractPoint {
 	
 	@Override
 	public String toString() {
-		return "Titanic [passengerId=" + passengerId + ", survived=" + survived + ", Pclass=" + pClass + ", name="
+		return "Titanic [passengerId=" + passengerId + ", survived=" + survived + ", Pclass=" + Pclass + ", name="
 				+ name + ", sex=" + sex + ", age=" + age + ", sibSp=" + sibSp + ", parch=" + parch + ", ticket="
 				+ ticket + ", fare=" + fare + ", cabin=" + cabin + ", embarked=" + embarked + "]";
 	}
 
 	public int getPassengerId() {return passengerId;}
 	public int getSurvived() {return survived;}
-	public int getPclass() {return pClass;}
+	public int getPclass() {return Pclass;}
 	public String getName() {return name;}
 	public Sexe getSex() {return sex;}
 	public double getAge() {return age;}

@@ -6,7 +6,7 @@ import java.util.List;
 
 import model.Category;
 import model.Column;
-import model.AbstractPoint;
+import model.IPoint;
 
 /**
 * Decrit un modele de donnee dans le MVC.
@@ -22,7 +22,7 @@ public interface IMVCModel extends IDataset {
  * @throws IOException 
  * @throws IllegalStateException 
 */
-public void loadFromFile(String datafile,Class<? extends AbstractPoint> c) throws IllegalStateException, IOException;
+public void loadFromFile(String datafile,Class<? extends IPoint> c) throws IllegalStateException, IOException;
 /**
 * Charge les donnees du modele d'une String "CSV".
 * Cette methode est surtout un utilitaire de test pour eviter d'avoir a

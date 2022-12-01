@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import model.Category;
 import model.Column;
-import model.AbstractPoint;
+import model.IPoint;
 import model.Iris;
 import model.NumberNormalizer;
 import model.Parser;
@@ -57,10 +57,10 @@ public class AddPointView extends AbstractView {
 			listTf.add(tf);
 		}
 
-		List<AbstractPoint> points = parser.getListPoints();
-		AbstractPoint first = points.get(0);
-		Class<? extends AbstractPoint> c = first.getClass();
-		List<AbstractPoint> ajout = new ArrayList<>();
+		List<IPoint> points = parser.getListPoints();
+		IPoint first = points.get(0);
+		Class<? extends IPoint> c = first.getClass();
+		List<IPoint> ajout = new ArrayList<>();
 
 
 		b.setOnAction((event) -> {

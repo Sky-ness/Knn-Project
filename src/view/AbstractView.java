@@ -11,8 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.AbstractPoint;
+import model.Category;
 import model.Column;
+import model.IPoint;
 import model.Knn;
 import model.Parser;
 import model.Randomizer;
@@ -70,7 +71,7 @@ public abstract class AbstractView extends Stage implements Observer{
 	}
 
 	
-	public AbstractClassifier chooseClassifier(String classification) {
+	public AbstractClassifier ChooseClassifier(String classification) {
 		if (classification.equals("Knn")) {
 			Knn k = new Knn();
 			return k;
@@ -82,8 +83,8 @@ public abstract class AbstractView extends Stage implements Observer{
 		return null;
 	}
 	
-	public List<AbstractPoint> chooseDistance(AbstractClassifier a,String distance,int nbVoisin) {
-		List<AbstractPoint> voisin= new ArrayList<AbstractPoint>();
+	public List<IPoint> ChooseDistance(AbstractClassifier a,String distance,int nbVoisin) {
+		List<IPoint> voisin= new ArrayList<IPoint>();
 		
 		if(distance.equals("Manhattan")) {
 			voisin = a.neighborManhattan(nbVoisin,PointView.selectedPoint,parser.getListPoints(),parser.getListColumns() );

@@ -9,10 +9,10 @@ import utils.ICategory;
 public class Category extends AbstractSubject implements ICategory {
 
 	protected String title;
-	protected List<AbstractPoint> listePoints;
+	protected List<IPoint> listePoints;
 	protected List<Column> listeColumns; 
 	
-	public Category(String title, List<AbstractPoint> listePoints,List<Column> listeColumn) {
+	public Category(String title, List<IPoint> listePoints,List<Column> listeColumn) {
 		super();
 		this.title = title;
 		this.listePoints = listePoints;
@@ -20,7 +20,7 @@ public class Category extends AbstractSubject implements ICategory {
 	}
 
 	@Override
-	public Iterator<AbstractPoint> iterator() {
+	public Iterator<IPoint> iterator() {
 		return listePoints.iterator();
 	}
 
@@ -35,19 +35,19 @@ public class Category extends AbstractSubject implements ICategory {
 	}
 
 	@Override
-	public void setLines(List<AbstractPoint> lines) {
+	public void setLines(List<IPoint> lines) {
 		listePoints=lines;
 		notifyObservers();
 	}
 
 	@Override
-	public void addLine(AbstractPoint element) {
+	public void addLine(IPoint element) {
 		listePoints.add(element);
 		notifyObservers();
 	}
 
 	@Override
-	public void addAllLine(List<AbstractPoint> element) {
+	public void addAllLine(List<IPoint> element) {
 		listePoints.addAll(element);
 		notifyObservers();
 	}
@@ -58,7 +58,7 @@ public class Category extends AbstractSubject implements ICategory {
 	}
 
 	@Override
-	public List<AbstractPoint> getListPoints() {
+	public List<IPoint> getListPoints() {
 		return listePoints;
 	}
 
