@@ -97,6 +97,5 @@ public class RobustesseView extends AbstractView{
 	@Override
 	public void update(AbstractSubject subj) {
 		load();
-		System.out.println("update robustesse");
 	}
 }

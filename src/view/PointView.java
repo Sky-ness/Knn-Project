@@ -80,6 +80,5 @@ public class PointView extends AbstractView implements Observer{
 	@Override
 	public void update(AbstractSubject subj) {
 		load();
-		System.out.println("update pointView");
 	}
 }
