@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import com.opencsv.CSVWriter;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import utils.AbstractClassifier;
@@ -25,9 +26,9 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	public void loadFromFile(String datafile,Class<? extends IPoint> classe) throws IllegalStateException, IOException {
 		List<IPoint> points = new ArrayList<IPoint>();
 		points = new CsvToBeanBuilder<IPoint>(Files.newBufferedReader(Paths.get(datafile)))
-				.withSeparator(',')
-				.withType(classe)
-				.build().parse();
+					.withSeparator(CSVWriter.DEFAULT_SEPARATOR)
+					.withType(classe)
+					.build().parse();
 		datas = new DataSet(title,points);
 	}
 	

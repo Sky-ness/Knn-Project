@@ -60,26 +60,25 @@ public class ClassificationView extends AbstractView{
 		labelSelectPoint.setOnMouseClicked(e-> labelSelectPoint.setText(PointView.selectedPoint.toString()));
 
 		valider.setOnAction(e-> {
-			AbstractClassifier a = ChooseClassifier(classification.getValue());
-			List<IPoint> voisin = ChooseDistance(a, distance.getValue(),(int) neighborSlider.getValue());
-			if(c!=null)
-				parser.allCategories().remove(c);
-			
-			c= new Category("voisin", voisin,parser.getListColumns());
-			parser.addCategory(c);	
-			
-			boolean find = false;
-			int i = 0;
-			Column col = null;
-			while(!find && i < parser.getListColumns().size()) {
-				if(selectCol.getValue().equals(parser.getListColumns().get(i).getName())) {
-					col = parser.getListColumns().get(i);
-					find = true;
+			if(PointView.selectedPoint!=null) {
+				AbstractClassifier a = ChooseClassifier(classification.getValue());
+				List<IPoint> voisin = ChooseDistance(a, distance.getValue(),(int) neighborSlider.getValue());
+				if(c!=null)
+					parser.allCategories().remove(c);
+				c= new Category("voisin", voisin,parser.getListColumns());
+				parser.addCategory(c);	
+				boolean find = false;
+				int i = 0;
+				Column col = null;
+				while(!find && i < parser.getListColumns().size()) {
+					if(selectCol.getValue().equals(parser.getListColumns().get(i).getName())) {
+						col = parser.getListColumns().get(i);
+						find = true;
+					}
+					i++;
 				}
-				i++;
+				classeCategory.setText("Valeur trouvé : " +a.classify(voisin, col));
 			}
-			Knn classifier = new Knn();
-			classeCategory.setText("Valeur trouvé : " +classifier.classify(voisin, col));
 		});
 	}
 	@Override
