@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import model.Category;
 import model.Column;
-import model.IPoint;
+import model.AbstractPoint;
 import model.Iris;
 import model.Parser;
 
@@ -27,7 +27,7 @@ public class TestCategory {
 	
 	@Test
 	void testInit() {
-		List<IPoint> pts = new ArrayList<>();
+		List<AbstractPoint> pts = new ArrayList<>();
 		pts.add(new Iris("1", "1", "1", "1", "SETOSA"));
 		cat.addAllLine(pts);
 		assertEquals("Cat", cat.getTitle());
@@ -39,7 +39,7 @@ public class TestCategory {
 	
 	@Test
 	void testSetter() {
-		List<IPoint> pts = new ArrayList<>();
+		List<AbstractPoint> pts = new ArrayList<>();
 		pts.add(new Iris("10", "10", "10", "10", "VERSICOLOR"));
 		
 		assertNotEquals(pts.toString(), cat.getListPoints().toString());
@@ -49,7 +49,7 @@ public class TestCategory {
 	
 	@Test
 	void testAdd() {
-		List<IPoint> pts = new ArrayList<>();
+		List<AbstractPoint> pts = new ArrayList<>();
 		pts.add(new Iris("1", "1", "1", "1", "SETOSA"));
 		pts.add(new Iris("10", "10", "10", "10", "VERSICOLOR"));
 		assertNotEquals(pts.toString(), cat.getListPoints().toString());

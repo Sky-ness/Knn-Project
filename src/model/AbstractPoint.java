@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 /**
  * Decrit un Point (ou donnee, ou ligne) dans un DataSet.
  */
-public abstract class  IPoint {
+public abstract class  AbstractPoint {
 	/**
 	 * Retourne la valeur de ce point pour la colonne en parametre.
 	 *

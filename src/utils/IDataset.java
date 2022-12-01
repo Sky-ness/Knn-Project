@@ -3,7 +3,7 @@ package utils;
 import java.util.List;
 
 import model.Column;
-import model.IPoint;
+import model.AbstractPoint;
 
 /**
 * Decrit un <i>DatSet</i>, c'est a dire un ensemble de points (ou lignes,
@@ -14,7 +14,7 @@ import model.IPoint;
 * Pour cette raison, il n'y a pas de getter pour l'ensemble des points
 * d'un DataSet.
 */
-public interface IDataset extends Iterable<IPoint> {
+public interface IDataset extends Iterable<AbstractPoint> {
 
 /**
 * Le nom du DataSet ex: Titanic, Iris, Pokemon, ...
@@ -27,17 +27,17 @@ public int getNbLines();
 /**
 * stocke dans le DataSet la collection de donnees passee en parametre
 */
-public void setLines(List<IPoint> lines);
+public void setLines(List<AbstractPoint> lines);
 /**
 * Ajoute une donnee dans le DataSet
 */
-public void addLine(IPoint element);
+public void addLine(AbstractPoint element);
 /**
 * Ajoute une collection de donnees dans le DataSet
 */
-public void  addAllLine(List<IPoint> element);
+public void  addAllLine(List<AbstractPoint> element);
 
 public  List<Column> getListColumns();
 
-public List<IPoint> getListPoints();
+public List<AbstractPoint> getListPoints();
 }

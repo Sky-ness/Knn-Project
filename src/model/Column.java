@@ -46,12 +46,12 @@ public class Column {
 		return valueNormalizer!=null;
 	}
 	
-	public double getNormalizedValue(IPoint point){
+	public double getNormalizedValue(AbstractPoint point){
 		if(!isNormalizable()) {
 			return 0.0;
 		}
 		double result = 0.0;
-		Class<? extends IPoint> pt = point.getClass();
+		Class<? extends AbstractPoint> pt = point.getClass();
 		for(Field field : pt.getDeclaredFields()) {
 			if(this.name.equals(field.getName())) {
 				try {

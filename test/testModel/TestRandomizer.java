@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.IPoint;
+import model.AbstractPoint;
 import model.Pokemon;
 import model.Randomizer;
 
@@ -23,10 +23,10 @@ public class TestRandomizer {
 	void testNeighborManhattan() {
 		List<String> voisin = new ArrayList<>() ;
 		voisin.add("null");
-		List<IPoint> pokemons = new ArrayList<IPoint>();
+		List<AbstractPoint> pokemons = new ArrayList<AbstractPoint>();
 		pokemons.add(new Pokemon());
 		
-		List<IPoint> testVoisin = randominzer.neighborManhattan(1, null, pokemons, null);
+		List<AbstractPoint> testVoisin = randominzer.neighborManhattan(1, null, pokemons, null);
 		int i = 0;
 		for(String s :voisin) {
 			assertEquals(0,((Pokemon)testVoisin.get(i)).getAttack());
@@ -38,9 +38,9 @@ public class TestRandomizer {
 	void testNeighborEuclidienne() {
 		List<String> voisin = new ArrayList<>() ;
 		voisin.add("null");
-		List<IPoint> pokemons = new ArrayList<IPoint>();
+		List<AbstractPoint> pokemons = new ArrayList<AbstractPoint>();
 		pokemons.add(new Pokemon());
-		List<IPoint> testVoisin = randominzer.neighborEuclidienne(1, null, pokemons, null);
+		List<AbstractPoint> testVoisin = randominzer.neighborEuclidienne(1, null, pokemons, null);
 		int i = 0;
 		for(String s :voisin) {
 			assertEquals(0,((Pokemon)testVoisin.get(i)).getAttack());

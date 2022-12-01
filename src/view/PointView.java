@@ -11,17 +11,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import model.AbstractPoint;
 import model.Column;
-import model.IPoint;
 import model.Parser;
 import utils.AbstractSubject;
 import utils.Observer;
 
 public class PointView extends AbstractView implements Observer{
 
-	protected static IPoint selectedPoint ;
-	private TableView<IPoint> table = new TableView<IPoint>();;
+	protected static AbstractPoint selectedPoint ;
+	private TableView<AbstractPoint> table = new TableView<AbstractPoint>();;
 	private Button button;
 
 	public PointView(Parser p){
@@ -34,13 +33,13 @@ public class PointView extends AbstractView implements Observer{
 		afficher(vb);
 	}
 
-	public List<TableColumn<IPoint,?>> columnFactory() {
-		List<TableColumn<IPoint,?>> listColumn = new ArrayList<>();
+	public List<TableColumn<AbstractPoint,?>> columnFactory() {
+		List<TableColumn<AbstractPoint,?>> listColumn = new ArrayList<>();
 
 		for(Column c: parser.getListColumns()) {
-			TableColumn<IPoint,Double> column = new TableColumn<IPoint,Double>(c.getName());
+			TableColumn<AbstractPoint,Double> column = new TableColumn<AbstractPoint,Double>(c.getName());
 			column.setMinWidth(100);
-			column.setCellValueFactory(new PropertyValueFactory<IPoint,Double>(c.getName()));
+			column.setCellValueFactory(new PropertyValueFactory<AbstractPoint,Double>(c.getName()));
 			listColumn.add(column);
 		}
 
@@ -64,11 +63,11 @@ public class PointView extends AbstractView implements Observer{
 	}
 	private void initTable() {
 		table.setEditable(true);
-		ObservableList<IPoint> data = FXCollections.observableArrayList(parser.getListPoints());		
+		ObservableList<AbstractPoint> data = FXCollections.observableArrayList(parser.getListPoints());		
 		table.setItems(data);
 		table.getColumns().addAll(columnFactory());	
 	}	
-	private  void setButton(TableView<IPoint> table) {
+	private  void setButton(TableView<AbstractPoint> table) {
 		button = new Button("selectionner un point");
 		button.setOnAction(e->{
 			selectedPoint = table.getSelectionModel().getSelectedItem();

@@ -9,10 +9,10 @@ public class SexeNormalizer implements IValueNormalizer{
 			return 0;
 		}
 		Sexe sexe;
-		Sexe[] Sexes = Sexe.values();
+		Sexe[] sexes = Sexe.values();
 		if(Sexe.class.equals(value.getClass())) {
 			 sexe = (Sexe) value;
-			return (double)sexe.ordinal()/(Sexes.length-1);
+			return (double)sexe.ordinal()/(sexes.length-1);
 		}
 		return -1;
 	}
@@ -21,7 +21,7 @@ public class SexeNormalizer implements IValueNormalizer{
 	public Object denormalize(double value) {
 		if(value > 1 || value < 0)
 			return null;
-		Sexe[] Sexes = Sexe.values();
-		return Sexes[(int) (value*(Sexes.length-1))];
+		Sexe[] sexes = Sexe.values();
+		return sexes[(int) (value*(sexes.length-1))];
 	}
 }

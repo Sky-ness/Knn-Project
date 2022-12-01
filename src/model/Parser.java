@@ -11,7 +11,6 @@ import java.util.List;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 
-import utils.AbstractClassifier;
 import utils.AbstractSubject;
 import utils.IMVCModel;
 
@@ -22,9 +21,9 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	protected Collection<Category> categories;
 
 	@Override
-	public void loadFromFile(String datafile,Class<? extends IPoint> classe) throws IllegalStateException, IOException {
-		List<IPoint> points = new ArrayList<IPoint>();
-		points = new CsvToBeanBuilder<IPoint>(Files.newBufferedReader(Paths.get(datafile)))
+	public void loadFromFile(String datafile,Class<? extends AbstractPoint> classe) throws IllegalStateException, IOException {
+		List<AbstractPoint> points = new ArrayList<AbstractPoint>();
+		points = new CsvToBeanBuilder<AbstractPoint>(Files.newBufferedReader(Paths.get(datafile)))
 				.withSeparator(',')
 				.withType(classe)
 				.build().parse();
@@ -32,7 +31,7 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	}
 	
 	
-	public void loadFromFile(File file,Class<? extends IPoint> classe) throws IllegalStateException, IOException {
+	public void loadFromFile(File file,Class<? extends AbstractPoint> classe) throws IllegalStateException, IOException {
 		loadFromFile(file.getAbsolutePath(),classe);
 	}
 	
@@ -56,7 +55,7 @@ public class Parser extends AbstractSubject implements IMVCModel {
 			}
 			else {
 				title = "Other";
-				datas = new DataSet(title,new ArrayList<IPoint>());
+				datas = new DataSet(title,new ArrayList<AbstractPoint>());
 			}
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
@@ -82,29 +81,29 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	}
 
 	@Override
-	public List<IPoint> getListPoints() {
+	public List<AbstractPoint> getListPoints() {
 		return datas.listePoints;
 	}
 	
 	@Override
-	public void setLines(List<IPoint> lines) {
+	public void setLines(List<AbstractPoint> lines) {
 		this.datas.setLines(lines);
 		notifyObservers();
 	}
 
 	@Override
-	public void addLine(IPoint element) {
+	public void addLine(AbstractPoint element) {
 		this.datas.listePoints.add(element);
 		notifyObservers();
 	}
 
 	@Override
-	public void addAllLine(List<IPoint> element) {
+	public void addAllLine(List<AbstractPoint> element) {
 		this.datas.listePoints.addAll(element);
 	}
 
 	@Override
-	public Iterator<IPoint> iterator() {
+	public Iterator<AbstractPoint> iterator() {
 		return datas.iterator();
 	}
 
@@ -164,10 +163,10 @@ public class Parser extends AbstractSubject implements IMVCModel {
 	}
 	public Collection<Category> creerCategory(Column col) {
 		Collection<Category> categories = new ArrayList<>();
-		List<IPoint> points = this.getListPoints();
+		List<AbstractPoint> points = this.getListPoints();
 		List<Object> disctintValue = new ArrayList<>();
 		Object value;
-		for(IPoint point:points) {
+		for(AbstractPoint point:points) {
 			value = point.getValue(col);
 			if(value == null) {
 				value = new NullObject();
@@ -177,16 +176,16 @@ public class Parser extends AbstractSubject implements IMVCModel {
 			}
 			
 		}
-		List<IPoint> listPoint = new ArrayList<IPoint>();
-		for(IPoint point : points) {
+		List<AbstractPoint> listPoint = new ArrayList<AbstractPoint>();
+		for(AbstractPoint point : points) {
 			listPoint.add(point);
 		}
 		
 
 		for(Object object: disctintValue) {
-			Category c = new Category(col.getName()+" "+object.toString(), new ArrayList<IPoint>(),this.getListColumns());
+			Category c = new Category(col.getName()+" "+object.toString(), new ArrayList<AbstractPoint>(),this.getListColumns());
 		
-			for(IPoint point:listPoint) {
+			for(AbstractPoint point:listPoint) {
 				if(object.equals(point.getValue(col))){
 					c.addLine(point);
 					

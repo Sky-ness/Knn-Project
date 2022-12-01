@@ -2,15 +2,14 @@ package view;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import model.AbstractPoint;
 import model.Category;
 import model.Column;
-import model.IPoint;
 import model.Knn;
 import model.Parser;
 import utils.AbstractClassifier;
@@ -60,8 +59,8 @@ public class ClassificationView extends AbstractView{
 		labelSelectPoint.setOnMouseClicked(e-> labelSelectPoint.setText(PointView.selectedPoint.toString()));
 
 		valider.setOnAction(e-> {
-			AbstractClassifier a = ChooseClassifier(classification.getValue());
-			List<IPoint> voisin = ChooseDistance(a, distance.getValue(),(int) neighborSlider.getValue());
+			AbstractClassifier a = chooseClassifier(classification.getValue());
+			List<AbstractPoint> voisin = chooseDistance(a, distance.getValue(),(int) neighborSlider.getValue());
 			if(c!=null)
 				parser.allCategories().remove(c);
 			

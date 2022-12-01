@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 import com.opencsv.bean.CsvBindByName;
 
 @SuppressWarnings("PMD.ShortClassName")
-public class Iris extends IPoint {
+public class Iris extends AbstractPoint {
 
 	@CsvBindByName(column = "sepal.length")
 	protected double sepalLength;

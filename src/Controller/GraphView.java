@@ -20,7 +20,7 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import model.Category;
 import model.Column;
-import model.IPoint;
+import model.AbstractPoint;
 import model.Parser;
 import utils.AbstractSubject;
 import view.AbstractView;
@@ -54,7 +54,7 @@ public class GraphView extends AbstractView {
 	@FXML
 	private Button clear;
 	@FXML
-	private Button load;
+	private Button loadButton;
 	@FXML
 	private Button classification;
 	@FXML
@@ -149,7 +149,7 @@ public class GraphView extends AbstractView {
 				categoryItems.add(c.getName());
 
 		pointGenerator();
-		load.setOnAction(e -> pointGenerator());
+		loadButton.setOnAction(e -> pointGenerator());
 	}
 	@Override
 	public void reset(){
@@ -190,7 +190,7 @@ public class GraphView extends AbstractView {
 			series.setName(c.getTitle());
 			chartData.add(series);
 			int cpt=0;
-			for (IPoint i : c.getListPoints()) {
+			for (AbstractPoint i : c.getListPoints()) {
 
 				series.getData().add(new XYChart.Data<Double, Double>(absSelected.getNormalizedValue(i),ordSelected.getNormalizedValue(i)));
 				Data<Double, Double> data = series.getData().get(cpt);
