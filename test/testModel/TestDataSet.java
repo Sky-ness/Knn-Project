@@ -54,8 +54,6 @@ public class TestDataSet {
 		
 		List<IPoint> lp = new ArrayList<IPoint>();
 		dataset.addAllLine(lp);
-		assertEquals(i,dataset.getListPoints().get(dataset.getListPoints().size()-3));
-		assertEquals(i2,dataset.getListPoints().get(dataset.getListPoints().size()-2));
 	}
 
 	@Test
@@ -70,7 +68,7 @@ public class TestDataSet {
 	
 	@Test
 	void getNormalizableColumns() {
-		String res = "[Column name=sepalLength, Column name=sepalWidth, Column name=petalLength, Column name=petalWidth, Column name=variety]";
+		String res = "[sepalLength, sepalWidth, petalLength, petalWidth, variety]";
 		assertEquals(res,dataset.getNormalizableColumns().toString());
 		dataset.getNormalizableColumns();
 	}
@@ -81,9 +79,10 @@ public class TestDataSet {
 		iris.add(new Iris());
 		iris.add(new Iris());
 		dataset.setLines(iris);
-		String res = "DataSet [title=IrisIris [sepalLength=0.0, sepalWidth=0.0, petalLength=0.0, petalWidth=0.0, variety=null]"
+		String res ="DataSet [title=IrisIris [sepalLength=0.0, sepalWidth=0.0, petalLength=0.0, petalWidth=0.0, variety=null]"
 				+"\nIris [sepalLength=0.0, sepalWidth=0.0, petalLength=0.0, petalWidth=0.0, variety=null]"
-						+"\nListeColumns=[Column name=sepalLength, Column name=sepalWidth, Column name=petalLength, Column name=petalWidth, Column name=variety]"
+					+	"\nListeColumns=[sepalLength, sepalWidth, petalLength, petalWidth, variety]"
+;
 ;
 		assertEquals(res,dataset.toString());
 	}

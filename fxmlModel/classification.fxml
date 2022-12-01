@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" prefHeight="28.0" prefWidth="164.0" text="Méthode de classification" textFill="#0f0fcc">
          <font>
@@ -16,7 +16,10 @@
          </font>
       </Label>
       <ComboBox fx:id="classification" prefHeight="26.0" prefWidth="185.0" promptText="Sélectionne classification" />
-       <ComboBox fx:id="selectCol" prefHeight="26.0" prefWidth="185.0" promptText="Sélectionner votre colonne" />
+       <ComboBox fx:id="selectCol" prefHeight="26.0" prefWidth="185.0" promptText="Sélectionner votre colonne">
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin></ComboBox>
       <ComboBox fx:id="distance" prefHeight="26.0" prefWidth="186.0" promptText="Sélectionne distance">
          <VBox.margin>
             <Insets top="15.0" />
@@ -42,7 +45,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <Slider fx:id="neighborSlider" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+      <Slider fx:id="neighborSlider" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
          <VBox.margin>
             <Insets bottom="15.0" left="40.0" right="40.0" top="15.0" />
          </VBox.margin>
