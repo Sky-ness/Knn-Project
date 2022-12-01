@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class Pokemon extends AbstractPoint{
+public class Pokemon extends IPoint{
 
 	@CsvBindByName(column = "name")
 	protected String name;

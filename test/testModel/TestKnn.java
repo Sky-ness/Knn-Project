@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.AbstractPoint;
+import model.IPoint;
 import model.Knn;
 import model.Parser;
 import model.Pokemon;
@@ -32,7 +32,7 @@ public class TestKnn {
 		voisin.add("Giratina");
 		voisin.add("Palkia");
 		voisin.add("Necrozma");
-		List<AbstractPoint> testVoisin = knn.neighborManhattan(k, p.getListPoints().get(12), p.getListPoints(), p.getListColumns());
+		List<IPoint> testVoisin = knn.neighborManhattan(k, p.getListPoints().get(12), p.getListPoints(), p.getListColumns());
 		int i = 0;
 		for(String s :voisin) {
 			assertEquals(s,((Pokemon)testVoisin.get(i)).getName());
@@ -47,7 +47,7 @@ public class TestKnn {
 		voisin.add("Giratina");
 		voisin.add("Palkia");
 		voisin.add("Necrozma");
-		List<AbstractPoint> testVoisin = knn.neighborEuclidienne(k, p.getListPoints().get(12), p.getListPoints(), p.getListColumns());
+		List<IPoint> testVoisin = knn.neighborEuclidienne(k, p.getListPoints().get(12), p.getListPoints(), p.getListColumns());
 		int i = 0;
 		for(String s :voisin) {
 			assertEquals(s,((Pokemon)testVoisin.get(i)).getName() );

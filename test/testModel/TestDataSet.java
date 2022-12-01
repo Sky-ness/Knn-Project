@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.DataSet;
-import model.AbstractPoint;
+import model.IPoint;
 import model.Iris;
 import model.Parser;
 
@@ -33,7 +33,7 @@ public class TestDataSet {
 	
 	@Test
 	void testSetLine() {
-		List<AbstractPoint> test = new ArrayList<AbstractPoint>();
+		List<IPoint> test = new ArrayList<IPoint>();
 		test.add(new Iris());
 		dataset = new DataSet(parser.getTitle(),test);
 		dataset.setLines(parser.getListPoints());
@@ -52,7 +52,7 @@ public class TestDataSet {
 		Iris i = new Iris();
 		Iris i2 = new Iris();
 		
-		List<AbstractPoint> lp = new ArrayList<AbstractPoint>();
+		List<IPoint> lp = new ArrayList<IPoint>();
 		dataset.addAllLine(lp);
 	}
 
@@ -75,7 +75,7 @@ public class TestDataSet {
 	
 	@Test
 	void testToString() {
-		List<AbstractPoint> iris = new ArrayList<AbstractPoint>();
+		List<IPoint> iris = new ArrayList<IPoint>();
 		iris.add(new Iris());
 		iris.add(new Iris());
 		dataset.setLines(iris);

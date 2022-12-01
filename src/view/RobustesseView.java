@@ -68,7 +68,7 @@ public class RobustesseView extends AbstractView{
 		}
 
 		Robustesse r = new Robustesse();
-		AbstractClassifier a = chooseClassifier(classification.getValue());
+		AbstractClassifier a = ChooseClassifier(classification.getValue());
 		Column c = searchColumnbyName(colonne.getValue());
 		
 		

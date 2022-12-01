@@ -11,8 +11,8 @@ public class Robustesse {
 	public double calc(Parser parser, int k, AbstractClassifier classifier, Column column,List<Column> listColumn) {
 		Object value;
 		double i = 0.0;
-		List<AbstractPoint> neighbor;
-		List<AbstractPoint> list = init(parser);
+		List<IPoint> neighbor;
+		List<IPoint> list = init(parser);
 		for(int j = 0; j<list.size();j++) {
 			list = init(parser);
 			neighbor = classifier.neighborManhattan(k,list.get(j), list, listColumn);
@@ -29,9 +29,9 @@ public class Robustesse {
 	
 	
 	
-	public List<AbstractPoint> init(Parser p){
-		List<AbstractPoint> list = new ArrayList<AbstractPoint>();
-		for(AbstractPoint point : p.getListPoints()) {
+	public List<IPoint> init(Parser p){
+		List<IPoint> list = new ArrayList<IPoint>();
+		for(IPoint point : p.getListPoints()) {
 			list.add(point);
 		}
 		return list;
