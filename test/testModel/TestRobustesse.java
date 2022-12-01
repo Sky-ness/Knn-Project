@@ -27,7 +27,7 @@ public class TestRobustesse {
 	
 	@Test
 	void RobustesseCalcTest() {
-		assertEquals(100.0,rob.calc(p, k, knn, p.getListColumns().get(4)));
+		assertEquals(100.0,rob.calc(p, k, knn, p.getListColumns().get(4), p.getListColumns()));
 	}
 
 }
