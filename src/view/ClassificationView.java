@@ -75,8 +75,10 @@ public class ClassificationView extends AbstractView{
 					col = parser.getListColumns().get(i);
 					find = true;
 				}
-				classeCategory.setText("Valeur trouvé : " +a.classify(voisin, col));
+				i++;
 			}
+			Knn classifier = new Knn();
+			classeCategory.setText("Valeur trouvé : " +classifier.classify(voisin, col));
 		});
 	}
 	@Override

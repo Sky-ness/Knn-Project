@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.opencsv.CSVWriter;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import utils.AbstractSubject;
