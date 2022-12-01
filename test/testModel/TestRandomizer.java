@@ -29,7 +29,7 @@ public class TestRandomizer {
 		List<IPoint> testVoisin = randominzer.neighborManhattan(1, null, pokemons, null);
 		int i = 0;
 		for(String s :voisin) {
-			assertEquals(s,((Pokemon)testVoisin.get(i)).getName());
+			assertEquals(0,((Pokemon)testVoisin.get(i)).getAttack());
 			i++;
 		}
 	}
@@ -40,11 +40,10 @@ public class TestRandomizer {
 		voisin.add("null");
 		List<IPoint> pokemons = new ArrayList<IPoint>();
 		pokemons.add(new Pokemon());
-		
 		List<IPoint> testVoisin = randominzer.neighborEuclidienne(1, null, pokemons, null);
 		int i = 0;
 		for(String s :voisin) {
-			assertEquals(s,((Pokemon)testVoisin.get(i)).getName());
+			assertEquals(0,((Pokemon)testVoisin.get(i)).getAttack());
 			i++;
 		}
 	}
