@@ -22,7 +22,7 @@ public class PointView extends AbstractView implements Observer{
 
 	protected static IPoint selectedPoint ;
 	private TableView<IPoint> table = new TableView<IPoint>();;
-	private Button b;
+	private Button button;
 	Stage stage = initStage();
 
 	public PointView(Parser p){
@@ -53,7 +53,7 @@ public class PointView extends AbstractView implements Observer{
 		initTable();
 		setButton(table);
 
-		vb.getChildren().addAll(table,b);
+		vb.getChildren().addAll(table,button);
 		vb.setAlignment(Pos.CENTER);
 	}
 	@Override
@@ -70,8 +70,8 @@ public class PointView extends AbstractView implements Observer{
 		table.getColumns().addAll(columnFactory());	
 	}	
 	private  void setButton(TableView<IPoint> table) {
-		b = new Button("selectionner un point");
-		b.setOnAction(e->{
+		button = new Button("selectionner un point");
+		button.setOnAction(e->{
 			selectedPoint = table.getSelectionModel().getSelectedItem();
 			stage.close();
 		});
